@@ -1,5 +1,5 @@
 
-.container{
+.contenue{
     margin-top:10px;
 }
 .banner {
@@ -9,26 +9,182 @@
     height: 100vh;
     width: 100%; 
   }
-  .description {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center;
-    height: 70vh;
-    text-align: center; 
-  }
-  .description h1{
-    color: #FFFF;
-    font-size: 40px;
-  }
+
   .description h1 span{
     color: #E29B34;
     font-size: 48px;
   }
-  .description p{
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .description h1 {
+    margin-bottom: 20px; 
+    color: #FFFF;
+    font-size: 40px;
+  }
+  
+  .description p {
+    line-height: 1.8;
+    margin-bottom: 30px; 
     color: #FFFF;
     width: 717px;
     height: 122px;
     font-size:20px;
+  }
+  
+  .ensavoire {
+    padding: 20px 90px;
+    background-color: #0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #ffff;
+    border-radius: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .ensavoire:hover {
+    background-color: #009444;
+  }
+  .section1{
+    background-image: url('/src/assets/images/Section.png');
+    background-size: cover; 
+    background-position: center;
+    height: 80vh;
+    width: 100%; 
+    margin-top: 50px;
+  }
+  .container{
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    text-align: center;
+  }
+  .container img{
+    margin-top: 100px;
+  }
+  .section_description{
+    width:700px ;
+    height: 500px;
+    margin-top: 110px;
+    text-align: left;
+  }
+  .titreApropos{
+    display: inline-flex;
+    margin: 10px;
+  }
+  .section_description h1{
+    color:#0D3C00;
+    font-size: 48px;
 
+  }
+  .titreApropos h6{
+    color: #009444;
+  }
+  .descriptionApropos p{
+    line-height: 1.8;
+  }
+
+.titreApropos .trh1{
+width: 3px;
+height: 20px;
+background-color: #A6CE39;
+margin: 0px 10px 8px 0px;
+}
+.descriptionApropos{
+    display:flex;
+   
+}
+.descriptionApropos .trh2{
+    width: 20px;
+    height: 196px;
+    background-color: #A6CE39;
+    margin:0px 10px 8px 0px;
+}
+.section_description button{
+    width: 157px;
+    height: 50px;
+    background-color: #009444;
+    border-radius: 100px;
+    color: #ffff;
+    border: none;
+}
+/* section  numéro 2 */
+.container-fluid{
+    margin-top: 100px;
+    height: 576px;
+}
+  .cardExplique{
+    background-color:#f4f5f0;
+    display: flex;
+    gap: 100px;
+    
+  }
+  .section_explique .descriptionApropos p{
+    margin-top: 30px;
+   
+  }
+  .section_explique{
+    width:700px ;
+    margin-top: 110px;
+    text-align: left;
+    line-height: 1.8;
+    
+  }
+  .player-wrapper {
+    position: relative;
+    width: 720px;
+    height: 576px;
+  }
+  
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  /* section numero trois */
+  .nos_service{
+    background-image: url('/src/assets/images/carte_service.png');
+    background-size: cover; 
+    background-position: center;
+    align-items: center;
+   margin: auto;
+    height: 70vh;
+    width: 95%;  
+  }
+  .cart_service{
+    width: 420px;
+    height: 500px;
+    background-color: #ffffff35;
+    border-radius: 24px;
+    text-align: center;
+    margin:30px auto;
+    color: #FFFF;
+  }
+  .cart_service h1{
+    margin-top: 20px;
+    font-size: 48px;
+  }
+  .cart_service p{
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  .cart_service button{
+    width: 119px;
+    height: 38px;
+    background-color: #009444;
+    border-radius: 100px;
+    color: #FFFF;
+    border: none;
+    margin-top: 10px;
   }
