@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import './Accueil.css'
-import ImageAbout from '/src/assets/images/about10.png.png';
+import ImageAbout from '/src/assets/images/about10.png'
+import ImagePerson from '/src/assets/images/main.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactPlayer from 'react-player';
+import { MdDateRange } from "react-icons/md";
+import { FaComments } from "react-icons/fa";
 const Accueil = () => {
   return (
      <div className='contenue'>
@@ -162,10 +165,69 @@ const Accueil = () => {
   </div>
 </section>
 {/* section numéro cinq */}
-<section className='container-fluide'>
-<h1>contact</h1>
-
+<section className='container'>
+<div className='titre1'>
+  <h1>Articles</h1>
+  <div className='hrtr'></div>
+  </div>
+<div className='list_cate_article'>
+<div className='carte_article'>
+  <img src={"https://th.bing.com/th/id/R.69f3e7cea180a68e950da3b2afae12ee?rik=GQq7RYbq4frGxw&pid=ImgRaw&r=0"}/>
+  <div className='titreArticle'>
+          <div className='trh1'></div>
+          <h6>À propos de SénAgri</h6>
+          </div>
+    <h4>Se connecter avec les agriculteurs pour améliorer leurs moyens de subsistance</h4>
+  <div className='comment'>
+  <div>23/02/2023 <MdDateRange size={20} color="#009444"/></div>
+  <div>Commentaire  <FaComments size={20} color="#009444" /></div>
+</div>
+</div>
+    <div className='carte_article'>
+      <img src={"https://th.bing.com/th/id/R.69f3e7cea180a68e950da3b2afae12ee?rik=GQq7RYbq4frGxw&pid=ImgRaw&r=0"}/>
+      <div className='titreArticle'>
+              <div className='trh1'></div>
+              <h6>À propos de SénAgri</h6>
+              </div>
+        <h4>Se connecter avec les agriculteurs pour améliorer leurs moyens de subsistance</h4>
+      <div className='comment'>
+      <div>23/02/2023 <MdDateRange size={20} color="#009444"/></div>
+      <div>Commentaire  <FaComments size={20} color="#009444" /></div>
+    </div>
+    </div>
+        <div className='carte_article'>
+      <img src={"https://th.bing.com/th/id/R.69f3e7cea180a68e950da3b2afae12ee?rik=GQq7RYbq4frGxw&pid=ImgRaw&r=0"}/>
+      <div className='titreArticle'>
+              <div className='trh1'></div>
+              <h6>À propos de SénAgri</h6>
+              </div>
+        <h4>Se connecter avec les agriculteurs pour améliorer leurs moyens de subsistance</h4>
+      <div className='comment'>
+      <div>23/02/2023 <MdDateRange size={20} color="#009444"/></div>
+      <div>Commentaire  <FaComments size={20} color="#009444" /></div>
+    </div>
+    </div>
+</div>
 </section>
+{/* section numéro sixe */}
+<section className='container_fluid'>
+<div className='section_choose'>
+  <div className='section_choose1'>
+  <h1>Pourquoi nous choisir?</h1>
+  <div className='hrtr'></div>
+  </div>
+<div className='cart_choose'>
+  <div className='icone'>
+       <img src={ImagePerson} alt="à propos" style={{ width: '50px', height: '50px' }} />
+  </div> 
+  <div>
+    <h1>SIMPLICITÉ</h1>
+    <p>Explorez facilement notre plateforme et nos outils intuitifs pour un parcours d &apos;investissement agricole sans stress.</p>
+  </div>
+</div>
+</div>
+</section>
+
    </div>
   )
 }
