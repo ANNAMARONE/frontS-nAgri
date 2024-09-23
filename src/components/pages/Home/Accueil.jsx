@@ -20,6 +20,7 @@ const Accueil = () => {
         {/* section numero 1 */}
         <section className='section1'>
           <div className='container'>
+            <div className='container_un'>
         <div> 
           <img src={ImageAbout} alt="à propos" style={{ width: '570px', height: '475px' }} />
         </div>
@@ -38,6 +39,7 @@ const Accueil = () => {
              
           </div>
           <button>En savoire plus</button>
+        </div>
         </div>
         </div>
         </section>
@@ -76,11 +78,15 @@ const Accueil = () => {
 </section>
 
 {/* section numéro 3 */}
-<section className='container-fluid'>
+<section className='container'>
+  <div className='titre1'>
   <h1>Nos service</h1>
   <div className='hrtr'></div>
+  </div>
+ 
 <div className='nos_service'>
   <div className='container'>
+  <div className='liste_cart_service'>
 <div className='cart_service'>
   <h1>colaboration</h1>
   <p>Lorem ipsum dolor sit amet consectetur. Fames odio sit consequat
@@ -107,6 +113,58 @@ const Accueil = () => {
 </div>
 </div>
 </div>
+</div>
+</section>
+{/* section numéro 4 */}
+<section className='container'>
+  <div className='sectionCe_que_Nous_ferons'>
+<div className='description_service'>
+<div className='titre1'>
+  <h1>Ce que nous offrons</h1>
+  <div className='hrtr'></div>
+  <p>SénAgri propose une gamme complète de solutions pour soutenir les agriculteurs et les
+     entrepreneurs du secteur agricole. Nous mettons à disposition une plateforme innovante pour faciliter la vente en circuit court,
+     l&apos;accès à des financements participatifs, et la mise en relation avec des investisseurs.</p>
+  </div>
+</div>
+<div className='liste_product-card'>
+<div className="product-card">
+    <div className="image-container">
+        <img src={"https://th.bing.com/th/id/R.69f3e7cea180a68e950da3b2afae12ee?rik=GQq7RYbq4frGxw&pid=ImgRaw&r=0"} alt="Morning Set"/>
+        <span className="favorite-star"></span>
+    </div>
+    <div className="product-info">
+        <h2>Vente en ligne</h2>
+        <p>Facilitez la commercialisation de vos produits grâce à notre plateforme intuitive et sécurisée.</p>
+    </div>
+</div>
+<div className="product-card">
+    <div className="image-container">
+        <img src={"https://th.bing.com/th/id/R.b2071e77322a3566bef292354f250da3?rik=9o%2bpX3UjLAku%2fw&pid=ImgRaw&r=0"} alt="Morning Set"/>
+        <span className="favorite-star"></span>
+    </div>
+    <div className="product-info">
+        <h2>mise en relation</h2>
+        <p>Facilitez la commercialisation de vos produits grâce à notre plateforme intuitive et sécurisée.</p>
+    </div>
+</div>
+<div className="product-card">
+    <div className="image-container">
+        <img src={"https://th.bing.com/th/id/R.5b3693053a0b19492584da15c8ec8394?rik=A2z6WQY%2bzaqS5Q&pid=ImgRaw&r=0"} alt="Morning Set"/>
+        <span className="favorite-star"></span>
+    </div>
+    <div className="product-info">
+        <h2>Vente en ligne</h2>
+        <p>Facilitez la commercialisation de vos produits grâce à notre plateforme intuitive et sécurisée.</p>
+    </div>
+</div>
+</div>
+  </div>
+</section>
+{/* section numéro cinq */}
+<section className='container-fluide'>
+<h1>contact</h1>
+
 </section>
    </div>
   )

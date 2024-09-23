@@ -64,13 +64,13 @@
     width: 100%; 
     margin-top: 50px;
   }
-  .container{
+  .container_un{
     display: flex;
     align-items: center;
     gap: 80px;
     text-align: center;
   }
-  .container img{
+  .container_un img{
     margin-top: 100px;
   }
   .section_description{
@@ -158,18 +158,31 @@ margin: 0px 10px 8px 0px;
     background-size: cover; 
     background-position: center;
     align-items: center;
-   margin: auto;
+   margin:15px auto;
     height: 70vh;
-    width: 95%;  
+
+  }
+  .liste_cart_service{
+    display: flex;
+    gap: 40px;
   }
   .cart_service{
-    width: 420px;
+    width: 450px;
     height: 500px;
     background-color: #ffffff35;
     border-radius: 24px;
     text-align: center;
     margin:30px auto;
     color: #FFFF;
+  }
+  .cart_service:hover{
+    width: 500px;
+    height: 500px;
+    background-color: #ffff;
+    border-radius: 24px;
+    text-align: center;
+    margin:30px auto;
+    color:#0B270D;
   }
   .cart_service h1{
     margin-top: 20px;
@@ -179,12 +192,115 @@ margin: 0px 10px 8px 0px;
     margin-top: 10px;
     font-size: 18px;
   }
+  .cart_service h1:hover{
+    margin-top: 20px;
+    font-size: 60px;
+  }
+  .cart_service p:hover{
+    margin-top: 10px;
+    font-size: 20px;
+  }
   .cart_service button{
-    width: 119px;
-    height: 38px;
+    width: 130px;
+    height: 50px;
     background-color: #009444;
     border-radius: 100px;
     color: #FFFF;
     border: none;
     margin-top: 10px;
   }
+    .cart_service button:hover{
+    width: 130px;
+    height: 50px;
+    background-color: #0B270D;
+    border-radius: 100px;
+    color: #FFFF;
+    border: none;
+    margin-top: 10px;
+  }
+.titre1 h1{
+  text-align: center;
+  font-size: 48px;
+  font-weight: blod;
+  color: #005129;
+
+}
+.titre1 .hrtr{
+    width: 100px;
+    height: 5px;
+    background-color: #005129;
+    margin: auto;
+    border-radius: 100px;
+}
+/* section numéro quatre */
+.sectionCe_que_Nous_ferons{
+    background-image: url('/src/assets/images/offer_frame.png');
+    background-size: cover; 
+    background-position: center;
+    height: 80vh;
+    margin: 100px auto;
+}
+
+.product-card {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 444px;
+    margin: auto;
+
+
+}
+.product-card:hover{
+    width: 350px;
+    background-color: #E6FDF1;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+}
+
+.image-container {
+    position: relative;
+   
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 15px;
+}
+.image-container img:hover {
+    width: 100%;
+    border-radius:0px;
+}
+.product-info h2 {
+    margin: 15px 0 10px;
+    font-size: 28px;
+    text-align:center ;
+}
+
+.product-info p {
+    font-size: 19px;
+    color: #0d0c0c;
+    text-align: center;
+}
+.order-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.liste_product-card{
+    display: flex;
+    margin: auto;
+    gap: 20px;
+}
+.description_service p{
+    width: 90%;
+    text-align: center;
+    margin-top: 20px;
+}
