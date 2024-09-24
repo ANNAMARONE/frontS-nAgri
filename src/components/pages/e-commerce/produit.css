@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
+.sectioN1{
+    width: 1319px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin: 20px auto;
+    gap: 30px;
+}
+.sectioN1 .descriptionBoutique {
+    background-image: url('/src/assets/images/african-man-harvesting-vegetables.jpg');
+    background-size: cover;
+    background-position: center; 
+    height:600px;
+    width:872px; 
+    border-radius: 10px;
+  }
+  .sectioN1 .descriptionBoutique h1{
+    color:#FFFF;
+    font-size: 48px;
+    margin:70px auto;
+  
+  }
+  .sectioN1 .descriptionBoutique button{
+    background-color: #FFFF;
+    width: 191px;
+    height: 51px;
+    color:#009444;
+    border: none;
+    left: 50px;
+    border-radius: 50px;
+  }
+  .sectioN1 .descriptionBoutique .description1{
+    padding-left: 50px;
+  }
+  .sectioN1 .produit_desc {
+    background-image: url('/src/assets/images/BG.png');
+    background-size: cover;
+    background-position: center; 
+   width:423px;
+    height:288px; 
+    margin-top: 10px;
+    color: #FFFF;
+   
+  }
+  .sectioN1 .produit_desc h1{
+ padding-top: 50px;
+    text-align: center;
+  }
+  .sectioN1 .deux_image{
+    margin: auto;
+  }
+  .catégorie h1{
+    text-align: center;
+    color: #009444;
+    margin-top: 100px;
+    font-size: 48px;
+  }
+  .liste_catégorie{
+    display: flex;
+    gap: 20px;
+  }
+  .liste_catégorie .catégorie1{
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.147);
+    border-radius: 5px;
+  }
+  .liste_catégorie .catégorie1:active{
+    width: 200px;
+    height: 200px;
+    border: 1px solid #009444;
+    border-radius: 5px;
+  }
+  .liste_catégorie .catégorie1 img{
+    width: 190px;
+    height: 130px;
+  }
+  .liste_catégorie .catégorie1 p {
+    text-align: center;
+    padding-top: 20px;
+  }
+  .liste_catégorie{
+    margin: auto;
+    width: 1260px;
+  }
+  .produitPopu{
+    display:flex;
+    justify-content: space-between;
+    margin:50px auto;
+
+  }
+  .produitPopu button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #009444;
+
+  }
+  .produitPopu h1{
+    font-size: 34px;
+  }
+  .cartProduit {
+    width: 264px;
+    height: 350px;
+    border: 1px solid #E6E6E6;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cartProduit img {
+    width: 264px;
+    height: 240px;
+    object-fit: cover;
+  }
+  
+  .elementcart {
+    display: flex;
+    padding: 10px;
+    gap: 100px;
+  }
+  
+  .porduitprix {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px; /* Ajout d'un peu d'espace sous le texte */
+  }
+  
+  .porduitprix p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .porduitprix p:last-child {
+    display: flex;
+    gap: 2px;
+  }
+  
+  .action_cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .action_cart1 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action_cart1 div {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action_cart1 div:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  
+  .addcarte:hover {
+    background-color: #ff8a00;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addcarte:hover {
+    background-color: #e67e00;
+  }
+  .addcarte {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #F2F2F2;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icone2{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #FFFF;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+.icone1{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #FFFF;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+  
+   
