@@ -1,0 +1,149 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
+
+.bannier_connexion{
+    background-image: url('/src/assets/images/background.png');
+    background-size: cover; /* Remplit entièrement le conteneur */
+    background-position: center; /* Centre l'image */
+    height: 100vh;
+    width: 100%; 
+  }
+  .contenu{
+    width: 572px;
+    height: 880px;
+    background-color:#ffffff80;
+    border-radius: 40px;
+    margin:80px auto;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    
+  }
+  .section_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .contenu .titre_des{
+   display: inline-flex;
+    padding-top:3rem;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+   .contenu .titre_des h1{
+    font-size: 24px;
+    font-weight: bold;
+    color: #00000062;
+   }
+   .contenu .titre_des span{
+    font-size: 28px;
+    font-weight: bold;
+    color: #E29B34 ;
+   }
+   .contenu  p{
+    font-size: 16px;
+    font-weight: bold;
+    color: #00000062;
+   margin-left: 15rem;
+    margin-top: 20px;
+   }
+   .contenu .span{
+  text-decoration: none;
+  color:#4285F4;
+  float: right;
+   }
+   .contenu h1{
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 24px;
+   }
+   input{
+    width: 451px;
+    height: 57px;
+    margin: auto;
+    border-radius:10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+   }
+   select{
+    width: 451px;
+    height: 57px;
+    margin: auto;
+    border-radius:10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+   }
+  
+   .form-group{
+   margin: 10px auto;
+   }
+   .form-group label{
+   margin-top: 10px;
+   }
+   .placeholder{
+    margin: auto;
+   }
+input::placeholder {
+    padding-left: 20px; 
+}
+input:hover{
+    border: 1px solid #008000;
+}
+.contenu button{
+    background-color: #008000;
+    width: 236px;
+    height: 54px;
+    margin: 10px auto;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+}
+.input-icon {
+    position: relative;
+  }
+  
+  .input-icon input {
+    padding-left: 30px;
+  }
+  
+  .input-icon i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .password-toggle {
+    position: absolute;
+    margin-left: 25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  .from_group1 input{
+    width: 215px;
+    height: 57px;
+  }
+  .from_group1{
+    display: flex;
+    gap: 10px;
+  }
+ 
+  .input-icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
