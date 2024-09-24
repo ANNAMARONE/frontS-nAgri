@@ -82,7 +82,8 @@ const Accueil = () => {
 
 {/* section numéro 3 */}
 <section className='container'>
-  <div className='titre1'>
+<div className='section_service'>
+<div className='titre1'>
   <h1>Nos service</h1>
   <div className='hrtr'></div>
   </div>
@@ -113,6 +114,7 @@ const Accueil = () => {
      Erat neque dui morbi condimentum quis ultrices vulputate vel lectus. Facilisis morbi morbi leo
       ornare ut eu in magnis. Semper donec aliquam facilisi vitae. Sodales.</p>
   <button>En savoir plus</button>
+</div>
 </div>
 </div>
 </div>
@@ -166,6 +168,7 @@ const Accueil = () => {
 </section>
 {/* section numéro cinq */}
 <section className='container'>
+<div className='sectionArticle'>
 <div className='titre1'>
   <h1>Articles</h1>
   <div className='hrtr'></div>
@@ -208,6 +211,7 @@ const Accueil = () => {
     </div>
     </div>
 </div>
+</div>
 </section>
 {/* section numéro sixe */}
 <section className='container_fluid'>
@@ -216,7 +220,8 @@ const Accueil = () => {
   <h1>Pourquoi nous choisir?</h1>
   <div className='hrtr'></div>
   </div>
-<div className='cart_choose'>
+  <div className='list_cart_choose'>
+  <div className='cart_choose1'>
   <div className='icone'>
        <img src={ImagePerson} alt="à propos" style={{ width: '50px', height: '50px' }} />
   </div> 
@@ -225,6 +230,26 @@ const Accueil = () => {
     <p>Explorez facilement notre plateforme et nos outils intuitifs pour un parcours d &apos;investissement agricole sans stress.</p>
   </div>
 </div>
+<div className='cart_choose2'>
+  <div className='icone'>
+       <img src={ImagePerson} alt="à propos" style={{ width: '50px', height: '50px' }} />
+  </div> 
+  <div>
+    <h1>SIMPLICITÉ</h1>
+    <p>Explorez facilement notre plateforme et nos outils intuitifs pour un parcours d &apos;investissement agricole sans stress.</p>
+  </div>
+</div>
+<div className='cart_choose3'>
+  <div className='icone'>
+       <img src={ImagePerson} alt="à propos" style={{ width: '50px', height: '50px' }} />
+  </div> 
+  <div>
+    <h1>SIMPLICITÉ</h1>
+    <p>Explorez facilement notre plateforme et nos outils intuitifs pour un parcours d &apos;investissement agricole sans stress.</p>
+  </div>
+</div>
+  </div>
+
 </div>
 </section>
 
