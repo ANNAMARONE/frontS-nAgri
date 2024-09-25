@@ -6,7 +6,7 @@
 }
 body{
     font-family: roboto;
-    
+
 }
 .sectioN1{
     width: 1319px;
@@ -73,7 +73,7 @@ body{
   .liste_catégorie .catégorie1{
     width: 200px;
     height: 200px;
-    border: 1px solid rgba(0, 0, 0, 0.147);
+    border: 1px solid #E6E6E6;
     border-radius: 5px;
   }
   .liste_catégorie .catégorie1:active{
@@ -94,12 +94,18 @@ body{
     margin: auto;
     width: 1260px;
   }
+  .produit_plus_populaire{
+    background-color: #F7F7F7;
+    height:850px ;
+    margin: auto;
+  }
   .produitPopu{
     display:flex;
     justify-content: space-between;
-    margin:50px auto;
+
 
   }
+ 
   .produitPopu button{
     border: none;
     background: none;
@@ -116,6 +122,7 @@ body{
     border: 1px solid #E6E6E6;
     position: relative;
     overflow: hidden;
+    background-color: #FFFF;
   }
   
   .cartProduit img {
@@ -174,7 +181,7 @@ body{
   }
   
   .addcarte:hover {
-    background-color: #ff8a00;
+    background-color:  #2C742F;
     padding: 5px;
     border-radius: 50%;
     cursor: pointer;
@@ -195,28 +202,195 @@ body{
     justify-content: center;
     align-items: center;
 }
-.icone2{
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: #FFFF;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;  
+.icone2, .icone1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #FFFF;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  visibility: hidden;
 }
-.icone1{
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: #FFFF;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;   
+.cartProduit:hover{
+  border: 1px solid #00944591;
+}
+.cartProduit:hover .icone2,
+.cartProduit:hover .icone1 {
+    visibility: visible;
+}
+.cartProduit:hover  .addcarte{
+  background-color:  #009444;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+.liste_carte{
+  display: flex;
+ width: 1320px;
+ margin:2% auto;
+ flex-wrap: wrap;
+}
+.produitPopu{
+  margin:30px auto;
+  width:1320px;
+}
+.customer-logos {
+  margin: 20px 0;
 }
 
-  
-   
+.logo-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-item img {
+  max-width: 100%;
+  max-height: 100px; 
+}
+.secton4{
+  margin-top: 100px;
+}
+.secton4 h1{
+  text-align: center;
+  font-size: 32px;
+}
+.logo-item img{
+  width: 150px;
+  height: 200px;
+  border-radius: 10px;
+
+}
+/* produit exeptionnel */
+.cartProduitexp{
+  width: 264px;
+  height: 350px;
+  border: 1px solid #E6E6E6;
+  position: relative;
+  overflow: hidden;
+  background-color: #FFFF;
+}
+
+.cartProduitexp img {
+  width: 264px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.elementcart {
+  display: flex;
+  padding: 10px;
+  gap: 100px;
+}
+
+.cartProduitexp:hover .porduitprix {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 100; /* Augmente le z-index pour s'assurer que l'élément est au-dessus */
+  transform: translateY(120px);
+  text-align: center;
+  top: 20%;
+}
+
+.cartProduitexp:hover.porduitprix p {
+  z-index: 100; /* Augmente le z-index pour s'assurer que l'élément est au-dessus */
+  transform: translateY(-10px);
+}
+
+.porduitprix p:last-child {
+  display: flex;
+  gap: 2px;
+}
+
+.action_cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.cartProduitexp .action_cart1 div {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cartProduitexp .action_cart1 div:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.addcarteprod:hover {
+  background-color:  #2C742F;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.addcarteprod:hover {
+  background-color: #e67e00;
+}
+.addcarteprod {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #F2F2F2;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cartProduitexp .icone2, .icone1 {
+width: 40px;
+height: 40px;
+border-radius: 100%;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+background-color: #FFFF;
+margin: auto;
+display: flex;
+justify-content: center;
+align-items: center;  
+visibility: hidden;
+}
+
+.cartProduitexp:hover .icone2,
+.cartProduitexp:hover .icone1 {
+  visibility: visible;
+}
+
+.cartProduitexp:hover .elementcart{
+visibility: inherit;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+}
+.cartProduitexp:hover{
+  width: 528px;
+  height: 539px;
+  border: 1px solid #2c742e60;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-box-shadow: -1px 1px 7px 5px rgba(44, 116, 47, 1);
+  -moz-box-shadow: -1px 1px 7px 5px rgba(44, 116, 47, 1);
+  box-shadow: -1px 1px 7px 5px rgba(44, 116, 47, 1);
+}
+.cartProduitexp:hover img{
+  width: 525px;
+  height: 300px;
+} 
+.action_cartp{
+  margin-top:-20%;
+}
+.cartProduitexp:hover .addcarteprod{
+  width: 371px;
+  height: 45px;
+  background-color: #009444;
+  border-radius: 43px;
+}
