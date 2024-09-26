@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import './produit.css'
+
 import { FaArrowRight } from "react-icons/fa"
 import panierProduit from '/src/assets/images/panier1.png'
 import { SlHandbag } from "react-icons/sl";
@@ -29,7 +30,8 @@ export default function Produit (){
   const [liked, setLiked] = useState(false);
   const [filteredProduits, setFilteredProduits] = useState([]); 
   const [selectionCategorie,setselectionCategorie]=useState(null);
-
+  const [panier, setPanier] = useState([]);
+  const [quantites, setQuantites] = useState({});
   // Récupération des produits
   useEffect(() => {
     const getProduits = async () => {
@@ -111,6 +113,8 @@ export default function Produit (){
     }
   };
  
+  
+ 
     const settings = {
       slidesToShow: 6,
       slidesToScroll: 1,
@@ -135,7 +139,39 @@ export default function Produit (){
       ],
     }
     // Afficher les produits par catégories
+   
+    const ajouterAuPanier = (produit) => {
+      // Si le panier n'existe pas, créez-le
+      if (!panier) {
+          setPanier({ produits: [produit] });
+          console.log('Panier créé avec le produit:', produit);
+      } else {
+          // Vérifiez si le produit existe déjà dans le panier
+          const produitExist = panier.produits.find(p => p.id === produit.id);
 
+          if (produitExist) {
+              // Si le produit existe, mettez à jour la quantité
+              const updatedProduits = panier.produits.map(p =>
+                  p.id === produit.id
+                      ? { ...p, quantite: p.quantite + 1 }
+                      : p
+              );
+              setPanier({ produits: updatedProduits });
+              console.log('Produit mis à jour dans le panier:', produit);
+          } else {
+              // Sinon, ajoutez le nouveau produit au panier
+              setPanier({ produits: [...panier.produits, produit] });
+              console.log('Produit ajouté au panier:', produit);
+          }
+      }
+  };
+      // Fonction pour gérer les changements de quantité
+  const handleQuantityChange = (produitId, value) => {
+    setQuantites((prevQuantites) => ({
+      ...prevQuantites,
+      [produitId]: value,
+    }));
+  };
   return (
     <div>
       
@@ -199,8 +235,10 @@ export default function Produit (){
                   <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
                   <div className='elementcart'>
                     <div className='porduitprix'>
+                      
                       <p>{produit.libelle}</p>
                       <p>{produit.prix} cfa</p>
+                      
                       <p>
                         <IoIosStar size={20} color="#FF8A00"/>
                         <IoIosStar size={20} color="#FF8A00"/>
@@ -209,14 +247,23 @@ export default function Produit (){
                       </p>
                     </div>
                     <div className='action_cart'>
+                
                       <div className='action_cart1'>
+                      <input
+                      type="number"
+                      min="1"
+                      defaultValue={quantites[produit.id] || 1}
+                      onChange={(e) => handleQuantityChange(produit.id, parseInt(e.target.value))}
+                      style={{ width: '50px', marginRight: '10px' }} // Ajoutez du style si nécessaire
+                    />
                       <div className='icone1' onClick={() => handleLike(produit)}>
                           <FcLikePlaceholder size={24} />
                         </div>
                         
                         <div className='icone2'><GrView size={24}/></div>
                       </div>
-                      <div className='addcarte'>
+                      
+                      <div className='addcarte' onClick={() =>ajouterAuPanier(produit)}>
                         <SlHandbag size={20}/>
                       </div>
                     </div>

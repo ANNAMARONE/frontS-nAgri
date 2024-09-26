@@ -10,6 +10,10 @@ import Forum from './components/pages/forum/Forum'
 import Login from './components/pages/Auth/Login'
 import Register from './components/pages/Auth/Register'
 import Accueil from './components/pages/Home/Accueil'
+import Panier from './components/pages/cart/panier'
+import { PanierProvider } from './context/PanierContext'
+
+
 function App() {
 
   return (
@@ -24,7 +28,10 @@ function App() {
      <Route path='/forum' element={<Forum/>}/>
      <Route path='/login' element={<Login/>}/>
      <Route path='/register' element={<Register/>}/>
+     <Route path='/panier' element={<Panier/>}/>
+     
      </Routes>
+   
     </div>
   )
 
