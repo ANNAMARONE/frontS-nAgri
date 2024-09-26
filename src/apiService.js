@@ -22,3 +22,13 @@ export const fetchCategorie = async () => {
     throw error;
   }
 };
+//Fonction afficher les produits par catégorie
+export const fetchProduitByCatégorie=async(categorieId)=>{
+  try {
+    const response = await axios.get(`${config.apiBaseUrl}/categories/${categorieId}/produits`);
+    return response.data; 
+  } catch (error) {
+    console.error('Erreur lors de la récupération des produits par catégorie:', error);
+    throw error; 
+  }
+};

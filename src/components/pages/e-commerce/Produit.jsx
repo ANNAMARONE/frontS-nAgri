@@ -7,12 +7,13 @@ import { SlHandbag } from "react-icons/sl";
 import { GrView } from "react-icons/gr";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { IoIosStar } from "react-icons/io";
-import { fetchProduits, fetchCategorie } from '/src/apiService'; 
+import { fetchProduits, fetchCategorie,fetchProduitByCatégorie } from '/src/apiService'; 
 import config from '/src/config';
 import axios from 'axios';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import logo1 from '/src/assets/images/img1.jpg';
 import logo2 from '/src/assets/images/img2.jpg';
 import logo3 from '/src/assets/images/img3.jpg';
@@ -26,6 +27,8 @@ export default function Produit (){
   const [totalPages, setTotalPages] = useState(1); 
   const [catégories, setCategorie] = useState([]);
   const [liked, setLiked] = useState(false);
+  const [filteredProduits, setFilteredProduits] = useState([]); 
+  const [selectionCategorie,setselectionCategorie]=useState(null);
 
   // Récupération des produits
   useEffect(() => {
@@ -34,6 +37,7 @@ export default function Produit (){
         const data = await fetchProduits(currentPage);
         setProduits(data.data);
         setTotalPages(data.last_page); 
+        setFilteredProduits(data.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des produits:', error);
       }
@@ -44,17 +48,42 @@ export default function Produit (){
 
   // Récupération des catégories
   useEffect(() => {
-    const fetchCategorie = async () => {
+    const getCategorie = async () => {
       try {
-        const response = await axios.get(`${config.apiBaseUrl}/CatégorieProduit`);
-        setCategorie(response.data);
+        const data = await fetchCategorie();
+        setCategorie(data);
       } catch (error) {
         console.error('Erreur lors de la récupération des catégories:', error);
       }
     };
 
-    fetchCategorie();
+    getCategorie();
   }, []);
+
+
+  // recupérer les produits par catégorie
+
+  const selectionCatégorie = async (categorieId) => {
+    setselectionCategorie(categorieId);
+    try {
+      if (categorieId) {
+        const data = await fetchProduitByCatégorie(categorieId);
+        console.log('Produits récupérés pour la catégorie:', categorieId, data);
+        if (Array.isArray(data)) {
+          setFilteredProduits(data); // Affiche seulement les produits de cette catégorie
+        } else {
+          console.warn('Aucun produit trouvé pour la catégorie:', categorieId);
+        }
+      } else {
+        setFilteredProduits(setProduits); // Affiche tous les produits si aucune catégorie n'est sélectionnée
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération des produits par catégorie:', error);
+    }
+  };
+
+  
+
 
   const nextPage = () => {
     if (currentPage < totalPages) {
@@ -105,6 +134,8 @@ export default function Produit (){
         },
       ],
     }
+    // Afficher les produits par catégories
+
   return (
     <div>
       
@@ -131,10 +162,11 @@ export default function Produit (){
           <h1>Catégories</h1>
           <div className='liste_catégorie'>
             {catégories.map(categorie => (
-              <div key={categorie.id} className='catégorie1'>
+              
+              <button key={categorie.id}  onClick={() =>selectionCatégorie(categorie.id) }className='catégorie1'>
                 <img src={`${config.imageBaseUrl}/${categorie.image}`} alt={categorie.nom} />
                 <p>{categorie.libelle}</p>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -161,7 +193,7 @@ export default function Produit (){
           </div>
 
           <div className='liste_carte'>
-            {produits.map(produit => (
+          {filteredProduits.map(produit => (
               <div key={produit.id}>
                 <div className='cartProduit'>
                   <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
@@ -218,7 +250,7 @@ export default function Produit (){
           </div>
 
           <div className='liste_carte'>
-            {produits.map(produit => (
+          {filteredProduits.map(produit => (
               <div key={produit.id}>
                 <div className='cartProduitexp'>
                   <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />

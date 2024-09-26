@@ -14,7 +14,7 @@ body{
     background-image: url('/src/assets/images/background.png');
     background-size: cover; /* Remplit entièrement le conteneur */
     background-position: center; /* Centre l'image */
-    height: 100vh;
+    height: 120vh;
     width: 100%; 
   }
   .contenu{
