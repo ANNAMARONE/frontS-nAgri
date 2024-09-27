@@ -1,36 +1,75 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios';
+import config from '/src/config';
+const user = { id: userId, name: userName }; // Exemple d'objet utilisateur
+localStorage.setItem('user', JSON.stringify(user));
 const Panier = () => {
   const [panier, setPanier] = useState([]);
 
-  // Récupérer le panier depuis le localStorage au chargement du composant
   useEffect(() => {
-    const panierStocké = localStorage.getItem('panier');
-    if (panierStocké) {
-      setPanier(JSON.parse(panierStocké));
+    const panierFromLocalStorage = localStorage.getItem('panier');
+    if (panierFromLocalStorage) {
+      setPanier(JSON.parse(panierFromLocalStorage));
     }
   }, []);
 
-  // Sauvegarder le panier dans le localStorage à chaque mise à jour
-  useEffect(() => {
-    localStorage.setItem('panier', JSON.stringify(panier));
-    console.log('Panier mis à jour dans localStorage:', panier); // Log pour vérifier
-  }, [panier]);
+  const modifierQuantite = (id, quantite) => {
+    const updatedPanier = panier.map(produit =>
+      produit.id === id ? { ...produit, quantite } : produit
+    );
+    setPanier(updatedPanier);
+    localStorage.setItem('panier', JSON.stringify(updatedPanier));
+  };
 
+  const supprimerProduit = (id) => {
+    const updatedPanier = panier.filter(produit => produit.id !== id);
+    setPanier(updatedPanier);
+    localStorage.setItem('panier', JSON.stringify(updatedPanier));
+  };
+
+  const montantTotal = panier.reduce((total, produit) => total + produit.prix * produit.quantite, 0);
+  const handleCommander = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.id : null;
+  
+    if (userId) {
+      try {
+        const response = await axios.post(`${config.apiBaseUrl}/api/commande`, {
+          panier,
+          user_id: userId, // Ajoutez l'ID de l'utilisateur ici
+        });
+        console.log('Commande réussie:', response.data);
+        
+        // Vider le panier après la commande
+        setPanier([]);
+        localStorage.removeItem('panier');
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi de la commande:', error);
+      }
+    } else {
+      console.log('L\'utilisateur n\'est pas connecté.');
+    }
+  };
+
+
+  
   return (
-    <div className='panier'>
-      <h2>Votre panier</h2>
-      {panier.length === 0 ? (
-        <p>Le panier est vide.</p>
-      ) : (
-        panier.map(item => (
-          <div key={item.produit.id}>
-            <p>{item.produit.libelle} - Quantité : {item.quantite}</p>
-            <p>Prix unitaire : {item.produit.prix} CFA</p>
-            <p>Prix total : {item.produit.prix * item.quantite} CFA</p>
-          </div>
-        ))
-      )}
+    <div>
+      <h2>Mon Panier</h2>
+      {panier.map(produit => (
+        <div key={produit.id}>
+          <h3>{produit.libelle}</h3>
+          <p>{produit.prix} FCFA</p>
+          <input
+            type="number"
+            value={produit.quantite}
+            onChange={(e) => modifierQuantite(produit.id, parseInt(e.target.value))}
+          />
+          <button onClick={() => supprimerProduit(produit.id)}>Supprimer</button>
+        </div>
+      ))}
+      <h3>Montant Total: {montantTotal} FCFA</h3>
+      <button onClick={handleCommander}>Commander</button>
     </div>
   );
 };

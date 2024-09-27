@@ -138,39 +138,68 @@ export default function Produit (){
         },
       ],
     }
-    // Afficher les produits par catégories
    
-    const ajouterAuPanier = (produit) => {
-      // Si le panier n'existe pas, créez-le
-      if (!panier) {
-          setPanier({ produits: [produit] });
-          console.log('Panier créé avec le produit:', produit);
-      } else {
-          // Vérifiez si le produit existe déjà dans le panier
-          const produitExist = panier.produits.find(p => p.id === produit.id);
+  // Récupérer le panier depuis le localStorage au chargement du composant
+  useEffect(() => {
+    const panierStocké = localStorage.getItem('panier');
+    if (panierStocké) {
+      const panierParsed = JSON.parse(panierStocké);
+      setPanier(panierParsed);
+      const initialQuantites = panierParsed.reduce((acc, produit) => {
+        acc[produit.id] = produit.quantite;
+        return acc;
+      }, {});
+      setQuantites(initialQuantites);
+    }
+  }, []);
 
-          if (produitExist) {
-              // Si le produit existe, mettez à jour la quantité
-              const updatedProduits = panier.produits.map(p =>
-                  p.id === produit.id
-                      ? { ...p, quantite: p.quantite + 1 }
-                      : p
-              );
-              setPanier({ produits: updatedProduits });
-              console.log('Produit mis à jour dans le panier:', produit);
-          } else {
-              // Sinon, ajoutez le nouveau produit au panier
-              setPanier({ produits: [...panier.produits, produit] });
-              console.log('Produit ajouté au panier:', produit);
-          }
+  // Sauvegarder le panier dans le localStorage à chaque mise à jour
+  useEffect(() => {
+    if (panier.length > 0) {
+      localStorage.setItem('panier', JSON.stringify(panier));
+      console.log('Panier mis à jour dans localStorage:', panier);
+    }
+  }, [panier]);
+
+  const ajouterAuPanier = (produit, quantite = 1) => {
+    const produitExist = panier.find(item => item.id === produit.id);
+  
+    let nouveauPanier;
+  
+    if (produitExist) {
+      if (produitExist.quantite + quantite <= produit.quantite) {  // Vérifiez si la quantité totale en panier est inférieure à celle en stock
+        nouveauPanier = panier.map(item => 
+          item.id === produit.id 
+          ? { ...item, quantite: item.quantite + quantite }
+          : item
+        );
+      } else {
+        console.log("Stock insuffisant");
+        return; // Sortir si le stock est insuffisant
       }
+    } else {
+      if (quantite <= produit.quantite) {
+        nouveauPanier = [...panier, { ...produit, quantite }];
+      } else {
+        console.log("Stock insuffisant");
+        return; // Sortir si le stock est insuffisant
+      }
+    }
+  
+    setPanier(nouveauPanier);
+    localStorage.setItem("panier", JSON.stringify(nouveauPanier)); 
+    console.log("Produit ajouté au panier :", produit);
+    console.log("Panier actuel :", nouveauPanier);
   };
+  
+  
       // Fonction pour gérer les changements de quantité
-  const handleQuantityChange = (produitId, value) => {
-    setQuantites((prevQuantites) => ({
-      ...prevQuantites,
-      [produitId]: value,
-    }));
+      const handleQuantityChange = (produitId, value) => {
+        setQuantites((prevQuantites) => ({
+          ...prevQuantites,
+          [produitId]: value,
+        }));
+      
   };
   return (
     <div>
@@ -235,7 +264,13 @@ export default function Produit (){
                   <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
                   <div className='elementcart'>
                     <div className='porduitprix'>
-                      
+                    <input
+                      type="number"
+                      min="1"
+                      defaultValue={quantites[produit.id] || 1}
+                      onChange={(e) => handleQuantityChange(produit.id, parseInt(e.target.value))}
+                      style={{ width: '50px', marginRight: '10px' }} 
+                    />  
                       <p>{produit.libelle}</p>
                       <p>{produit.prix} cfa</p>
                       
@@ -246,16 +281,10 @@ export default function Produit (){
                         <IoIosStar size={20} color="#FF8A00"/>
                       </p>
                     </div>
+                    
                     <div className='action_cart'>
-                
+                   
                       <div className='action_cart1'>
-                      <input
-                      type="number"
-                      min="1"
-                      defaultValue={quantites[produit.id] || 1}
-                      onChange={(e) => handleQuantityChange(produit.id, parseInt(e.target.value))}
-                      style={{ width: '50px', marginRight: '10px' }} // Ajoutez du style si nécessaire
-                    />
                       <div className='icone1' onClick={() => handleLike(produit)}>
                           <FcLikePlaceholder size={24} />
                         </div>
