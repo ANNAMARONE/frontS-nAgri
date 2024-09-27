@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import './produit.css'
-
+import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa"
 import panierProduit from '/src/assets/images/panier1.png'
 import { SlHandbag } from "react-icons/sl";
@@ -201,6 +201,10 @@ export default function Produit (){
         }));
       
   };
+  const navigate = useNavigate(); 
+  const handleViewDetails = (produitId) => {
+    navigate(`/produits/${produitId}`); 
+  };
   return (
     <div>
       
@@ -346,7 +350,7 @@ export default function Produit (){
                           <FcLikePlaceholder size={24} />
                         </div>
                         
-                        <div className='icone2'><GrView size={24}/></div>
+                        <div className='icone2' onClick={() => handleViewDetails(produit.id)}> {/* Ajouter la fonction handleViewDetails */}</div>
 
                       <div className='addcarteprod'>
                         <SlHandbag size={20}/>
