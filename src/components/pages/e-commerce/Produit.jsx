@@ -293,7 +293,7 @@ export default function Produit (){
                           <FcLikePlaceholder size={24} />
                         </div>
                         
-                        <div className='icone2'><GrView size={24}/></div>
+                        <div className='icone2'onClick={() => handleViewDetails(produit.id)}> <GrView size={24}/></div>
                       </div>
                       
                       <div className='addcarte' onClick={() =>ajouterAuPanier(produit)}>
@@ -349,8 +349,8 @@ export default function Produit (){
                       <div className='icone1' onClick={() => handleLike(produit)}>
                           <FcLikePlaceholder size={24} />
                         </div>
+                        <div className='icone2'onClick={() => handleViewDetails(produit.id)}> <GrView size={24}/></div>
                         
-                        <div className='icone2' onClick={() => handleViewDetails(produit.id)}> {/* Ajouter la fonction handleViewDetails */}</div>
 
                       <div className='addcarteprod'>
                         <SlHandbag size={20}/>
