@@ -19,6 +19,7 @@ import ForumDetails from './components/pages/forum/ForumDetails'
 import ArticleDetails from './components/pages/article/détaileArticle'
 import RessourcesList from './components/pages/ressource/ressource'
 import RessourceDetails from './components/pages/ressource/DétailRessource'
+import Profile from './components/profile/profile'
 
 
 
@@ -45,7 +46,12 @@ function App() {
      <Route path="/articles/:id"  element={<ArticleDetails/>} />
      <Route path="/ressources"  element={<RessourcesList/>}/>
      <Route path="/ressources/:id" element={<RessourceDetails />} />
+     <Route path="/profile" element={<Profile/>}  />
      </Routes>
+    
+   
+
+   
     </div>
   )
 
