@@ -167,7 +167,7 @@ export default function Produit (){
     let nouveauPanier;
   
     if (produitExist) {
-      if (produitExist.quantite + quantite <= produit.quantite) {  // Vérifiez si la quantité totale en panier est inférieure à celle en stock
+      if (produitExist.quantite + quantite <= produit.quantite) { 
         nouveauPanier = panier.map(item => 
           item.id === produit.id 
           ? { ...item, quantite: item.quantite + quantite }
@@ -175,14 +175,14 @@ export default function Produit (){
         );
       } else {
         console.log("Stock insuffisant");
-        return; // Sortir si le stock est insuffisant
+        return; 
       }
     } else {
       if (quantite <= produit.quantite) {
         nouveauPanier = [...panier, { ...produit, quantite }];
       } else {
         console.log("Stock insuffisant");
-        return; // Sortir si le stock est insuffisant
+        return; 
       }
     }
   

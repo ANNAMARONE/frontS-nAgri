@@ -1,0 +1,118 @@
+/* Styles de base pour l'interface admin */
+
+.admin-interface {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    width: 250px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    transition: width 0.3s ease;
+  }
+  
+  .sidebar.closed {
+    width: 60px;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-menu li {
+    margin: 20px 0;
+  }
+  
+  .sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+  }
+  
+  .sidebar-menu li a:hover {
+    color: #f0f0f0;
+  }
+  
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Main Content Styles */
+  .main-content {
+    flex-grow: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #555;
+    padding: 10px 20px;
+    color: white;
+  }
+  
+  .navbar-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+  }
+  
+  .navbar-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Content Styles */
+  .content {
+    margin-top: 20px;
+  }
+  .sidebar-menu{
+    display: block;
+    flex-direction: column;
+  }
+  .admin-interface {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px; 
+    transition: width 0.3s; 
+  }
+  
+  .sidebar.closed {
+    width: 60px;
+  }
+  
+  .main-content {
+    flex: 1; 
+    padding: 20px; 
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .page-content {
+    margin-top: 20px; 
+  }
+  

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,7 +8,7 @@ const AjouterProduit = () => {
   const [description, setDescription] = useState("");
   const [quantite, setQuantite] = useState("");
   const [prix, setPrix] = useState("");
-  const [statut, setStatut] = useState(""); // État pour le statut
+  const [statut, setStatut] = useState("");
   const [categorieProduitId, setCategorieProduitId] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState([]);
@@ -161,7 +162,7 @@ const AjouterProduit = () => {
             <option value="">Sélectionnez une catégorie</option>
             {categories.map((categorie) => (
               <option key={categorie.id} value={categorie.id}>
-                {categorie.libelle} {/* Adaptez selon la propriété de votre modèle */}
+                {categorie.libelle} 
               </option>
             ))}
           </select>

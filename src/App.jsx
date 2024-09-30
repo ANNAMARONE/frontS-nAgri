@@ -23,15 +23,35 @@ import Profile from './components/profile/profile';
 import ProducteurInterface from './components/ProducteurPage/ProducteurInterface';
 import AjouterProduit from './components/ProducteurPage/ajoutProduit';
 import ProduitsUtilisateurs from './components/ProducteurPage/afficherProduit';
+import ModifierProduit from './components/ProducteurPage/modificationProduit';
+import ListeUtilisateurs from './components/ProducteurPage/listeProducteur';
+import ProducteurDetail from './components/ProducteurPage/détailProducteur';
+import AdminInterface from './components/adminPage/interfaceAdmin';
+import Dashboard from './components/adminPage/dasboard/dashboard';
+import Users from './components/adminPage/getion utilisateur/ListeUtilisateur';
+import UserDetail from './components/adminPage/getion utilisateur/détailUtilisateur';
+import EventList from './components/adminPage/gestion événenement/listeEvenement';
+import AjouterEvenement from './components/adminPage/gestion événenement/ajouterEvenement';
+import ModifierEvenement from './components/adminPage/gestion événenement/modifierEvenement';
+import ListeArticle from './components/adminPage/gestion article/listeArticle';
+import AjouteArticle from './components/adminPage/gestion article/ajouteArticle';
+import ModifierArticle from './components/adminPage/gestion article/modifierarticle';
+
 
 // Composant WithSidebar
 const WithSidebar = () => (
   <>
     <ProducteurInterface />
-    <Outlet/>
+
   </>
 );
+// Composant WithSidebar
+const WithSidebarAdmin = () => (
+  <>
+    <AdminInterface/>
 
+  </>
+);
 // Composant WithNavbar
 const WithNavbar = () => (
   <>
@@ -61,13 +81,32 @@ function App() {
           <Route path="/articles/:id" element={<ArticleDetails />} />
           <Route path="/ressources" element={<RessourcesList />} />
           <Route path="/ressources/:id" element={<RessourceDetails />} />
-          <Route path="/profile" element={<Profile />} />
+         
         </Route>
 
         {/* Routes avec Sidebar */}
         <Route element={<WithSidebar />}>
+        <Route path="/profile" element={<Profile />} />
           <Route path="/ajoutProduit" element={<AjouterProduit />} />
           <Route path="/afficherProduit" element={<ProduitsUtilisateurs />} />
+           <Route path="/modifierProduit/:id" element={<ModifierProduit/>}/>
+           <Route path="/producteurs" element={<ListeUtilisateurs />} />
+           <Route path="/producteur/:id" element={<ProducteurDetail />} />
+        </Route>
+        <Route element={<WithSidebarAdmin/>}>
+        <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/profileAdmin" element={<Profile />} />
+        <Route path="/ListeUtilisateur" element={<Users/>} />
+        <Route path="/Utilisateur/:id" element={< UserDetail/>} />
+        
+       <Route path="/evenements" element={<EventList/>} />
+       <Route path="/ajouteEvent" element={<AjouterEvenement/>} />
+       <Route path="/modifierEvent/:id" element={<ModifierEvenement/>} />
+       <Route path="/articles" element={<ListeArticle/>} />
+       <Route path="/AjouteArticle" element={<AjouteArticle/>} />
+       <Route path="/modifierArticle/:id" element={<ModifierArticle/>} />
+       
+     
         </Route>
       </Routes>
     </div>
