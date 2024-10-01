@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '/src/config';
-
+import './panier.css';
 const Panier = () => {
   const [panier, setPanier] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -88,12 +88,17 @@ const Panier = () => {
   
   return (
     <div>
+      <div className='headerpanier'>
       <h2>Mon Panier</h2>
+      <button>Mes commandes</button>
+      </div>
+      <div className='tr1'></div>
       {errorMessage && <div className="error">{errorMessage}</div>}
       {successMessage && <div className="success">{successMessage}</div>} 
       
       {panier.map(produit => (
         <div key={produit.id}>
+          <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
           <h3>{produit.libelle}</h3>
           <p>{produit.prix} FCFA</p>
           <input

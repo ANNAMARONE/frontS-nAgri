@@ -268,13 +268,7 @@ export default function Produit (){
                   <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
                   <div className='elementcart'>
                     <div className='porduitprix'>
-                    <input
-                      type="number"
-                      min="1"
-                      defaultValue={quantites[produit.id] || 1}
-                      onChange={(e) => handleQuantityChange(produit.id, parseInt(e.target.value))}
-                      style={{ width: '50px', marginRight: '10px' }} 
-                    />  
+
                       <p>{produit.libelle}</p>
                       <p>{produit.prix} cfa</p>
                       
