@@ -34,8 +34,17 @@ import EventList from './components/adminPage/gestion événenement/listeEveneme
 import AjouterEvenement from './components/adminPage/gestion événenement/ajouterEvenement';
 import ModifierEvenement from './components/adminPage/gestion événenement/modifierEvenement';
 import ListeArticle from './components/adminPage/gestion article/listeArticle';
-import AjouteArticle from './components/adminPage/gestion article/ajouteArticle';
 import ModifierArticle from './components/adminPage/gestion article/modifierarticle';
+import AjouterArticle from './components/adminPage/gestion article/ajouteArticle';
+import ListeRessources from './components/adminPage/gestion ressource/AfficherRessource';
+import AjouterRessource from './components/adminPage/gestion ressource/ajouterRessource';
+import ModifierRessource from './components/adminPage/gestion ressource/modifierResource';
+import ListeForums from './components/adminPage/gestion forums/listeforume';
+import AjouterForum from './components/adminPage/gestion forums/ajouterForume';
+import Forumdetails from './components/adminPage/gestion forums/détailfoum';
+import ListeCategories from './components/adminPage/gestion catégorie/catégorie produit/afficherCatPr';
+import AjouterCategorie from './components/adminPage/gestion catégorie/catégorie produit/ajouterCatPr';
+import ModifierCategorie from './components/adminPage/gestion catégorie/catégorie produit/modifierCatPr';
 
 
 // Composant WithSidebar
@@ -103,10 +112,17 @@ function App() {
        <Route path="/ajouteEvent" element={<AjouterEvenement/>} />
        <Route path="/modifierEvent/:id" element={<ModifierEvenement/>} />
        <Route path="/articles" element={<ListeArticle/>} />
-       <Route path="/AjouteArticle" element={<AjouteArticle/>} />
+       <Route path="/AjouteArticle" element={<AjouterArticle/>} />
        <Route path="/modifierArticle/:id" element={<ModifierArticle/>} />
-       
-     
+       <Route path="/listeressources" element={<ListeRessources/>} />
+       <Route path="/ajouterRessource" element={<AjouterRessource />} />
+       <Route path="/ressources/modifier/:id" element={<ModifierRessource />} />
+       <Route path="/listeforums" element={<ListeForums />} />
+        <Route path="/forums/ajouter" element={<AjouterForum />} />
+        <Route path="/forumsdetail/:id" element={<Forumdetails/>} />
+        <Route path="/categories" element={<ListeCategories />} />
+        <Route path="/categories/ajouter" element={<AjouterCategorie />} />
+        <Route path="/categories/modifier/:id" element={<ModifierCategorie/>} />
         </Route>
       </Routes>
     </div>
