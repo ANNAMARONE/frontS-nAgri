@@ -17,7 +17,6 @@ const AjouterProduit = () => {
   const statuts = [
     { value: "en stock", label: "en stock" },
     { value: "en rupture", label: "en rupture" },
-   
   ];
 
   useEffect(() => {
@@ -33,6 +32,33 @@ const AjouterProduit = () => {
     fetchCategories();
   }, []);
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+
+    // Supprimer le fond de l'image avec remove.bg
+    const formData = new FormData();
+    formData.append('image_file', file);
+    formData.append('size', 'auto');
+
+    try {
+      const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
+        headers: {
+          'X-Api-Key': 'hvxuCWhWSAYJbaiRvzTphNDf', 
+          'Content-Type': 'multipart/form-data',
+        },
+        responseType: 'blob',
+      });
+
+      const imageWithoutBg = new File([response.data], file.name, { type: 'image/png' });
+      setImage(imageWithoutBg); 
+
+    } catch (error) {
+      console.error('Erreur lors de la suppression du fond de l\'image:', error);
+      setErrors((prevErrors) => [...prevErrors, { image: ["Erreur lors du traitement de l'image."] }]);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,40 +69,39 @@ const AjouterProduit = () => {
 
     const formData = new FormData();
     formData.append("libelle", libelle);
-    formData.append("image", image);
+    formData.append("image", image); 
     formData.append("description", description);
     formData.append("quantite", quantite);
     formData.append("prix", prix);
-    formData.append("statut", statut); // Ajouter le statut
+    formData.append("statut", statut);
     formData.append("categorie_produit_id", categorieProduitId);
 
     const userId = localStorage.getItem("userId");
     formData.append("user_id", userId);
 
     try {
-        const response = await axios.post("http://127.0.0.1:8000/api/Ajouter_produits", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-      
-        setMessage(response.data.message);
-        setErrors([]);
-      } catch (error) {
-        if (error.response) {
-          if (error.response.status === 422) {
-            setErrors(error.response.data.errors);
-          } else {
-            console.error("Erreur lors de l'ajout du produit:", error.response.data);
-            setMessage("Erreur lors de l'ajout du produit : " + error.response.data.message);
-          }
+      const response = await axios.post("http://127.0.0.1:8000/api/Ajouter_produits", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      setMessage(response.data.message);
+      setErrors([]);
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 422) {
+          setErrors(error.response.data.errors);
         } else {
-          console.error("Erreur lors de la connexion au serveur:", error);
-          setMessage("Erreur lors de la connexion au serveur.");
+          console.error("Erreur lors de l'ajout du produit:", error.response.data);
+          setMessage("Erreur lors de l'ajout du produit : " + error.response.data.message);
         }
+      } else {
+        console.error("Erreur lors de la connexion au serveur:", error);
+        setMessage("Erreur lors de la connexion au serveur.");
       }
-      
+    }
   };
 
   return (
@@ -107,7 +132,7 @@ const AjouterProduit = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={handleImageChange}
             required
           />
         </div>
@@ -162,7 +187,7 @@ const AjouterProduit = () => {
             <option value="">Sélectionnez une catégorie</option>
             {categories.map((categorie) => (
               <option key={categorie.id} value={categorie.id}>
-                {categorie.libelle} 
+                {categorie.libelle}
               </option>
             ))}
           </select>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '/src/config';
 import './panier.css';
+import { MdDeleteForever } from "react-icons/md";
 const Panier = () => {
   const [panier, setPanier] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ const Panier = () => {
   }, []);
   
   const modifierQuantite = (id, quantite) => {
-    if (quantite < 1) return; // Ne pas permettre une quantité inférieure à 1
+    if (quantite < 1) return;
 
     const updatedPanier = panier.map(produit =>
       produit.id === id ? { ...produit, quantite } : produit
@@ -56,7 +57,7 @@ const Panier = () => {
   
       try {
         const response = await axios.post(`${config.apiBaseUrl}/commander`, {
-          produits: produitsData, // Utilisation des données correctement formatées
+          produits: produitsData, 
           user_id: userId,
           montant_total: montantTotal,
         }, {
@@ -90,28 +91,48 @@ const Panier = () => {
     <div>
       <div className='headerpanier'>
       <h2>Mon Panier</h2>
-      <button>Mes commandes</button>
+      <button className='Buttoncommandes'>Mes commandes</button>
       </div>
       <div className='tr1'></div>
       {errorMessage && <div className="error">{errorMessage}</div>}
       {successMessage && <div className="success">{successMessage}</div>} 
-      
-      {panier.map(produit => (
-        <div key={produit.id}>
-          <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
-          <h3>{produit.libelle}</h3>
-          <p>{produit.prix} FCFA</p>
-          <input
-            type="number"
-            value={produit.quantite}
-            onChange={(e) => modifierQuantite(produit.id, parseInt(e.target.value))}
-            min="1"
-          />
-          <button onClick={() => supprimerProduit(produit.id)}>Supprimer</button>
-        </div>
-      ))}
+      <div className='PanierCommande'>
+    <div>
+    {panier.map(produit => (
+
+<div key={produit.id}>
+  <div className='ProduitPanier'>
+  <div className='elementPanier1'>
+  <div className="image-container">
+  <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
+  </div>
+  <div className='elementPanier2'>
+  <h3>{produit.libelle}</h3>
+  <p>quantite:{produit.quantite}</p>
+  <input
+    type="number"
+    value={produit.quantite}
+    onChange={(e) => modifierQuantite(produit.id, parseInt(e.target.value))}
+    min="1"
+    
+  />
+  <button onClick={() => supprimerProduit(produit.id)}><MdDeleteForever size={40} /></button>
+  </div>
+  </div>
+ 
+ 
+  <div className='elementPanierPrix'>
+    <p>{produit.prix} cfa</p>
+  </div>
+</div>
+</div>
+))}
+    </div>
+      <div className='commandePanier'>
       <h3>Montant Total: {montantTotal} FCFA</h3>
       <button onClick={handleCommander} disabled={loading}>{loading ? 'Chargement...' : 'Commander'}</button> 
+      </div>
+      </div>
     </div>
   );
 };

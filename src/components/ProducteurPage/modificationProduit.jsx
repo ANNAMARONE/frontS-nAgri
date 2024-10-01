@@ -59,20 +59,39 @@ const ModifierProduit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Créer un FormData pour envoyer l'image à remove.bg
     const formData = new FormData();
-    formData.append('libelle', produit.libelle);
-    formData.append('description', produit.description);
-    formData.append('quantite', produit.quantite);
-    formData.append('prix', produit.prix);
-    formData.append('statut', produit.statut);
-    formData.append('categorie_produit_id', produit.categorie_produit_id);
-
     if (image) {
-      formData.append('image', image);
+      formData.append('image_file', image);
     }
 
     try {
-      await axios.post(`http://127.0.0.1:8000/api/modifier_produit/${id}`, formData, {
+      // Appel à l'API remove.bg pour supprimer le fond de l'image
+      const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
+        headers: {
+          'X-Api-Key': 'hvxuCWhWSAYJbaiRvzTphNDf', 
+          'Content-Type': 'multipart/form-data',
+        },
+        responseType: 'blob',
+      });
+
+      const blobImage = response.data; 
+      const imageSansFond = new File([blobImage], 'image_sans_fond.png', { type: 'image/png' });
+
+      // Créer un autre FormData pour envoyer les données du produit
+      const produitFormData = new FormData();
+      produitFormData.append('libelle', produit.libelle);
+      produitFormData.append('description', produit.description);
+      produitFormData.append('quantite', produit.quantite);
+      produitFormData.append('prix', produit.prix);
+      produitFormData.append('statut', produit.statut);
+      produitFormData.append('categorie_produit_id', produit.categorie_produit_id);
+
+      // Ajouter l'image sans fond au formulaire de modification du produit
+      produitFormData.append('image', imageSansFond);
+
+      await axios.post(`http://127.0.0.1:8000/api/modifier_produit/${id}`, produitFormData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -143,6 +162,7 @@ const ModifierProduit = () => {
         <div>
           <label>Catégorie :</label>
           <select
+            name="categorie_produit_id"
             value={produit.categorie_produit_id}
             onChange={handleInputChange}
             required
