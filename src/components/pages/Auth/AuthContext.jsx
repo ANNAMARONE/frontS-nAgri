@@ -2,7 +2,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// Créez le contexte
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -35,7 +34,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Validation des props
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

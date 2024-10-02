@@ -13,7 +13,7 @@ export default function Login() {
   const [message, setMessage] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const navigate = useNavigate(); // Initialisation de useNavigate
+  const navigate = useNavigate(); 
 
   const validateForm = () => {
     let isValid = true;
@@ -74,7 +74,7 @@ export default function Login() {
 
       setMessage('Connexion réussie !');
       setError('');
-      navigate('/');  // Redirection après la connexion
+      navigate('/'); 
     } catch (err) {
       console.log('Erreur:', err);
       setError('Erreur lors de la connexion');
@@ -134,32 +134,4 @@ export default function Login() {
 }
 
 
-// const Login = () => {
- 
-  
-//   return (
-//     <div>
-//       <h1>Connexion</h1>
-//       {error && <p style={{ color: 'red' }}>{error}</p>}
-//       {message && <p style={{ color: 'green' }}>{message}</p>}
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Email</label>
-//           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-//           {emailError && <p style={{ color: 'red' }}>{emailError}</p>} 
-//         </div>
-
-//         <div>
-//           <label>Mot de passe</label>
-//           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-//           {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-//         </div>
-
-//         <button type="submit">Se connecter</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
 

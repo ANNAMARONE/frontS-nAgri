@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 const ProduitsUtilisateurs = () => {
   const [produits, setProduits] = useState([]);
   const [message, setMessage] = useState("");
-  const [page, setPage] = useState(1); // Page actuelle
-  const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
+  const [page, setPage] = useState(1); 
+  const [totalPages, setTotalPages] = useState(1); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,8 +21,8 @@ const ProduitsUtilisateurs = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setProduits(response.data.data); // Laravel retourne les résultats dans une clé `data`
-        setTotalPages(response.data.last_page); // Le nombre total de pages est disponible avec `last_page`
+        setProduits(response.data.data); 
+        setTotalPages(response.data.last_page); 
       } catch (error) {
         if (error.response) {
           setMessage(error.response.data.message);
@@ -33,8 +33,7 @@ const ProduitsUtilisateurs = () => {
     };
 
     fetchProduits();
-  }, [page]); // Recharger les produits lorsque la page change
-
+  }, [page]); 
   const handleEdit = (produitId) => {
     navigate(`/modifierProduit/${produitId}`);
   };

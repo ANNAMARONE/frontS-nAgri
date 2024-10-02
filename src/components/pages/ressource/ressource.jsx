@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '/src/config';
 import { Link } from "react-router-dom";
+import './ressource.css';
 const RessourcesList = () => {
   const [ressources, setRessources] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -48,7 +49,7 @@ const RessourcesList = () => {
         });
 
         setRessources(response.data.data);
-        setTotalPages(response.data.last_page); // Pagination total pages
+        setTotalPages(response.data.last_page); 
       } catch (err) {
         if (err.response) {
           setError(err.response.data.message || 'Erreur lors de la récupération des ressources.');
@@ -85,18 +86,30 @@ const RessourcesList = () => {
 
   return (
     <div>
-      <h2>Liste des Ressources</h2>
+      <div className="bannerRessource">
+<h1>Accédez à une mine de ressources et de conseils pour optimiser vos pratiques agricoles et propulser votre activité vers un avenir durable et prospère.</h1>
+      </div>
+    
 
       {/* Afficher les catégories */}
       <div>
-        <h3>Catégories</h3>
-        <ul>
-          {categories.map((category) => (
-            <li key={category.id} onClick={() => handleCategoryClick(category.id)}>
-              {category.libelle}
-            </li>
-          ))}
-        </ul>
+        <div className="section1Catégorie">
+        <h1>CATÉGORIES</h1>
+        <div className="hrRessource"></div>
+        </div>
+        <div className="categories-container">
+            <ul>
+                {categories.map((category) => (
+                    <li key={category.id}>
+                        <button onClick={() => handleCategoryClick(category.id)}>
+                            {/* Si vous avez des icônes, vous pouvez les ajouter ici */}
+                            {/* <span className="icon">🌟</span> */}
+                            {category.libelle}
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </div>
       </div>
 
       {/* Afficher les ressources */}

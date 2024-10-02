@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AjouterProduit = () => {
   const [libelle, setLibelle] = useState("");
@@ -13,7 +14,7 @@ const AjouterProduit = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState([]);
   const [categories, setCategories] = useState([]);
-
+const navigate=useNavigate;
   const statuts = [
     { value: "en stock", label: "en stock" },
     { value: "en rupture", label: "en rupture" },
@@ -88,6 +89,7 @@ const AjouterProduit = () => {
       });
 
       setMessage(response.data.message);
+      navigate('/afficherProduit'); 
       setErrors([]);
     } catch (error) {
       if (error.response) {

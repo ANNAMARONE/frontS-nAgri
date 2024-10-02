@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import config from '/src/config';
-
+import './détailForum.css';
+import { BiSolidLike } from "react-icons/bi";
+import { FaReply } from "react-icons/fa";
 const ForumDetails = () => {
   const { id } = useParams();
   const [forum, setForum] = useState(null);
@@ -120,21 +122,80 @@ const handleReplySubmit = (e, commentId) => {
   if (!forum) {
     return <div>Chargement...</div>;
   }
+   // Fonction pour calculer le temps écoulé
+   const timeSince = (date) => {
+    const now = new Date();
+    const seconds = Math.floor((now - new Date(date)) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    
+    if (interval > 1) return interval + " ans";
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) return interval + " mois";
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) return interval + " jours";
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) return interval + " heures";
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) return interval + " minutes";
+    return seconds + " secondes";
+  };
 
   return (
-    <div>
-      <h2>{forum.libelle}</h2>
-      <p>{forum.description}</p>
-
+    <div className="bannerForumDétail">
+      <div className="forumdétail-container">
+   <div className="détaileForum1">
+   <div>
+    <div className="forum-items">
+                  <div className="forum-header">
+                    <div className="forum-profile">
+                      <img src={`${config.imageProfil}/${forum.user.profile}`} />
+                      <p>{forum.user.name}</p>
+                    </div>
+                    <div>
+                      <p className="forum-author">
+                        <strong>{forum.user.name}</strong>
+                      </p>
+                      <p className="forum-time">il y &apos;a {timeSince(forum.created_at)} </p>
+                    </div>
+                  </div>
+                  <p className="forum-title">
+                    {forum.libelle}
+                  </p>
+                  <p className="forum-description">{forum.description}</p>
+                 
+   </div>
+    </div>
+      <div className="détailForum">
+      {message && <p className="success-message">{message}</p>}
+      {formError && <p className="error-message">{formError.description}</p>}
+      
+      <form onSubmit={handleCommentSubmit}>
+        <div>
+         
+          <textarea
+            id="description"
+            value={description}
+            placeholder="Tapez ici votre sage suggestion"
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          ></textarea>
+        </div>
+        <button type="submit">commenter</button>
+      </form>
+      </div>
+   </div>
+   <div>
+{/* liste des commentaire du forum */}
       <h3>Commentaires :</h3>
       {comments.length > 0 ? (
-        <ul>
+        <ul className="listeCommentaire">
           {comments.map((comment) => (
-            <li key={comment.id}>
+            <li key={comment.id}className="comment-item">
               <div>
+                <p>@{forum.user.name}</p>
                 <p>{comment.description}</p>
-                <button onClick={() => handleLikeComment(comment.id)}>Aimer ({comment.likes})</button>
-                <button onClick={() => setReplyToCommentId(comment.id)}>Répondre</button>
+                <button onClick={() => handleLikeComment(comment.id)}><BiSolidLike /> {comment.likes}</button>
+                <button onClick={() => setReplyToCommentId(comment.id)}><FaReply/></button>
                 {/* Formulaire de réponse */}
                 {replyToCommentId === comment.id && (
                   <form onSubmit={(e) => handleReplySubmit(e, comment.id)}>
@@ -142,7 +203,7 @@ const handleReplySubmit = (e, commentId) => {
                       value={replyDescription}
                       onChange={(e) => setReplyDescription(e.target.value)}
                       required
-                    ></textarea>
+                    ></textarea> <br/>
                     <button type="submit">Ajouter la réponse</button>
                   </form>
                 )}
@@ -162,23 +223,8 @@ const handleReplySubmit = (e, commentId) => {
       ) : (
         <p>Aucun commentaire disponible.</p>
       )}
-
-      <h3>Ajouter un commentaire</h3>
-      {message && <p className="success-message">{message}</p>}
-      {formError && <p className="error-message">{formError.description}</p>}
-      
-      <form onSubmit={handleCommentSubmit}>
-        <div>
-          <label htmlFor="description">Commentaire :</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          ></textarea>
-        </div>
-        <button type="submit">Ajouter le commentaire</button>
-      </form>
+      </div>
+      </div>
     </div>
   );
 };

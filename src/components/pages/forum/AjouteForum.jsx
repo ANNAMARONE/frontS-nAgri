@@ -2,22 +2,25 @@
 import React, { useState } from "react";
 import axios from "axios";
 import config from '/src/config';
+import { useNavigate } from "react-router-dom";
+import './ajoutForum.css';
+import { FiSend } from "react-icons/fi";
+
 const CreateForum = () => {
   const [libelle, setLibelle] = useState("");
   const [description, setDescription] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     setSuccessMessage("");
     setErrorMessage("");
 
-
     const token = localStorage.getItem("token");
-
 
     axios
       .post(
@@ -31,14 +34,19 @@ const CreateForum = () => {
             Authorization: `Bearer ${token}`, 
           },
         }
+        
       )
+      
       .then((response) => {
         setSuccessMessage(response.data.success);
         setLibelle(""); 
         setDescription("");
         setLoading(false);
+       
+        navigate("/forum");  
       })
       .catch((error) => {
+        
         if (error.response) {
           setErrorMessage(
             error.response.data.error
@@ -53,14 +61,14 @@ const CreateForum = () => {
   };
 
   return (
-    <div>
+    <div className="bannerForum">
       <h2>Créer un nouveau forum</h2>
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Libellé :</label>
+          <label>Libellé :</label><br />
           <input
             type="text"
             value={libelle}
@@ -71,7 +79,7 @@ const CreateForum = () => {
         </div>
 
         <div>
-          <label>Description :</label>
+          <label>Description :</label><br />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -81,7 +89,7 @@ const CreateForum = () => {
 
         <div>
           <button type="submit" disabled={loading}>
-            {loading ? "En cours..." : "Créer le forum"}
+            <FiSend /> {loading ? "En cours..." : "Créer le forum"}
           </button>
         </div>
       </form>

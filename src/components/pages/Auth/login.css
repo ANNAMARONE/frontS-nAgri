@@ -11,8 +11,8 @@ body{
 
 .bannier_connexion{
     background-image: url('/src/assets/images/background.png');
-    background-size: cover; /* Remplit entièrement le conteneur */
-    background-position: center; /* Centre l'image */
+    background-size: cover; 
+    background-position: center;
     height: 100vh;
     width: 100%; 
   }

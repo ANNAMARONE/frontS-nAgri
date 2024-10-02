@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
+.contenue{
+    margin-top:10px;
+}
+.bannerRessource {
+    position: relative;
+    background-image: url('/src/assets/images/DesignRessource.png');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    width: 100%;
+}
+
+.bannerRessource::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.bannerRessource > * {
+    position: relative;
+    z-index: 2;
+}
+.bannerRessource h1 {
+    color: white; 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    text-align: center; 
+    position: absolute; 
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+    margin: 0; 
+    padding: 0 20px; 
+}
+.section1Catégorie h1{
+    font-size: 48px;
+    margin: 80px auto;
+    color: #009444;
+    text-align: center;
+}
+
+.categories-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    margin: 20px 0;
+}
+
+
+.categories-container button {
+    background-color: #009444; 
+    color: white; 
+    border: none;
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    margin: 5px;
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s; 
+}
+
+.categories-container button:hover {
+    background-color: #009444; 
+    transform: translateY(-2px); 
+}
+
+
+.categories-container button:focus {
+    outline: none;
+}
+
+
+.categories-container .icon {
+    margin-right: 8px; 
+}
+

@@ -2,18 +2,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '/src/config';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import './forum.css';
 import { FaForumbee } from "react-icons/fa";
+
 const Forum = () => {
   const [forums, setForums] = useState([]);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); 
   const [totalPages, setTotalPages] = useState(0); 
+  const navigate=useNavigate;
   const perPage = 3; 
 
   useEffect(() => {
-    // Récupérer les forums depuis l'API avec la pagination
+   
     axios.get(`${config.apiBaseUrl}/forums?per_page=${perPage}&page=${currentPage}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
