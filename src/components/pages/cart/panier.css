@@ -75,14 +75,90 @@ display: flex;
  background: none;   
 
 }
-.PanierCommande{
-    display: flex;
-    margin: 5% auto;
-}
+
+    .PanierCommande {
+        display: flex;
+        flex-direction: row; 
+        justify-content: center; 
+        align-items: flex-start; 
+        margin: 20px auto;
+        max-width: 1248px; 
+      }
+
 .Buttoncommandes{
 width: 180px;
 height: 50px;
 background-color: #009444;
 color: #fff;
 border: none;
+
 }
+.Buttoncommandes a{
+    text-decoration: none;
+    color: #ffff;
+    font-size: 18px;
+}
+.commandePanier{
+   width: 395px; 
+   height: 318px;
+   border: 2px solid #E6E6E6;
+   border-radius: 24px;
+   margin: auto;
+   background-color: #FAFAF5;
+   display: flex; 
+   flex-direction: column; 
+   justify-content: center; 
+   margin: 20px; 
+   padding: 20px; 
+}
+.commandePanier h1{
+font-size: 24px;
+margin: auto;
+}
+.commandePanier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+    width: 395px; 
+    height: 318px;
+    border: 2px solid #E6E6E6;
+    border-radius: 24px;
+    background-color: #FAFAF5;
+  }
+  
+  .resume-details {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 10px 0; 
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    margin: 5px 0; 
+    gap: 50px;
+  }
+  .detail-item h3{
+    font-size: 16px;
+    font-weight: 700px;
+  }
+  .payment-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; 
+    color: white;
+    cursor: pointer;
+  }
+  
+  .payment-button:disabled {
+    background-color: #ccc; 
+  }
+  

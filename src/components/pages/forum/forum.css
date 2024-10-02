@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
+
+.bannerForum{
+    background-image: url('/src/assets/images/backForum.png');
+    background-size: cover;
+    background-position: center; 
+    height: 100vh;
+    width: 100%; 
+  }
+
+
+.forum-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    margin: 0 auto; 
+    max-width: 1200px; 
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+  }
+  
+  .add-forum-link {
+    margin-bottom: 20px;
+  }
+  
+  .forums-list {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+  }
+  
+  .forum-item {
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 15px; 
+    width: 725px; 
+    height: 220px; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+    margin: 10px auto;
+  }
+  
+  .forum-profile,
+  .forum-author,
+  .forum-time,
+  .forum-title,
+  .forum-description {
+    margin: 3px 0; 
+  }
+  
+  .forum-button {
+    background-color: #009444; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
+  }
+  
+  .forum-button:hover {
+    background-color: #009444; 
+  }
+  
+  .pagination {
+    margin-top: 20px; 
+  }
+  .forum-header{
+    display: flex;
+    gap: 20px;
+  }.forum-profile img{
+    width: 50px;
+    width: 50px;
+    border-radius: 100px;
+    border: 1px solid #fff;
+    
+  }
+  .forum-container .header{
+    width: 305px;
+    height: 211px;
+    background-color: #fff;
+    flex-direction: column;
+    margin: 10px auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+
+  }
+  .forum-container .header .hrforum{
+    width:305px;
+    height: 2px;
+    background-color: black;
+  
+  }
+  .forum-container .header h6{
+    margin: 10px auto;
+    gap: 30px;
+  }
+  .add-forum-link{
+    width: 213px;
+    height: 54px;
+    background-color: #009444;
+    color: #ffff;
+    text-align: center;
+    border: none;
+    border-radius: 100px;
+    margin:10px auto;
+  }
+  .add-forum-link a{
+    text-decoration: none;
+    color: #ffff;
+    font-size: 18px;
+  }

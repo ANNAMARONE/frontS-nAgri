@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './login.css';
-import AuthUser from './AuthUser';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useNavigate } from 'react-router-dom';
 

@@ -113,6 +113,18 @@
   }
   
   .page-content {
-    margin-top: 20px; /* Espacement pour le contenu de la page */
+    margin-top: 20px;
   }
   
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}

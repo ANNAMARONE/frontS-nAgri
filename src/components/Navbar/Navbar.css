@@ -97,7 +97,47 @@ ul li a:hover, ul li a.active {
 .burger.toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }
-
+.cart {
+    position: relative;
+    margin-right: 15px;
+  }
+  
+  .panier-icon {
+    color: #000;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .panier-count {
+    background-color:#009444;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
+  
+  .logged-in-options {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profil-link {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .logout {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
 @media (max-width: 768px) {
     ul {
         position: absolute;

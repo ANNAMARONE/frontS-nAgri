@@ -45,7 +45,8 @@ import Forumdetails from './components/adminPage/gestion forums/détailfoum';
 import ListeCategories from './components/adminPage/gestion catégorie/catégorie produit/afficherCatPr';
 import AjouterCategorie from './components/adminPage/gestion catégorie/catégorie produit/ajouterCatPr';
 import ModifierCategorie from './components/adminPage/gestion catégorie/catégorie produit/modifierCatPr';
-
+import Commandes from './components/pages/cart/commande';
+import { AuthProvider } from './components/pages/Auth/AuthContext';
 
 // Composant WithSidebar
 const WithSidebar = () => (
@@ -64,7 +65,9 @@ const WithSidebarAdmin = () => (
 // Composant WithNavbar
 const WithNavbar = () => (
   <>
+   <AuthProvider>
     <Navbar />
+    </AuthProvider>
     <Outlet />
   </>
 );
@@ -74,6 +77,7 @@ function App() {
     <div className="App">
       <Routes>
         {/* Routes avec Navbar */}
+
         <Route element={<WithNavbar />}>
           <Route path="/" element={<Accueil />} />
           <Route path="/evenement" element={<Evenement />} />
@@ -90,7 +94,8 @@ function App() {
           <Route path="/articles/:id" element={<ArticleDetails />} />
           <Route path="/ressources" element={<RessourcesList />} />
           <Route path="/ressources/:id" element={<RessourceDetails />} />
-         
+          <Route path="/commande" element={<Commandes/>} />
+          <Route path="/profileUse" element={<Profile />} />
         </Route>
 
         {/* Routes avec Sidebar */}

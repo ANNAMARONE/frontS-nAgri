@@ -2,31 +2,23 @@
 import React, { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom'; // Utilisation de NavLink pour les liens actifs
 import './interfaceAdmin.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Pour la redirection après déconnexion
+
 const AdminInterface = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
-  const navigate = useNavigate();
 
-    const handleLogout = async () => {
-        try {
-            await axios.post('http://127.0.0.1:8000/api/auth/logout', {}, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`, 
-                },
-            });
+  const handleLogout = () => {
+    // Supprimer le token d'authentification
+    localStorage.removeItem('token');
+    // Rediriger vers la page de connexion
+    navigate('/login');
+  };
 
-            localStorage.removeItem('token');
-
-            navigate('/login');
-        } catch (error) {
-            console.error('Erreur lors de la déconnexion:', error);
-        }
-    };
   return (
     <div className="admin-interface">
       <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
@@ -38,12 +30,12 @@ const AdminInterface = () => {
         </div>
         <ul className="sidebar-menu">
           <li><NavLink to="/dashboard" activeClassName="active">Tableau de bord</NavLink></li>
-          <li><NavLink to="/ListeUtilisateur" activeClassName="active">gestion utilisateur</NavLink></li>
-          <li><NavLink to="/evenements" activeClassName="active">gestion événement</NavLink></li>
-          <li><NavLink to="/articles" activeClassName="active">gestion article</NavLink></li>
-          <li><NavLink to="/listeressources" activeClassName="active">gestion ressources</NavLink></li>
-          <li><NavLink to="/categories" activeClassName="active">gestion catégorie</NavLink></li>
-          <li><NavLink to="/listeforums" activeClassName="active">gestion forum</NavLink></li>
+          <li><NavLink to="/ListeUtilisateur" activeClassName="active">Gestion utilisateur</NavLink></li>
+          <li><NavLink to="/evenements" activeClassName="active">Gestion événement</NavLink></li>
+          <li><NavLink to="/articles" activeClassName="active">Gestion article</NavLink></li>
+          <li><NavLink to="/listeressources" activeClassName="active">Gestion ressources</NavLink></li>
+          <li><NavLink to="/categories" activeClassName="active">Gestion catégorie</NavLink></li>
+          <li><NavLink to="/listeforums" activeClassName="active">Gestion forum</NavLink></li>
           <li><NavLink to="/settings" activeClassName="active">Paramètres</NavLink></li>
         </ul>
       </div>
@@ -52,16 +44,17 @@ const AdminInterface = () => {
       <div className="main-content">
         {/* Navbar */}
         <div className="navbar">
-          <h1>Interface Produicteur</h1>
+          <h1>Interface Admin</h1>
           <div className="navbar-links">
             <Link to="/profileAdmin">Profil</Link>
-            <Link onClick={handleLogout}>Déconnexion</Link>
+            {/* Utilisation d'un bouton pour la déconnexion */}
+            <button onClick={handleLogout} className="logout-btn">Déconnexion</button>
           </div>
         </div>
 
         {/* Page Content */}
         <div className="page-content">
-          <Outlet/> 
+          <Outlet /> 
         </div>
       </div>
     </div>

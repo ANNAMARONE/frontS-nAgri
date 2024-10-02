@@ -2,7 +2,6 @@
 import React, { useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import './registe.css';
-import AuthUser from './AuthUser';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import profil from '/src/assets/images/2579132.png'
 

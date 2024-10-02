@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '/src/config';
+import { Link} from 'react-router-dom'; 
 import './panier.css';
 import { MdDeleteForever } from "react-icons/md";
 const Panier = () => {
@@ -38,6 +39,13 @@ const Panier = () => {
   };
 
   const montantTotal = panier.reduce((total, produit) => total + produit.prix * produit.quantite, 0);
+
+  // Définir le montant d'expédition (exemple : 500 FCFA)
+  const montantExpedition = 500;
+
+  // Calculer le montant total avec les frais d'expédition
+  const montantTotalAvecExpedition = montantTotal + montantExpedition;
+
   const handleCommander = async () => {
     const userFromLocalStorage = localStorage.getItem('user');
     const user = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
@@ -91,7 +99,7 @@ const Panier = () => {
     <div>
       <div className='headerpanier'>
       <h2>Mon Panier</h2>
-      <button className='Buttoncommandes'>Mes commandes</button>
+      <button className='Buttoncommandes'><Link to="/commande">Mes commandes</Link> </button>
       </div>
       <div className='tr1'></div>
       {errorMessage && <div className="error">{errorMessage}</div>}
@@ -128,10 +136,27 @@ const Panier = () => {
 </div>
 ))}
     </div>
-      <div className='commandePanier'>
-      <h3>Montant Total: {montantTotal} FCFA</h3>
-      <button onClick={handleCommander} disabled={loading}>{loading ? 'Chargement...' : 'Commander'}</button> 
-      </div>
+    <div className='commandePanier'>
+  <h1>Résumé de la commande</h1>
+  <div className='resume-details'>
+    <div className='detail-item'>
+      <p>Total des produits:</p>
+      <h3>{montantTotal} FCFA</h3>
+    </div>
+    <div className='detail-item'>
+      <p>Expédition:</p>
+      <h3>{montantExpedition} FCFA</h3>
+    </div>
+    <div className='detail-item'>
+      <p>Montant Total:</p>
+      <h3>{montantTotalAvecExpedition} FCFA</h3>
+    </div>
+  </div>
+  <button onClick={handleCommander} disabled={loading} className='payment-button'>
+    {loading ? 'Chargement...' : 'Continuer vers le paiement'}
+  </button>
+</div>
+
       </div>
     </div>
   );
