@@ -53,7 +53,7 @@ const ModifierEvenement = () => {
     if (evenement.image instanceof File) {
       formData.append('image', evenement.image); 
     }
-
+    
     try {
       const response = await axios.post(`http://127.0.0.1:8000/api/modifier_Evenement/${id}`, formData, {
         headers: {
@@ -61,6 +61,7 @@ const ModifierEvenement = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      
       setMessage('Événement mis à jour avec succès');
       setErrors({});
       navigate('/evenements')

@@ -31,7 +31,7 @@ const RessourcesList = () => {
     fetchCategories();
   }, []);
 
-  // Récupérer les ressources (avec ou sans catégorie sélectionnée)
+  // Récupérer les ressources 
   useEffect(() => {
     const fetchRessources = async () => {
       setLoading(true);
@@ -76,13 +76,7 @@ const RessourcesList = () => {
     }
   };
 
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
   const truncateDescription = (description, maxLength) => {
     if (description.length > maxLength) {
         return description.substring(0, maxLength) + '...';
@@ -109,8 +103,6 @@ const RessourcesList = () => {
                 {categories.map((category) => (
                     <li key={category.id}>
                         <button onClick={() => handleCategoryClick(category.id)}>
-                            {/* Si vous avez des icônes, vous pouvez les ajouter ici */}
-                            {/* <span className="icon">🌟</span> */}
                             {category.libelle}
                         </button>
                     </li>
@@ -126,7 +118,7 @@ const RessourcesList = () => {
                     <img src={`${config.imageBaseUrl}/${ressource.image}`} alt={ressource.libelle} />
                     <h3>{ressource.libelle}</h3>
 
-                    {/* Afficher une partie de la description */}
+                    
                     <p>{truncateDescription(ressource.description, 100)}</p>
 
                     <Link to={`/ressources/${ressource.id}`}>

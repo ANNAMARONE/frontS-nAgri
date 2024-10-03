@@ -1,0 +1,118 @@
+/* Article.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
+
+.cardEvenement{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; 
+    padding: 20px;
+    width: 80%;
+   margin: auto;
+   background-color: #FFFF;
+}
+.bannerEvenement{
+    background-image: url('/src/assets/images/motiftop.png');
+    background-size: cover; 
+    background-position: center; 
+    height: 60vh;
+    width: 100%; 
+}
+.cardBanner{
+    width: 1278px;
+    height: 506px;
+    background-color: #FFFF;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin:20px auto;
+}
+.cardBanner h1{
+    font-size: 20px;
+    width: 472px;
+    margin: 10% auto;
+}
+.cardBanner p{
+    width: 552px;
+}
+.ElementEvenement h2{
+text-align: center;
+margin: 30px auto;
+color:#009444 ;
+}
+
+
+
+.cardEvenement {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+ 
+  .cartElement {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .cartElement:hover {
+    transform: translateY(-5px);
+  }
+  
+  
+  .cartElement img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cartElement h3 {
+    font-size: 1.5em;
+    margin: 15px 0;
+    color: #009444;
+  }
+  
+  .cartElement p {
+    font-size: 1em;
+    color: #666;
+    padding: 0 15px;
+    margin-bottom: 10px;
+  }
+  
+  .cartElement .btn-lien {
+    background-color:#FFFF;
+    color: #009444;
+    padding: 10px 20px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    border: 2px solid #007b36;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .cartElement .btn-lien:hover {
+    background-color: #007b36;
+    color: #ffff;
+  }
+  
+
+  .cartElement div {
+    padding: 15px;
+  }
+  

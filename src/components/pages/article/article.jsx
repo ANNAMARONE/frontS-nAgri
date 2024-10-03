@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function Article() {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -20,36 +20,33 @@ export default function Article() {
         setArticles(response.data);
       } catch (err) {
         if (err.response) {
-          setError(err.response.data.error || err.response.data.message);
-        } else {
           setError("Erreur lors de la récupération des articles.");
-        }
-      } finally {
-        setLoading(false);
+        } 
       }
     };
 
     fetchArticles();
   }, []);
 
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
-
   if (error) {
     return <div>{error}</div>;
   }
-
+  const truncateDescription = (description, maxLength) => {
+    if (description.length > maxLength) {
+        return description.substring(0, maxLength) + '...';
+    }
+    return description;
+};
   return (
-    <div >
+    <div className="containerArticler" >
         <div className="banner-video">
         <video autoPlay muted loop className="background-video">
           <source src={banner} type="video/mp4" />
           Votre navigateur ne supporte pas la vidéo.
         </video>
         <div className="banner-content">
-          <h1>Bienvenue sur notre plateforme d'articles</h1>
-          <p>Explorez les derniers articles et insights.</p>
+          <h1>Bienvenue sur notre plateforme </h1>
+          <p>Explorez les derniers articles.</p>
         </div>
       </div>
       <h2>Articles</h2>
@@ -60,9 +57,9 @@ export default function Article() {
             <img src={`${config.imageBaseUrl}/${article.image}`} alt={article.libelle} />
             <div className="card-content">
               <Link to={`/articles/${article.id}`} className="card-title">
-                {article.libelle}
+                {truncateDescription(article.libelle,100)}
               </Link>
-              <p className="card-description">{article.description}</p>
+              <p className="card-description">{truncateDescription(article.description,100)}</p>
               <div className="card-footer">
                 <span>{new Date(article.created_at).toLocaleDateString()}</span>
                 <span>Statut: {article.statut}</span>

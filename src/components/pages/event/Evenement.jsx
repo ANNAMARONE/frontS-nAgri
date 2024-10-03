@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '/src/config';
-
+import './Evenement.css';
+import ImageEvenement from '/src/assets/images/Rectangle.png'
 const Evenement = () => {
   const [evenements, setEvenements] = useState([]);
   const [error, setError] = useState(null);
@@ -21,7 +22,7 @@ const Evenement = () => {
         if (err.response) {
           setError(err.response.data.message || 'Erreur lors de la récupération des événements.');
         } else {
-          setError("Erreur réseau.");
+          setError("Vueillez verifier votre connexion");
         }
       } finally {
         setLoading(false);
@@ -31,9 +32,7 @@ const Evenement = () => {
     fetchEvenements();
   }, []);
 
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
+  
 
   if (error) {
     return <div>{error}</div>;
@@ -45,21 +44,43 @@ const Evenement = () => {
 
   return (
     <div>
-      <h2>Liste des Événements</h2>
-      <ul>
-        {evenements.map((evenement) => (
-          <li key={evenement.id}>
-            <img src={`${config.imageBaseUrl}/${evenement.image}`} alt={evenement.libelle} />
-            <img src={`${config.docummentPdf}/${evenement.piéce_join}`} alt={evenement.libelle} />
-            
-            <h3>{evenement.libelle}</h3>
-            <p>{evenement.lien}</p>
-            <p>{evenement.description}</p>
-            <p>Date : {new Date(evenement.created_at).toLocaleDateString()}</p>
-            
-          </li>
-        ))}
-      </ul>
+      <div className="bannerEvenement">
+<div className="cardBanner">
+  <div>
+    <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      Sed ante erat, cursus nec velit at, pulvinar pulvinar velit. Proin </h1>
+    <p>
+    iaculis viverra quam, ut vulputate mi malesuada in. Vivamus rutrum, justo ac dictum consectetur,
+     mi nibh faucibus nulla, non dignissim velit elit in lacus. Maecenas placerat tristique euismod.
+    </p>
+  </div>
+  <div className="EvenementImage">
+    <img src={ImageEvenement} alt="" />
+  </div>
+</div>
+      </div>
+      <div className="ElementEvenement">
+  <h2>Liste des Événements</h2>
+  <ul  className="cardEvenement">
+    {evenements.map((evenement) => (
+      <li key={evenement.id} className="cartElement">
+        <div></div>
+        <img src={`${config.imageBaseUrl}/${evenement.image}`} alt={evenement.libelle} />
+        <h3>{evenement.libelle}</h3>
+        <p>{evenement.description}</p>
+        <p>Date : {new Date(evenement.created_at).toLocaleDateString()}</p>
+      
+        <button
+          onClick={() => window.location.href = evenement.lien}
+          className="btn-lien"
+        >
+          Voir Détails
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+
     </div>
   );
 };

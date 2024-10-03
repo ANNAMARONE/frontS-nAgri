@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import config from '/src/config';
+import './profile.css';
 const Profile = () => {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
@@ -29,14 +30,35 @@ const Profile = () => {
     }
 
     return (
-        <div>
-            <h1>Profil de utilisateur</h1>
+        <div className='containerProfile'>
+           <div className='profileHeader'>
+           <p>{profile.name}</p>
             <img src={`${config.imageProfil}/${profile.profile}`} alt={profile.nam} />
-            <p>Nom : {profile.name}</p>
+            
+            </div>
             <p>adresse : {profile.adresse}</p>
             <p>telephone : {profile.telephone}</p>
             <p>role : {profile.role}</p>
             <p>Email : {profile.email}</p>
+
+            <table className='table'>
+                <tr>
+                    <td>adresse</td>
+                    <td>{profile.adresse}</td>
+                </tr>
+                <tr>
+                    <td>telephone </td>
+                    <td>{profile.telephone}</td>
+                </tr>
+                <tr>
+                    <td>role</td>
+                    <td>{profile.adresse}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{profile.email}</td>
+                </tr>
+            </table>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import config from '/src/config'; 
-
+import './détailArticle.css';
 const ArticleDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
@@ -33,26 +33,20 @@ const ArticleDetails = () => {
     fetchArticle();
   }, [id]);
 
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   if (!article) {
     return <div>Aucun article trouvé.</div>;
   }
 
   return (
     <div>
-      <h2>{article.libelle}</h2>
-      <p>{article.description}</p>
-      <img src={`${config.imageBaseUrl}/${article.image}`} alt={article.libelle} />
+     <div className="container_image">
+     <img src={`${config.imageBaseUrl}/${article.image}`} alt={article.libelle} />
+     </div>
+     <div className="containerDétailArticler">
+     <h2>{article.libelle}</h2>
       <p>Date de création : {new Date(article.created_at).toLocaleDateString()}</p>
-      <p>{article.lien}</p>
       <p>{article.description}</p>
+     </div>
     </div>
   );
 };
