@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import config from '/src/config';
 import './profile.css';
+
 const Profile = () => {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); // Utilisation du hook useNavigate pour la redirection
 
     useEffect(() => {
-        const token = localStorage.getItem('token');  
+        const token = localStorage.getItem('token');
         axios.get('http://127.0.0.1:8000/api/auth/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -29,36 +32,38 @@ const Profile = () => {
         return <div>Chargement...</div>;
     }
 
+    // Fonction pour gérer le clic du bouton modifier
+    const handleEditClick = () => {
+        navigate('/modifier-profile',{ state: { profile } }); 
+    };
+
     return (
         <div className='containerProfile'>
            <div className='profileHeader'>
-           <p>{profile.name}</p>
-            <img src={`${config.imageProfil}/${profile.profile}`} alt={profile.nam} />
-            
+               <p>{profile.name}</p>
+               <img src={`${config.imageProfil}/${profile.profile}`} alt={profile.name} />
             </div>
-            <p>adresse : {profile.adresse}</p>
-            <p>telephone : {profile.telephone}</p>
-            <p>role : {profile.role}</p>
-            <p>Email : {profile.email}</p>
 
             <table className='table'>
                 <tr>
-                    <td>adresse</td>
+                    <td>Adresse</td>
                     <td>{profile.adresse}</td>
                 </tr>
                 <tr>
-                    <td>telephone </td>
+                    <td>Téléphone</td>
                     <td>{profile.telephone}</td>
                 </tr>
                 <tr>
-                    <td>role</td>
-                    <td>{profile.adresse}</td>
+                    <td>Rôle</td>
+                    <td>{profile.role}</td>
                 </tr>
                 <tr>
                     <td>Email</td>
                     <td>{profile.email}</td>
                 </tr>
             </table>
+
+            <button onClick={handleEditClick}>Modifier</button>
         </div>
     );
 };

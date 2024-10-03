@@ -23,6 +23,7 @@ export const Navbar = () => {
       setPanierCount(panier.reduce((count, produit) => count + produit.quantite, 0));
     }
   }, []);
+  
 
   return (
     <nav>

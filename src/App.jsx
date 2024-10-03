@@ -48,6 +48,7 @@ import ModifierCategorie from './components/adminPage/gestion catégorie/catégo
 import Commandes from './components/pages/cart/commande';
 import { AuthProvider } from './components/pages/Auth/AuthContext';
 import Footer from './components/Footer/footer';
+import ModifierProfile from './components/profile/modifier';
 
 // Composant WithSidebar
 const WithSidebar = () => (
@@ -66,9 +67,9 @@ const WithSidebarAdmin = () => (
 // Composant WithNavbar
 const WithNavbar = () => (
   <>
-   <AuthProvider>
+  
     <Navbar />
-    </AuthProvider>
+    
     <Outlet />
     <Footer />
   </>
@@ -76,7 +77,9 @@ const WithNavbar = () => (
 
 function App() {
   return (
+    <AuthProvider>
     <div className="App">
+      
       <Routes>
         {/* Routes avec Navbar */}
         
@@ -98,6 +101,8 @@ function App() {
           <Route path="/ressources/:id" element={<RessourceDetails />} />
           <Route path="/commande" element={<Commandes/>} />
           <Route path="/profileUse" element={<Profile />} />
+          <Route path="/modifier-profile" element={<ModifierProfile/>} />
+          
         </Route>
 
         {/* Routes avec Sidebar */}
@@ -132,7 +137,9 @@ function App() {
         <Route path="/categories/modifier/:id" element={<ModifierCategorie/>} />
         </Route>
       </Routes>
+     
     </div>
+    </AuthProvider>
   );
 }
 
