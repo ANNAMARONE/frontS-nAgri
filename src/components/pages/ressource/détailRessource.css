@@ -1,0 +1,89 @@
+/* Style pour le conteneur principal */
+.détailRessource {
+    font-family: 'Roboto', sans-serif;
+    margin: 20px auto;
+    padding: 20px;
+   
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .détailRessource .descriptionRessouce{
+   
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    
+  }
+  .détailRessource .descriptionRessouce .det1{
+    max-width: 1000px;
+    border: 1px solid #ddd;
+  }
+ 
+  .détailRessource h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+  }
+  
+
+  .détailRessource1 h3 {
+    color: #555;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .détailRessource1{
+    margin: auto;
+  }
+  /* Style pour l'image */
+  .détailRessource1 img {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    margin: auto;
+  }
+  
+  .détailRessource img:hover {
+    transform: scale(1.05);
+    margin: auto;
+  }
+  
+
+  .détailRessource p {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+
+ .détailRessource button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    color: #fff;
+    background-color:  #009444;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin:0px 10px;
+  }
+  
+ .détailRessource button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  /* Style pour les liens */
+  a {
+    text-decoration: none;
+  }
+  

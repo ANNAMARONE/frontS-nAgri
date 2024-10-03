@@ -83,6 +83,13 @@ const RessourcesList = () => {
   if (error) {
     return <div>{error}</div>;
   }
+  const truncateDescription = (description, maxLength) => {
+    if (description.length > maxLength) {
+        return description.substring(0, maxLength) + '...';
+    }
+    return description;
+};
+
 
   return (
     <div>
@@ -113,21 +120,26 @@ const RessourcesList = () => {
       </div>
 
       {/* Afficher les ressources */}
-      <ul>
-        {ressources.map((ressource) => (
-          <li key={ressource.id}>
-             <Link to={`/ressources/${ressource.id}`}> 
-            <h3>{ressource.libelle}</h3>
-            </Link>
-            <img src={`${config.imageBaseUrl}/${ressource.image}`} alt={ressource.libelle} />
-            <p>{ressource.description}</p>
-            <p>Date : {new Date(ressource.created_at).toLocaleDateString()}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="ressources-container">
+            {ressources.map((ressource) => (
+                <div key={ressource.id} className="ressource-card">
+                    <img src={`${config.imageBaseUrl}/${ressource.image}`} alt={ressource.libelle} />
+                    <h3>{ressource.libelle}</h3>
+
+                    {/* Afficher une partie de la description */}
+                    <p>{truncateDescription(ressource.description, 100)}</p>
+
+                    <Link to={`/ressources/${ressource.id}`}>
+                        <button>Voir détails</button>
+                    </Link>
+
+                    <p className="date">Date : {new Date(ressource.created_at).toLocaleDateString()}</p>
+                </div>
+            ))}
+        </div>
 
       {/* Pagination */}
-      <div>
+      <div className="pagination">
         <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
           Précédent
         </button>

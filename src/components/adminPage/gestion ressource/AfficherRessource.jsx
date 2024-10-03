@@ -77,7 +77,7 @@ const ListeRessources = () => {
           {ressources.map(ressource => (
             <tr key={ressource.id}>
               <td>{ressource.libelle}</td>
-              <td>{ressource.description}</td>
+
               <td>{new Date(ressource.created_at).toLocaleDateString()}</td>
               <td>
                
@@ -99,21 +99,21 @@ const ListeRessources = () => {
       </table>
 
       
-      <div style={{ marginTop: '20px' }}>
-        <button 
-          onClick={handlePrevPage} 
-          disabled={currentPage === 1}
-        >
-          Précédent
-        </button>
-        <span> Page {currentPage} sur {lastPage} </span>
-        <button 
-          onClick={handleNextPage} 
-          disabled={currentPage === lastPage}
-        >
-          Suivant
-        </button>
-      </div>
+      <div className="pagination">
+      <button 
+        onClick={handlePrevPage} 
+        disabled={currentPage === 1}
+      >
+        Précédent
+      </button>
+      <span>Page {currentPage} sur {lastPage}</span>
+      <button 
+        onClick={handleNextPage} 
+        disabled={currentPage === lastPage}
+      >
+        Suivant
+      </button>
+    </div>
     </div>
   );
 };

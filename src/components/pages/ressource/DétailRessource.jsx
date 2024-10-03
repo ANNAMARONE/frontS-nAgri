@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom"; 
 import config from '/src/config';
-
+import './détailRessource.css';
 const RessourceDetails = () => {
   const { id } = useParams(); 
   const [ressource, setRessource] = useState(null);
@@ -44,14 +44,28 @@ const RessourceDetails = () => {
   }
 
   return (
-    <div>
-      <h2>Détails de la Ressource</h2>
-      <h3>{ressource.libelle}</h3>
-      <img src={`${config.imageBaseUrl}/${ressource.image}`} alt={ressource.libelle} />
-      <p>{ressource.description}</p>
-      <p>Date : {new Date(ressource.created_at).toLocaleDateString()}</p>
-      <p>Categorie : {ressource.categorie_ressource_id}</p>
+    <div className="détailRessource">
+    <h2>Détails de la Ressource</h2>
+    <div className="détailRessource1">
+    <h3>{ressource.libelle}</h3>
+    <img src={`${config.imageBaseUrl}/${ressource.image}`} alt={ressource.libelle} />
     </div>
+    
+    <div className="descriptionRessouce">
+      <div className="det1">
+      <p>{ressource.description}</p>
+    <p>Date : {new Date(ressource.created_at).toLocaleDateString()}</p>
+    <p>Categorie : {ressource.categorie_ressource_id.libelle}</p>
+      </div>
+      <div>
+      <a href={`${config.docummentPdf}/${ressource.piéce_join}`} download>
+      <button>Télécharger le fichier PDF</button>
+    </a>
+      </div>
+    </div>
+   
+   
+  </div>
   );
 };
 

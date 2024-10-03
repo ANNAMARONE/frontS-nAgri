@@ -47,6 +47,7 @@ import AjouterCategorie from './components/adminPage/gestion catégorie/catégor
 import ModifierCategorie from './components/adminPage/gestion catégorie/catégorie produit/modifierCatPr';
 import Commandes from './components/pages/cart/commande';
 import { AuthProvider } from './components/pages/Auth/AuthContext';
+import Footer from './components/Footer/footer';
 
 // Composant WithSidebar
 const WithSidebar = () => (
@@ -69,6 +70,7 @@ const WithNavbar = () => (
     <Navbar />
     </AuthProvider>
     <Outlet />
+    <Footer />
   </>
 );
 
@@ -77,7 +79,7 @@ function App() {
     <div className="App">
       <Routes>
         {/* Routes avec Navbar */}
-
+        
         <Route element={<WithNavbar />}>
           <Route path="/" element={<Accueil />} />
           <Route path="/evenement" element={<Evenement />} />
