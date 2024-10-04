@@ -7,7 +7,7 @@ import './profile.css';
 const Profile = () => {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
-    const navigate = useNavigate(); // Utilisation du hook useNavigate pour la redirection
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -29,7 +29,7 @@ const Profile = () => {
     }
 
     if (!profile) {
-        return <div>Chargement...</div>;
+        return <div>Chargement</div>;
     }
 
     // Fonction pour gérer le clic du bouton modifier

@@ -148,7 +148,7 @@ const ModifierProfile = () => {
         </div>
      </div>
        <div className="setion3input">
-       <div>
+       <div className='selectInput'>
           <label>Rôle :</label> <br />
           <select name="role" value={profile.role} onChange={handleInputChange}>
             <option value="client">Client</option>
@@ -159,7 +159,7 @@ const ModifierProfile = () => {
         </div>
         
         {profile.role === 'producteur' && (
-          <>
+          <div className='selectInput'>
             <div>
               <label>Acteur :</label> <br />
               <select name="acteur" value={profile.acteur} onChange={handleInputChange}>
@@ -177,10 +177,10 @@ const ModifierProfile = () => {
               </select>
               {errors.region && <span>{errors.region[0]}</span>}
             </div>
-          </>
+          </div>
         )}
 
-        <div>
+        <div className='selectInput'>
           <label>Image de profil :</label><br />
           <input type="file" name="profile" onChange={handleFileChange} />
           {errors.profile && <span>{errors.profile[0]}</span>}

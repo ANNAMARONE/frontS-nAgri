@@ -5,18 +5,18 @@
     height: 100vh;
     font-family: Arial, sans-serif;
   }
-  
-  /* Sidebar Styles */
+
   .sidebar {
     width: 250px;
-    background-color: #333;
-    color: white;
+    background-color:#FFF;
+    color: black;
     padding: 20px;
     transition: width 0.3s ease;
   }
   
   .sidebar.closed {
     width: 60px;
+    
   }
   
   .sidebar-header {
@@ -35,7 +35,7 @@
   }
   
   .sidebar-menu li a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-size: 18px;
     display: block;
@@ -60,18 +60,18 @@
     padding: 20px;
   }
   
-  /* Navbar Styles */
+ 
   .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #555;
+    background-color: white;
     padding: 10px 20px;
-    color: white;
+    color: black;
   }
   
   .navbar-links a {
-    color: white;
+    color: black;
     margin-left: 15px;
     text-decoration: none;
   }
@@ -79,8 +79,13 @@
   .navbar-links a:hover {
     text-decoration: underline;
   }
-  
-  /* Content Styles */
+  .navbar h1{
+    margin-bottom: 20px; 
+    color: #0000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+ 
   .content {
     margin-top: 20px;
   }

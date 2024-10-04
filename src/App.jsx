@@ -49,6 +49,9 @@ import Commandes from './components/pages/cart/commande';
 import { AuthProvider } from './components/pages/Auth/AuthContext';
 import Footer from './components/Footer/footer';
 import ModifierProfile from './components/profile/modifier';
+import DashboardProducteur from './components/ProducteurPage/dasboadProducteur';
+
+
 
 // Composant WithSidebar
 const WithSidebar = () => (
@@ -113,6 +116,10 @@ function App() {
            <Route path="/modifierProduit/:id" element={<ModifierProduit/>}/>
            <Route path="/producteurs" element={<ListeUtilisateurs />} />
            <Route path="/producteur/:id" element={<ProducteurDetail />} />
+           <Route path="/dashboardProducteur" element={<DashboardProducteur/>} />
+           <Route path="/forump" element={<Forum />} />
+           
+           
         </Route>
         <Route element={<WithSidebarAdmin/>}>
         <Route path="/dashboard" element={<Dashboard/>} />

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Pour rediriger vers la page de connexion
+import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import config from '/src/config';
 import { Link } from 'react-router-dom'; 
@@ -21,7 +21,7 @@ const Panier = () => {
     // Si l'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
     if (!userFromLocalStorage || !token) {
       setErrorMessage('Veuillez vous connecter pour accéder à votre panier.');
-      navigate('/login'); // Rediriger vers la page de connexion
+      navigate('/login'); 
       return;
     }
 
@@ -50,7 +50,7 @@ const Panier = () => {
 
   const montantTotal = panier.reduce((total, produit) => total + produit.prix * produit.quantite, 0);
 
-  const montantExpedition = 500; // Montant fixe pour l'exemple
+  const montantExpedition = 500; 
   const montantTotalAvecExpedition = montantTotal + montantExpedition;
 
   const handleCommander = async () => {

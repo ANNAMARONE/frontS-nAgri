@@ -18,11 +18,10 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/statistiques" activeClassName="active">Statistiques</NavLink>
           </li>
-          {/* Ajoutez d'autres liens selon vos besoins */}
         </ul>
       </nav>
       <main className="dashboard-content">
-        <Outlet /> {/* Pour afficher le contenu des routes imbriquées */}
+        <Outlet />
       </main>
     </div>
   );

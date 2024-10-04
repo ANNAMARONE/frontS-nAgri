@@ -74,6 +74,7 @@ export default function Login() {
 
       setMessage('Connexion réussie !');
       setError('');
+      
       navigate('/'); 
     } catch (err) {
       console.log('Erreur:', err);

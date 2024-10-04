@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import './ajoutProduit.css';
 const AjouterProduit = () => {
   const [libelle, setLibelle] = useState("");
   const [image, setImage] = useState(null);
@@ -107,7 +107,7 @@ const navigate=useNavigate;
   };
 
   return (
-    <div>
+    <div className='AjoutProduitP'>
       <h2>Ajouter un Produit</h2>
       {message && <p>{message}</p>}
       {errors.length > 0 && (
@@ -120,8 +120,9 @@ const navigate=useNavigate;
         </div>
       )}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Libellé</label>
+     <div className='description_form1'>
+     <div>
+          <label>Libellé</label><br />
           <input
             type="text"
             value={libelle}
@@ -129,17 +130,9 @@ const navigate=useNavigate;
             required
           />
         </div>
+    
         <div>
-          <label>Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Description</label>
+          <label>Description</label><br />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -147,7 +140,7 @@ const navigate=useNavigate;
           />
         </div>
         <div>
-          <label>Quantité</label>
+          <label>Quantité</label><br />
           <input
             type="number"
             value={quantite}
@@ -156,7 +149,7 @@ const navigate=useNavigate;
           />
         </div>
         <div>
-          <label>Prix</label>
+          <label>Prix</label><br />
           <input
             type="number"
             value={prix}
@@ -165,7 +158,7 @@ const navigate=useNavigate;
           />
         </div>
         <div>
-          <label>Statut</label>
+          <label>Statut</label><br />
           <select
             value={statut}
             onChange={(e) => setStatut(e.target.value)}
@@ -180,7 +173,7 @@ const navigate=useNavigate;
           </select>
         </div>
         <div>
-          <label>Catégorie Produit</label>
+          <label>Catégorie Produit</label><br />
           <select
             value={categorieProduitId}
             onChange={(e) => setCategorieProduitId(e.target.value)}
@@ -194,7 +187,26 @@ const navigate=useNavigate;
             ))}
           </select>
         </div>
+     </div>
+     <div className='description_form1'>
+     <div className="file-input-container">
+    <label htmlFor="image-upload" className="file-input-label">
+      <div className="icon-container">
+        <i className="fa fa-image" aria-hidden="true"></i>
+      </div><br />
+      <span>Sélectionnez une image</span>
+    </label>
+    <input
+      type="file"
+      id="image-upload"
+      accept="image/*"
+      onChange={handleImageChange}
+      required
+    />
+  </div>
         <button type="submit">Ajouter le produit</button>
+        </div>
+       
       </form>
     </div>
   );

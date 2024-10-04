@@ -85,41 +85,46 @@ body{
     width: 872px;
 
 }
-.containerProfile form .inputeName {
+.containerProfile  .inputeName {
     display: flex;
     gap: 10px;
     
 }
 
-.containerProfile form .inputeName input{
+.containerProfile .inputeName input{
   width:430px ;
   background-color: #FFFF;
   height:44px ;
   margin-top: 10px;
 
 }
-.containerProfile  form  .setion2input {
+.containerProfile  .setion2input {
     display: flex;
     gap: 10px;
  
 }
-.containerProfile  form  .setion2input input{
+.containerProfile  .setion2input input{
     width:430px ;
   background-color: #FFFF;
   height:44px ; 
   margin-top: 20px;
 }
-.containerProfile  form .setion3input{
+.containerProfile .setion3input .selectInput{
     margin-top: 20px;
 }
-.containerProfile  form .setion3input input,select{
+.containerProfile .setion3input .selectInput select{
     background-color: #FFFF;
     width:872px ;
   background-color: #FFFF;
   height:44px ;
   
 }
-.containerProfile form button{
+.containerProfile .setion3input .selectInput input{
+    width:872px ;
+    height:44px ;
+    background-color: #FFFF;
+}
+.containerProfile button{
     margin-top: 20px;
     float: left;
 }
