@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';  
 import './Navbar.css';
 import { AuthContext } from '../pages/Auth/AuthContext';
-
+import { CgProfile } from "react-icons/cg";
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [panierCount, setPanierCount] = useState(0);
@@ -51,16 +51,17 @@ export const Navbar = () => {
           <NavLink to="/ressources" activeClassName="active">Ressources</NavLink>
         </li>
       </ul>
-
-      {isLoggedIn ? (
-        <div className="logged-in-options">
-          <div className="cart">
+   <div className="actionButtonLogin_Logout">
+   <div className="cart">
             <NavLink to="/panier" className="panier-icon">
-              <FaShoppingCart size={24} />
+              <FaShoppingCart size={24} color="#009444"  />
               {panierCount > 0 && <span className="panier-count">{panierCount}</span>}
             </NavLink>
           </div>
-          <NavLink to="/profileUse" className="profil-link">Profil</NavLink>
+          {isLoggedIn ? (
+        <div className="logged-in-options">
+          
+          <NavLink to="/profileUse" className="profil-link"> <CgProfile size={30} color="#009444" /></NavLink>
           <button className="button logout" onClick={logout}>Déconnexion</button>
         </div>
       ) : (
@@ -68,6 +69,8 @@ export const Navbar = () => {
           <NavLink to="/login" className="connexion">Connexion</NavLink>
         </button>
       )}
+   </div>
+    
 
       <div className={`burger ${isOpen ? 'toggle' : ''}`} onClick={handleToggle}>
         <div className="line1"></div>

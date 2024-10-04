@@ -109,7 +109,7 @@ ul li a:hover, ul li a.active {
   }
   
   .panier-count {
-    background-color:#009444;
+    background-color:#ff0000;
     color: white;
     border-radius: 50%;
     padding: 2px 6px;
@@ -136,8 +136,13 @@ ul li a:hover, ul li a.active {
     border: none;
     padding: 10px;
     cursor: pointer;
+    font-weight: bold;
   }
-  
+  .actionButtonLogin_Logout{
+    display: flex;
+    align-items: center;
+  gap: 30px;
+  }
 @media (max-width: 768px) {
     ul {
         position: absolute;

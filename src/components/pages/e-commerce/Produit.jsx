@@ -14,7 +14,7 @@ import axios from 'axios';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import Swal from 'sweetalert2'
 import logo1 from '/src/assets/images/img1.jpg';
 import logo2 from '/src/assets/images/img2.jpg';
 import logo3 from '/src/assets/images/img3.jpg';
@@ -72,12 +72,12 @@ export default function Produit (){
         const data = await fetchProduitByCatégorie(categorieId);
         console.log('Produits récupérés pour la catégorie:', categorieId, data);
         if (Array.isArray(data)) {
-          setFilteredProduits(data); // Affiche seulement les produits de cette catégorie
+          setFilteredProduits(data);
         } else {
           console.warn('Aucun produit trouvé pour la catégorie:', categorieId);
         }
       } else {
-        setFilteredProduits(setProduits); // Affiche tous les produits si aucune catégorie n'est sélectionnée
+        setFilteredProduits(setProduits); 
       }
     } catch (error) {
       console.error('Erreur lors de la récupération des produits par catégorie:', error);
@@ -99,19 +99,39 @@ export default function Produit (){
     }
   };
   const handleLike = (produit) => {
-    console.log("Produit ID:", produit.id);
-    if (!liked && produit.id) {
-      axios.post(`${config.apiBaseUrl}/product/${produit.id}/like`)
-        .then(res => {
-          setLiked(true); 
-        })
-        .catch(error => {
-          console.error("Erreur lors de l'ajout du like :", error);
-        });
-    } else {
+    if (!produit.id || liked) {
       console.error("Produit non valide ou déjà liké");
+      return;
     }
+  
+    axios.post(`${config.apiBaseUrl}/product/${produit.id}/like`)
+    .then(res => {
+      const updatedLikes = res.data.likes; 
+      setFilteredProduits(prevProduits =>
+        prevProduits.map(p =>
+          p.id === produit.id ? { ...p, likes: updatedLikes } : p
+        )
+      );
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Produit liké avec succès",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
+    .catch(error => {
+      console.error("Erreur lors de l'ajout du like :", error);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Échec du like",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      });
   };
+  
  
   
  
@@ -188,6 +208,13 @@ export default function Produit (){
   
     setPanier(nouveauPanier);
     localStorage.setItem("panier", JSON.stringify(nouveauPanier)); 
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Produit ajouté au panier avec succcés",
+      showConfirmButton: false,
+      timer: 1500
+    });
     console.log("Produit ajouté au panier :", produit);
     console.log("Panier actuel :", nouveauPanier);
   };
@@ -273,10 +300,13 @@ export default function Produit (){
                       <p>{produit.prix} cfa</p>
                       
                       <p>
-                        <IoIosStar size={20} color="#FF8A00"/>
-                        <IoIosStar size={20} color="#FF8A00"/>
-                        <IoIosStar size={20} color="#FF8A00"/>
-                        <IoIosStar size={20} color="#FF8A00"/>
+                      {[...Array(5)].map((_, index) => (
+                <IoIosStar
+                  key={index}
+                  size={20}
+                  color={index < produit.likes ? "#FF8A00" : "#E0E0E0"} 
+                />
+              ))}
                       </p>
                     </div>
                     
@@ -284,7 +314,7 @@ export default function Produit (){
                    
                       <div className='action_cart1'>
                       <div className='icone1' onClick={() => handleLike(produit)}>
-                          <FcLikePlaceholder size={24} />
+                      <FcLikePlaceholder size={24} />
                         </div>
                         
                         <div className='icone2'onClick={() => handleViewDetails(produit.id)}> <GrView size={24}/></div>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-
+import './profile.css'
+import config from '/src/config';
 const ModifierProfile = () => {
   const location = useLocation(); 
   const [profile, setProfile] = useState({
@@ -93,12 +94,15 @@ const ModifierProfile = () => {
   };
 
   return (
-    <div>
-      <h2>Modifier votre profil</h2>
+    <div className='containerProfile'>
+      <div className='profileHeader'>
+               <p>{profile.name}</p>
+               <img src={`${config.imageProfil}/${profile.profile}`} alt={profile.name} />
+            </div>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nom :</label>
+      <div className='inputeName'>  <div>
+          <label>Nom :</label><br />
           <input
             type="text"
             name="name"
@@ -109,7 +113,7 @@ const ModifierProfile = () => {
           {errors.name && <span>{errors.name[0]}</span>}
         </div>
         <div>
-          <label>Email :</label>
+          <label>Email :</label><br />
           <input
             type="email"
             name="email"
@@ -118,9 +122,10 @@ const ModifierProfile = () => {
             required
           />
           {errors.email && <span>{errors.email[0]}</span>}
-        </div>
-        <div>
-          <label>Adresse :</label>
+        </div></div>
+     <div className="setion2input">
+     <div>
+          <label>Adresse :</label><br />
           <input
             type="text"
             name="adresse"
@@ -131,7 +136,7 @@ const ModifierProfile = () => {
           {errors.adresse && <span>{errors.adresse[0]}</span>}
         </div>
         <div>
-          <label>Téléphone :</label>
+          <label>Téléphone :</label> <br />
           <input
             type="text"
             name="telephone"
@@ -141,8 +146,10 @@ const ModifierProfile = () => {
           />
           {errors.telephone && <span>{errors.telephone[0]}</span>}
         </div>
-        <div>
-          <label>Rôle :</label>
+     </div>
+       <div className="setion3input">
+       <div>
+          <label>Rôle :</label> <br />
           <select name="role" value={profile.role} onChange={handleInputChange}>
             <option value="client">Client</option>
             <option value="producteur">Producteur</option>
@@ -154,7 +161,7 @@ const ModifierProfile = () => {
         {profile.role === 'producteur' && (
           <>
             <div>
-              <label>Acteur :</label>
+              <label>Acteur :</label> <br />
               <select name="acteur" value={profile.acteur} onChange={handleInputChange}>
                 <option value="Agriculteurs">Agriculteurs</option>
                 <option value="Jardiniers">Jardiniers</option>
@@ -162,7 +169,7 @@ const ModifierProfile = () => {
               {errors.acteur && <span>{errors.acteur[0]}</span>}
             </div>
             <div>
-              <label>Région :</label>
+              <label>Région :</label> <br />
               <select name="region" value={profile.region} onChange={handleInputChange}>
                 <option value="Dakar">Dakar</option>
                 <option value="Diourbel">Diourbel</option>
@@ -174,23 +181,13 @@ const ModifierProfile = () => {
         )}
 
         <div>
-          <label>Image de profil :</label>
+          <label>Image de profil :</label><br />
           <input type="file" name="profile" onChange={handleFileChange} />
           {errors.profile && <span>{errors.profile[0]}</span>}
         </div>
+       </div>
 
-        <div>
-          <label>Mot de passe (laisser vide pour ne pas changer) :</label>
-          <input
-            type="password"
-            name="password"
-            value={profile.password}
-            onChange={handleInputChange}
-          />
-          {errors.password && <span>{errors.password[0]}</span>}
-        </div>
-
-        <button type="submit">Mettre à jour le profil</button>
+        <button type="submit">envoyer</button>
       </form>
     </div>
   );

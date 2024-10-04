@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '/src/config';
-
+import './panier.css';
 
 const Commandes = () => {
   const [commandes, setCommandes] = useState([]);
@@ -40,7 +41,6 @@ const Commandes = () => {
   return (
     <div>
       <h2>Mes Commandes</h2>
-      {loading && <p>Chargement des commandes...</p>}
       {errorMessage && <div className="error">{errorMessage}</div>}
       <div className='commandesList'>
         {commandes.map(commande => (
@@ -48,8 +48,6 @@ const Commandes = () => {
             <p>ID de la Commande: {commande.id}</p>
             <p>Montant Total: {commande.montant_total} FCFA</p>
             <p>Date: {new Date(commande.created_at).toLocaleDateString()}</p>
-            <p>Status: {commande.status}</p>
-            {/* Ajoutez d'autres détails de la commande si nécessaire */}
           </div>
         ))}
       </div>

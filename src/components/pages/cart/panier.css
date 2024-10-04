@@ -161,4 +161,47 @@ margin: auto;
   .payment-button:disabled {
     background-color: #ccc; 
   }
+  /* style de la page commande */
+  .commandesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .commandeItem {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .commandeItem:hover {
+    transform: translateY(-5px);
+  }
+  
+  .commandeItem p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .commandeItem p:first-of-type {
+    font-weight: bold;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .commandeItem p:last-of-type {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  /* Optionally, you can add a background to the container */
+  .commandesList {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+  }
   
