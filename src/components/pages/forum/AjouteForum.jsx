@@ -39,11 +39,12 @@ const CreateForum = () => {
       
       .then((response) => {
         setSuccessMessage(response.data.success);
+        
         setLibelle(""); 
         setDescription("");
         setLoading(false);
        
-        navigate("/forum");  
+        
       })
       .catch((error) => {
         
@@ -89,7 +90,7 @@ const CreateForum = () => {
 
         <div>
           <button type="submit" disabled={loading}>
-            <FiSend /> {loading ? "En cours..." : "Créer le forum"}
+            <FiSend /> {loading ? "En cours" : "Créer le forum"}
           </button>
         </div>
       </form>

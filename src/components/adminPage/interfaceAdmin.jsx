@@ -26,9 +26,9 @@ const AdminInterface = () => {
   };
 
   const handleLogout = () => {
-    // Supprimer le token d'authentification
+    
     localStorage.removeItem('token');
-    // Rediriger vers la page de connexion
+   
     navigate('/login');
   };
   useEffect(() => {

@@ -39,7 +39,6 @@ import AjouterArticle from './components/adminPage/gestion article/ajouteArticle
 import ListeRessources from './components/adminPage/gestion ressource/AfficherRessource';
 import AjouterRessource from './components/adminPage/gestion ressource/ajouterRessource';
 import ModifierRessource from './components/adminPage/gestion ressource/modifierResource';
-import ListeForums from './components/adminPage/gestion forums/listeforume';
 import AjouterForum from './components/adminPage/gestion forums/ajouterForume';
 import Forumdetails from './components/adminPage/gestion forums/détailfoum';
 import ListeCategories from './components/adminPage/gestion catégorie/catégorie produit/afficherCatPr';
@@ -50,6 +49,7 @@ import { AuthProvider } from './components/pages/Auth/AuthContext';
 import Footer from './components/Footer/footer';
 import ModifierProfile from './components/profile/modifier';
 import DashboardProducteur from './components/ProducteurPage/dasboadProducteur';
+import ListeForums from './components/adminPage/gestion forums/listeforume';
 
 
 
@@ -108,7 +108,7 @@ function App() {
           
         </Route>
 
-        {/* Routes avec Sidebar */}
+        {/* Routes avec Sidebar pour le producteur */}
         <Route element={<WithSidebar />}>
         <Route path="/profile" element={<Profile />} />
           <Route path="/ajoutProduit" element={<AjouterProduit />} />
@@ -121,6 +121,7 @@ function App() {
            
            
         </Route>
+         {/* Routes avec Sidebar pour l'adminitrateur */}
         <Route element={<WithSidebarAdmin/>}>
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/profileAdmin" element={<Profile />} />
@@ -136,12 +137,13 @@ function App() {
        <Route path="/listeressources" element={<ListeRessources/>} />
        <Route path="/ajouterRessource" element={<AjouterRessource />} />
        <Route path="/ressources/modifier/:id" element={<ModifierRessource />} />
-       <Route path="/listeforums" element={<ListeForums />} />
+       <Route path="/listeforums" element={<ListeForums/>} />
         <Route path="/forums/ajouter" element={<AjouterForum />} />
         <Route path="/forumsdetail/:id" element={<Forumdetails/>} />
         <Route path="/categories" element={<ListeCategories />} />
         <Route path="/categories/ajouter" element={<AjouterCategorie />} />
         <Route path="/categories/modifier/:id" element={<ModifierCategorie/>} />
+        <Route path="/forumAdmin" element={<Forum />} />
         </Route>
       </Routes>
      

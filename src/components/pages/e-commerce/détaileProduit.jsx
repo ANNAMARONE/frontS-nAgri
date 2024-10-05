@@ -8,6 +8,7 @@ import { FcLikePlaceholder } from "react-icons/fc";
 import axios from 'axios';
 import { IoMdClose } from "react-icons/io";
 import Swal from 'sweetalert2'
+
 const ProductDetails = () => {
   const { id } = useParams(); 
   const [produit, setProduit] = useState(null);
@@ -21,7 +22,7 @@ const ProductDetails = () => {
    
     const fetchProduit = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/détail_produit/${id}`);
+        const response = await fetch(`${config.apiBaseUrl}/détail_produit/${id}`);
         const data = await response.json();
         console.log(produit)
         if (!response.ok) {

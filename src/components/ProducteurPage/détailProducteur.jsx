@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import config from '/src/config';
 
 const ProducteurDetail = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const ProducteurDetail = () => {
   useEffect(() => {
     const fetchProducteur = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/utilisateurs/${id}`, {
+        const response = await axios.get(`${config.apiBaseUrl}/utilisateurs/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

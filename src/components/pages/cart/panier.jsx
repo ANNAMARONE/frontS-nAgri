@@ -17,15 +17,12 @@ const Panier = () => {
   useEffect(() => {
     const userFromLocalStorage = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    
-    // Si l'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
     if (!userFromLocalStorage || !token) {
       setErrorMessage('Veuillez vous connecter pour accéder à votre panier.');
       navigate('/login'); 
       return;
     }
 
-    // Récupérez les données du panier stocké
     const panierFromLocalStorage = localStorage.getItem('panier');
     if (panierFromLocalStorage) {
       setPanier(JSON.parse(panierFromLocalStorage));

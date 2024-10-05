@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ajoutProduit.css';
+import config from '/src/config';
 const AjouterProduit = () => {
   const [libelle, setLibelle] = useState("");
   const [image, setImage] = useState(null);
@@ -23,7 +24,7 @@ const navigate=useNavigate();
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/CatégorieProduit");
+        const response = await axios.get(`${config.apiBaseUrl}/CatégorieProduit`);
         setCategories(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des catégories:", error);
@@ -81,7 +82,7 @@ const navigate=useNavigate();
     formData.append("user_id", userId);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/Ajouter_produits", formData, {
+      const response = await axios.post(`${config.apiBaseUrl}/Ajouter_produits`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,

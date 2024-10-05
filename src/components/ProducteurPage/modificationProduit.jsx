@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ajoutProduit.css';
+import config from '/src/config';
+
 const ModifierProduit = () => {
   const { id } = useParams(); 
   const [produit, setProduit] = useState({
@@ -21,7 +23,7 @@ const ModifierProduit = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/CatégorieProduit");
+        const response = await axios.get(`${config.apiBaseUrl}/CatégorieProduit`);
         setCategories(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des catégories:", error);
@@ -34,7 +36,7 @@ const ModifierProduit = () => {
   useEffect(() => {
     const fetchProduit = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/détail_produit/${id}`, {
+        const response = await axios.get(`${config.apiBaseUrl}/détail_produit/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -91,7 +93,7 @@ const ModifierProduit = () => {
       // Ajouter l'image sans fond au formulaire de modification du produit
       produitFormData.append('image', imageSansFond);
 
-      await axios.post(`http://127.0.0.1:8000/api/modifier_produit/${id}`, produitFormData, {
+      await axios.post(`${config.apiBaseUrl}/modifier_produit/${id}`, produitFormData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import './listeUtilisateur.css';
-
+import config from '/src/config';
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState('');
@@ -16,7 +16,7 @@ const Users = () => {
   // Fonction pour récupérer la liste des utilisateurs
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/users', {
+      const response = await axios.get(`${config.apiBaseUrl}/users`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -31,7 +31,7 @@ const Users = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
       try {
-        await axios.delete(`http://127.0.0.1:8000/api/users/${id}`, {
+        await axios.delete(`${config.apiBaseUrl}/users/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -47,7 +47,7 @@ const Users = () => {
   // Fonction pour activer un utilisateur
   const handleActivate = async (id) => {
     try {
-      await axios.post(`http://127.0.0.1:8000/api/users/${id}/activate`, {}, {
+      await axios.post(`${config.apiBaseUrl}/users/${id}/activate`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -62,7 +62,7 @@ const Users = () => {
   // Fonction pour désactiver un utilisateur
   const handleDeactivate = async (id) => {
     try {
-      await axios.post(`http://127.0.0.1:8000/api/users/${id}/deactivate`, {}, {
+      await axios.post(`${config.apiBaseUrl}/users/${id}/deactivate`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

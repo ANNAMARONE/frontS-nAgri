@@ -1,8 +1,9 @@
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import axios from "axios";
 import config from '/src/config';
+import { useNavigate } from "react-router-dom";
 
 const AjouterForum = () => {
     const [libelle, setLibelle] = useState("");
@@ -10,7 +11,7 @@ const AjouterForum = () => {
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
-  
+  const navigate=useNavigate()
     const handleSubmit = (e) => {
       e.preventDefault();
       setLoading(true);
@@ -36,6 +37,7 @@ const AjouterForum = () => {
         )
         .then((response) => {
           setSuccessMessage(response.data.success);
+          navigate('/forumAdmin');  
           setLibelle(""); 
           setDescription("");
           setLoading(false);
@@ -55,14 +57,14 @@ const AjouterForum = () => {
     };
   
     return (
-      <div>
+      <div className="bannerForum">
         <h2>Créer un nouveau forum</h2>
         {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
   
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Libellé :</label>
+            <label>Libellé :</label><br />
             <input
               type="text"
               value={libelle}
@@ -73,7 +75,7 @@ const AjouterForum = () => {
           </div>
   
           <div>
-            <label>Description :</label>
+            <label>Description :</label><br />
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -83,7 +85,7 @@ const AjouterForum = () => {
   
           <div>
             <button type="submit" disabled={loading}>
-              {loading ? "En cours..." : "Créer le forum"}
+              {loading ? "En cours" : "Créer le forum"}
             </button>
           </div>
         </form>

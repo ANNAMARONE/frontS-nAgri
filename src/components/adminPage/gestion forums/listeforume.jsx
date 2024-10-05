@@ -4,37 +4,41 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
-
+import config from '/src/config';
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 const ListeForums = () => {
   const [forums, setForums] = useState([]);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [totalPages, setTotalPages] = useState(0); 
+  const perPage = 3; 
   useEffect(() => {
-    const fetchForums = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/forums', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-      
-        setForums(response.data);
-      } catch (error) {
+   
+    axios.get(`${config.apiBaseUrl}/forums?per_page=${perPage}&page=${currentPage}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+      .then(response => {
+        setForums(response.data.data); 
+        setTotalPages(response.data.last_page); 
+      })
+      .catch(error => {
         if (error.response) {
           setError(error.response.data.error); 
         } else {
-          setError('Erreur de chargement des forums');
+          setError("Erreur lors de la récupération des forums");
         }
-      }
-    };
-    fetchForums();
-  }, []);
+      });
+  }, [currentPage]); 
 
   
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/supprimer_forums/${id}`, {
+      await axios.delete(`${config.apiBaseUrl}/supprimer_forums/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -42,52 +46,73 @@ const ListeForums = () => {
      
       setForums(forums.filter((forum) => forum.id !== id));
       setMessage('forum supprimer avec succès.');
+      
     } catch (error) {
       setError('Erreur lors de la suppression du forum');
     }
   };
 
   return (
-    <div>
-      <h2>Liste des Forums</h2>
-      {error && <p>{error}</p>}
-
-      {/* Bouton pour ajouter un nouveau forum */}
-      <div style={{ marginBottom: '20px' }}>
-        <Link to="/forums/ajouter">
-          <button>
-            <FontAwesomeIcon icon={faPlus} /> Ajouter un forum
-          </button>
-        </Link>
-      </div>
-
-      {forums.length > 0 ? (
-        <ul>
+    <div className='EvenementListeAdmin'>
+   <div className='EvenementListeHeader'>
+   <h2>Liste des Forums</h2>
+    {error && <p>{error}</p>}
+  
+    <div style={{ marginBottom: '20px' }}>
+      <Link to="/forums/ajouter">
+        <button>
+          <FontAwesomeIcon icon={faPlus} /> Ajouter un forum
+        </button>
+      </Link>
+    </div>
+   </div>
+  
+    {forums.length > 0 ? (
+      <table className='Evenement_listeAdmin'>
+        <thead>
+          <tr>
+            <th>Libelle</th>
+            <th>description</th>
+            <th>Date de création</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
           {forums.map((forum) => (
-            <li key={forum.id} style={{ marginBottom: '20px' }}>
-              <h3>{forum.title}</h3>
-              <p>{forum.description}</p>
-              <p><strong>Date de création :</strong> {new Date(forum.created_at).toLocaleDateString()}</p>
-              <div>
-                {/* Bouton Modifier */}
+            <tr key={forum.id}>
+              <td>{forum.libelle}</td>
+              <td>{forum.description}</td>
+              <td>{new Date(forum.created_at).toLocaleDateString()}</td>
+              <td>
                 <Link to={`/forumsdetail/${forum.id}`}>
-                  <button style={{ marginRight: '10px' }}>
-                    <FontAwesomeIcon icon={faEdit} /> détail
+                  <button>
+                  <FaEdit size={24} color='green'/>
                   </button>
                 </Link>
-
-                {/* Bouton Supprimer */}
-                <button onClick={() => handleDelete(forum.id)} style={{ marginLeft: '10px', color: 'red' }}>
-                  <FontAwesomeIcon icon={faTrash} /> Supprimer
+                <button
+                  onClick={() => handleDelete(forum.id)}
+                >
+                 <MdDelete size={24} color='red' />
                 </button>
-              </div>
-            </li>
+              </td>
+            </tr>
           ))}
-        </ul>
-      ) : (
-        !error && <p>Aucun forum trouvé.</p>
+        </tbody>
+      </table>
+    ) : (
+      !error && <p>Aucun forum trouvé.</p>
+    )}
+  
+    <div className="pagination">
+      {currentPage > 1 && (
+        <button onClick={() => setCurrentPage(currentPage - 1)}>Précédent</button>
+      )}
+      {currentPage < totalPages && (
+        <button onClick={() => setCurrentPage(currentPage + 1)}>Suivant</button>
       )}
     </div>
+  </div>
+  
   );
 };
 

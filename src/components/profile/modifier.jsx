@@ -29,7 +29,7 @@ const ModifierProfile = () => {
       
       const fetchProfile = async () => {
         try {
-          const response = await axios.get('http://127.0.0.1:8000/api/auth/me', {
+          const response = await axios.get(`${config.apiBaseUrl}/auth/me`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
@@ -74,7 +74,7 @@ const ModifierProfile = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/user/profile', formData, {
+      const response = await axios.post(`${config.apiBaseUrl}/user/profile`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',

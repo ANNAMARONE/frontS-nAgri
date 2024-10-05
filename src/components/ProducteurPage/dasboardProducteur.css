@@ -68,7 +68,7 @@ body{
     cursor: pointer;
   }
   
-  button:hover {
+  .cart1_dasbord button:hover {
     background-color: #218838;
     color: #FFF;
   }

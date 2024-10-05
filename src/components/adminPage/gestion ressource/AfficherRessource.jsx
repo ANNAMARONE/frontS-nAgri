@@ -16,7 +16,7 @@ const ListeRessources = () => {
   
   const fetchRessources = async (page) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/ressources?page=${page}`, {
+      const response = await axios.get(`${config.apiBaseUrl}/ressources?page=${page}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -35,7 +35,7 @@ const ListeRessources = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/supprimer_ressource/${id}`, {
+      await axios.delete(`${config.apiBaseUrl}/supprimer_ressource/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },

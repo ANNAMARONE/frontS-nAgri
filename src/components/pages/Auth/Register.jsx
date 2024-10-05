@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './registe.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import profil from '/src/assets/images/2579132.png'
+import config from '/src/config';
 
 export default function Register(){
  
@@ -98,7 +99,7 @@ export default function Register(){
     if (hasError) return;
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
+      const response = await fetch(`${config.apiBaseUrl}/auth/register`, {
         method: 'POST',
         body: formData,
       });
