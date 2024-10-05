@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import './ajoutProduit.css';
 const ModifierProduit = () => {
   const { id } = useParams(); 
   const [produit, setProduit] = useState({
@@ -70,7 +70,7 @@ const ModifierProduit = () => {
       // Appel à l'API remove.bg pour supprimer le fond de l'image
       const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
         headers: {
-          'X-Api-Key': 'hvxuCWhWSAYJbaiRvzTphNDf', 
+          'X-Api-Key': 'rSQZpfcqKwqqVHvpnJLkzhBQ', 
           'Content-Type': 'multipart/form-data',
         },
         responseType: 'blob',
@@ -106,12 +106,13 @@ const ModifierProduit = () => {
   };
 
   return (
-    <div>
+    <div className='AjoutProduitP'>
       <h2>Modifier Produit</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div>
-          <label>Libellé :</label>
+      <div className="description_form1">
+      <div>
+          <label>Libellé :</label><br />
           <input
             type="text"
             name="libelle"
@@ -121,7 +122,7 @@ const ModifierProduit = () => {
           />
         </div>
         <div>
-          <label>Description :</label>
+          <label>Description :</label><br />
           <textarea
             name="description"
             value={produit.description}
@@ -130,7 +131,7 @@ const ModifierProduit = () => {
           />
         </div>
         <div>
-          <label>Quantité :</label>
+          <label>Quantité :</label><br />
           <input
             type="number"
             name="quantite"
@@ -140,7 +141,7 @@ const ModifierProduit = () => {
           />
         </div>
         <div>
-          <label>Prix :</label>
+          <label>Prix :</label><br />
           <input
             type="number"
             name="prix"
@@ -150,7 +151,7 @@ const ModifierProduit = () => {
           />
         </div>
         <div>
-          <label>Statut :</label>
+          <label>Statut :</label><br />
           <input
             type="text"
             name="statut"
@@ -160,7 +161,7 @@ const ModifierProduit = () => {
           />
         </div>
         <div>
-          <label>Catégorie :</label>
+          <label>Catégorie :</label><br />
           <select
             name="categorie_produit_id"
             value={produit.categorie_produit_id}
@@ -175,11 +176,24 @@ const ModifierProduit = () => {
             ))}
           </select>
         </div>
-        <div>
+      </div>
+
+      <div className="description_form1">
+      <label htmlFor="">Sélectionnez une image</label>
+     <div className="file-input-container">
+    <label htmlFor="image-upload" className="file-input-label">
+    
+      <div className="icon-container">
+        <i className="fa fa-image" aria-hidden="true"></i>
+      </div><br />
+      
+    </label>
           <label>Image :</label>
-          <input type="file" name="image" onChange={handleImageChange} />
+          <input type="file" name="image" onChange={handleImageChange} id="image-upload"
+      accept="image/*"/>
         </div>
         <button type="submit">Modifier</button>
+      </div>
       </form>
     </div>
   );

@@ -61,8 +61,7 @@ const AjouterArticle = () => {
   };
 
   return (
-    <div>
-      <h2>Ajouter un article</h2>
+    <div className='AjouterEvenement'>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
@@ -113,7 +112,7 @@ const AjouterArticle = () => {
           <input type="file" name="image" onChange={handleImageChange} required />
           {errors.image && <span>{errors.image[0]}</span>}
         </div>
-        <button type="submit">Ajouter l'article</button>
+        <button type="submit">Ajouter l&apos;article</button>
       </form>
     </div>
   );

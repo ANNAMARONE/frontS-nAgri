@@ -68,7 +68,8 @@ const ModifierCategorie = () => {
     <div>
       <h2>Modifier la Catégorie</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+     <div className='AjouterEvenement'>
+     <form onSubmit={handleSubmit}>
         <div>
           <label>Libelle:</label>
           <input
@@ -92,6 +93,7 @@ const ModifierCategorie = () => {
         </div>
         <button type="submit">Modifier</button>
       </form>
+     </div>
     </div>
   );
 };

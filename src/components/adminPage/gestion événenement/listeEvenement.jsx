@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { NavLink} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import './listeEvenement.css';
+import { GrView } from "react-icons/gr";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 const EventList = () => {
   const [events, setEvents] = useState([]);
   const [message, setMessage] = useState('');
@@ -35,15 +39,7 @@ const EventList = () => {
       }
   };
   if (loading) {
-    return <div>Chargement...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (event.length === 0) {
-    return <div>Aucun événement trouvé.</div>;
+    return 
   }
 
   // Supprimer un événement
@@ -69,50 +65,58 @@ const handleDeleteEvent = async (id) => {
   };
   
   return (
-    <div>
-      <h2>Liste des Événements</h2>
-      {message && <p>{message}</p>}
-
-      <h2>ajout événement</h2>
-      <button 
-        onClick={() => console.log("Rediriger vers la page d'ajout de produit")}
-        style={{ marginBottom: '20px' }}
-        
-      >
-        <NavLink to="/ajouteEvent" activeClassName="active"> <FontAwesomeIcon icon={faPlus} /> Ajouter un evenement</NavLink>
-       
+    <div className='EvenementListeAdmin'>
+   <div className='EvenementListeHeader'>
+   <h2>Liste des Événements</h2>
+    {message && <p>{message}</p>}
+  
+   
+    <NavLink to="/ajouteEvent" activeClassName="active" style={{ marginBottom: '20px', display: 'inline-block' }}>
+      <button>
+        <FontAwesomeIcon icon={faPlus} /> Ajouter un Événement
       </button>
-      {/* Liste des événements */}
-      <table>
-        <thead>
-          <tr>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {events.map((event) => (
+    </NavLink>
+   </div>
+  
+    {/* Liste des événements */}
+    <table className='Evenement_listeAdmin'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Titre</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {events.length > 0 ? (
+          events.map((event) => (
             <tr key={event.id}>
-              <td>{event.libelle}</td>
-
-              <td>{event.description}</td>
-              <td>{event.date}</td>
               <td>
-                
+                <img src={`${config.imageBaseUrl}/${event.image}`} alt={`Image de l'événement: ${event.libelle}`} style={{ width: '50px', height: '50px' }} />
+              </td>
+              <td>{event.libelle}</td>
+              <td>{event.description}</td>
+              <td>{new Date(event.created_at).toLocaleDateString()}</td>
+              <td className='ActionÉvenet'>
                 <button onClick={() => handleEdit(event.id)} style={{ marginLeft: '10px' }}>
-                <FontAwesomeIcon icon={faEdit} />
-              </button>
-                <button >voir détail</button>
-                <button onClick={() => handleDeleteEvent(event.id)}>Supprimer</button>
+                <FaEdit size={24} color='green'/>
+                </button>
+                <button ><GrView size={24} color='blue'/></button>
+                <button onClick={() => handleDeleteEvent(event.id)}><MdDelete size={24} color='red' /></button>
               </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
-    </div>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="5" style={{ textAlign: 'center' }}>Aucun événement trouvé.</td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+  
   );
 };
 

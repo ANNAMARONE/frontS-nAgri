@@ -6,7 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { NavLink} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import { GrView } from "react-icons/gr";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 const ListeArticle = () => {
     const [articls,setArticles]=useState([]);
     const [message,setMessage]=useState('');
@@ -59,24 +61,25 @@ const handleEdit=(articleId)=>{
     navigate(`/modifierArticle/${articleId}`);
 }
   return (
-    <div>
+    <div  className='EvenementListeAdmin'>
+      <div  className='EvenementListeHeader'>
       <h2>Liste des Articles</h2>
       {message && <p>{message}</p>}
 
-      <h2>ajout Ajouter un article</h2>
-      <button 
-        onClick={() => console.log("Rediriger vers la page d'ajout de l'article")}
-        style={{ marginBottom: '20px' }}
-        >
-        <NavLink to="/AjouteArticle" activeClassName="active"> <FontAwesomeIcon icon={faPlus} /> Ajouter un article</NavLink>
+      
+        <NavLink to="/AjouteArticle" activeClassName="active"> <button>
+          <FontAwesomeIcon icon={faPlus} /> Ajouter un article
+          </button>
+          </NavLink>
+      </div>
        
-      </button>
-      {/* Liste des événements */}
-      <table>
+
+  <div className='Evenement_listeAdmin'>
+  <table>
         <thead>
           <tr>
+          <th>Image</th>
             <th>Titre</th>
-            <th>Description</th>
             <th>Date</th>
             <th>Actions</th>
           </tr>
@@ -84,22 +87,22 @@ const handleEdit=(articleId)=>{
         <tbody>
           {articls.map((article) => (
             <tr key={article.id}>
+              <td><img src={`${config.imageBaseUrl}/${article.image}`}  style={{ width: '50px', height: '50px' }} /></td>
               <td>{article.libelle}</td>
-
-              <td>{article.description}</td>
-              <td>{article.date}</td>
-              <td>
+              <td>{new Date(article.created_at).toLocaleDateString()}</td>
+              <td  className='ActionÉvenet'>
                 
                 <button onClick={() => handleEdit(article.id)} style={{ marginLeft: '10px' }}>
-                <FontAwesomeIcon icon={faEdit} />
+                <FaEdit size={24} color='green'/>
               </button>
-                <button >voir détail</button>
-                <button onClick={() => handelDeletArticle(article.id)}>Supprimer</button>
+                <button ><GrView size={24} color='blue'/></button>
+                <button onClick={() => handelDeletArticle(article.id)}><MdDelete size={24} color='red' /></button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+  </div>
 
     </div>
   )

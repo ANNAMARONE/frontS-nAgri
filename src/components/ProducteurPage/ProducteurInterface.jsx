@@ -14,6 +14,7 @@ import axios from 'axios';
 import config from '/src/config';
 import { FaForumbee } from "react-icons/fa";
 import { IoNotificationsOutline } from "react-icons/io5";
+
 const ProducteurInterface = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate(); 

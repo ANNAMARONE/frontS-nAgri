@@ -38,7 +38,8 @@ const AjouterCategorie = () => {
     <div>
       <h2>Ajouter une Catégorie</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+    <div className='AjouterEvenement'>
+    <form onSubmit={handleSubmit}>
         <div>
           <label>Libelle:</label>
           <input
@@ -59,6 +60,7 @@ const AjouterCategorie = () => {
         </div>
         <button type="submit">Ajouter</button>
       </form>
+    </div>
     </div>
   );
 };

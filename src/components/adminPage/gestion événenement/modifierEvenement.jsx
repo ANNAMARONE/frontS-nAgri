@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import config from '/src/config';
+import './listeEvenement.css';
 const ModifierEvenement = () => {
   const { id } = useParams(); 
   const [evenement, setEvenement] = useState({
@@ -19,7 +21,7 @@ const ModifierEvenement = () => {
   useEffect(() => {
     const fetchEvenement = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/evenement/${id}`, {
+        const response = await axios.get(`${config.apiBaseUrl}/evenement/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           },
@@ -55,7 +57,7 @@ const ModifierEvenement = () => {
     }
     
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/api/modifier_Evenement/${id}`, formData, {
+      const response = await axios.post(`${config.apiBaseUrl}/modifier_Evenement/${id}`, formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -76,8 +78,7 @@ const ModifierEvenement = () => {
   };
 
   return (
-    <div>
-      <h2>Modifier l&apos;événement</h2>
+    <div className='AjouterEvenement'>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>

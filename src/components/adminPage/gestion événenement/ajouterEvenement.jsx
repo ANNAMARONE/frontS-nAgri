@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import config from '/src/config';
+import './listeEvenement.css';
 const AjouterEvenement = () => {
   const [evenement, setEvenement] = useState({
     libelle: '',
@@ -16,7 +17,7 @@ const AjouterEvenement = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  // Gestion des changements de formulaire
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEvenement({ ...evenement, [name]: value });
@@ -26,7 +27,7 @@ const AjouterEvenement = () => {
     setImage(e.target.files[0]);
   };
 
-  // Soumission du formulaire
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,7 +42,7 @@ const AjouterEvenement = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/ajout_evenements', formData, {
+      const response = await axios.post(`${config.apiBaseUrl}/ajout_evenements`, formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data'
@@ -62,8 +63,7 @@ const AjouterEvenement = () => {
   };
 
   return (
-    <div>
-      <h2>Ajouter un Événement</h2>
+    <div className='AjouterEvenement'>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>

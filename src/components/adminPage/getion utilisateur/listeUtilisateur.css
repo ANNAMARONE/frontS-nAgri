@@ -1,0 +1,101 @@
+/* UsersTable.css */
+.table-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+  
+  }
+  
+  .styled-table thead tr {
+    background-color:  #009444;
+    color: #ffffff;
+
+  }
+  
+  .styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .styled-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid  #009444;
+  }
+  
+  .user-link {
+    color:  #009444;
+    text-decoration: none;
+  }
+  
+  .user-link:hover {
+    text-decoration: underline;
+  }
+  
+  .active-status {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .inactive-status {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .action-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .action-button.activate {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .action-button.deactivate {
+    background-color: #E29B34;
+    color: white;
+  }
+  
+  .action-button.delete {
+    background-color: #F44336;
+    color: white;
+  }
+  
+  .action-button:hover {
+    opacity: 0.9;
+  }
+  .message {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+    

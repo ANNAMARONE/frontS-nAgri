@@ -14,7 +14,7 @@ const AjouterProduit = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState([]);
   const [categories, setCategories] = useState([]);
-const navigate=useNavigate;
+const navigate=useNavigate();
   const statuts = [
     { value: "en stock", label: "en stock" },
     { value: "en rupture", label: "en rupture" },
@@ -45,7 +45,7 @@ const navigate=useNavigate;
     try {
       const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
         headers: {
-          'X-Api-Key': 'hvxuCWhWSAYJbaiRvzTphNDf', 
+          'X-Api-Key': 'rSQZpfcqKwqqVHvpnJLkzhBQ', 
           'Content-Type': 'multipart/form-data',
         },
         responseType: 'blob',
@@ -127,7 +127,7 @@ const navigate=useNavigate;
             type="text"
             value={libelle}
             onChange={(e) => setLibelle(e.target.value)}
-            required
+        
           />
         </div>
     
@@ -136,7 +136,7 @@ const navigate=useNavigate;
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
+        
           />
         </div>
         <div>
@@ -145,7 +145,7 @@ const navigate=useNavigate;
             type="number"
             value={quantite}
             onChange={(e) => setQuantite(e.target.value)}
-            required
+        
           />
         </div>
         <div>
@@ -154,7 +154,7 @@ const navigate=useNavigate;
             type="number"
             value={prix}
             onChange={(e) => setPrix(e.target.value)}
-            required
+        
           />
         </div>
         <div>
@@ -162,7 +162,7 @@ const navigate=useNavigate;
           <select
             value={statut}
             onChange={(e) => setStatut(e.target.value)}
-            required
+        
           >
             <option value="">Sélectionnez un statut</option>
             {statuts.map((option) => (
@@ -177,7 +177,7 @@ const navigate=useNavigate;
           <select
             value={categorieProduitId}
             onChange={(e) => setCategorieProduitId(e.target.value)}
-            required
+        
           >
             <option value="">Sélectionnez une catégorie</option>
             {categories.map((categorie) => (
@@ -188,20 +188,23 @@ const navigate=useNavigate;
           </select>
         </div>
      </div>
+
      <div className='description_form1'>
+      <label htmlFor="">Sélectionnez une image</label>
      <div className="file-input-container">
     <label htmlFor="image-upload" className="file-input-label">
+    
       <div className="icon-container">
         <i className="fa fa-image" aria-hidden="true"></i>
       </div><br />
-      <span>Sélectionnez une image</span>
+      
     </label>
     <input
       type="file"
       id="image-upload"
       accept="image/*"
       onChange={handleImageChange}
-      required
+  
     />
   </div>
         <button type="submit">Ajouter le produit</button>

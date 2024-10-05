@@ -68,14 +68,21 @@ export default function Login() {
       
       // Stocker le token et les informations de l'utilisateur
       localStorage.setItem('token', result.token);
-      console.log('Avant stockage:', result.user);  
+    
       localStorage.setItem('user', JSON.stringify(result.user));
-      console.log('Après stockage:', localStorage.getItem('user'));  
+       
 
       setMessage('Connexion réussie !');
       setError('');
+      const userRole=result.user.role;
+      if(userRole ==='admin'){
+        navigate('/dashboard');
+      }else if(userRole==='producteur'){
+        navigate('/dashboardProducteur');
+      }else{
+        navigate('/'); 
+      }
       
-      navigate('/'); 
     } catch (err) {
       console.log('Erreur:', err);
       setError('Erreur lors de la connexion');

@@ -44,7 +44,7 @@ body{
     width: 100%;
 }
 
-.table{
+.containerProfile .table{
     border: 2px solid #9F9F9F;
     width:1124px;
     border-radius: 15px;
@@ -53,23 +53,28 @@ body{
   
   
 }
-.table tr{
+.containerProfile .table tr{
    border: 1px solid black;
   height: 60px;
    
 }
-.table tr,td{
+.containerProfile .table tr{
     display: flex;
     justify-content: space-between;
     font-size: 16px;
   
 
 }
-.table td{
+.containerProfile .table td{
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;  
+}
+.containerProfile .table td{
     margin-left: 10px;
     margin-right: 10px;
 }
-.containerProfile button{
+.containerProfile .containerProfile button{
     background-color:#009444;
     border: none;
     color: #FFFF;
@@ -80,12 +85,12 @@ body{
    
     
 }
-.containerProfile form{
+.containerProfile .containerProfile form{
     margin:50px auto;
     width: 872px;
 
 }
-.containerProfile  .inputeName {
+.containerProfile .containerProfile  .inputeName {
     display: flex;
     gap: 10px;
     

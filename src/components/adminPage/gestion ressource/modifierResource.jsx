@@ -85,8 +85,7 @@ const ModifierRessource = () => {
   };
 
   return (
-    <div>
-      <h2>Modifier la ressource</h2>
+    <div className='AjouterEvenement'>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <div>

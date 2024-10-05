@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.Evenement_listeAdmin {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.Evenement_listeAdmin h2 {
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.Evenement_listeAdmin table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.Evenement_listeAdmin thead {
+    background-color: #009444;
+    color: white;
+}
+
+.Evenement_listeAdmin th,
+.Evenement_listeAdmin td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.Evenement_listeAdmin img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.Evenement_listeAdmin button {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Evenement_listeAdmin a {
+    color: white;
+    text-decoration: none;
+}
+
+.Evenement_listeAdmin a:hover {
+    text-decoration: underline;
+}
+
+.Evenement_listeAdmin .ActionÉvenet {
+    display: flex; 
+    gap: 10px;
+}
+
+.Evenement_listeAdmin .EvenementListeHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Evenement_listeAdmin .EvenementListeHeader button {
+    background-color: #009444;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    font-weight: bold; 
+}
+
+
+.AjouterEvenement {
+    background-image: url('/src/assets/images/backForum.png');
+    background-size: cover;
+    background-position: center; 
+    height: 80vh;
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.AjouterEvenement form {
+    background-color: #fff;
+    width: 50%;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.AjouterEvenement h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+
+.AjouterEvenement div {
+    margin-bottom: 15px;
+}
+
+.AjouterEvenement label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.AjouterEvenement input[type="text"],
+.AjouterEvenement input[type="date"],
+.AjouterEvenement input[type="file"],
+.AjouterEvenement select,
+.AjouterEvenement textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.AjouterEvenement input[type="text"]:focus,
+.AjouterEvenement input[type="date"]:focus,
+.AjouterEvenement textarea:focus {
+    border-color: #009444;
+    outline: none;
+}
+
+
+.AjouterEvenement span {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block; 
+}
+
+
+.AjouterEvenement button {
+    background-color: #009444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%; 
+}
+
+.AjouterEvenement button:hover {
+    background-color: #009444;
+}
+.EvenementListeHeader{
+    display: flex;
+    justify-content: space-between;
+
+}
+.EvenementListeHeader button{
+    background-color: #009444;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+}
+.EvenementListeHeader button a{
+    text-decoration: none;
+    width: #fff;
+    font-weight: bold;
+}
+.AjouterEvenement select{
+    background-color: #fff;
+}
