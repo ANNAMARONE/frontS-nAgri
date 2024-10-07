@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import config from '/src/config';
+// import './src/pages/forum/détailForum.css';
 
 const Forumdetails = () => {
   const { id } = useParams();

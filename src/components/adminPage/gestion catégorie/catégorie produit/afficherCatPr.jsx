@@ -13,7 +13,7 @@ const ListeCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/CatégorieProduit', {
+        const response = await axios.get(`${config.apiBaseUrl}/CatégorieProduit`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           },

@@ -49,8 +49,6 @@ margin: 30px auto;
 color:#009444 ;
 }
 
-
-
 .cardEvenement {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -60,12 +58,11 @@ color:#009444 ;
   
  
   .cartElement {
-    background-color: #f9f9f9;
+    background-color: #ffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
   }
   
   .cartElement:hover {
@@ -115,4 +112,74 @@ color:#009444 ;
   .cartElement div {
     padding: 15px;
   }
-  
+  @media (max-width: 768px) {
+    .cardBanner h1 {
+        font-size: 1.2rem;
+    }
+
+    .cardBanner p {
+        font-size: 0.9rem;
+    }
+
+    .cardEvenement {
+        width: 100%;
+        padding: 10px;
+    }
+    .cardBanner{
+      width:100%;
+      background-color: #FFFF;
+      display:block;
+      
+      margin:20px auto;
+  }
+
+  .bannerEvenement{
+    background-image: url('/src/assets/images/motiftop.png');
+    background-size: cover; 
+    background-position: center; 
+    height: 60vh;
+    width: 50%; 
+}
+
+}
+
+@media (max-width: 480px) {
+    .cardBanner h1 {
+        font-size: 1rem;
+    }
+    .EvenementImage img{
+      width: 480px;
+      height:500px;
+    }
+    .cardBanner p {
+        font-size: 0.8rem;
+    }
+
+    .ElementEvenement h2 {
+        font-size: 1.2rem;
+    }
+
+    .cartElement h3 {
+        font-size: 1.2rem;
+    }
+
+    .cartElement p {
+        font-size: 0.9rem;
+    }
+
+    .btn-lien {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+    .bannerEvenement{
+      background-image: url('/src/assets/images/motiftop.png');
+      background-size: cover; 
+      background-position: center; 
+      height: 60vh;
+      width: 50%; 
+  }
+  .EvenementImage img{
+    width: 100px;
+    height: auto;
+  }
+}

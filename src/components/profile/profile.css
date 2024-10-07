@@ -74,7 +74,7 @@ body{
     margin-left: 10px;
     margin-right: 10px;
 }
-.containerProfile .containerProfile button{
+.containerProfile button{
     background-color:#009444;
     border: none;
     color: #FFFF;
@@ -85,12 +85,12 @@ body{
    
     
 }
-.containerProfile .containerProfile form{
+.containerProfile form{
     margin:50px auto;
     width: 872px;
 
 }
-.containerProfile .containerProfile  .inputeName {
+.containerProfile  .inputeName {
     display: flex;
     gap: 10px;
     

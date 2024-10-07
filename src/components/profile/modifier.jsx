@@ -81,7 +81,7 @@ const ModifierProfile = () => {
         },
       });
 
-      setMessage("Profil mis à jour avec succès");
+      setMessage("Profil mis à jour avec succès",response);
       setErrors({});
       navigate('/profileUse');
     } catch (error) {

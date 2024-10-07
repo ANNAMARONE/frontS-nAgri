@@ -1,3 +1,4 @@
+/* Navbar.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 * {
@@ -26,29 +27,31 @@ nav {
     height: 100px;
 }
 
-ul {
+.nav ul {
     display: flex;
     list-style-type: none;
 }
 
-ul li {
+.nav ul li {
     margin: 0 1rem;
+    list-style: none;
 }
 
-ul li a {
+.nav ul li a {
     text-decoration: none;
     color: black;
     font-size: 20px;
     font-weight: bold;
     padding: 0.5rem;
     transition: color 0.3s;
+    list-style: none;
 }
 
-ul li a:hover, ul li a.active {
+.nav ul li a:hover, ul li a.active {
     color: #009444;
 }
 
-.button {
+.nav .button {
     background-color: #009444;
     border: none;
     border-radius: 100px;
@@ -57,12 +60,12 @@ ul li a:hover, ul li a.active {
     transition: background-color 0.3s, border 0.3s;
 }
 
-.button:hover {
+.nav .button:hover {
     background-color: #FFF;
     border: 2px solid #009444;
 }
 
-.connexion {
+.nav .connexion {
     color: white;
     text-decoration: none;
     font-size: 20px;
@@ -97,19 +100,20 @@ ul li a:hover, ul li a.active {
 .burger.toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 .cart {
     position: relative;
     margin-right: 15px;
-  }
-  
-  .panier-icon {
+}
+
+.panier-icon {
     color: #000;
     text-decoration: none;
     position: relative;
-  }
-  
-  .panier-count {
-    background-color:#ff0000;
+}
+
+.panier-count {
+    background-color: #ff0000;
     color: white;
     border-radius: 50%;
     padding: 2px 6px;
@@ -117,54 +121,109 @@ ul li a:hover, ul li a.active {
     position: absolute;
     top: -10px;
     right: -10px;
-  }
-  
-  .logged-in-options {
+}
+
+.logged-in-options {
     display: flex;
     align-items: center;
-  }
-  
-  .profil-link {
+}
+
+.profil-link {
     margin-right: 15px;
     text-decoration: none;
     color: #000;
-  }
-  
-  .logout {
+}
+
+.logout {
     background-color: #ff0000;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
-  }
-  .actionButtonLogin_Logout{
+    border-radius: 100px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.actionButtonLogin_Logout {
     display: flex;
     align-items: center;
-  gap: 30px;
-  }
+    gap: 30px;
+}
+
 @media (max-width: 768px) {
-    ul {
+   
+    .nav ul {
+        display: none; 
+    }
+
+    
+    .nav ul.show, 
+    .actionButtonLogin_Logout.show {
+        display: block; 
         position: absolute;
-        top: 100px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 100px);
-        background-color: #FFF;
-        flex-direction: column;
-        align-items: center;
-        transition: left 0.3s ease;
-    }
-
-    ul.show {
         left: 0;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 10;
     }
 
-    ul li {
+    
+    .nav ul.show {
+        flex-direction: column; 
+        align-items: center;
+        top: 100px; 
+    }
+
+    .nav ul li {
         margin: 1rem 0;
     }
 
+   
+    .actionButtonLogin_Logout {
+        display: none; 
+    }
+
+    .actionButtonLogin_Logout.show {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px 0;
+        background-color: #FFF; 
+    }
+
+    /* Burger Menu */
     .burger {
-        display: flex;
+        display: flex; 
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+    }
+
+    .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 4px;
+        transition: all 0.3s ease;
+    }
+
+  
+    .burger.toggle div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 5px);
+    }
+
+    .burger.toggle div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.toggle div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -5px);
     }
 }
+
+
+

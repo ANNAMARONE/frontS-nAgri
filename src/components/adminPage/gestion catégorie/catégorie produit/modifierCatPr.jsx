@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import config from '/src/config';
 const ModifierCategorie = () => {
   const { id } = useParams();
   const [libelle, setLibelle] = useState('');
@@ -17,7 +17,7 @@ const ModifierCategorie = () => {
 
   const fetchCategorie = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/detail_categorieProduit/${id}`, {
+      const response = await axios.get(`${config.apiBaseUrl}/detail_categorieProduit/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -47,7 +47,7 @@ const ModifierCategorie = () => {
     }
 
     try {
-      await axios.post(`http://127.0.0.1:8000/api/modifier_categorieProduit/${id}`, formData, {
+      await axios.post(`${config.apiBaseUrl}/modifier_categorieProduit/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -81,7 +81,7 @@ const ModifierCategorie = () => {
         </div>
         <div>
           <label>Image actuelle:</label>
-          {currentImage && <img src={`http://127.0.0.1:8000/storage/images/${currentImage}`} alt="Catégorie actuelle" style={{ width: '100px' }} />}
+          {currentImage && <img src={`${config.imageBaseUrl}/images/${currentImage}`} alt="Catégorie actuelle" style={{ width: '100px' }} />}
         </div>
         <div>
           <label>Nouvelle Image:</label>

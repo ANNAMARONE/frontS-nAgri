@@ -198,10 +198,135 @@ margin: auto;
     color: #777;
   }
   
-  /* Optionally, you can add a background to the container */
+  
   .commandesList {
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 20px;
   }
-  
+  /* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .headerpanier,
+  .tr1,
+  .PanierCommande {
+      width: 90%;
+  }
+
+  .ProduitPanier {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+  }
+  .headerpanier{
+    display: block;
+   
+}
+.PanierCommande{
+  display: block;
+}
+
+  .elementPanier1 {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .elementPanier2 {
+padding-top: -30%;
+  }
+
+  .commandePanier {
+      width: 100%;
+  }
+
+  .resume-details {
+      width: 100%;
+  }
+
+  .detail-item {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+  }
+
+  .commandesList {
+      grid-template-columns: 1fr;
+  }
+  /* .ProduitPanier .image-container {
+    width: 160px;
+    height: 160px;
+    background-color: #dedee3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px 0px 0px 24px;
+} */
+.ProduitPanier{
+  width: 821px;
+  height: 160px;
+  background-color:#FAFAF5;
+  margin: 20px;
+  border: 2px solid #E6E6E6;
+  border-radius: 24px;
+  display: flex;
+ 
+}
+.ProduitPanier .image-container {
+ 
+  background-color: #dedee3;
+  display: flex;
+margin-left: -100%;
+  border-radius: 24px 0px 0px 24px;
+}
+
+.ProduitPanier img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+.elementPanier2{
+ margin-top: -40%;
+ display: flex;
+}
+
+.elementPanier2 h3{
+  font-size: 20px;
+}
+.elementPanierPrix{
+  margin: 10px 0px 0px 0px;
+  font-weight: bold;
+  position:absolute;
+  margin-left: 50%;
+}
+.elementPanier2 button{
+border: none;
+background: none;  
+margin-left: 20%; 
+margin-top: -20%;
+
+}
+.commandePanier{
+ 
+  margin: 20% auto;
+}
+.headerpanier{
+  margin-top: 20%;
+}
+}
+
+@media (max-width: 480px) {
+  .ProduitPanier,
+  .elementPanier1,
+  .elementPanier2 {
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .Buttoncommandes {
+      width: 100%;
+  }
+
+  .resume-details,
+  .detail-item {
+      width: 100%;
+  }
+}

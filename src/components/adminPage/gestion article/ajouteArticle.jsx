@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import config from '/src/config';
 const AjouterArticle = () => {
  
   const [libelle, setLibelle] = useState('');
@@ -40,7 +41,7 @@ const AjouterArticle = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/articles', formData, {
+      const response = await axios.post(`${config.imageBaseUrl}/articles`,formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`, 
           'Content-Type': 'multipart/form-data', 

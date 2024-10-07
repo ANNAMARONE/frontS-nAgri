@@ -27,6 +27,11 @@ body{
     margin: 10px; 
     min-width: 200px; 
   }
+  .footer-section1{
+    flex: 1;
+    margin: 10px; 
+    min-width: 200px; 
+  }
   
   .footer-section h4 {
     margin-bottom: 10px;
@@ -116,6 +121,15 @@ body{
   
     .footer-section {
       margin-bottom: 20px; 
+      display: none;
     }
+    .footer-section1{
+      flex: 1;
+      margin: 10px; 
+      min-width: 200px; 
+      align-items: center;
+      text-align: center;
+    }
+    
   }
   

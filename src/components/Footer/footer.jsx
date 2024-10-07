@@ -1,13 +1,18 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import './footer.css'; 
+import logo from '/src/assets/images/Logo2.png';
 const Footer = () => {
     return (
         <footer className="footer">
           <div className="footer-container">
              {/* À propos de nous */}
-             <div className="footer-section">
+             <div className="footer-section1">
+             <div className="logo">
+        <img src={logo} alt="Logo" />
+      </div>
               <h4>À propos de nous</h4>
-              <p>OmniFert est une entreprise ghanéenne entièrement indigène qui se concentre sur l'amélioration de la production agricole en Afrique.</p>
+              <p>OmniFert est une entreprise ghanéenne entièrement indigène qui se concentre sur l&apos;amélioration de la production agricole en Afrique.</p>
             </div>
             {/* Liens rapides */}
             <div className="footer-section">

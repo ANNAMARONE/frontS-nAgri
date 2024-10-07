@@ -98,8 +98,8 @@ const RessourcesList = () => {
         <h1>CATÉGORIES</h1>
         <div className="hrRessource"></div>
         </div>
-        <div className="categories-container">
-            <ul>
+        <div>
+            <ul className="categories-container">
                 {categories.map((category) => (
                     <li key={category.id}>
                         <button onClick={() => handleCategoryClick(category.id)}>

@@ -60,7 +60,7 @@ export default function Login() {
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.error || 'Erreur lors de la connexion');
-        setMessage('');
+        setMessage('email ou mot de passe incorrect');
         return;
       }
   
@@ -124,11 +124,8 @@ export default function Login() {
                
                   <input type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)} />
                   {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-                <i 
-                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`}
-                  onClick={togglePasswordVisibility}
-                  style={{ cursor: 'pointer'}}
-                ></i>
+              
+                 {passwordError&& <p style={{ color: 'red' }}>{passwordError}</p>} 
               </div>
             </div>
             <p>Pas de compte ?<NavLink to="/register" className='span'>S&apos;inscrire</NavLink></p>

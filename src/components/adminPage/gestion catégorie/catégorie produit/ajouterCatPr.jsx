@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import config from '/src/config';
 const AjouterCategorie = () => {
   const [libelle, setLibelle] = useState('');
   const [image, setImage] = useState(null);
@@ -18,7 +18,7 @@ const AjouterCategorie = () => {
     formData.append('image', image);
 
     try {
-      await axios.post('http://127.0.0.1:8000/api/Ajout_categorieProduit', formData, {
+      await axios.post(`${config.apiBaseUrl}/Ajout_categorieProduit`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
