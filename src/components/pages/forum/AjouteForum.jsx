@@ -19,9 +19,13 @@ const CreateForum = () => {
     setLoading(true);
     setSuccessMessage("");
     setErrorMessage("");
-
-    const token = localStorage.getItem("token");
-
+    const userFromLocalStorage = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    if (!userFromLocalStorage || !token) {
+      setErrorMessage('Veuillez vous connecter pour accéder à votre panier.');
+      navigate('/login'); 
+      return;
+    }
     axios
       .post(
         `${config.apiBaseUrl}/ajout_forums`,

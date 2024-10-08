@@ -49,6 +49,8 @@ const Panier = () => {
 
   const montantExpedition = 500; 
   const montantTotalAvecExpedition = montantTotal + montantExpedition;
+
+
   const handleCommander = async () => {
     const userFromLocalStorage = localStorage.getItem('user');
     const user = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
@@ -91,11 +93,17 @@ const Panier = () => {
   
         console.log('Réponse de paiement:', paymentResponse);
   
-        const paymentUrl = paymentResponse.payment_link;
+        console.log('Réponse de paiement link:', paymentResponse.data.payment_link);
+        const paymentUrl = paymentResponse.data.payment_link;
+
+
         if (!paymentUrl) {
           throw new Error('Le lien de paiement est indéfini.');
         }
-        window.location.href = paymentUrl;
+       setPanier([]); 
+      localStorage.removeItem('panier');
+
+      window.location.href = paymentUrl;
   
       } catch (error) {
         console.error('Erreur lors de la commande ou du paiement:', error);

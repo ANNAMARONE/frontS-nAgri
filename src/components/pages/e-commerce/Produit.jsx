@@ -104,7 +104,7 @@ export default function Produit (){
       return;
     }
   
-    axios.post(`${config.apiBaseUrl}/produit/${produit.id}/like`)
+    axios.post(`${config.apiBaseUrl}/product/${produit.id}/like`)
     .then(res => {
       const updatedLikes = res.data.likes; 
       setFilteredProduits(prevProduits =>
@@ -218,16 +218,7 @@ export default function Produit (){
     console.log("Produit ajouté au panier :", produit);
     console.log("Panier actuel :", nouveauPanier);
   };
-  
-  
-      // Fonction pour gérer les changements de quantité
-      const handleQuantityChange = (produitId, value) => {
-        setQuantites((prevQuantites) => ({
-          ...prevQuantites,
-          [produitId]: value,
-        }));
-      
-  };
+
   const navigate = useNavigate(); 
   const handleViewDetails = (produitId) => {
     navigate(`/produits/${produitId}`); 
@@ -331,6 +322,66 @@ export default function Produit (){
           </div>
         </div>
       </div>
+{/* offre exeptionnelle */}
+{/* <div>
+<div className='offre_exeptionnelle'>
+        <div className='produit_exeptionnel'>
+          <div className='produitPopu'>
+            <h1>Offres exceptionnelles</h1>
+            <button></button>
+           
+          <div className="pagination">
+            <button onClick={prevPage} disabled={currentPage === 1}>
+              Précédent
+            </button>
+            <span>Page {currentPage} sur {totalPages}</span>
+            <button 
+              onClick={nextPage} 
+              disabled={currentPage === totalPages}
+            >
+              Voir plus <FaArrowRight size={20} color="#009444" />
+            </button>
+          </div>
+          </div>
+
+          <div className='liste_carte'>
+          {filteredProduits.map(produit => (
+              <div key={produit.id}>
+                <div className='cartProduitexp'>
+                  <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
+                  <div className='elementcart'>
+                    <div className='porduitprix'>
+                      <p>{produit.libelle}</p>
+                      <p>{produit.prix} cfa</p>
+                      <p>
+                        <IoIosStar size={20} color="#FF8A00"/>
+                        <IoIosStar size={20} color="#FF8A00"/>
+                        <IoIosStar size={20} color="#FF8A00"/>
+                        <IoIosStar size={20} color="#FF8A00"/>
+                      </p>
+                    </div>
+                    <div className='action_cartp'>
+                      <div className='icone1' onClick={() => handleLike(produit)}>
+                          <FcLikePlaceholder size={24} />
+                        </div>
+                        <div className='icone2'onClick={() => handleViewDetails(produit.id)}> <GrView size={24}/></div>
+                        
+
+                      <div className='addcarteprod'>
+                        <SlHandbag size={20}/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+</div> */}
+
+
+
 
 {/* disponible chez nous */}
 <div className='secton4'>

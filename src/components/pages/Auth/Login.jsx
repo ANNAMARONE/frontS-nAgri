@@ -18,7 +18,7 @@ export default function Login() {
   const validateForm = () => {
     let isValid = true;
 
-    // Réinitialiser les messages d'erreur
+  
     setEmailError('');
     setPasswordError('');
 
@@ -65,8 +65,7 @@ export default function Login() {
       }
   
       const result = await response.json();
-      
-      // Stocker le token et les informations de l'utilisateur
+
       localStorage.setItem('token', result.token);
     
       localStorage.setItem('user', JSON.stringify(result.user));

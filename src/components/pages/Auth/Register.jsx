@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import './registe.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import profil from '/src/assets/images/2579132.png'
-import config from '/src/config';
 
 export default function Register(){
  
@@ -16,7 +15,7 @@ export default function Register(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [role, setRole] = useState('client'); 
+  const [role, setRole] = useState('client'); // Valeur par défaut
   const [acteur, setActeur] = useState('');
   const [region, setRegion] = useState('');
   const [error, setError] = useState('');
@@ -99,24 +98,11 @@ export default function Register(){
     if (hasError) return;
 
     try {
-      const response = await fetch(`${config.apiBaseUrl}/auth/register`, {
+      const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
         method: 'POST',
         body: formData,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.log(errorData); 
-
-        let errors = '';
-        for (const key in errorData) {
-          errors += `${key}: ${errorData[key][0]} \n`;
-        }
-
-        setError(errors);
-        setMessage('');
-        return;
-      }
 
       const result = await response.json();
       setMessage('Inscription réussie !');
@@ -175,9 +161,10 @@ export default function Register(){
         <form onSubmit={handleSubmit}>
           <div className="contenu">
             <h1>S&apos;inscrire</h1>
-      
+       {/* image */}
        <div className='profil'>
       <div className="input-icon">
+        {/* Affichage de l'image de profil (par défaut ou nouvelle image) */}
         <img 
           src={profileImage || profil} 
           alt="Profil" 
@@ -272,7 +259,7 @@ export default function Register(){
         {role === 'producteur' && (
           <>
             <div>
-              <label>Acteur</label><br />
+              <label>Acteur</label>
               <select 
                 value={acteur} 
                 onChange={(e) => setActeur(e.target.value)} 
@@ -286,7 +273,7 @@ export default function Register(){
             </div>
 
             <div>
-              <label>Région</label><br />
+              <label>Région</label>
               <select 
                 value={region} 
                 onChange={(e) => setRegion(e.target.value)} 
@@ -296,7 +283,7 @@ export default function Register(){
                 <option value="Dakar">Dakar</option>
                 <option value="Diourbel">Diourbel</option>
                 <option value="Fatick">Fatick</option>
-
+                {/* Ajoutez les autres régions ici */}
               </select>
               {validationErrors.region && <p className="validation-error">{validationErrors.region}</p>}
             </div>
@@ -314,3 +301,127 @@ export default function Register(){
 }
 
 
+
+//   return (
+//     <div>
+//       <h1>Inscription</h1>
+      
+//       <form onSubmit={handleSubmit}>
+//         <div>
+//           <label>Nom</label>
+//           <input 
+//             type="text" 
+//             value={name} 
+//             onChange={(e) => setName(e.target.value)} 
+//           />
+//           {validationErrors.name && <p className="validation-error">{validationErrors.name}</p>}
+//         </div>
+
+//         <div>
+//           <label>Profile (Image)</label>
+//           <input 
+//             type="file" 
+//             onChange={(e) => setProfile(e.target.files[0])} 
+            
+//           />
+//         </div>
+
+//         <div>
+//           <label>Adresse</label>
+//           <input 
+//             type="text" 
+//             value={adresse} 
+//             onChange={(e) => setAdresse(e.target.value)} 
+            
+//           />
+//           {validationErrors.adresse && <p className="validation-error">{validationErrors.adresse}</p>}
+//         </div>
+
+//         <div>
+//           <label>Téléphone</label>
+//           <input 
+//             type="text" 
+//             value={telephone} 
+//             onChange={(e) => setTelephone(e.target.value)} 
+            
+//           />
+//           {validationErrors.telephone && <p className="validation-error">{validationErrors.telephone}</p>}
+//         </div>
+
+//         <div>
+//           <label>Email</label>
+//           <input 
+//             type="email" 
+//             value={email} 
+//             onChange={(e) => setEmail(e.target.value)} 
+            
+//           />
+//           {validationErrors.email && <p className="validation-error">{validationErrors.email}</p>}
+//         </div>
+
+//         <div>
+//           <label>Mot de passe</label>
+//           <input 
+//             type="password" 
+//             value={password} 
+//             onChange={(e) => setPassword(e.target.value)} 
+            
+//           />
+//           {validationErrors.password && <p className="validation-error">{validationErrors.password}</p>}
+//         </div>
+
+//         <div>
+//           <label>Rôle</label>
+//           <select 
+//             value={role} 
+//             onChange={(e) => setRole(e.target.value)} 
+//             required
+//           >
+//             <option value="client">Client</option>
+//             <option value="producteur">Producteur</option>
+//             <option value="admin">Admin</option>
+//           </select>
+//         </div>
+
+//         {/* Champs conditionnels pour le rôle producteur */}
+//         {role === 'producteur' && (
+//           <>
+//             <div>
+//               <label>Acteur</label>
+//               <select 
+//                 value={acteur} 
+//                 onChange={(e) => setActeur(e.target.value)} 
+//                 required
+//               >
+//                 <option value="">Sélectionnez un acteur</option>
+//                 <option value="Agriculteurs">Agriculteurs</option>
+//                 <option value="Jardiniers">Jardiniers</option>
+//               </select>
+//               {validationErrors.acteur && <p className="validation-error">{validationErrors.acteur}</p>}
+//             </div>
+
+//             <div>
+//               <label>Région</label>
+//               <select 
+//                 value={region} 
+//                 onChange={(e) => setRegion(e.target.value)} 
+//                 required
+//               >
+//                 <option value="">Sélectionnez une région</option>
+//                 <option value="Dakar">Dakar</option>
+//                 <option value="Diourbel">Diourbel</option>
+//                 <option value="Fatick">Fatick</option>
+//                 {/* Ajoutez les autres régions ici */}
+//               </select>
+//               {validationErrors.region && <p className="validation-error">{validationErrors.region}</p>}
+//             </div>
+//           </>
+//         )}
+
+//         <button type="submit">S'inscrire</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Register;

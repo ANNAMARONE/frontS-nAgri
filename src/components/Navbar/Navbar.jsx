@@ -13,7 +13,7 @@ export const Navbar = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
 
   const handleToggle = () => {
-    setIsOpen(!isOpen); // Inverser l'état du menu
+    setIsOpen(!isOpen); 
   };
 
   // Récupérer le panier depuis le localStorage

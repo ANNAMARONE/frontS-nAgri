@@ -62,7 +62,7 @@ export default function Article() {
               <p className="card-description">{truncateDescription(article.description,100)}</p>
               <div className="card-footer">
                 <span>{new Date(article.created_at).toLocaleDateString()}</span>
-                <span>Statut: {article.statut}</span>
+               
               </div>
              
             </div>

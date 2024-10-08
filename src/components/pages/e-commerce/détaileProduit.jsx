@@ -122,6 +122,16 @@ useEffect(() => {
       console.error("Produit non valide ou déjà liké");
     }
   };
+    
+  
+      // Fonction pour gérer les changements de quantité
+      const handleQuantityChange = (produitId, value) => {
+        setQuantites((prevQuantites) => ({
+          ...prevQuantites,
+          [produitId]: value,
+        }));
+      
+  };
 //button quantité 
 
 
@@ -186,7 +196,7 @@ const handleClick = (operator) => {
         min={qtyMin}
         max={qtyMax}
         value={qty}
-        onChange={handleChange}
+        onChange={handleQuantityChange}
       />
       <button
         className="qty-count qty-count--add"
