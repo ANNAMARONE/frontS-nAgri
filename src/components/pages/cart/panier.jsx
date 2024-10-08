@@ -49,26 +49,26 @@ const Panier = () => {
 
   const montantExpedition = 500; 
   const montantTotalAvecExpedition = montantTotal + montantExpedition;
-
   const handleCommander = async () => {
     const userFromLocalStorage = localStorage.getItem('user');
     const user = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
-    const token = localStorage.getItem('token'); 
-    const userId = user ? user.id : null; 
+    const token = localStorage.getItem('token');
+    const userId = user ? user.id : null;
   
-    if (userId && panier.length > 0) { 
+    if (userId && panier.length > 0) {
       setLoading(true);
       setErrorMessage('');
       setSuccessMessage('');
   
       const produitsData = panier.map(produit => ({
-        produit_id: produit.id,  
+        produit_id: produit.id,
         quantite: produit.quantite
       }));
   
       try {
-        const response = await axios.post(`${config.apiBaseUrl}/commander`, {
-          produits: produitsData, 
+       
+        const commandeResponse = await axios.post(`${config.apiBaseUrl}/commander`, {
+          produits: produitsData,
           user_id: userId,
           montant_total: montantTotal,
         }, {
@@ -76,25 +76,43 @@ const Panier = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log('Commande réussie:', response.data);
-        setSuccessMessage('Commande réussie ! Merci pour votre achat.');
-        setPanier([]); 
-        localStorage.removeItem('panier'); 
+  
+        console.log('Réponse de commande:', commandeResponse.data);
+  
+        const paymentResponse = await axios.post(`${config.apiBaseUrl}/payment`, {
+          user_id: userId,
+          amount: montantTotalAvecExpedition,
+          currency: "XOF"
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        console.log('Réponse de paiement:', paymentResponse);
+  
+        const paymentUrl = paymentResponse.payment_link;
+        if (!paymentUrl) {
+          throw new Error('Le lien de paiement est indéfini.');
+        }
+        window.location.href = paymentUrl;
+  
       } catch (error) {
-        console.error('Erreur lors de l\'envoi de la commande:', error);
-        setErrorMessage('Erreur lors de la création de la commande. Veuillez réessayer.');
+        console.error('Erreur lors de la commande ou du paiement:', error);
+        setErrorMessage('Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.');
         if (error.response) {
           console.log('Détails de la réponse:', error.response.data);
-          console.log('Statut:', error.response.status);
         }
       } finally {
         setLoading(false);
       }
-  
     } else {
       setErrorMessage('Veuillez vous connecter avant de passer une commande.');
     }
   };
+  
+  
+  
   
   return (
     <div>

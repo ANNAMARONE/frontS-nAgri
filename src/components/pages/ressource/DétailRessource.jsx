@@ -32,7 +32,7 @@ const RessourceDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Chargement...</div>;
+    return <div>Chargement</div>;
   }
 
   if (error) {

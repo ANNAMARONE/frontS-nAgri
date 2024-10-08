@@ -147,3 +147,81 @@ input:hover{
   }
   
   
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .contenu {
+    width: 80%;
+    height: auto;
+    padding: 20px;
+  }
+
+  input, select {
+    width: 100%;
+  }
+
+  .contenu p {
+    margin-left: 10rem;
+  }
+
+  .password-toggle {
+    margin-left: 20rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contenu {
+    width: 90%;
+    padding: 15px;
+  }
+
+  input, select {
+    width: 100%;
+  }
+
+  .contenu p {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .password-toggle {
+    margin-left: 15rem;
+  }
+
+  .from_group1 {
+    flex-direction: column;
+  }
+
+  .from_group1 input {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contenu {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .contenu .titre_des {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input, select {
+    width: 100%;
+    height: 50px;
+  }
+
+  .password-toggle {
+    margin-left: 10rem;
+  }
+
+  .contenu button {
+    width: 100%;
+  }
+
+  .contenu p {
+    text-align: center;
+    margin-left: 0;
+  }
+}

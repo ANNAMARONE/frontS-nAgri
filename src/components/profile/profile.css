@@ -133,3 +133,79 @@ body{
     margin-top: 20px;
     float: left;
 }
+
+
+/* Pour les tablettes */
+@media screen and (max-width: 768px) {
+    .profileHeader {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profileHeader img {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .profileHeader p {
+        margin-top: 20px;
+        font-size: 28px;
+    }
+
+    .containerProfile .table {
+        width: 95%;
+    }
+
+    .containerProfile button {
+        margin-left: 10%; 
+    }
+
+    .containerProfile .inputeName input,
+    .containerProfile .setion2input input {
+        width: 100%; 
+    }
+
+}
+
+/* Pour les téléphones mobiles */
+@media screen and (max-width: 480px) {
+    .profileHeader {
+        width: 100%;
+    }
+
+    .profileHeader p {
+        font-size: 24px; 
+    }
+
+    .containerProfile .table {
+        width: 100%;
+    }
+
+    .containerProfile form {
+        width: 95%;
+    }
+
+    .containerProfile .inputeName input,
+    .containerProfile .setion2input input {
+        width: 100%; 
+    }
+
+    .containerProfile button {
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+    }
+    .containerProfile .setion3input .selectInput select{
+        background-color: #FFFF;
+        width:370px ;
+      background-color: #FFFF;
+      height:44px ;
+      
+    }
+    .containerProfile .setion3input .selectInput input{
+        width:370px ;
+        height:44px ;
+        background-color: #FFFF;
+    }
+}
