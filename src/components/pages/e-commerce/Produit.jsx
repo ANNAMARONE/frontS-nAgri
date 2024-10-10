@@ -104,7 +104,7 @@ export default function Produit (){
       return;
     }
   
-    axios.post(`${config.apiBaseUrl}/product/${produit.id}/like`)
+    axios.post(`${config.apiBaseUrl}/produit/${produit.id}/like`)
     .then(res => {
       const updatedLikes = res.data.likes; 
       setFilteredProduits(prevProduits =>

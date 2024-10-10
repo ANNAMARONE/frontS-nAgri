@@ -20,7 +20,8 @@ export default function Register(){
   const [region, setRegion] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-
+  const fileInputRef = useRef(null);
+  const [profileImage, setProfileImage] = useState(null);
   // État pour stocker les messages de validation
   const [validationErrors, setValidationErrors] = useState({
     name: '',
@@ -132,22 +133,19 @@ export default function Register(){
     setShowPassword(!showPassword);
   };
 
-  const [profileImage, setProfileImage] = useState(null);
-  const fileInputRef = useRef(null);
-
-  // Fonction pour gérer le changement d'image
+ 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfileImage(reader.result);
+        setProfile(file);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  // Fonction pour déclencher l'input file en cliquant sur l'image
   const handleImageClick = () => {
     fileInputRef.current.click();
   };
@@ -163,24 +161,22 @@ export default function Register(){
             <h1>S&apos;inscrire</h1>
        {/* image */}
        <div className='profil'>
-      <div className="input-icon">
-        {/* Affichage de l'image de profil (par défaut ou nouvelle image) */}
-        <img 
-          src={profileImage || profil} 
-          alt="Profil" 
-          style={{ width: '100px', height: '100px', borderRadius: '50%', cursor: 'pointer' }} 
-          onClick={handleImageClick} 
-        />
-        <input 
-          type="file" 
-          id="profile-upload" 
-          ref={fileInputRef} 
-          style={{ display: 'none' }} 
-          accept="image/*" 
-          onChange={(e) => setProfile(e.target.files[0])}
-        />
-      </div>
-    </div>
+                <div className="input-icon">
+                  <img 
+                    src={profileImage || profil} 
+                    alt="Profil" 
+                    style={{ width: '100px', height: '100px', borderRadius: '50%', cursor: 'pointer' }} 
+                    onClick={handleImageClick}
+                  />
+                  <input 
+                    type="file" 
+                    ref={fileInputRef} 
+                    style={{ display: 'none' }} 
+                    accept="image/*" 
+                    onChange={handleImageChange}
+                  />
+                </div>
+              </div>
     {/* ============================== */}
             <div className='from_group1'>
             <div className="form-group">
@@ -226,23 +222,24 @@ export default function Register(){
               </div>
             </div>
             <div className="form-group">
-              <label>Entre votre mot de passe: </label><br />
-              <div className="input-icon">
-                <i className="fas fa-lock"></i>
-                <input 
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="********"
-                  value={password} 
-                  onChange={(e) => setPassword(e.target.value)} 
-                  id="pwd" 
-                />
-              {validationErrors.password && <p className="validation-error">{validationErrors.password}</p>}
-                <i 
-                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`}
-                  onClick={togglePasswordVisibility}
-                  style={{ cursor: 'pointer'}}
-                ></i>
-              </div>
+            <label>Entre votre mot de passe: </label><br />
+<div className="input-icon">
+  <i className="fas fa-lock"></i>
+  <input 
+    type={showPassword ? 'text' : 'password'}
+    placeholder="********"
+    value={password} 
+    onChange={(e) => setPassword(e.target.value)} 
+    id="pwd" 
+  />
+  {validationErrors.password && <p className="validation-error">{validationErrors.password}</p>}
+  <i 
+    className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`}
+    onClick={togglePasswordVisibility}
+    style={{ cursor: 'pointer' }}
+  ></i>
+</div>
+
               <div className="form-group">
               <label>acteur: </label><br />
               <select 
