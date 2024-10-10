@@ -80,6 +80,7 @@ export default function Login() {
         navigate('/dashboardProducteur');
       }else{
         navigate('/'); 
+        window.location.reload();
       }
       
     } catch (err) {

@@ -50,6 +50,7 @@ import Footer from './components/Footer/footer';
 import ModifierProfile from './components/profile/modifier';
 import DashboardProducteur from './components/ProducteurPage/dasboadProducteur';
 import ListeForums from './components/adminPage/gestion forums/listeforume';
+import VerificationOpt from './components/pages/Auth/verificationOpt';
 
 
 
@@ -105,7 +106,7 @@ function App() {
           <Route path="/commande" element={<Commandes/>} />
           <Route path="/profileUse" element={<Profile />} />
           <Route path="/modifier-profile" element={<ModifierProfile/>} />
-          
+          <Route path='/verificationOpt' element={<VerificationOpt/>}/>
         </Route>
 
         {/* Routes avec Sidebar pour le producteur */}
