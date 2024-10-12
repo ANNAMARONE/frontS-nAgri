@@ -36,7 +36,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+  
     // Reset des erreurs
     setValidationErrors({
       name: '',
@@ -47,7 +47,7 @@ export default function Register() {
       acteur: '',
       region: '',
     });
-
+  
     const formData = new FormData();
     formData.append('name', name);
     formData.append('profile', profile);
@@ -56,15 +56,15 @@ export default function Register() {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('role', role);
-
+  
     if (role === 'producteur') {
       formData.append('acteur', acteur);
       formData.append('region', region);
     }
-
+  
     // Validation basique
     let hasError = false;
-
+  
     if (!name) {
       setValidationErrors((prev) => ({ ...prev, name: 'Le nom est requis.' }));
       hasError = true;
@@ -94,7 +94,7 @@ export default function Register() {
       setValidationErrors((prev) => ({ ...prev, password: 'Le mot de passe doit contenir au moins 6 caractères.' }));
       hasError = true;
     }
-
+  
     if (role === 'producteur' && !acteur) {
       setValidationErrors((prev) => ({ ...prev, acteur: "L'acteur est requis." }));
       hasError = true;
@@ -103,45 +103,43 @@ export default function Register() {
       setValidationErrors((prev) => ({ ...prev, region: 'La région est requise.' }));
       hasError = true;
     }
-
+  
     if (hasError) {
       setIsSubmitting(false);
       return;
     }
-
   
-        try {
-          const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json',
-            },
-            
-          });
-          localStorage.setItem('email', email);
-          
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
   
-       
       const result = await response.json();
+      
+      // Si l'inscription échoue
       if (!response.ok) {
-        setError(result.message || "Une erreur est survenue lors de l'inscription.");
+        const errorMessages = result.errors ? Object.values(result.errors).flat().join(', ') : result.message;
+        setError(errorMessages || "Une erreur est survenue lors de l'inscription.");
         Swal.fire({
           title: 'Erreur!',
-          text: 'Une erreur est survenue lors de l\'inscription.',
+          text: errorMessages || 'Une erreur est survenue lors de l\'inscription.',
           icon: 'error',
           confirmButtonText: 'Ok'
         });
       } else {
         setMessage("Inscription réussie !");
         Swal.fire({
-          title: 'Success!',
+          title: 'Succès!',
           text: 'Votre inscription a réussi.',
           icon: 'success',
           confirmButtonText: 'Ok'
         });
         setError('');
-
+  
         // Réinitialiser les champs
         setName('');
         setProfile(null);
@@ -154,13 +152,13 @@ export default function Register() {
         setRegion('');
       }
     } catch (err) {
-      console.log('Erreur:', err);
-      
+      console.error('Erreur:', err);
       setError("Erreur lors de l'inscription");
     } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

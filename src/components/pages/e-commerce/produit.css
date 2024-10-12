@@ -68,13 +68,16 @@ body{
   }
   .liste_catégorie{
     display: flex;
+    justify-content: center;
     gap: 20px;
+    margin: auto;
   }
   .liste_catégorie .catégorie1{
     width: 200px;
     height: 200px;
     border: 1px solid #E6E6E6;
     border-radius: 5px;
+    
   }
   .liste_catégorie .catégorie1:active{
     width: 200px;
@@ -90,12 +93,9 @@ body{
     text-align: center;
     padding-top: 20px;
   }
-  .liste_catégorie{
-    margin: auto;
-    width: 1260px;
-  }
+ 
   .produit_plus_populaire{
-    background-color: #F7F7F7;
+
     height:850px ;
     margin: auto;
   }
@@ -290,14 +290,14 @@ body{
   display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 100; /* Augmente le z-index pour s'assurer que l'élément est au-dessus */
+  z-index: 100; 
   transform: translateY(120px);
   text-align: center;
   top: 20%;
 }
 
 .cartProduitexp:hover.porduitprix p {
-  z-index: 100; /* Augmente le z-index pour s'assurer que l'élément est au-dessus */
+  z-index: 100; 
   transform: translateY(-10px);
 }
 
@@ -414,6 +414,7 @@ visibility: inherit;
   .liste_catégorie {
       flex-direction: column;
       align-items: center;
+      
   }
 
   .cartProduit, .cartProduitexp {
