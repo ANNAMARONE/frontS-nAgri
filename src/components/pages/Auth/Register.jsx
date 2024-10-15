@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import './registe.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import profil from '/src/assets/images/2579132.png';
 import config from '/src/config';
-import Swal from 'sweetalert2';
+
 export default function Register() {
   const [name, setName] = useState('');
   const [profile, setProfile] = useState(null);
@@ -22,7 +24,8 @@ export default function Register() {
   const fileInputRef = useRef(null);
   const [profileImage, setProfileImage] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const navigate = useNavigate();
+  
   const [validationErrors, setValidationErrors] = useState({
     name: '',
     adresse: '',
@@ -33,11 +36,16 @@ export default function Register() {
     region: '',
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-  
-    // Reset des erreurs
+  const resetForm = () => {
+    setName('');
+    setProfile(null);
+    setAdresse('');
+    setTelephone('');
+    setEmail('');
+    setPassword('');
+    setRole('client');
+    setActeur('');
+    setRegion('');
     setValidationErrors({
       name: '',
       adresse: '',
@@ -46,6 +54,24 @@ export default function Register() {
       password: '',
       acteur: '',
       region: '',
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+  
+    // Reset des erreurs
+    setValidationErrors({
+      name: '',
+      profile: '',
+      adresse: '',
+      telephone: '',
+      email: '',
+      password: '',
+      acteur: '',
+      region: '',
+      role: '',
     });
   
     const formData = new FormData();
@@ -64,52 +90,107 @@ export default function Register() {
   
     // Validation basique
     let hasError = false;
-  
+
+    // Validation pour chaque champ
     if (!name) {
       setValidationErrors((prev) => ({ ...prev, name: 'Le nom est requis.' }));
       hasError = true;
+    } else if (name.length > 255) {
+      setValidationErrors((prev) => ({ ...prev, name: 'Le nom ne peut pas dépasser 255 caractères.' }));
+      hasError = true;
     }
+
+    if (!profile) {
+      setValidationErrors((prev) => ({ ...prev, profile: 'L\'image de profil est requise.' }));
+      hasError = true;
+    } else if (!['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'].includes(profile.type)) {
+      setValidationErrors((prev) => ({ ...prev, profile: 'Le format de l\'image doit être jpeg, png, jpg, gif ou svg.' }));
+      hasError = true;
+    }
+
     if (!adresse) {
       setValidationErrors((prev) => ({ ...prev, adresse: "L'adresse est requise." }));
       hasError = true;
+    } else if (adresse.length > 255) {
+      setValidationErrors((prev) => ({ ...prev, adresse: 'L\'adresse ne peut pas dépasser 255 caractères.' }));
+      hasError = true;
     }
+
     if (!telephone) {
       setValidationErrors((prev) => ({ ...prev, telephone: 'Le numéro de téléphone est requis.' }));
       hasError = true;
-    } else if (!/^\d+$/.test(telephone)) {
-      setValidationErrors((prev) => ({ ...prev, telephone: 'Le numéro de téléphone doit contenir uniquement des chiffres.' }));
+    } else if (!/^\d{9,}$/.test(telephone)) {
+      setValidationErrors((prev) => ({ ...prev, telephone: 'Le numéro de téléphone doit contenir au moins 9 chiffres.' }));
       hasError = true;
     }
+
     if (!email) {
       setValidationErrors((prev) => ({ ...prev, email: 'L\'email est requis.' }));
       hasError = true;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setValidationErrors((prev) => ({ ...prev, email: "Le format de l'email est invalide." }));
+      setValidationErrors((prev) => ({ ...prev, email: 'Le format de l\'email est invalide.' }));
       hasError = true;
     }
+
     if (!password) {
       setValidationErrors((prev) => ({ ...prev, password: 'Le mot de passe est requis.' }));
       hasError = true;
-    } else if (password.length < 6) {
-      setValidationErrors((prev) => ({ ...prev, password: 'Le mot de passe doit contenir au moins 6 caractères.' }));
+    } else if (password.length < 8) {
+      setValidationErrors((prev) => ({ ...prev, password: 'Le mot de passe doit contenir au moins 8 caractères.' }));
       hasError = true;
     }
-  
+
+    if (!role) {
+      setValidationErrors((prev) => ({ ...prev, role: 'Le rôle est requis.' }));
+      hasError = true;
+    } else if (!['admin', 'client', 'producteur'].includes(role)) {
+      setValidationErrors((prev) => ({ ...prev, role: 'Le rôle doit être admin, client ou producteur.' }));
+      hasError = true;
+    }
+
     if (role === 'producteur' && !acteur) {
       setValidationErrors((prev) => ({ ...prev, acteur: "L'acteur est requis." }));
       hasError = true;
     }
+
     if (role === 'producteur' && !region) {
       setValidationErrors((prev) => ({ ...prev, region: 'La région est requise.' }));
       hasError = true;
     }
-  
+
     if (hasError) {
       setIsSubmitting(false);
       return;
     }
-  
+
     try {
+      // Vérifier l'unicité de l'email et du téléphone
+      const uniqueCheckResponse = await fetch('http://127.0.0.1:8000/api/auth/check-unique', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, telephone }),
+      });
+      
+      const uniqueCheckResult = await uniqueCheckResponse.json();
+      
+      if (!uniqueCheckResponse.ok) {
+        const errorMessages = uniqueCheckResult.errors 
+          ? Object.values(uniqueCheckResult.errors).flat().join(', ') 
+          : uniqueCheckResult.message;
+          
+        setError(errorMessages || 'Une erreur est survenue lors de l\'inscription.');
+        Swal.fire({
+          title: 'Erreur!',
+          text: errorMessages || 'Une erreur est survenue lors de l\'inscription.',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
         method: 'POST',
         body: formData,
@@ -117,12 +198,15 @@ export default function Register() {
           'Accept': 'application/json',
         },
       });
-  
+
       const result = await response.json();
-      
+
       // Si l'inscription échoue
       if (!response.ok) {
-        const errorMessages = result.errors ? Object.values(result.errors).flat().join(', ') : result.message;
+        const errorMessages = result.errors 
+          ? Object.values(result.errors).flat().join(', ') 
+          : result.message;
+          
         setError(errorMessages || "Une erreur est survenue lors de l'inscription.");
         Swal.fire({
           title: 'Erreur!',
@@ -131,25 +215,19 @@ export default function Register() {
           confirmButtonText: 'Ok'
         });
       } else {
-        setMessage("Inscription réussie !");
+        // Afficher un message de succès
         Swal.fire({
           title: 'Succès!',
           text: 'Votre inscription a réussi.',
           icon: 'success',
           confirmButtonText: 'Ok'
+        }).then(() => {
+          // Rediriger vers la page de vérification OTP après confirmation
+          navigate('/verificationOpt');
         });
-        setError('');
-  
+
         // Réinitialiser les champs
-        setName('');
-        setProfile(null);
-        setAdresse('');
-        setTelephone('');
-        setEmail('');
-        setPassword('');
-        setRole('client');
-        setActeur('');
-        setRegion('');
+        resetForm();
       }
     } catch (err) {
       console.error('Erreur:', err);
@@ -158,7 +236,6 @@ export default function Register() {
       setIsSubmitting(false);
     }
   };
-  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -183,7 +260,7 @@ export default function Register() {
   return (
     <div className='bannier_connexion'>
       <div className="section_form">
-        <div className="col-sm-6">
+
         {error && <p className="error-message">{error}</p>}
         {message && <p className="success-message">{message}</p>}
         <form onSubmit={handleSubmit}>
@@ -257,6 +334,7 @@ export default function Register() {
           <div className="input-icon">
             <i className="fas fa-lock"></i>
             <input 
+              placeholder="********" 
               type={showPassword ? 'text' : 'password'} 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
@@ -316,13 +394,13 @@ export default function Register() {
         </button>
           <p className="already_account">
             Vous avez déjà un compte?{" "}
-            <NavLink to="/connexion" className="btn_compte">
+            <NavLink to="/login" className="btn_compte">
               Connectez-vous
             </NavLink>
           </p>
           </div>
         </form>
-        </div>
+       
       </div>
     </div>
   );

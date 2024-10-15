@@ -12,6 +12,7 @@ const Panier = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState("en_ligne");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -69,42 +70,26 @@ const Panier = () => {
   
       try {
        
-        const commandeResponse = await axios.post(`${config.apiBaseUrl}/commander`, {
+        const response = await axios.post(`${config.apiBaseUrl}/commander`, {
           produits: produitsData,
           user_id: userId,
           montant_total: montantTotal,
+          payment_method: paymentMethod,
         }, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-  
-        console.log('Réponse de commande:', commandeResponse.data);
-  
-        const paymentResponse = await axios.post(`${config.apiBaseUrl}/payment`, {
-          user_id: userId,
-          amount: montantTotalAvecExpedition,
-          currency: "XOF"
-        }, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-  
-        console.log('Réponse de paiement:', paymentResponse);
-  
-        console.log('Réponse de paiement link:', paymentResponse.data.payment_link);
-        const paymentUrl = paymentResponse.data.payment_link;
+        if(paymentMethod== "en_ligne"){
 
-
-        if (!paymentUrl) {
-          throw new Error('Le lien de paiement est indéfini.');
-        }
-       setPanier([]); 
-      localStorage.removeItem('panier');
-
-      window.location.href = paymentUrl;
-  
+     
+        if (response.data.payment_link) {
+         
+          window.location.href = response.data.payment_link;
+      } else {
+        errorMessage(response.data.message);
+      }
+    }
       } catch (error) {
         console.error('Erreur lors de la commande ou du paiement:', error);
         setErrorMessage('Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.');
@@ -152,7 +137,7 @@ const Panier = () => {
                         onChange={(e) => modifierQuantite(produit.id, parseInt(e.target.value))}
                         min="1"
                       />
-                      <button onClick={() => supprimerProduit(produit.id)}><MdDeleteForever size={40} /></button>
+                      <button onClick={() => supprimerProduit(produit.id)}><MdDeleteForever size={24} /></button>
                     </div>
                   </div>
                   <div className='elementPanierPrix'>
@@ -162,8 +147,19 @@ const Panier = () => {
               </div>
             ))
           )}
+               
         </div>
         <div className='commandePanier'>
+        <div>
+                <label>Méthode de paiement:</label>
+                <select
+                    value={paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                >
+                    <option value="en_ligne">En ligne</option>
+                    <option value="Paiement à la livraison">Paiement à la livraison</option>
+                </select>
+            </div>
           <h1>Résumé de la commande</h1>
           <div className='resume-details'>
             <div className='detail-item'>

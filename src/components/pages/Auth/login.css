@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+*{
+   box-sizing: border-box;
+   margin: 0;
+}
+body{
+   font-family: roboto;
+  
+}
+.section_form {
+  background: #ffffffab;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px; 
+  width: 100%;
+  display: flex;
+  max-width: 600px; 
+  justify-content: center;
+  align-items: center; 
+  border-radius: 40px;
+}
+
+.bannier_connexion {
+  background-image: url('/src/assets/images/background.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px; 
+}
+
+.contenu .titre_des{
+  display: inline-flex;
+   padding-top:3rem;
+   gap: 30px;
+   align-items: center;
+   justify-content: center;
+ }
+ .contenu .titre_des h1{
+  font-size: 24px;
+  font-weight: bold;
+  color: #00000062;
+ }
+ .contenu .titre_des span{
+  font-size: 28px;
+  font-weight: bold;
+  color: #E29B34 ;
+ }
+ select{
+  width: 451px;
+  height: 57px;
+  margin: auto;
+  border-radius:10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+ }
+ .form-group{
+  margin: 10px auto;
+  }
+  .form-group label{
+  margin-top: 10px;
+  }
+  .placeholder{
+   margin: auto;
+  }
+
+ .contenu .span{
+text-decoration: none;
+color: #008000;
+float: right;
+ }
+ .contenu h1{
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 24px;
+ }
+
+ select{
+  width: 451px;
+  height: 57px;
+  margin: auto;
+  border-radius:10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+ }
+
+
+.section_form input{
+  padding-left: 10px; 
+  width: 451px;
+  height: 57px;
+  margin: auto;
+  border-radius:10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.error-message,
+.success-message {
+  text-align: center;
+  color: #d9534f; 
+}
+
+.success-message {
+  color: #5cb85c; 
+}
+
+.profil {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.input-icon {
+  position: relative;
+  
+}
+
+.input-icon input {
+  padding-left: 30px; 
+  padding-right: 30px; 
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s; /* Ajout d'une transition pour l'ombre */
+
+  width: 451px;
+  height: 57px;
+  margin: auto;
+  border-radius:10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.input-icon input:focus {
+  border-color: #008000;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre pour le champ actif */
+
+}
+
+.input-icon i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+}
+
+.input-icon i.fa-lock {
+  left: 10px; 
+}
+.input-icon i.fa-envelope{
+  left: 10px;
+}
+
+.input-icon i.fa-eye,
+.input-icon i.fa-eye-slash {
+ right: 5%;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Utiliser une hauteur fixe pour le message d'erreur */
+.validation-error {
+  color: #d9534f; 
+  font-size: 0.9em;
+  margin-top: 5px;
+  height: 20px;
+  opacity: 1;
+  transition: opacity 0.3s; /* Ajout d'une transition douce */
+}
+
+/* Masquer le message d'erreur avec une animation */
+.validation-error.hide {
+  opacity: 0; 
+}
+
+
+
+button:disabled {
+  background-color: #ccc;
+}
+
+button:hover:not(:disabled) {
+  background-color:  #008000;
+}
+
+.already_account {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.btn_compte {
+  color: #008000;
+  text-decoration: none;
+  font-weight: bold;
+}
+input:hover{
+  border: 1px solid #008000;
+}
+
+.contenu button {
+  display: block;
+  background-color: #008000;
+  width: 236px;
+  height: 54px;
+  margin: 10px auto;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.btn_compte:hover {
+  text-decoration: underline;
+}
+.from_group1 input{
+  width: 215px;
+  height: 57px;
+}
+.from_group1{
+  display: flex;
+  gap: 10px;
+}
+
+

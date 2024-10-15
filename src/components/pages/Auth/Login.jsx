@@ -5,6 +5,7 @@ import './login.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useNavigate } from 'react-router-dom';
 import config from '/src/config';
+import Swal from 'sweetalert2';
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -58,9 +59,13 @@ export default function Login() {
       });
   
       if (!response.ok) {
-        const errorData = await response.json();
-        setError(errorData.error || 'Erreur lors de la connexion');
-        setMessage('email ou mot de passe incorrect');
+        
+        Swal.fire({
+          title: 'Erreur!',
+          text: 'email ou mot de passe incorrect',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
         return;
       }
   
@@ -100,7 +105,7 @@ export default function Login() {
   return (
     <div className='bannier_connexion'>
       <div className="section_form">
-        <div className="col-sm-6">
+
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {message && <p style={{ color: 'green' }}>{message}</p>}
         <form onSubmit={handleSubmit}>
@@ -132,11 +137,11 @@ export default function Login() {
         
               </div>
             </div>
-            <p>Pas de compte ?<NavLink to="/register" className='span'>S&apos;inscrire</NavLink></p>
+            <p className='already_account'>Pas de compte ?<NavLink to="/register" className="btn_compte">S&apos;inscrire</NavLink></p>
             <button type="submit">Se connecter</button>
           </div>
       </form>
-        </div>
+
       </div>
     </div>
   );

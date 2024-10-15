@@ -63,7 +63,10 @@ const VerificationOpt = () => {
   };
 
   return (
-    <div>
+    <div className=''>
+      <div className='bannier_connexion1'>
+
+     
       <section className='authOpt'>
         <div className='login'>
           <div className='title-auth'>
@@ -97,6 +100,7 @@ const VerificationOpt = () => {
           <p>Je n&apos;ai pas reçu d&apos;OTP <a className="resend-btn" href="#">Renvoyer</a></p>
         </div>
       </section>
+      </div>
     </div>
   );
 }
