@@ -17,7 +17,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('client');
-  const [acteur, setActeur] = useState('');
+  const [acteur, setActeur] = useState();
   const [region, setRegion] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -165,6 +165,7 @@ export default function Register() {
 
     try {
       // Vérifier l'unicité de l'email et du téléphone
+      console.log("Vérification de l'unicité...");
       const uniqueCheckResponse = await fetch('http://127.0.0.1:8000/api/auth/check-unique', {
         method: 'POST',
         headers: {
@@ -174,6 +175,7 @@ export default function Register() {
       });
       
       const uniqueCheckResult = await uniqueCheckResponse.json();
+      console.log("Réponse check-unique:", uniqueCheckResult);
       
       if (!uniqueCheckResponse.ok) {
         const errorMessages = uniqueCheckResult.errors 
@@ -190,7 +192,8 @@ export default function Register() {
         setIsSubmitting(false);
         return;
       }
-
+    
+      console.log("Tout est bon pour l'inscription, procéder...");
       const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
         method: 'POST',
         body: formData,
@@ -198,9 +201,10 @@ export default function Register() {
           'Accept': 'application/json',
         },
       });
-
+    
       const result = await response.json();
-
+      console.log("Réponse inscription:", result);
+    
       // Si l'inscription échoue
       if (!response.ok) {
         const errorMessages = result.errors 
@@ -225,7 +229,7 @@ export default function Register() {
           // Rediriger vers la page de vérification OTP après confirmation
           navigate('/verificationOpt');
         });
-
+    
         // Réinitialiser les champs
         resetForm();
       }
@@ -235,7 +239,7 @@ export default function Register() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }    
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -362,12 +366,12 @@ export default function Register() {
               <label>Acteur:</label><br />
               <select value={acteur} onChange={(e) => setActeur(e.target.value)}>
                 <option value="">Sélectionnez un acteur</option>
-                <option value="Agriculteurs">Agriculture</option>
+                <option value="Agriculteurs">Agriculteur</option>
                 <option value="Jardiniers">Jardinier</option>
               </select>
               {validationErrors.acteur && <p className="validation-error">{validationErrors.acteur}</p>}
             </div>
-
+           
             <div className="form-group">
               <label>Région:</label><br />
               <select value={region} onChange={(e) => setRegion(e.target.value)}>

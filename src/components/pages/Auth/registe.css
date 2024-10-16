@@ -196,11 +196,11 @@ label {
 
 
 
-button:disabled {
+.section_form button:disabled {
   background-color: #ccc;
 }
 
-button:hover:not(:disabled) {
+.section_form button:hover:not(:disabled) {
   background-color:  #008000;
 }
 
@@ -218,7 +218,7 @@ input:hover{
   border: 1px solid #008000;
 }
 
-.contenu button {
+.section_form button {
   display: block;
   background-color: #008000;
   width: 236px;
