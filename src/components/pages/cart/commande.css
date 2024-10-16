@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    line-height: 1.6; /* Améliore la lisibilité */
+}
+
+.imageCommande img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover; 
+}
+
+.infoCommande {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.commandeItem {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-height: 50vh; /* Limiter la hauteur de la liste des commandes */
+    overflow-y: auto;
+}
+
+.commandeItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.commandeItem h3 {
+    font-size: 1.25rem; /* Utilisation de rem pour une meilleure réactivité */
+    color: #009444;
+    margin-bottom: 10px;
+}
+
+.commandeItem h4 {
+    font-size: 1.125rem;
+    color: #333;
+    margin: 20px 0 10px;
+}
+
+.commandeItem p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.commandeItem li {
+    list-style: none;
+}
+
+.commandeItem button {
+    background: none;
+    color: rgb(192, 6, 6);
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-weight: 500; /* Ajout d'un peu de poids au texte */
+}
+
+.commandeItem button:hover {
+    color: #a90000;
+}
+
+.infoCommande div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 10px 0;
+}
+
+.commandesList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; 
+    padding: 20px;
+    
+}
+
+@media (max-width: 1200px) {
+    .commandesList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .commandesList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .commandesList {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .commandeItem {
+        padding: 15px;
+    }
+}
+
+/* ================================================ */
+.bannerCommande {
+    background-image: url('/src/assets/images/commandeBanner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 350px; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInSlideDown 1.5s ease-out forwards;
+}
+
+.mesCommandesTitle {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInSlideUp 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.commandesDescription {
+    font-size: 1.2em;
+    color: #fff;
+    text-align: center;
+    max-width: 800px; 
+    padding: 10px 20px;
+    opacity: 0;
+    transform: translateY(20px); 
+    animation: fadeInSlideUp 1.5s ease-out forwards;
+    animation-delay: 1s; 
+}
+
+.commandeActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+.commandeActions button {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s; /* Ajout d'une transition pour la transformation */
+}
+
+.commandeActions button:hover {
+    background-color: #eaeaea;
+    transform: translateY(-2px); /* Ajout d'une légère élévation au survol */
+}
+
+.commandeActions button svg {
+    margin-right: 5px;
+}
+
+@keyframes fadeInSlideDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.buttonStatut {
+    width: 200px;
+}

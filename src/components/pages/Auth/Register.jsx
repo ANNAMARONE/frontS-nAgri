@@ -166,7 +166,7 @@ export default function Register() {
     try {
       // Vérifier l'unicité de l'email et du téléphone
       console.log("Vérification de l'unicité...");
-      const uniqueCheckResponse = await fetch('http://127.0.0.1:8000/api/auth/check-unique', {
+      const uniqueCheckResponse = await fetch(`${config.apiBaseUrl}/auth/check-unique`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -194,7 +194,7 @@ export default function Register() {
       }
     
       console.log("Tout est bon pour l'inscription, procéder...");
-      const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
+      const response = await fetch(`${config.apiBaseUrl}/auth/register`, {
         method: 'POST',
         body: formData,
         headers: {

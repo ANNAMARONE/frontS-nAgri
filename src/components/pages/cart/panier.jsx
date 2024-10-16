@@ -6,7 +6,7 @@ import config from '/src/config';
 import { Link } from 'react-router-dom'; 
 import './panier.css';
 import { MdDeleteForever } from "react-icons/md";
-
+import Swal from 'sweetalert2'
 const Panier = () => {
   const [panier, setPanier] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,11 @@ const Panier = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [paymentMethod, setPaymentMethod] = useState("en_ligne");
   const navigate = useNavigate();
+  
 
+  const handlePaymentChange = (e) => {
+    setPaymentMethod(e.target.value);
+  };
   useEffect(() => {
     const userFromLocalStorage = localStorage.getItem('user');
     const token = localStorage.getItem('token');
@@ -57,53 +61,69 @@ const Panier = () => {
     const user = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
     const token = localStorage.getItem('token');
     const userId = user ? user.id : null;
-  
     if (userId && panier.length > 0) {
-      setLoading(true);
-      setErrorMessage('');
-      setSuccessMessage('');
-  
-      const produitsData = panier.map(produit => ({
-        produit_id: produit.id,
-        quantite: produit.quantite
-      }));
-  
-      try {
-       
-        const response = await axios.post(`${config.apiBaseUrl}/commander`, {
-          produits: produitsData,
-          user_id: userId,
-          montant_total: montantTotal,
-          payment_method: paymentMethod,
-        }, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if(paymentMethod== "en_ligne"){
+        setLoading(true);
+        setErrorMessage('');
+        setSuccessMessage('');
 
-     
-        if (response.data.payment_link) {
-         
-          window.location.href = response.data.payment_link;
-      } else {
-        errorMessage(response.data.message);
-      }
-    }
-      } catch (error) {
-        console.error('Erreur lors de la commande ou du paiement:', error);
-        setErrorMessage('Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.');
-        if (error.response) {
-          console.log('Détails de la réponse:', error.response.data);
+        const produitsData = panier.map(produit => ({
+            produit_id: produit.id,
+            quantite: produit.quantite
+        }));
+
+        try {
+            const response = await axios.post(`${config.apiBaseUrl}/commander`, {
+                produits: produitsData,
+                user_id: userId,
+                montant_total: montantTotal,
+                payment_method: paymentMethod,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (paymentMethod === "en_ligne") {
+                if (response.data.payment_link) {
+                    window.location.href = response.data.payment_link;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erreur',
+                        text: response.data.message || 'Une erreur est survenue.',
+                    });
+                }
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Succès',
+                    text: 'Commande créée avec succès!',
+                });
+            }
+        } catch (error) {
+            console.error('Erreur lors de la commande ou du paiement:', error);
+            setErrorMessage('Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.',
+            });
+
+            if (error.response) {
+                console.log('Détails de la réponse:', error.response.data);
+            }
+        } finally {
+            setLoading(false);
         }
-      } finally {
-        setLoading(false);
-      }
     } else {
-      setErrorMessage('Veuillez vous connecter avant de passer une commande.');
+        setErrorMessage('Veuillez vous connecter avant de passer une commande.');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Attention',
+            text: 'Veuillez vous connecter avant de passer une commande.',
+        });
     }
-  };
-  
+};
   
   
   
@@ -151,14 +171,47 @@ const Panier = () => {
         </div>
         <div className='commandePanier'>
         <div>
-                <label>Méthode de paiement:</label>
-                <select
-                    value={paymentMethod}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                >
-                    <option value="en_ligne">En ligne</option>
-                    <option value="Paiement à la livraison">Paiement à la livraison</option>
-                </select>
+{/* methode de payement */}
+<form className="styled">
+      <fieldset>
+        <legend>choisire un moyenne de payement</legend>
+
+        <div className="options">
+          <label>
+            <input
+              className="cc"
+              name="payment"
+              value="en_ligne"
+              type="radio"
+              checked={paymentMethod === "en_ligne"}
+              onChange={handlePaymentChange}
+            />
+            <svg aria-hidden="true" viewBox="0 0 249 177">
+              <use href="#card" />
+            </svg>
+            <span id="cc-title">Paiement</span>
+            <span id="cc-hint">En ligne</span>
+          </label>
+
+          <label>
+            <input
+              className="cc2"
+              name="payment"
+              value="Paiement à la livraison"
+              type="radio"
+              checked={paymentMethod === "Paiement à la livraison"}
+              onChange={handlePaymentChange}
+            />
+            <svg aria-hidden="true" viewBox="0 0 249 177">
+              <use href="#card" />
+            </svg>
+            <span id="cc-title2">Paiement</span>
+            <span id="cc-hint2">Paiement à la livraison</span>
+          </label>
+        </div>
+      </fieldset>
+
+    </form>
             </div>
           <h1>Résumé de la commande</h1>
           <div className='resume-details'>
@@ -180,6 +233,9 @@ const Panier = () => {
           </button>
         </div>
       </div>
+   
+
+    
     </div>
   );
 };

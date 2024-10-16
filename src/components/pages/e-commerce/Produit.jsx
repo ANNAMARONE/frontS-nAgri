@@ -104,7 +104,17 @@ export default function Produit (){
       return;
     }
   
-    axios.post(`${config.apiBaseUrl}/produit/${produit.id}/like`)
+    const token = localStorage.getItem("token"); // Assurez-vous que le jeton est stocké ici après la connexion
+  
+    axios.post(
+      `${config.apiBaseUrl}/produit/${produit.id}/like`, 
+      {}, 
+      {
+        headers: {
+          'Authorization': `Bearer ${token}` // Ajoutez le jeton d'authentification ici
+        }
+      }
+    )
     .then(res => {
       const updatedLikes = res.data.likes; 
       setFilteredProduits(prevProduits =>
@@ -129,8 +139,9 @@ export default function Produit (){
         showConfirmButton: false,
         timer: 1500
       });
-      });
+    });
   };
+  
   
  
   
