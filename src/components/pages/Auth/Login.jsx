@@ -82,7 +82,7 @@ export default function Login() {
       if(userRole ==='admin'){
         navigate('/dashboard');
       }else if(userRole==='producteur'){
-        navigate('/dashboardProducteur');
+        navigate('/statistics');
       }else{
         navigate('/'); 
         window.location.reload();

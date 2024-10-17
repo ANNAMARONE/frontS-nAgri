@@ -51,13 +51,15 @@ import ModifierProfile from './components/profile/modifier';
 import DashboardProducteur from './components/ProducteurPage/dasboadProducteur';
 import ListeForums from './components/adminPage/gestion forums/listeforume';
 import VerificationOpt from './components/pages/Auth/verificationOpt';
+import NewDashboard from './new/newDashboard';
+import Statistics from './components/ProducteurPage/Statistics';
 
 
 
 // Composant WithSidebar
 const WithSidebar = () => (
   <>
-    <ProducteurInterface />
+    <NewDashboard/>
 
   </>
 );
@@ -111,6 +113,7 @@ function App() {
 
         {/* Routes avec Sidebar pour le producteur */}
         <Route element={<WithSidebar />}>
+        <Route path="/statistics" element={<Statistics/>} />
         <Route path="/profile" element={<Profile />} />
           <Route path="/ajoutProduit" element={<AjouterProduit />} />
           <Route path="/afficherProduit" element={<ProduitsUtilisateurs />} />
@@ -147,9 +150,13 @@ function App() {
         <Route path="/forumAdmin" element={<Forum />} />
         </Route>
       </Routes>
-     
+      <Routes>
+      <Route path="/dasbordtest" element={<NewDashboard/>} />
+      </Routes>
     </div>
     </AuthProvider>
+
+    
   );
 }
 

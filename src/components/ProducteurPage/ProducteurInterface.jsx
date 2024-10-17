@@ -67,7 +67,7 @@ if (!profile) {
           <img src={logo} alt="Logo" />
         </div>
         <ul className="sidebar-menu">
-          <li><NavLink to="/dashboardProducteur" activeClassName="active"><RxDashboard size={24}/>Tableau de bord</NavLink></li>
+          
           <li><NavLink to="/ajoutProduit" activeClassName="active"><PiShoppingCartBold size={24}/>Ajouter produit</NavLink></li>
           <li><NavLink to="/producteurs" activeClassName="active"><HiOutlineUserGroup size={24} />Autre producteurs</NavLink></li>
           <li><NavLink to="/AfficherProduit" activeClassName="active"> <FaRegUser size={24}/>Afficher produit</NavLink></li>
