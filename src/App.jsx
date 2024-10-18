@@ -53,6 +53,8 @@ import ListeForums from './components/adminPage/gestion forums/listeforume';
 import VerificationOpt from './components/pages/Auth/verificationOpt';
 import NewDashboard from './new/newDashboard';
 import Statistics from './components/ProducteurPage/Statistics';
+import MesCommandes from './components/ProducteurPage/CommandeProducteur';
+import HistoriqueCommande from './components/ProducteurPage/HistoriqueCommande';
 
 
 
@@ -122,7 +124,9 @@ function App() {
            <Route path="/producteur/:id" element={<ProducteurDetail />} />
            <Route path="/dashboardProducteur" element={<DashboardProducteur/>} />
            <Route path="/forump" element={<Forum />} />
-           
+           <Route path="/commandeProducteur" element={< MesCommandes />} />
+           <Route path="/historique" element={<HistoriqueCommande />} />
+          
            
         </Route>
          {/* Routes avec Sidebar pour l'adminitrateur */}

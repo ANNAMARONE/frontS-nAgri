@@ -98,8 +98,10 @@ const NewDashboard = () => {
                         <li>
                             <FontAwesomeIcon icon={faShoppingCart} /> Commandes
                             <ul>
-                                <li>Commandes en Cours</li>
-                                <li>Historique des Commandes</li>
+                            
+                                <li><NavLink to="/commandeProducteur" activeClassName="active">Commandes en Cours</NavLink></li>
+                                <li><NavLink to="/historique" activeClassName="active">Historique des Commandes </NavLink></li>
+                               
                             </ul>
                         </li>
                         <li>

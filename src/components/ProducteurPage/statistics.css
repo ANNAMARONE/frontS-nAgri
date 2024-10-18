@@ -53,7 +53,7 @@
 /* Animation sur hover */
 .statistics-card:hover .icon-animation {
     transform: scale(1.2);
-    color: #f1c40f; /* Changer la couleur de l'icône au survol */
+    color: #f1c40f; 
 }
 
 /* Responsive pour les petits écrans */
@@ -62,11 +62,6 @@
         flex-direction: column;
     }
 }
-.charts {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
 
 .statistics {
     text-align: center;
@@ -74,4 +69,30 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.charts {
+    display: flex;               /* Disposition en ligne pour les graphiques */
+    justify-content: space-between;  /* Espace entre les graphiques */
+    align-items: center;         /* Aligner les graphiques au centre verticalement */
+    flex-wrap: wrap;             /* Permet de passer en disposition colonne sur petits écrans */
+    padding: 20px;               /* Espacement autour des graphiques */
+    gap: 20px;                   /* Espacement entre les graphiques */
+    background-color: #f9f9f9;  /* Couleur de fond subtile */
+    border-radius: 10px;         /* Coins arrondis */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Légère ombre */
+}
+
+.charts > div {
+    flex: 1;                      /* Chaque graphique prend la même largeur */
+    min-width: 300px;             /* Largeur minimale pour les graphiques */
+    max-width: 500px;             /* Largeur maximale pour les graphiques */
+    height: 350px;                /* Hauteur fixe des graphiques */
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .charts {
+        flex-direction: column;   /* Passage en disposition colonne sur petits écrans */
+        align-items: stretch;     /* Les graphiques s'étendent sur toute la largeur */
+    }
 }
