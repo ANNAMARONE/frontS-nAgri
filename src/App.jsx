@@ -55,6 +55,7 @@ import NewDashboard from './new/newDashboard';
 import Statistics from './components/ProducteurPage/Statistics';
 import MesCommandes from './components/ProducteurPage/CommandeProducteur';
 import HistoriqueCommande from './components/ProducteurPage/HistoriqueCommande';
+import Index from './components/pages/Home';
 
 
 
@@ -111,6 +112,7 @@ function App() {
           <Route path="/profileUse" element={<Profile />} />
           <Route path="/modifier-profile" element={<ModifierProfile/>} />
           <Route path='/verificationOpt' element={<VerificationOpt/>}/>
+          <Route path='/page2' element={<Index/>}/>
         </Route>
 
         {/* Routes avec Sidebar pour le producteur */}

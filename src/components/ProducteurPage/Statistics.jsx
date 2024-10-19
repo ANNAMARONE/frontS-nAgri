@@ -47,18 +47,18 @@ const Statistics = () => {
                     { name: "Clients", value: total_clients, color: "#82ca9d" },
                     { name: "Revenu", value: Number(total_revenue), color: "#ffc658" }
                 ];
-                console.log("PieChart Data:", pieChartData); // Vérifiez les données
+                console.log("PieChart Data:", pieChartData); 
     
                 // Préparer les données pour le BarChart
-                const barChartData = [
+                const barChartData2 = [
                     { name: "Produits Vendus", totalProductsSold: total_products_sold, totalClients: 0, totalRevenue: 0 },
                     { name: "Nombre de Clients", totalProductsSold: 0, totalClients: total_clients, totalRevenue: 0 },
                     { name: "Revenu Total", totalProductsSold: 0, totalClients: 0, totalRevenue: Number(total_revenue) },
                 ];
-                console.log("BarChart Data:", barChartData); // Vérifiez les données
+                
     
                 setChartData(pieChartData);
-                setChartData2(barChartData);
+                setChartData2(barChartData2);
             } catch (error) {
                 console.error("Erreur lors de la récupération des statistiques :", error);
             }
