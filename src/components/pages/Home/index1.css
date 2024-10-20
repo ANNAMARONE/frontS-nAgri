@@ -5,7 +5,16 @@ Author: TemplatesOnWeb
 Author URI: https://www.templateonweb.com/
 Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
 
 
 /*********************organ****************/
@@ -70,13 +79,13 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
         margin-top: 5%;
      }
      .organ_2i1 {
-        width: 800px; /* Ajustez la largeur */
-        height: 400px; /* Ajustez la hauteur */
-        margin: 20px auto; /* Centre horizontalement et ajoute un espacement vertical */
-        overflow: hidden; /* Masque le contenu qui dépasse */
-        position: relative; /* Nécessaire pour le centrage absolu de l'iframe */
-        border-radius: 15px; /* Arrondit les coins */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour plus de style */
+        width: 600px; 
+        height: 350px;
+        margin: 20px auto; 
+        overflow: hidden; 
+        position: relative; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
         background-color: #f8f9fa; /* Couleur de fond douce */
       }
       
@@ -87,7 +96,7 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
         width: 100%;
         height: 100%;
         border: none; /* Supprime la bordure */
-        border-radius: 15px; /* Applique les coins arrondis à l'iframe aussi */
+        border-radius: 0px 0px 50px 50px;
       }
       
       .serv_nm {
@@ -95,16 +104,16 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
         justify-content: center; /* Centre l'iframe horizontalement */
         align-items: center; /* Centre l'iframe verticalement */
         width: 100%; /* Prend toute la largeur du conteneur parent */
-        padding: 30px 0; /* Ajoute un espace en haut et en bas */
+      margin: -20% auto;
         background-color: transparent; /* Pas de fond */
-        overflow: hidden; /* Cache les débordements éventuels */
+        overflow: hidden
       }
       
-      .serv_nm iframe {
-        width: 100%; /* Prend toute la largeur du conteneur */
-        height: 60vh; /* Augmente la hauteur pour éviter la coupe */
-        border: none; /* Supprime la bordure */
-        border-radius: 15px; /* Arrondit les coins */
+      .serv_nm img {
+        width: 100%; 
+        height: 100vh; 
+        border: none; 
+        border-radius: 15px; 
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Ajoute une ombre douce pour un effet de profondeur */
         transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation pour l'interaction */
       }
@@ -488,3 +497,46 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
 #serv_n{
     margin-top: -10%;
 }
+
+
+.grow_1i {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.grow_1i:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.grow_1i .grid {
+  position: relative;
+}
+
+.grow_1i .grid figure {
+  overflow: hidden;
+  margin: 0;
+ 
+  transition: all 0.3s ease-in-out;
+}
+
+.grow_1i .grid figure img {
+  transition: transform 0.5s ease;
+  border-radius: 10px;
+  height: 450px;
+}
+
+.grow_1i .grid figure:hover img {
+  transform: scale(1.1);
+}
+
+
+
+
+
+

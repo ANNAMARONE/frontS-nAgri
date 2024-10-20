@@ -9,9 +9,7 @@ body{
     
 }
 
-.dashboard-containerProducteur{
-    background-color: #F9FAFC;
-}
+
 .cartdasbordProducteur {
     display: flex;
     gap: 20px;

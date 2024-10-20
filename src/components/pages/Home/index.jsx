@@ -4,6 +4,16 @@ import './index1.css';
 import './globale.css';
 import ImageAbout from '/src/assets/images/8d681f98b5a57d724973bad8abcde996.jpg';
 import panierImage from '/src/assets/images/bgPanier.png';
+import panierBag from '/src/assets/images/carteImage.png';
+
+import collaboration from '/src/assets/images/collaboration.webp';
+import Ressoucer from '/src/assets/images/ressoucer.jpeg';
+import BackPage1 from '/src/assets/images/bagPage1.png';
+import ImagePerson from '/src/assets/images/main.png';
+import personne from '/src/assets/images/personne.png';
+import resher from '/src/assets/images/resher.png'
+import ImageAbout2 from '/src/assets/images/about10.png'
+import ReactPlayer from 'react-player';
 import { fetchProduits, fetchCategorie,fetchProduitByCatégorie } from '/src/apiService'; 
 import Swal from 'sweetalert2';
 import config from '/src/config';
@@ -137,6 +147,7 @@ const [produits, setProduits] = useState([]);
   <div className="container-fluid">
     <div className="rowtop_1 d-flex align-items-center">
       <div className="text-content">
+		
         <h1>Bienvenue sur SénAgri</h1>
         <p>
           SénAgri est une plateforme qui connecte les acteurs du secteur agricole sénégalais à travers des solutions technologiques innovantes. Elle vise à moderniser l'agriculture et à promouvoir une croissance durable au service des producteurs locaux.
@@ -159,8 +170,8 @@ const [produits, setProduits] = useState([]);
  <div className="container-fluid">
    <div className="list_h1 text-center mb-4 row">
     <div className="col-md-12">
-	 <h2 className="mb-0"><span className="col_green">Top</span> Sale</h2>
-	</div>
+	 <h2 className="mb-0"><span className="col_green">Meilleure </span>vente</h2>
+	</div> 
    </div>
    <div className="list_h2 row">
    {filteredProduits.slice(0,6).map(produit => (
@@ -178,11 +189,11 @@ const [produits, setProduits] = useState([]);
 			  </div>
 	       </div>
 		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-35%</h6>
+	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">{produit.quantite}%</h6>
 	       </div>
 	   </div>
 	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">HDPE 12x12 Grow Bags for</a></h6>
+	     <h6 className="fw-bold font_14"><a href="#">{produit.libelle}</a></h6>
 		 <span className="col_yell">
 		  <i className="fa fa-star"></i>
 		  <i className="fa fa-star"></i>
@@ -190,8 +201,8 @@ const [produits, setProduits] = useState([]);
 		  <i className="fa fa-star"></i>
 		  <i className="fa fa-star-half-o"></i>
 		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 189.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 430.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Add to Cart</a></h6>
+		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">{produit.prix}cfa</span> </h6>
+		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Ajouter au panier</a></h6>
 	   </div>
 	 </div>
     
@@ -248,10 +259,7 @@ const [produits, setProduits] = useState([]);
 	</div>
 	<div className="col-md-6">
     <div className="serv_nm text-center">
-  <iframe 
-    src="https://assets.pinterest.com/ext/embed.html?id=883057439427349880" 
-    scrolling="no">
-  </iframe>
+<img src={BackPage1} alt="" />
 </div>
 
 	</div>
@@ -297,8 +305,8 @@ const [produits, setProduits] = useState([]);
 <section id="grow" className="p_3">
  <div className="container-fluid">
    <div className="list_h1 text-center mb-4 row">
-    <div className="col-md-12">
-	 <h2 className="mb-0">Looking for <span className="col_green">Grow</span> Bags?</h2>
+    <div className="col-md-12"> 
+	 <h2 className="mb-0">Ce que <span className="col_green">nous </span> offrons</h2>
 	</div>
    </div>
    <div className="grow_1 row">
@@ -306,34 +314,34 @@ const [produits, setProduits] = useState([]);
       <div className="grow_1i text-center">
 	    <div className="grid clearfix">
 				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src={ImageAbout} className="w-100" alt="abc"/></a>
+					<a href="#"><img src={panierBag} className="w-100" alt="abc"/></a>
                    
 				  </figure>
 			  </div>
 	   <h3 className="mt-3 mb-3">HDPE Grow Bags</h3>
-	   <h6 className="mb-0"><a className="button  text-center" href="#">Shop HDPE Bags</a></h6>
+	   <h6 className="mb-0"><a className="button  text-center" href="#">Vente de produits agricoles</a></h6>
 	  </div>
 	</div>
 	<div className="col-md-4">
       <div className="grow_1i text-center">
 	    <div className="grid clearfix">
 				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src={ImageAbout} className="w-100" alt="abc"/></a>
+					<a href="#"><img src={collaboration} className="w-100" alt="abc"/></a>
 				  </figure>
 			  </div>
 	   <h3 className="mt-3 mb-3">GEO Fabric Grow Bags</h3>
-	   <h6 className="mb-0"><a className="button  text-center" href="#">Shop Geo Fabric Bags</a></h6>
+	   <h6 className="mb-0"><a className="button  text-center" href="#">Collaboration entre agriculteurs</a></h6>
 	  </div>
 	</div>
 	<div className="col-md-4">
       <div className="grow_1i text-center">
 	    <div className="grid clearfix">
 				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src={ImageAbout} className="w-100" alt="abc"/></a>
+					<a href="#"><img src={Ressoucer} className="w-100" alt="abc"/></a>
 				  </figure>
 			  </div>
 	   <h3 className="mt-3 mb-3">Rectangle Grow Bag</h3>
-	   <h6 className="mb-0"><a className="button  text-center" href="#">Shop Rectangular Bags</a></h6>
+	   <h6 className="mb-0"><a className="button  text-center" href="#">Ressources agricoles</a></h6>
 	  </div>
 	</div>
    </div>
@@ -388,11 +396,11 @@ const [produits, setProduits] = useState([]);
 			  </div>
 	       </div>
 		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-35%</h6>
+	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">{produit.quantite}%</h6>
 	       </div>
 	   </div>
 	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">All Time Vegetable Seeds</a></h6>
+	     <h6 className="fw-bold font_14"><a href="#">{produit.libelle}</a></h6>
 		 <span className="col_yell">
 		  <i className="fa fa-star"></i>
 		  <i className="fa fa-star"></i>
@@ -400,7 +408,7 @@ const [produits, setProduits] = useState([]);
 		  <i className="fa fa-star"></i>
 		  <i className="fa fa-star-half-o"></i>
 		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 189.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 430.00</span></h6>
+		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">{produit.prix}</span> </h6>
 		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
 	   </div>
 	 </div>
@@ -705,107 +713,33 @@ const [produits, setProduits] = useState([]);
  </div>
 </section>
 
-<section id="seed" className="p_2 bg_lighto carousel_p">
- <div className="container-fluid">
-   <div className="list_h1 text-center mb-4 row">
-    <div className="col-md-12">
-	 <h2 className="mb-0">Looking for <span className="col_green">Seeds</span>?</h2>
-	</div>
-   </div>
-   <div className="row seed_1">
- <div className="col-md-12">
-   <div id="carouselExampleCaptions1" className="carousel slide" data-bs-ride="carousel">
-  <div className="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="0" className="active" aria-label="Slide 1" aria-current="true"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="1" aria-label="Slide 2" className=""></button>
-  </div>
-  <div className="carousel-inner">
-  
-    <div className="carousel-item active" >
-    
-       <div className="seed_1i row" >
-       {filteredProduits.slice(0,6).map(produit => (
-	    <div className="col-md-2 col-sm-6 text-center" key={produit.id} >
-		   <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-                  <div className='effectImage'>
-                    <img src={`${config.imageBaseUrl}/${produit.image}`} className="w-100" alt={produit.nom}/>
-                    </div>
-				  </figure>
-			  </div>
-		  <h5 className="mt-3 mb-4">Vegetable Seed</h5>
-		  <h6 className="mb-0"><a className="button" href="#">Buy Seeds</a></h6>
-		</div>
-		   ))}
-	   </div>
-     
-    </div>
-   
-    <div className="carousel-item">
-         <div className="seed_1i row">
-	    <div className="col-md-2 col-sm-6 text-center">
-		   <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/37.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-		  <h5 className="mt-3 mb-4">Vegetable Seed</h5>
-		  <h6 className="mb-0"><a className="button" href="#">Buy Seeds</a></h6>
-		</div>
-		<div className="col-md-2 col-sm-6 text-center">
-		   <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/38.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-		  <h5 className="mt-3 mb-4">Flower Seed</h5>
-		  <h6 className="mb-0"><a className="button" href="#">Buy Seeds</a></h6>
-		</div>
-		<div className="col-md-2 col-sm-6 text-center">
-		   <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/39.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-		  <h5 className="mt-3 mb-4">Fruit Seed</h5>
-		  <h6 className="mb-0"><a className="button" href="#">Buy Seeds</a></h6>
-		</div>
-		<div className="col-md-2 col-sm-6 text-center">
-		   <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/40.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-		  <h5 className="mt-3 mb-4">Herb Seed</h5>
-		  <h6 className="mb-0"><a className="button" href="#">Buy Seeds</a></h6>
-		</div>
-		<div className="col-md-2 col-sm-6 text-center">
-		   <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/41.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-		  <h5 className="mt-3 mb-4">Microgreens</h5>
-		  <h6 className="mb-0"><a className="button" href="#">Buy Seeds</a></h6>
-		</div>
-		<div className="col-md-2 col-sm-6 text-center">
-		   <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/42.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-		  <h5 className="mt-3 mb-4">Bulbs</h5>
-		  <h6 className="mb-0"><a className="button" href="#">Buy Seeds</a></h6>
-		</div>
-	   </div>
-    </div>
-  </div>
-</div>
- </div>
-</div>
- </div>
-</section>
-
+ {/* section numero 1 */}
+ <section className='section1'>
+          <div className='container'>
+            <div className='container_un'>
+        <div> 
+          <img src={ImageAbout2} alt="à propos" style={{ width: '570px', height: '475px' }} />
+        </div>
+        <div className='section_description'>
+          <div className='titreApropos'>
+          <div className='trh1'></div>
+          <h6>À propos de SénAgri</h6>
+          </div>
+          <h1>Améliorer la production agricole au sénégal</h1>
+          <div className='descriptionApropos'>
+          <div className='trh2'></div>
+          <p>SénAgri est une initiative dédiée à la transformation du secteur agricole sénégalais à travers l&apos;intégration de la technologie. Nous accompagnons les agriculteurs, les coopératives, et les investisseurs en offrant 
+            des solutions qui facilitent la commercialisation, l&apos;accès aux financements et l&apos;optimisation des
+             pratiques agricoles. Notre mission est de contribuer à une agriculture plus moderne, durable et connectée,
+              pour une meilleure rentabilité et une croissance inclusive.</p>
+             
+          </div>
+          <button>En savoire plus</button>
+        </div>
+        </div>
+        </div>
+        </section>
+        {/* section numéro 2 */}
 
 
 
@@ -813,7 +747,7 @@ const [produits, setProduits] = useState([]);
  <div className="container-fluid">
    <div className="list_h1 text-center mb-4 row">
     <div className="col-md-12">
-	 <h2 className="mb-0">Why <span className="col_green">Constituent</span> Bazar</h2>
+	 <h2 className="mb-0">Pourquoi <span className="col_green">nous </span> choisir?</h2>
 	</div>
    </div>
    <div className="organ_1 row">
@@ -828,8 +762,8 @@ const [produits, setProduits] = useState([]);
 		 </div>
 		 <div className="col-md-9 col-9">
 		  <div className="organ_1ir">
-		   <h6 className="fw-bold">Free Shipping</h6>
-		   <p className="mb-0 font_14">Free Shipping for orders over Rs.490</p>
+		   <h6 className="fw-bold">Livraison gratuite</h6>
+		   <p className="mb-0 font_14">Livraison gratuite pour les commandes supérieures à 5000 CFA</p>
 		  </div>
 		 </div>
 	   </div>
@@ -840,13 +774,13 @@ const [produits, setProduits] = useState([]);
 	   <div className="organ_1i row">
 	     <div className="col-md-3 pe-0 col-3">
 		  <div className="organ_1il">
-		   <img src="img/43.png" className="w-100" alt="abc"/>
+		   <img src={ImagePerson} className="w-100" alt="abc"/>
 		  </div>
 		 </div>
 		 <div className="col-md-9 col-9">
 		  <div className="organ_1ir">
-		   <h6 className="fw-bold">Money Guarantee</h6>
-		   <p className="mb-0 font_14">Within 7 days for an exchange.</p>
+		   <h6 className="fw-bold">SIMPLICITÉ</h6>
+		   <p className="mb-0 font_14">Explorez facilement notre plateforme et nos outils intuitifs pour un parcours d 'investissement agricole sans stress.</p>
 		  </div>
 		 </div>
 	   </div>
@@ -857,13 +791,13 @@ const [produits, setProduits] = useState([]);
 	   <div className="organ_1i row">
 	     <div className="col-md-3 pe-0 col-3">
 		  <div className="organ_1il">
-		   <img src="img/44.png" className="w-100" alt="abc"/>
+		   <img src={personne} className="w-100" alt="abc"/>
 		  </div>
 		 </div>
 		 <div className="col-md-9 col-9">
 		  <div className="organ_1ir">
-		   <h6 className="fw-bold">Whatsapp Support</h6>
-		   <p className="mb-0 font_14">24 hours a day, 7 days a week</p>
+		   <h6 className="fw-bold">TRANSPARENCE</h6>
+		   <p className="mb-0 font_14">Accédez à des ressources utiles et des conseils aux agriculteurs et jardiniers, tels que des articles ,forums de discussion, etc.</p>
 		  </div>
 		 </div>
 	   </div>
@@ -874,13 +808,13 @@ const [produits, setProduits] = useState([]);
 	   <div className="organ_1i row">
 	     <div className="col-md-3 pe-0 col-3">
 		  <div className="organ_1il">
-		   <img src="img/45.png" className="w-100" alt="abc"/>
+		   <img src={resher} className="w-100" alt="abc"/>
 		  </div>
 		 </div>
 		 <div className="col-md-9 col-9">
 		  <div className="organ_1ir">
-		   <h6 className="fw-bold">Flexible Payment</h6>
-		   <p className="mb-0 font_14">Pay with Multiple Payment Methods</p>
+		   <h6 className="fw-bold">SOUTIEN</h6>
+		   <p className="mb-0 font_14">Grâce à nos outils de communication et de collaboration, vous pouvez facilement entrer en contact avec d'autres agriculteurs et commerçants,.</p>
 		  </div>
 		 </div>
 	   </div>
@@ -891,10 +825,7 @@ const [produits, setProduits] = useState([]);
     <div className="col-md-12">
        <div className="organ_2i position-relative">
        <div className="organ_2i1">
-  <iframe 
-    src="https://assets.pinterest.com/ext/embed.html?id=154670568446448818" 
-    scrolling="no">
-  </iframe>
+	   <iframe src="https://assets.pinterest.com/ext/embed.html?id=736479345325002135" height="438" width="600" frameborder="0" scrolling="no" ></iframe>
 </div>
 
 		 <div className="organ_2i2 position-absolute top-0 w-100">
@@ -906,119 +837,6 @@ const [produits, setProduits] = useState([]);
  </div>
 </section>
 
-<section id="testim" className="p_3 pt-0 carousel_p">
- <div className="container-fluid">
-   <div className="list_h1 text-center mb-4 row">
-    <div className="col-md-12">
-	 <h2 className="mb-0">What People Are <span className="col_green">Saying</span></h2>
-	</div>
-   </div>
-   <div className="testim_1  row">
-    <div className="col-md-12">
-      <div id="carouselExampleCaptions2" className="carousel slide" data-bs-ride="carousel">
-  <div className="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" className="active" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1" aria-label="Slide 2" className="" aria-current="true"></button>
-  </div>
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-       <div className="testim_1i row">
-	     <div className="col-md-4">
-		   <div className="testim_1i1 text-center">
-		      <span className="col_brow">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		 </span>
-		 <p className="mt-3">"As a child, I loved farming with my family. Thanks to OrganicBazar, I now have a garden of my own. Their fertilizers have filled my garden with fruits and flowers. Exceptional quality products!"</p>
-		 <h6 className="font_14 mb-3">Lorem Porta (Make-up Artist)</h6>
-		 <img src="img/48.jpg" className="rounded-circle" alt="abc"/>
-		   </div>
-		 </div>
-		 <div className="col-md-4">
-		   <div className="testim_1i1 text-center">
-		      <span className="col_brow">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		 </span>
-		 <p className="mt-3">"OrganicBazar has transformed my terrace into a green haven. The products are reliable, and their customer service is top-notch. If you're considering starting a garden, OrganicBazar is your go-to destination."</p>
-		 <h6 className="font_14 mb-3">Ipsum Quis (Entrepreneur)</h6>
-		 <img src="img/49.jpg" className="rounded-circle" alt="abc"/>
-		   </div>
-		 </div>
-		 <div className="col-md-4">
-		   <div className="testim_1i1 text-center">
-		      <span className="col_brow">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		 </span>
-		 <p className="mt-3">"A year into gardening, and OrganicBazar's seeds have never let me down. Quality and packaging are top-notch. It's a great platform for new gardeners, but a look at pricing could take it to the next level."</p>
-		 <h6 className="font_14 mb-3">Nulla Sem (Teacher)</h6>
-		 <img src="img/50.jpg" className="rounded-circle" alt="abc"/>
-		   </div>
-		 </div>
-	   </div>
-    </div>
-    <div className="carousel-item">
-       <div className="testim_1i row">
-	     <div className="col-md-4">
-		   <div className="testim_1i1 text-center">
-		      <span className="col_brow">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		 </span>
-		 <p className="mt-3">"As a child, I loved farming with my family. Thanks to OrganicBazar, I now have a garden of my own. Their fertilizers have filled my garden with fruits and flowers. Exceptional quality products!"</p>
-		 <h6 className="font_14 mb-3">Lorem Porta (Make-up Artist)</h6>
-		 <img src="img/48.jpg" className="rounded-circle" alt="abc"/>
-		   </div>
-		 </div>
-		 <div className="col-md-4">
-		   <div className="testim_1i1 text-center">
-		      <span className="col_brow">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		 </span>
-		 <p className="mt-3">"OrganicBazar has transformed my terrace into a green haven. The products are reliable, and their customer service is top-notch. If you're considering starting a garden, OrganicBazar is your go-to destination."</p>
-		 <h6 className="font_14 mb-3">Ipsum Quis (Entrepreneur)</h6>
-		 <img src="img/49.jpg" className="rounded-circle" alt="abc"/>
-		   </div>
-		 </div>
-		 <div className="col-md-4">
-		   <div className="testim_1i1 text-center">
-		      <span className="col_brow">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		 </span>
-		 <p className="mt-3">"A year into gardening, and OrganicBazar's seeds have never let me down. Quality and packaging are top-notch. It's a great platform for new gardeners, but a look at pricing could take it to the next level."</p>
-		 <h6 className="font_14 mb-3">Nulla Sem (Teacher)</h6>
-		 <img src="img/50.jpg" className="rounded-circle" alt="abc"/>
-		   </div>
-		 </div>
-	   </div>
-    </div>
-  </div>
-</div>
-	</div>
-   </div>
- </div>
-</section>
 
 <section id="learn" className="p_3 bg_light">
  <div className="container-fluid">
@@ -1028,7 +846,16 @@ const [produits, setProduits] = useState([]);
 	    <div className="learn_1l1">
 	      <div className="grid clearfix">
 				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/51.jpg" className="w-100" alt="abc"/></a>
+					 
+<div className='player-wrapper'>
+      <ReactPlayer
+        className='react-player'
+        url='https://youtu.be/GEplt9E7IOg'
+        width='100%'
+        height='100%'
+        controls={true}
+      />
+    </div>
 				  </figure>
 			  </div>
 	  </div>
@@ -1041,8 +868,8 @@ const [produits, setProduits] = useState([]);
 		   </div>
 		   <div className="col-md-9 col-9">
 		     <div className="learn_1l2ir">
-			   <h3 className="text-white">Terrace & Gardening</h3>
-			   <h5 className="text-light">By Lorem Porta</h5>
+			   <h3 className="text-white">Agriculture & Jardinage</h3>
+			   <h5 className="text-light">Par Équipe de sénAgri</h5>
 			   <h6 className="mb-0 mt-3"><a className="font_12 fw-bold d-inline-block bg_oran lh-1 text-white rounded_30 p-1 px-3" href="#"><i className="fa fa-bell me-1"></i> SUBSCRIBE</a></h6>
 			 </div>
 		   </div>
