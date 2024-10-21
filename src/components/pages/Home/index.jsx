@@ -5,7 +5,7 @@ import './globale.css';
 import ImageAbout from '/src/assets/images/8d681f98b5a57d724973bad8abcde996.jpg';
 import panierImage from '/src/assets/images/bgPanier.png';
 import panierBag from '/src/assets/images/carteImage.png';
-
+import { NavLink, useParams } from 'react-router-dom'; 
 import collaboration from '/src/assets/images/collaboration.webp';
 import Ressoucer from '/src/assets/images/ressoucer.jpeg';
 import BackPage1 from '/src/assets/images/bagPage1.png';
@@ -18,6 +18,7 @@ import { fetchProduits, fetchCategorie,fetchProduitByCatégorie } from '/src/api
 import Swal from 'sweetalert2';
 import config from '/src/config';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Index = () => {
 
 const [produits, setProduits] = useState([]);
@@ -29,7 +30,7 @@ const [produits, setProduits] = useState([]);
   const [selectionCategorie,setselectionCategorie]=useState(null);
   const [panier, setPanier] = useState([]);
   const [quantites, setQuantites] = useState({});
-
+  const [activeIndex, setActiveIndex] = useState(null);
   // Récupération des produits
   useEffect(() => {
     const getProduits = async () => {
@@ -139,7 +140,90 @@ const [produits, setProduits] = useState([]);
       });
     });
   };
-  
+  const navigate = useNavigate(); 
+  const handleViewDetails = (produitId) => {
+    navigate(`/produits/${produitId}`); 
+  };
+    // Récupérer le panier depuis le localStorage au chargement du composant
+	useEffect(() => {
+		const panierStocké = localStorage.getItem('panier');
+		if (panierStocké) {
+		  const panierParsed = JSON.parse(panierStocké);
+		  setPanier(panierParsed);
+		  const initialQuantites = panierParsed.reduce((acc, produit) => {
+			acc[produit.id] = produit.quantite;
+			return acc;
+		  }, {});
+		  setQuantites(initialQuantites);
+		}
+	  }, []);
+	
+	  // Sauvegarder le panier dans le localStorage à chaque mise à jour
+	  useEffect(() => {
+		if (panier.length > 0) {
+		  localStorage.setItem('panier', JSON.stringify(panier));
+		  console.log('Panier mis à jour dans localStorage:', panier);
+		}
+	  }, [panier]);
+	
+	  const ajouterAuPanier = (produit, quantite = 1) => {
+		const produitExist = panier.find(item => item.id === produit.id);
+	  
+		let nouveauPanier;
+	  
+		if (produitExist) {
+		  if (produitExist.quantite + quantite <= produit.quantite) { 
+			nouveauPanier = panier.map(item => 
+			  item.id === produit.id 
+			  ? { ...item, quantite: item.quantite + quantite }
+			  : item
+			);
+		  } else {
+			console.log("Stock insuffisant");
+			return; 
+		  }
+		} else {
+		  if (quantite <= produit.quantite) {
+			nouveauPanier = [...panier, { ...produit, quantite }];
+		  } else {
+			console.log("Stock insuffisant");
+			return; 
+		  }
+		}
+	  
+		setPanier(nouveauPanier);
+		localStorage.setItem("panier", JSON.stringify(nouveauPanier)); 
+		Swal.fire({
+		  position: "top-end",
+		  icon: "success",
+		  title: "Produit ajouté au panier avec succcés",
+		  showConfirmButton: false,
+		  timer: 1500
+		});
+		console.log("Produit ajouté au panier :", produit);
+		console.log("Panier actuel :", nouveauPanier);
+	  };
+
+  const faqData = [
+    {
+      question: "Comment fonctionne SénAgri ?",
+      answer:
+        "SénAgri connecte les producteurs locaux avec des acheteurs potentiels grâce à des solutions technologiques innovantes. Les utilisateurs peuvent s'inscrire pour accéder à des services variés.",
+    },
+    {
+      question: "Comment puis-je m'inscrire ?",
+      answer:
+        "Vous pouvez vous inscrire en cliquant sur le bouton 'Rejoignez-nous' en haut de la page et en remplissant les informations nécessaires.",
+    },
+    {
+      question: "Quels sont les avantages d'utiliser SénAgri ?",
+      answer:
+        "SénAgri permet aux producteurs de vendre leurs produits plus facilement, tout en offrant aux acheteurs une large gamme de produits locaux de qualité.",
+    },
+  ];
+  const toggleFaq = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
   return (
     <div>
       <body>
@@ -183,7 +267,10 @@ const [produits, setProduits] = useState([]);
 	          <div className="grid clearfix">
 				  <figure className="effect-jazz mb-0">
 					<div className='effectImage'>
-                    <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} className="w-100" />
+						
+						<img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} className="w-100" onClick={() => handleViewDetails(produit.id)} />
+						
+                   
                     </div>
 				  </figure>
 			  </div>
@@ -193,7 +280,7 @@ const [produits, setProduits] = useState([]);
 	       </div>
 	   </div>
 	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">{produit.libelle}</a></h6>
+	     <h6 className="fw-bold font_14" ><a>{produit.libelle}</a></h6>
 		 <span className="col_yell">
 		  <i className="fa fa-star"></i>
 		  <i className="fa fa-star"></i>
@@ -202,7 +289,7 @@ const [produits, setProduits] = useState([]);
 		  <i className="fa fa-star-half-o"></i>
 		 </span>
 		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">{produit.prix}cfa</span> </h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Ajouter au panier</a></h6>
+		 <h6 className="mb-0 mt-4 text-center"><a className="button" onClick={() =>ajouterAuPanier(produit)}>Ajouter au panier</a></h6>
 	   </div>
 	 </div>
     
@@ -226,9 +313,9 @@ const [produits, setProduits] = useState([]);
 	 <div className="serv_nml">
 	   <div className="serv_nl border_1  position-relative">
 	   <div className="serv_nli">
-	     <h5>Shop</h5>
+	     <h5>Boutique</h5>
 		 <hr className="line_1"/>
-		 <p className="mb-0">Providing simple shopping cart flow for users and other services.</p>
+		 <p className="mb-0">Fournir un flux de panier d'achat simple pour les utilisateurs et d'autres services.</p>
 	   </div>
 	   <div className="serv_nli1 position-absolute">
 	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-shopping-bag"></i></span>
@@ -236,9 +323,9 @@ const [produits, setProduits] = useState([]);
 	 </div>
 	 <div className="serv_nl border_1 position-relative mt-4">
 	   <div className="serv_nli">
-	     <h5>Relaxation</h5>
+	     <h5>Détente</h5>
 		 <hr className="line_1"/>
-		 <p className="mb-0">Bring nature in to your life, greater productivity and relaxation.</p>
+		 <p className="mb-0">Faites entrer la nature dans votre vie, améliorez votre productivité et votre détente.</p>
 	   </div>
 	   <div className="serv_nli1 position-absolute">
 	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-dollar"></i></span>
@@ -246,9 +333,9 @@ const [produits, setProduits] = useState([]);
 	 </div>
 	 <div className="serv_nl border_1  position-relative mt-4">
 	   <div className="serv_nli">
-	     <h5>Delivery</h5>
+	     <h5>Livraison</h5>
 		 <hr className="line_1"/>
-		 <p className="mb-0">Delivery to your door, better mental wellbeing and happiness.</p>
+		 <p className="mb-0">Livraison à votre porte, meilleur bien-être mental et bonheur.</p>
 	   </div>
 	   <div className="serv_nli1 position-absolute">
 	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-truck"></i></span>
@@ -267,32 +354,35 @@ const [produits, setProduits] = useState([]);
 	  <div className="serv_nml">
 	   <div className="serv_nl border_1   position-relative">
 	   <div className="serv_nli text-end serv_nlio">
-	     <h5>Quality</h5>
+	     <h5>collaboration</h5>
 		 <hr className="line_1 ms-auto"/>
-		 <p className="mb-0">Providing quality plants to gardeners. Decorates your home with plants</p>
+		 <p className="mb-0">La collaboration est au cœur de notre mission, car nous croyons que le succès se construit grâce à la coopération et au partage des idées.</p>
 	   </div>
 	   <div className="serv_nli1 position-absolute serv_nli1o">
-	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-trademark"></i></span>
+	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fas fa-handshake"></i></span>
 	   </div>
 	 </div>
 	 <div className="serv_nl border_1   position-relative mt-4">
 	   <div className="serv_nli text-end serv_nlio">
-	     <h5>Nursery Experts</h5>
+	     <h5>Visibilité des Produits</h5>
 		 <hr className="line_1 ms-auto"/>
-		 <p className="mb-0">Get experts tip to how you can care your plants in you home.</p>
+		 <p className="mb-0">Augmentez la portée et la visibilité de vos produits grâce à des solutions qui les mettent en avant de manière efficace et attrayante.</p>
 	   </div>
 	   <div className="serv_nli1 position-absolute serv_nli1o">
-	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-user-plus"></i></span>
+	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-eye"></i>
+		 </span>
 	   </div>
 	 </div>
 	 <div className="serv_nl border_1 position-relative mt-4">
 	   <div className="serv_nli text-end serv_nlio">
-	     <h5>24/7 Support Center</h5>
+	     <h5>Filtres et Options de Tri</h5>
 		 <hr className="line_1 ms-auto"/>
-		 <p className="mb-0">Lorem ipsum dolor sit amet, consectetuer adipiscing sed diam nibh euismod</p>
+		 <p className="mb-0">Permettez aux utilisateurs de filtrer les produits par catégorie, prix, popularité, etc.
+		 </p>
 	   </div>
 	   <div className="serv_nli1 position-absolute serv_nli1o">
-	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-phone"></i></span>
+	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-filter"></i>
+		 </span>
 	   </div>
 	 </div>
 	 </div>
@@ -319,7 +409,12 @@ const [produits, setProduits] = useState([]);
 				  </figure>
 			  </div>
 	   <h3 className="mt-3 mb-3">HDPE Grow Bags</h3>
-	   <h6 className="mb-0"><a className="button  text-center" href="#">Vente de produits agricoles</a></h6>
+	   <h6 className="mb-0">
+		<NavLink to="/produit">
+		<a className="button  text-center">Vente de produits agricoles</a>
+		</NavLink>
+		</h6>
+
 	  </div>
 	</div>
 	<div className="col-md-4">
@@ -330,7 +425,11 @@ const [produits, setProduits] = useState([]);
 				  </figure>
 			  </div>
 	   <h3 className="mt-3 mb-3">GEO Fabric Grow Bags</h3>
-	   <h6 className="mb-0"><a className="button  text-center" href="#">Collaboration entre agriculteurs</a></h6>
+	   <h6 className="mb-0">
+	   <NavLink to="/forum">
+		<a className="button  text-center">Collaboration entre agriculteurs</a>
+		</NavLink>
+		</h6>
 	  </div>
 	</div>
 	<div className="col-md-4">
@@ -341,380 +440,20 @@ const [produits, setProduits] = useState([]);
 				  </figure>
 			  </div>
 	   <h3 className="mt-3 mb-3">Rectangle Grow Bag</h3>
-	   <h6 className="mb-0"><a className="button  text-center" href="#">Ressources agricoles</a></h6>
+	   <h6 className="mb-0">
+		<NavLink to="/ressources">
+		<a className="button  text-center">Ressources agricoles</a>
+		</NavLink>
+		</h6>
 	  </div>
 	</div>
    </div>
  </div>
 </section>
-<section id="disc" className="displayTope">
- <div className="container-fluid">
-   <div className="list_h1 text-center mb-4 row">
-    <div className="col-md-12">
-	 <h2 className="mb-0">Discover</h2>
-	</div>
-   </div>
-   <div className="disc_1 text-center mb-4 row">
-    <div className="col-md-12">
-	    <ul className="nav nav-tabs mb-0 border-0 justify-content-center">
-<li className="nav-item d-inline-block me-2">
-<a href="#home" data-bs-toggle="tab" aria-expanded="false" className="nav-link active">
-<span className="d-md-block">New Arrivals</span>
-</a>
-</li>
-<li className="nav-item d-inline-block me-2">
-<a href="#profile" data-bs-toggle="tab" aria-expanded="true" className="nav-link">
-<span className="d-md-block">Today's Sale</span>
-</a>
-</li>
-<li className="nav-item d-inline-block">
-<a href="#profile1" data-bs-toggle="tab" aria-expanded="true" className="nav-link">
-<span className="d-md-block">Lighting Deals</span>
-</a>
-</li>
 
-</ul>
-	</div>
-   </div>
-   <div className="disc_2 row">
-     <div className="col-md-12">
-	   <div className="tab-content">
-<div className="tab-pane active" id="home">
-   <div className="list_h2 row">
-   {filteredProduits.slice(0,6).map(produit => (
-    <div className="col"  key={produit.id}>
-    
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-                  <div className='effectImage'>
-                    <img src={`${config.imageBaseUrl}/${produit.image}`} className="w-100" alt={produit.nom}/>
-                    </div>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">{produit.quantite}%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">{produit.libelle}</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">{produit.prix}</span> </h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-     
-	</div>
-	  ))}
-   </div>
-</div>
-<div className="tab-pane" id="profile">
-   <div className="list_h2 row">
-    <div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/27.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-60%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">All Time Vegetable Seeds</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 189.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 430.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/28.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-10%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">40 Variety of Flowers Seed</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 489.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 990.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/29.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-20%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">45 Variety of Vegetable</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 389.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 680.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/30.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-30%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">Summer Vegetable and</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 289.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 699.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/31.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-26%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">Summer Vegetable Seeds</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 269.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 799.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-   </div>
-</div>
-
-<div className="tab-pane" id="profile1">
- <div className="list_h2 row">
-    <div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/32.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-23%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">All Time Vegetable Seeds</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 189.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 430.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/33.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-33%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">40 Variety of Flowers Seed</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 489.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 990.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/34.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-40%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">45 Variety of Vegetable</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 389.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 680.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/35.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-14%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">Summer Vegetable and</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 289.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 699.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-	<div className="col">
-     <div className="list_h2i">
-	    <div className="list_h2i1 position-relative">
-	        <div className="list_h2i1i">
-	          <div className="grid clearfix">
-				  <figure className="effect-jazz mb-0">
-					<a href="#"><img src="img/36.jpg" className="w-100" alt="abc"/></a>
-				  </figure>
-			  </div>
-	       </div>
-		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">-38%</h6>
-	       </div>
-	   </div>
-	    <div className="list_h2i2">
-	     <h6 className="fw-bold font_14"><a href="#">Summer Vegetable Seeds</a></h6>
-		 <span className="col_yell">
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star"></i>
-		  <i className="fa fa-star-half-o"></i>
-		 </span>
-		 <h6 className="mt-2 font_14"><span className="span_1 col_green fw-bold">$ 269.00</span> <span className="span_2 ms-2 text-decoration-line-through">$ 799.00</span></h6>
-		 <h6 className="mb-0 mt-4 text-center"><a className="button" href="#">Select Options</a></h6>
-	   </div>
-	 </div>
-	</div>
-   </div>
- </div>
-
-</div>
-	 </div>
-   </div>
- </div>
-</section>
 
  {/* section numero 1 */}
- <section className='section1'>
+ <section className='section1 p_1 pb-0' >
           <div className='container'>
             <div className='container_un'>
         <div> 
@@ -879,15 +618,44 @@ const [produits, setProduits] = useState([]);
 	</div>
 	<div className="col-md-6">
       <div className="learn_1r mt-4">
-	    <h1 className="font_60"><span className="col_green">Learn</span> with Us</h1>
-		<p className="mt-3">The cucumber is a widely-cultivated creeping vine plant in the Cucurbitaceae family. It contains Vitamins A, C, and K and is rich in magnesium, potassium, iron, calcium, copper, zinc, and many other nutrients and minerals. Buy good quality Cucumber (Kheera) Hybrid Seeds best price in India from www.info@gmail.com with a High Germination rate. Are You New to Gardening? Elevate Your Skills and   Become a PRO—Don't Miss This Chance!</p>
+	    <h1 className="font_60"><span className="col_green">Ce que </span>nous faisons</h1>
+		<div className='titreApropos'>
+          <div className='trh1'></div>
+          <h6>Ce que nous faisons</h6>
+          </div>
+		<h1>Nous sommes différents des autres pour fournir des services</h1>
+
+		<p className="mt-6">hez SénAgri, nous révolutionnons le secteur agricole en combinant innovation technologique et
+             savoir-faire local. Nous offrons une plateforme qui connecte agriculteurs, investisseurs et
+              consommateurs pour faciliter la commercialisation des produits agricoles, l&apos;accès au financement,
+               et la gestion des exploitations agricoles. Grâce à nos services, nous permettons aux acteurs du secteur
+                d&apos;optimiser leurs performances, d&apos;accroître leur rentabilité et de contribuer au développement durable de 
+                l&apos;agriculture au Sénégal.</p>
 		<h6 className="mb-0 mt-4"><a className="button_2" href="#">Subscribe on YouTube</a></h6>
 	  </div>
 	</div>
    </div>
  </div>
 </section>
-
+<section className="faq-section">
+      <div className="container">
+        <h2>Questions Fréquentes</h2>
+        {faqData.map((item, index) => (
+          <div
+            key={index}
+            className={`faq-item ${activeIndex === index ? "active" : ""}`}
+          >
+            <button className="faq-question" onClick={() => toggleFaq(index)}>
+              {item.question}
+              <span className="arrow">{activeIndex === index ? "▼" : "▶"}</span>
+            </button>
+            <div className={`faq-answer ${activeIndex === index ? "show" : ""}`}>
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
 
 </body>
     </div>

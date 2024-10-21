@@ -32,29 +32,30 @@ const Statistics = () => {
                     },
                 });
     
-                const { total_products_sold, total_clients, total_revenue } = response.data;
+                const { total_orders,total_products_sold, total_clients, total_revenue } = response.data;
     
                 // Mettre à jour les statistiques
                 setStatistics({
+                  total_orders:total_orders||0,
                     totalProductsSold: total_products_sold || 0,
                     totalClients: total_clients || 0,
                     totalRevenue: Number(total_revenue) || 0,
                 });
     
-                // Préparer les données pour le PieChart
-                const pieChartData = [
-                    { name: "Produits Vendus", value: total_products_sold, color: "#8884d8" },
-                    { name: "Clients", value: total_clients, color: "#82ca9d" },
-                    { name: "Revenu", value: Number(total_revenue), color: "#ffc658" }
-                ];
-                console.log("PieChart Data:", pieChartData); 
-    
-                // Préparer les données pour le BarChart
-                const barChartData2 = [
-                    { name: "Produits Vendus", totalProductsSold: total_products_sold, totalClients: 0, totalRevenue: 0 },
-                    { name: "Nombre de Clients", totalProductsSold: 0, totalClients: total_clients, totalRevenue: 0 },
-                    { name: "Revenu Total", totalProductsSold: 0, totalClients: 0, totalRevenue: Number(total_revenue) },
-                ];
+                 // Préparer les données pour le PieChart
+            const pieChartData = [
+              { name: "Produits Vendus", value: total_products_sold, color: "#8884d8" },
+              { name: "Clients", value: total_clients, color: "#82ca9d" },
+              { name: "Commandes Totales", value: total_orders, color: "#ffc658" }
+          ];
+          console.log("PieChart Data:", pieChartData);
+
+          // Préparer les données pour le BarChart
+          const barChartData2 = [
+              { name: "Produits Vendus", totalProductsSold: total_products_sold, totalClients: 0, totalOrders: 0 },
+              { name: "Nombre de Clients", totalProductsSold: 0, totalClients: total_clients, totalOrders: 0 },
+              { name: "Total de Commandes", totalProductsSold: 0, totalClients: 0, totalOrders: total_orders }
+          ];
                 
     
                 setChartData(pieChartData);

@@ -123,7 +123,9 @@ const Accueil = () => {
 {/* section numéro 4 */}
 <section className='container'>
   <div className='sectionCe_que_Nous_ferons'>
+    
 <div className='description_service'>
+
 <div className='titre1'>
   <h1>Ce que nous offrons</h1>
   <div className='hrtr'></div>

@@ -18,7 +18,7 @@ const StatisticsBarChart = ({ data }) => {
             <Legend />
             <Bar dataKey="totalProductsSold" fill="#8884d8" />
             <Bar dataKey="totalClients" fill="#82ca9d" />
-            <Bar dataKey="totalRevenue" fill="#ffc658" />
+            <Bar dataKey="totalOrders" fill="#ffc658" />
         </BarChart>
     );
 };
@@ -30,7 +30,7 @@ StatisticsBarChart.propTypes = {
             name: PropTypes.string.isRequired,
             totalProductsSold: PropTypes.number.isRequired,
             totalClients: PropTypes.number.isRequired,
-            totalRevenue: PropTypes.number.isRequired,
+            totalOrders: PropTypes.number.isRequired,
         })
     ).isRequired,
 };

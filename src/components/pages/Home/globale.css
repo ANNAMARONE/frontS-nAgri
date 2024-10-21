@@ -1,10 +1,4 @@
-/*
-Template Name: Plants Bazar
-File: Layout CSS
-Author: TemplatesOnWeb
-Author URI: https://www.templateonweb.com/
-Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
-*/
+
 body{
     font-family: 'Poppins', sans-serif;
     }
@@ -15,15 +9,15 @@ body{
     p{
     font-size:14px; 
      }
-    a{
+    .fw-bold a{
     color: #333;
     text-decoration:none;
      }
-    a:hover{
+    .fw-bold a:hover{
     text-decoration:none;
     color: #666666;
      }
-    a:focus{
+    .fw-bold a:focus{
     text-decoration:none;
     color: #666666;
      }
@@ -36,12 +30,14 @@ body{
     display: inline-block;
     border-radius:5px;
     border:3px solid transparent;
+    cursor: pointer;
      }
     
     .button:hover{
     background:#149253!important; 
     color:#fff!important;
     border:3px solid #1b7d4c;
+    cursor: pointer;
      }
      
     .button_1{
@@ -760,32 +756,32 @@ body{
     
      .serv_nli1 {
         position: absolute; 
-        top: 20px; /* Ajustez la position verticale */
-       /* Ajustez la position horizontale */
+        top: 20px; 
+   
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 80px; /* Taille plus grande pour plus de visibilité */
+        width: 80px;
         height: 80px;
-        background: linear-gradient(135deg, #ffdf00, #ffc107); /* Dégradé de couleurs jaune */
-        border-radius: 50%; /* Arrondir pour obtenir un cercle parfait */
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Ombre douce pour un effet de profondeur */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation pour les interactions */
-        cursor: pointer; /* Changer le curseur pour indiquer que c'est interactif */
+        background: linear-gradient(135deg, #ffdf00, #ffc107); 
+        border-radius: 50%; 
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
       }
       
       .serv_nli1:hover {
-        transform: scale(1.1); /* Agrandit légèrement lors du survol */
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Augmente l'ombre pour un effet plus profond */
+        transform: scale(1.1); 
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); 
       }
       
       .serv_nli1 span {
-        font-size: 28px; /* Taille de l'icône plus grande */
-        color: #000; /* Couleur de l'icône noire */
+        font-size: 28px; 
+        color: #000; 
       }
       
       .serv_nli1 i {
-        animation: bounce 1.5s infinite; /* Animation de rebond pour rendre l'icône plus dynamique */
+        animation: bounce 1.5s infinite; 
       }
       
       @keyframes bounce {
