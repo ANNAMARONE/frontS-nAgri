@@ -46,7 +46,7 @@ const navigate=useNavigate();
     try {
       const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
         headers: {
-          'X-Api-Key': 'rSQZpfcqKwqqVHvpnJLkzhBQ', 
+          'X-Api-Key': 'S1PnfkaQgxogU4MwKW5fNz95', 
           'Content-Type': 'multipart/form-data',
         },
         responseType: 'blob',

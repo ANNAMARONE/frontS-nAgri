@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import config from '/src/config'; // Ajustez le chemin en fonction de votre structure de dossier
+import config from '/src/config'; 
+import './historique.css';
 
 const HistoriqueCommande = () => {
     const [commandes, setCommandes] = useState([]);
@@ -37,29 +38,62 @@ const HistoriqueCommande = () => {
     }
 
     return (
-        <div>
+        <div className='historiqueCommande'>
             <h2>Commandes concernant vos Produits</h2>
             {commandes.length === 0 ? (
                 <p>Aucune commande trouvée.</p>
             ) : (
-                <ul>
-                    {commandes.map((commande) => (
-                        <li key={commande.id}>
-                            <h3>Commande ID: {commande.id}</h3>
-                            <p>Status: {commande.status_de_commande}</p>
-                            <p>Date: {new Date(commande.created_at).toLocaleDateString()}</p>
-                            <h4>Produits:</h4>
-                            <ul>
-                                {commande.produits.map((produit) => (
-                                    <li key={produit.id}>{produit.nom} - {produit.prix} FCFA</li>
-                                ))}
-                            </ul>
-                        </li>
-                    ))}
-                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID de la Commande</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Produits</th>
+                            <th>Client</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {commandes.map((commande) => (
+                            <tr key={commande.id}>
+                                <td>{commande.id}</td>
+                                <td>{commande.status_de_commande}</td>
+                                <td>{new Date(commande.created_at).toLocaleDateString()}</td>
+                                
+                                <td>
+                                    <table className="produitsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Libellé</th>
+                                                <th>Prix</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {commande.produits.map((produit) => (
+                                                <tr key={produit.id}>
+                                                    <td><img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.libelle} /></td>
+                                                    <td>{produit.libelle}</td>
+                                                    <td>{produit.prix} FCFA</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td>
+                                    <strong>Nom:</strong> {commande.client.nom}<br />
+                                    <strong>Email:</strong> {commande.client.email}<br />
+                                    <strong>Téléphone:</strong> {commande.client.telephone} <br />
+                                    <strong>Adresse:</strong>{commande.client.adresse}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             )}
         </div>
     );
+    
 };
 
 export default HistoriqueCommande;

@@ -50,7 +50,7 @@ const MesCommandes = () => {
                             <h4>Produits:</h4>
                             <ul>
                                 {commande.produits.map((produit) => (
-                                    <li key={produit.id}>{produit.nom} - {produit.prix} FCFA</li>
+                                    <li key={produit.id}>{produit.libelle} - {produit.prix} FCFA</li>
                                 ))}
                             </ul>
                         </li>

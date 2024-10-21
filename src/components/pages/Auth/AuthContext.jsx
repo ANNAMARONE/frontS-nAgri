@@ -1,34 +1,20 @@
-/* eslint-disable no-unused-vars */
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
+    const userFromLocalStorage = localStorage.getItem('user');
+    if (userFromLocalStorage) {
+      setUser(JSON.parse(userFromLocalStorage));
     }
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem('token', token);
-    setIsLoggedIn(true);
-  };
-  
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-  };
-
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
@@ -36,4 +22,8 @@ export const AuthProvider = ({ children }) => {
 
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
+};
+
+export const useAuth = () => {
+  return useContext(AuthContext);
 };

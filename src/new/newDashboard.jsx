@@ -91,7 +91,7 @@ const NewDashboard = () => {
                             <ul>
                                 <li><NavLink to="/afficherProduit" activeClassName="active">Liste des Produits</NavLink></li>
                                 <li><NavLink to="/ajoutProduit" activeClassName="active">Ajouter un Produit </NavLink></li>
-                                <li>Catégories de Produits</li>
+                              
                                 <li>Gestion des Stocks</li>
                             </ul>
                         </li>
@@ -112,29 +112,7 @@ const NewDashboard = () => {
                                 <li>Gestion des Collaborations</li>
                             </ul>
                         </li>
-                        <li>
-                            <FontAwesomeIcon icon={faUsers} /> Clients
-                            <ul>
-                                <li>Liste des Clients</li>
-                                <li>Ajouter un Client</li>
-                                <li>Avis et Retours</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <FontAwesomeIcon icon={faChartPie} /> Rapports
-                            <ul>
-                                <li>Statistiques de Vente</li>
-                                <li>Performance des Produits</li>
-                                <li>Performance des Collaborations</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <FontAwesomeIcon icon={faTags} /> Marketing
-                            <ul>
-                                <li>Promotions</li>
-                                <li>Campagnes Marketing</li>
-                            </ul>
-                        </li>
+
                         <li>
                             <FontAwesomeIcon icon={faCogs} /> Paramètres
                             <ul>
@@ -143,9 +121,7 @@ const NewDashboard = () => {
                                 <li>Préférences</li>
                             </ul>
                         </li>
-                        <li>
-                            <FontAwesomeIcon icon={faEnvelope} /> Support
-                        </li>
+                       
                         <li onClick={handleLogout} >
                         <FontAwesomeIcon icon={faSignOutAlt} />deconnexion
                         </li>

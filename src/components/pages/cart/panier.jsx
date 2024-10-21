@@ -55,12 +55,12 @@ const Panier = () => {
   const montantExpedition = 500; 
   const montantTotalAvecExpedition = montantTotal + montantExpedition;
 
-
   const handleCommander = async () => {
     const userFromLocalStorage = localStorage.getItem('user');
     const user = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
     const token = localStorage.getItem('token');
     const userId = user ? user.id : null;
+
     if (userId && panier.length > 0) {
         setLoading(true);
         setErrorMessage('');
@@ -83,8 +83,12 @@ const Panier = () => {
                 },
             });
 
+            // Vérification du type de paiement
             if (paymentMethod === "en_ligne") {
                 if (response.data.payment_link) {
+                    // Vider le panier avant de rediriger
+                    setPanier([]); 
+                    localStorage.removeItem('panier');
                     window.location.href = response.data.payment_link;
                 } else {
                     Swal.fire({
@@ -94,6 +98,10 @@ const Panier = () => {
                     });
                 }
             } else {
+                // Pour le paiement hors ligne
+                setPanier([]); 
+                localStorage.removeItem('panier');
+                window.location.reload();
                 Swal.fire({
                     icon: 'success',
                     title: 'Succès',
@@ -124,6 +132,7 @@ const Panier = () => {
         });
     }
 };
+
   
   
   

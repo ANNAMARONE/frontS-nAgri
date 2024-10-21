@@ -22,7 +22,7 @@ export const Navbar = () => {
     if (panierFromLocalStorage) {
       const panier = JSON.parse(panierFromLocalStorage);
       setPanierCount(panier.reduce((count, produit) => count + produit.quantite, 0));
-      
+     
     }
   }, []);
  

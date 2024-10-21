@@ -196,7 +196,7 @@ export default function Produit (){
     const produitExist = panier.find(item => item.id === produit.id);
   
     let nouveauPanier;
-  
+    window.location.reload();
     if (produitExist) {
       if (produitExist.quantite + quantite <= produit.quantite) { 
         nouveauPanier = panier.map(item => 

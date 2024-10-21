@@ -200,11 +200,13 @@ export default function Register() {
         headers: {
           'Accept': 'application/json',
         },
+        email,
+        password,
       });
     
       const result = await response.json();
       console.log("Réponse inscription:", result);
-    
+      localStorage.setItem('email', email);
       // Si l'inscription échoue
       if (!response.ok) {
         const errorMessages = result.errors 
@@ -287,6 +289,7 @@ export default function Register() {
               onChange={handleImageChange}
             />
           </div>
+          {validationErrors.profile && <p className="validation-error">{validationErrors.profile}</p>}
         </div>
 
         {/* Champs du formulaire */}
@@ -357,6 +360,7 @@ export default function Register() {
           <select value={role} onChange={(e) => setRole(e.target.value)}>
             <option value="client">Client</option>
             <option value="producteur">Producteur</option>
+            <option value="admin">Producteur</option>
           </select>
         </div>
 

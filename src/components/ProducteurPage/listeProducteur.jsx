@@ -40,8 +40,7 @@ const ListeUtilisateurs = () => {
         <div className="details">
           <span className="name">{utilisateur.name}</span>
           <span className="title">{utilisateur.role}</span>
-          {/* <a className="phone" href={`tel:${utilisateur.telephone}`}>{utilisateur.telephone}</a>
-          <a className="email" href={`mailto:${utilisateur.email}`}>{utilisateur.email}</a> */}
+          
         </div>
       </li>
     ))}

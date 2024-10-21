@@ -56,22 +56,28 @@ import Statistics from './components/ProducteurPage/Statistics';
 import MesCommandes from './components/ProducteurPage/CommandeProducteur';
 import HistoriqueCommande from './components/ProducteurPage/HistoriqueCommande';
 import Index from './components/pages/Home';
+import NewdashboardAdmin from './new/newdashboardAdmin';
+import MontantCommandesChart from './components/adminPage/StatistiqueAdmin';
+import ProtectedRoute from './components/Route Proteger/ProtectedRoute';
+import AccessDenied from './components/Route Proteger/AccessDenied';
 
 
 
 // Composant WithSidebar
 const WithSidebar = () => (
-  <>
+  <ProtectedRoute roles={['producteur']}>
     <NewDashboard/>
+    </ProtectedRoute>
 
-  </>
 );
 // Composant WithSidebar
 const WithSidebarAdmin = () => (
-  <>
-    <AdminInterface/>
+  <ProtectedRoute roles={['admin']}>
+            <NewdashboardAdmin/>
+          </ProtectedRoute>
+    
 
-  </>
+ 
 );
 // Composant WithNavbar
 const WithNavbar = () => (
@@ -93,7 +99,8 @@ function App() {
         {/* Routes avec Navbar */}
         
         <Route element={<WithNavbar />}>
-          <Route path="/" element={<Accueil />} />
+        <Route path="/access-denied" element={<AccessDenied />} />
+          <Route path="/page" element={<Accueil />} />
           <Route path="/evenement" element={<Evenement />} />
           <Route path="/produit" element={<Produit />} />
           <Route path="/article" element={<Article />} />
@@ -112,7 +119,7 @@ function App() {
           <Route path="/profileUse" element={<Profile />} />
           <Route path="/modifier-profile" element={<ModifierProfile/>} />
           <Route path='/verificationOpt' element={<VerificationOpt/>}/>
-          <Route path='/page2' element={<Index/>}/>
+          <Route path='/' element={<Index/>}/>
         </Route>
 
         {/* Routes avec Sidebar pour le producteur */}
@@ -128,16 +135,16 @@ function App() {
            <Route path="/forump" element={<Forum />} />
            <Route path="/commandeProducteur" element={< MesCommandes />} />
            <Route path="/historique" element={<HistoriqueCommande />} />
-          
+           <Route path="/categoriesProduitcteur" element={<ListeCategories />} />
            
         </Route>
          {/* Routes avec Sidebar pour l'adminitrateur */}
         <Route element={<WithSidebarAdmin/>}>
+       
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/profileAdmin" element={<Profile />} />
         <Route path="/ListeUtilisateur" element={<Users/>} />
         <Route path="/Utilisateur/:id" element={< UserDetail/>} />
-        
        <Route path="/evenements" element={<EventList/>} />
        <Route path="/ajouteEvent" element={<AjouterEvenement/>} />
        <Route path="/modifierEvent/:id" element={<ModifierEvenement/>} />
@@ -154,6 +161,8 @@ function App() {
         <Route path="/categories/ajouter" element={<AjouterCategorie />} />
         <Route path="/categories/modifier/:id" element={<ModifierCategorie/>} />
         <Route path="/forumAdmin" element={<Forum />} />
+        <Route path="/evolutionCommande" element={<MontantCommandesChart/>} />
+        
         </Route>
       </Routes>
       <Routes>

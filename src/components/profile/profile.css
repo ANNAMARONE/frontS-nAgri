@@ -12,11 +12,11 @@ body{
 .profileHeader{
     width: 1141px;
     height: 219px;
-    background-image: url('/src/assets/images/BG.png');
+    background-image: url('/src/assets/images/backForum.png');
     background-size: cover; 
     background-position: center; 
    background-color: #009444;
-   margin:auto;
+   margin:30PX auto;
    top: 20px;
    border-radius: 5px;
    display: flex;

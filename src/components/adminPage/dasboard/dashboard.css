@@ -1,0 +1,118 @@
+.statistiques {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px; 
+}
+
+.statistiques .card {
+    background-color: #ffffff; 
+    border: 1px solid #e1e1e1; 
+    border-radius: 12px; 
+    padding: 20px; 
+    width: 300px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    align-items: center; 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.statistiques .card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2); 
+}
+
+.statistiques .card h3 {
+    margin: 0;
+    color: #333; 
+    font-size: 20px; 
+}
+
+.card p {
+    margin: 5px 0; 
+    color: #555; 
+    font-size: 18px; 
+}
+
+/* Style pour les icônes */
+.statistiques .card i {
+    margin-right: 15px; 
+    color: #3498db; 
+    font-size: 30px; 
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.statistiques .card {
+    animation: fadeIn 0.5s ease; 
+}
+.gestionAcee {
+    max-width: 800px; 
+    margin: 40px; 
+    padding: 20px; 
+    background-color: #f9f9f9;
+    border-radius: 12px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+}
+
+.gestionAcee h1 {
+    color: #333; 
+    font-size: 28px; 
+    margin-bottom: 20px; 
+    text-align: center; 
+}
+
+.gestionAcee p {
+    color: #555;
+    font-size: 16px; 
+    line-height: 1.6; 
+    margin-bottom: 30px; 
+    text-align: justify;
+}
+
+.actionUser {
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+}
+
+.actionUser .button {
+    padding: 10px 20px; 
+    font-size: 16px; 
+    color: #fff; 
+    background-color: #3498db; 
+    border: none; 
+    border-radius: 8px;
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.3s; 
+}
+
+.actionUser .button:hover {
+    background-color: #2980b9; 
+    transform: scale(1.05); 
+    color: #fff;
+}
+
+.actionUser button:active {
+    transform: scale(0.95); 
+}
+.gestionAction{
+    margin-top: 50px;
+    display: flex;
+}
+.numberPage{
+font-size: 38px;
+font-weight: bold;
+}
