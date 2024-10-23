@@ -278,7 +278,7 @@ const [produits, setProduits] = useState([]);
 			  </div>
 	       </div>
 		    <div className="list_h2i1i1 position-absolute top-0 p-1">
-	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">{produit.quantite}%</h6>
+	         <h6 className="mb-0 font_12 fw-bold d-inline-block bg_yell col_black lh-1 rounded_30 p-1 px-2">{produit.statut}</h6>
 	       </div>
 	   </div>
 	    <div className="list_h2i2">

@@ -14,6 +14,7 @@ const ModifierProduit = () => {
     prix: 0,
     statut: '',
     categorie_produit_id: '',
+   
   });
   const [image, setImage] = useState(null); 
   const [message, setMessage] = useState('');
@@ -61,51 +62,53 @@ const ModifierProduit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Créer un FormData pour envoyer l'image à remove.bg
-    const formData = new FormData();
-    if (image) {
-      formData.append('image_file', image);
-    }
-
+  
+    // Créer un FormData pour envoyer les données du produit
+    const produitFormData = new FormData();
+    produitFormData.append('libelle', produit.libelle);
+    produitFormData.append('description', produit.description);
+    produitFormData.append('quantite', produit.quantite);
+    produitFormData.append('prix', produit.prix);
+    produitFormData.append('statut', produit.statut);
+    produitFormData.append('categorie_produit_id', produit.categorie_produit_id);
+  
     try {
-      // Appel à l'API remove.bg pour supprimer le fond de l'image
-      const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
-        headers: {
-          'X-Api-Key': 'S1PnfkaQgxogU4MwKW5fNz95', 
-          'Content-Type': 'multipart/form-data',
-        },
-        responseType: 'blob',
-      });
-
-      const blobImage = response.data; 
-      const imageSansFond = new File([blobImage], 'image_sans_fond.png', { type: 'image/png' });
-
-      // Créer un autre FormData pour envoyer les données du produit
-      const produitFormData = new FormData();
-      produitFormData.append('libelle', produit.libelle);
-      produitFormData.append('description', produit.description);
-      produitFormData.append('quantite', produit.quantite);
-      produitFormData.append('prix', produit.prix);
-      produitFormData.append('statut', produit.statut);
-      produitFormData.append('categorie_produit_id', produit.categorie_produit_id);
-
-      // Ajouter l'image sans fond au formulaire de modification du produit
-      produitFormData.append('image', imageSansFond);
-
+      // Si une image est fournie, la traiter avec remove.bg
+      if (image) {
+        // Créer un FormData pour envoyer l'image à remove.bg
+        const imageFormData = new FormData();
+        imageFormData.append('image_file', image);
+  
+        // Appel à l'API remove.bg pour supprimer le fond de l'image
+        const response = await axios.post('https://api.remove.bg/v1.0/removebg', imageFormData, {
+          headers: {
+            'X-Api-Key': 'S1PnfkaQgxogU4MwKW5fNz95', 
+            'Content-Type': 'multipart/form-data',
+          },
+          responseType: 'blob',
+        });
+  
+        const blobImage = response.data; 
+        const imageSansFond = new File([blobImage], 'image_sans_fond.png', { type: 'image/png' });
+        
+        // Ajouter l'image sans fond au formulaire de modification du produit
+        produitFormData.append('image', imageSansFond);
+      }
+  
       await axios.post(`${config.apiBaseUrl}/modifier_produit/${id}`, produitFormData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
         },
       });
-
+  
       setMessage('Produit modifié avec succès.');
       navigate('/afficherProduit'); 
     } catch (error) {
       setMessage(error.response?.data?.message || 'Erreur lors de la modification du produit.');
     }
   };
+  
 
   return (
     <div className='AjoutProduitP'>

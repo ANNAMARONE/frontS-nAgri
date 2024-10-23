@@ -85,9 +85,14 @@ export default function Login() {
         navigate('/statistics');
       }else{
         navigate('/'); 
-        window.location.reload();
+       
       }
-      
+      const redirectPath = localStorage.getItem('redirectPath');
+      if (redirectPath) {
+          navigate(redirectPath); 
+          localStorage.removeItem('redirectPath');
+      }
+      window.location.reload();
     } catch (err) {
       console.log('Erreur:', err);
       setError('Erreur lors de la connexion');

@@ -20,13 +20,8 @@ const Panier = () => {
     setPaymentMethod(e.target.value);
   };
   useEffect(() => {
-    const userFromLocalStorage = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    if (!userFromLocalStorage || !token) {
-      setErrorMessage('Veuillez vous connecter pour accéder à votre panier.');
-      navigate('/login'); 
-      return;
-    }
+  
+ 
 
     const panierFromLocalStorage = localStorage.getItem('panier');
     if (panierFromLocalStorage) {
@@ -59,77 +54,95 @@ const Panier = () => {
     const userFromLocalStorage = localStorage.getItem('user');
     const user = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
     const token = localStorage.getItem('token');
-    const userId = user ? user.id : null;
 
-    if (userId && panier.length > 0) {
-        setLoading(true);
-        setErrorMessage('');
-        setSuccessMessage('');
+    // Vérifier si l'utilisateur est connecté
+    if (!user || !token) {
+        // Stocker la route actuelle pour redirection après la connexion
+        localStorage.setItem('redirectPath', window.location.pathname);
 
-        const produitsData = panier.map(produit => ({
-            produit_id: produit.id,
-            quantite: produit.quantite
-        }));
-
-        try {
-            const response = await axios.post(`${config.apiBaseUrl}/commander`, {
-                produits: produitsData,
-                user_id: userId,
-                montant_total: montantTotal,
-                payment_method: paymentMethod,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            // Vérification du type de paiement
-            if (paymentMethod === "en_ligne") {
-                if (response.data.payment_link) {
-                    // Vider le panier avant de rediriger
-                    setPanier([]); 
-                    localStorage.removeItem('panier');
-                    window.location.href = response.data.payment_link;
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erreur',
-                        text: response.data.message || 'Une erreur est survenue.',
-                    });
-                }
-            } else {
-                // Pour le paiement hors ligne
-                setPanier([]); 
-                localStorage.removeItem('panier');
-                window.location.reload();
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Succès',
-                    text: 'Commande créée avec succès!',
-                });
-            }
-        } catch (error) {
-            console.error('Erreur lors de la commande ou du paiement:', error);
-            setErrorMessage('Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.');
-            Swal.fire({
-                icon: 'error',
-                title: 'Erreur',
-                text: 'Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.',
-            });
-
-            if (error.response) {
-                console.log('Détails de la réponse:', error.response.data);
-            }
-        } finally {
-            setLoading(false);
-        }
-    } else {
-        setErrorMessage('Veuillez vous connecter avant de passer une commande.');
+        // Rediriger vers la page de connexion
         Swal.fire({
             icon: 'warning',
             title: 'Attention',
             text: 'Veuillez vous connecter avant de passer une commande.',
+        }).then(() => {
+            navigate('/login');
         });
+        return;
+    }
+
+    // Vérifier si le panier est vide
+    if (panier.length === 0) {
+        setErrorMessage('Votre panier est vide.');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Attention',
+            text: 'Votre panier est vide.',
+        });
+        return;
+    }
+
+    const userId = user.id;
+    setLoading(true);
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    const produitsData = panier.map(produit => ({
+        produit_id: produit.id,
+        quantite: produit.quantite,
+    }));
+
+    try {
+        const response = await axios.post(`${config.apiBaseUrl}/commander`, {
+            produits: produitsData,
+            user_id: userId,
+            montant_total: montantTotal,
+            payment_method: paymentMethod,
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        // Vérification du type de paiement
+        if (paymentMethod === "en_ligne") {
+            if (response.data.payment_link) {
+                // Vider le panier avant de rediriger
+                setPanier([]);
+                localStorage.removeItem('panier');
+                window.location.href = response.data.payment_link;
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur',
+                    text: response.data.message || 'Une erreur est survenue.',
+                });
+            }
+        } else {
+            // Pour le paiement hors ligne
+            setPanier([]);
+            localStorage.removeItem('panier');
+            window.location.reload();
+            Swal.fire({
+                icon: 'success',
+                title: 'Succès',
+                text: 'Votre commande a été enregistrée. Un e-mail a été envoyé à votre adresse !',
+            });
+        }
+    } catch (error) {
+        console.error('Erreur lors de la commande ou du paiement:', error);
+        setErrorMessage('Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Une erreur est survenue lors de la commande ou du paiement. Veuillez réessayer.',
+        });
+
+        if (error.response) {
+            console.log('Détails de la réponse:', error.response.data);
+        }
+    } finally {
+        setLoading(false);
     }
 };
 

@@ -5,15 +5,35 @@ import config from '/src/config';
 import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
 import './commande.css';
 import {  MdRateReview } from 'react-icons/md';
-
+import Swal from 'sweetalert2'
 import { MdDeleteForever } from "react-icons/md";
+import { useNavigate } from 'react-router-dom'; 
 const Commandes = () => {
   const [commandes, setCommandes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [status, setStatus] = useState('');
   const [selectedCommandeId, setSelectedCommandeId] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
+    const userFromLocalStorage = localStorage.getItem('user');
+    const user = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
+    const token = localStorage.getItem('token');
+
+    if (!user || !token) {
+      // Stocker la route actuelle pour redirection après la connexion
+      localStorage.setItem('redirectPath', window.location.pathname);
+  
+      // Rediriger vers la page de connexion
+      Swal.fire({
+          icon: 'warning',
+          title: 'Attention',
+          text: 'Veuillez vous connecter pour voire vos commandes.',
+      }).then(() => {
+          navigate('/login');
+      });
+      return;
+  }
     const fetchCommandes = async () => {
       const token = localStorage.getItem('token');
 

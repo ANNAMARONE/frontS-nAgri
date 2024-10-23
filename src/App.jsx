@@ -58,6 +58,7 @@ import NewdashboardAdmin from './new/newdashboardAdmin';
 import MontantCommandesChart from './components/adminPage/StatistiqueAdmin';
 import ProtectedRoute from './components/Route Proteger/ProtectedRoute';
 import AccessDenied from './components/Route Proteger/AccessDenied';
+import GestionStock from './components/ProducteurPage/GestionStock';
 
 
 
@@ -128,7 +129,8 @@ function App() {
            <Route path="/commandeProducteur" element={< MesCommandes />} />
            <Route path="/historique" element={<HistoriqueCommande />} />
            <Route path="/categoriesProduitcteur" element={<ListeCategories />} />
-          
+           <Route path="/gestionStock" element={<GestionStock/>} />
+           
         </Route>
          {/* Routes avec Sidebar pour l'adminitrateur */}
       

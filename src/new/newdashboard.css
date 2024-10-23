@@ -89,6 +89,7 @@ body{
 .navbar-right {
     display: flex;
     align-items: center;
+    gap: 30px;
 }
 
 .navbar-icon {

@@ -17,6 +17,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.5",
+    "formik": "^2.4.6",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
@@ -28,7 +29,8 @@
     "react-slick": "^0.30.2",
     "recharts": "^2.13.0",
     "slick-carousel": "^1.8.1",
-    "sweetalert2": "^11.14.2"
+    "sweetalert2": "^11.14.2",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

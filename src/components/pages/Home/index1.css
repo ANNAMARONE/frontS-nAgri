@@ -1,10 +1,4 @@
-/*
-Template Name: Plants Bazar
-File: Layout CSS
-Author: TemplatesOnWeb
-Author URI: https://www.templateonweb.com/
-Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
-*/
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 *{
@@ -16,8 +10,6 @@ body{
     
 }
 
-
-/*********************organ****************/
 .organ_2i2 span a{
     width:50px;
     height:50px;
@@ -26,9 +18,7 @@ body{
     .organ_2i2{
     padding-top:165px;
      }
-    /*********************organ_end****************/
-    
-    /*********************learn****************/
+  
     .learn_1l2il img{
     border:4px solid #149253; 
      }

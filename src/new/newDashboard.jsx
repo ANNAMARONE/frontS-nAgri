@@ -92,7 +92,7 @@ const NewDashboard = () => {
                                 <li><NavLink to="/afficherProduit" activeClassName="active">Liste des Produits</NavLink></li>
                                 <li><NavLink to="/ajoutProduit" activeClassName="active">Ajouter un Produit </NavLink></li>
                               
-                                <li>Gestion des Stocks</li>
+                                <li> <NavLink to="/gestionStock" activeClassName="active"> Gestion des Stocks </NavLink></li>
                             </ul>
                         </li>
                         <li>

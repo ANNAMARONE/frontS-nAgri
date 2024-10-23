@@ -1,0 +1,88 @@
+.produits-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    background-color: #ffffff;
+}
+
+.produits-container h2 {
+    text-align: center;
+    color: #2c3e50; 
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; 
+}
+
+.produits-container p {
+    color: #e74c3c; 
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px; 
+}
+
+.produits-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.produits-container thead {
+    background-color: #f39c12; 
+    color: white;
+}
+
+.produits-container th, td {
+    padding: 12px; 
+    text-align: left;
+    border-bottom: 2px solid #ddd; 
+}
+
+.produits-container tr:hover {
+    background-color: #ecf0f1; 
+}
+
+.produits-container img {
+    width: 70px; 
+    height: auto; 
+    border-radius: 8px;
+}
+
+.produits-container .buttonAjoutStock {
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    border-radius: 6px; 
+    padding: 8px 12px; 
+    margin-right: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    font-weight: bold;
+}
+
+
+.produits-container .buttonModifierStock {
+    background-color: #d71313; 
+    color: white;
+    border: none;
+    border-radius: 6px; 
+    padding: 8px 12px; 
+    margin-right: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    font-weight: bold;
+}
+.produits-container .buttonAjoutStock:hover {
+    background-color: #218838; 
+    transform: scale(1.05);
+}
+.produits-container .buttonModifierStock:hover {
+    background-color: #d71313;
+    transform: scale(1.05);
+}
+
+.produits-container button:disabled {
+    background-color: #6c757d; 
+    cursor: not-allowed;
+}
