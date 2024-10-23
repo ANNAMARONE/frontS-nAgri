@@ -1,29 +1,30 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '/src/components/pages/Auth/AuthContext';
+import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useAuth } from '/src/components/pages/Auth/AuthContext';
 
-const ProtectedRoute = ({ children, roles }) => {
-  const { user } = useAuth();
+const ProtectedRoute = ({ allowedRoles }) => {
+  const { isLoggedIn, user } = useAuth();
+  
+  const role = user?.role;
+  const hasAccess = isLoggedIn && allowedRoles.includes(role);
 
-  // Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
-  if (!user) {
-    return <Navigate to="/login" />;
+  // Si l'utilisateur n'est pas connecté, redirigez vers la page de connexion
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
   }
 
-  // Si l'utilisateur n'a pas le rôle requis, afficher une page "Accès refusé"
-  if (roles && !roles.includes(user.role)) {
-    return <Navigate to="/access-denied" />;
+  // Si l'utilisateur n'a pas accès, redirigez vers la page d'accès refusé
+  if (!hasAccess) {
+    return <Navigate to="/access-denied" replace />;
   }
 
-  // Si tout est OK, afficher le composant enfant
-  return children;
+  return <Outlet />; // Rendre les enfants si toutes les conditions sont remplies
 };
 
 ProtectedRoute.propTypes = {
-  children: PropTypes.node.isRequired,
-  roles: PropTypes.arrayOf(PropTypes.string),
+  allowedRoles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ProtectedRoute;

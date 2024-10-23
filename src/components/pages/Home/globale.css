@@ -796,3 +796,78 @@ body{
         }
       }
           
+      /* Media queries */
+@media (max-width: 991px) {
+  .serv_n {
+      flex-direction: column;
+      margin-top: 50rem;
+      margin-bottom: 500rem;
+  }
+  .serv_n img{
+    display: none;
+  }
+  #grow{
+    margin-top: 75rem;
+  }
+  .section1 {
+    height: auto;
+    margin-top: 85rem;
+  }
+  .organ_2i1{
+    display: none;
+  }
+  .faq-section{
+    margin-top: 40rem;
+  }
+  .effectImage img{
+height: 200px;
+width: 50px;
+  }
+  .serv_n > div {
+      margin-bottom: 30px;
+  }
+  .serv_nm {
+      order: -1;
+      margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #serv_n h2 {
+      font-size: 2rem;
+  }
+
+  .serv_nl {
+      padding: 15px;
+  }
+
+  .serv_nli h5 {
+      font-size: 1.1rem;
+  }
+
+  .serv_nli1 {
+      width: 40px;
+      height: 40px;
+      top: -20px;
+      right: -20px;
+  }
+}
+
+@media (max-width: 576px) {
+  #serv_n {
+      padding: 20px 10px;
+      margin-top: 50%;
+  }
+
+  .serv_nl {
+      padding: 10px;
+  }
+
+  .serv_nli h5 {
+      font-size: 1rem;
+  }
+
+  .serv_nm img {
+      width: 80%;
+  }
+}

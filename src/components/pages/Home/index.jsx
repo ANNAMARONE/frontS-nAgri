@@ -164,9 +164,11 @@ const [produits, setProduits] = useState([]);
 		  localStorage.setItem('panier', JSON.stringify(panier));
 		  console.log('Panier mis à jour dans localStorage:', panier);
 		}
+		
 	  }, [panier]);
 	
 	  const ajouterAuPanier = (produit, quantite = 1) => {
+		
 		const produitExist = panier.find(item => item.id === produit.id);
 	  
 		let nouveauPanier;
@@ -234,7 +236,7 @@ const [produits, setProduits] = useState([]);
 		
         <h1>Bienvenue sur SénAgri</h1>
         <p>
-          SénAgri est une plateforme qui connecte les acteurs du secteur agricole sénégalais à travers des solutions technologiques innovantes. Elle vise à moderniser l'agriculture et à promouvoir une croissance durable au service des producteurs locaux.
+          SénAgri est une plateforme qui connecte les acteurs du secteur agricole sénégalais à travers des solutions technologiques innovantes. Elle vise à moderniser l&apos;agriculture et à promouvoir une croissance durable au service des producteurs locaux.
         </p>
         <a href="#" className="cta-button">Rejoignez-nous</a> 
       </div>
@@ -258,8 +260,8 @@ const [produits, setProduits] = useState([]);
 	</div> 
    </div>
    <div className="list_h2 row">
-   {filteredProduits.slice(0,6).map(produit => (
-    <div className="col-md-2 col-sm-6" key={produit.id}>
+   {filteredProduits.slice(0,4).map(produit => (
+    <div className="col-md-3 col-sm-6" key={produit.id}>
     
      <div className="list_h2i" >
 	    <div className="list_h2i1 position-relative">
@@ -268,7 +270,7 @@ const [produits, setProduits] = useState([]);
 				  <figure className="effect-jazz mb-0">
 					<div className='effectImage'>
 						
-						<img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} className="w-100" onClick={() => handleViewDetails(produit.id)} />
+						<img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} className="w-50" onClick={() => handleViewDetails(produit.id)} />
 						
                    
                     </div>
@@ -315,7 +317,7 @@ const [produits, setProduits] = useState([]);
 	   <div className="serv_nli">
 	     <h5>Boutique</h5>
 		 <hr className="line_1"/>
-		 <p className="mb-0">Fournir un flux de panier d'achat simple pour les utilisateurs et d'autres services.</p>
+		 <p className="mb-0">Fournir un flux de panier d &apos;achat simple pour les utilisateurs et d &apos;autres services.</p>
 	   </div>
 	   <div className="serv_nli1 position-absolute">
 	     <span className="d-inline-block bg_yell text-black text-center rounded-circle"><i className="fa fa-shopping-bag"></i></span>
@@ -519,7 +521,7 @@ const [produits, setProduits] = useState([]);
 		 <div className="col-md-9 col-9">
 		  <div className="organ_1ir">
 		   <h6 className="fw-bold">SIMPLICITÉ</h6>
-		   <p className="mb-0 font_14">Explorez facilement notre plateforme et nos outils intuitifs pour un parcours d 'investissement agricole sans stress.</p>
+		   <p className="mb-0 font_14">Explorez facilement notre plateforme et nos outils intuitifs pour un parcours d &apos;investissement agricole sans stress.</p>
 		  </div>
 		 </div>
 	   </div>
@@ -553,7 +555,7 @@ const [produits, setProduits] = useState([]);
 		 <div className="col-md-9 col-9">
 		  <div className="organ_1ir">
 		   <h6 className="fw-bold">SOUTIEN</h6>
-		   <p className="mb-0 font_14">Grâce à nos outils de communication et de collaboration, vous pouvez facilement entrer en contact avec d'autres agriculteurs et commerçants,.</p>
+		   <p className="mb-0 font_14">Grâce à nos outils de communication et de collaboration, vous pouvez facilement entrer en contact avec d&apos;autres agriculteurs et commerçants,.</p>
 		  </div>
 		 </div>
 	   </div>
@@ -564,7 +566,7 @@ const [produits, setProduits] = useState([]);
     <div className="col-md-12">
        <div className="organ_2i position-relative">
        <div className="organ_2i1">
-	   <iframe src="https://assets.pinterest.com/ext/embed.html?id=736479345325002135" height="438" width="600" frameborder="0" scrolling="no" ></iframe>
+	   <iframe src="https://assets.pinterest.com/ext/embed.html?id=736479345325002135" height="438" width="600"  scrolling="no" ></iframe>
 </div>
 
 		 <div className="organ_2i2 position-absolute top-0 w-100">

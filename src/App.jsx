@@ -19,14 +19,12 @@ import ArticleDetails from './components/pages/article/détaileArticle';
 import RessourcesList from './components/pages/ressource/ressource';
 import RessourceDetails from './components/pages/ressource/DétailRessource';
 import Profile from './components/profile/profile';
-
-import ProducteurInterface from './components/ProducteurPage/ProducteurInterface';
 import AjouterProduit from './components/ProducteurPage/ajoutProduit';
 import ProduitsUtilisateurs from './components/ProducteurPage/afficherProduit';
 import ModifierProduit from './components/ProducteurPage/modificationProduit';
 import ListeUtilisateurs from './components/ProducteurPage/listeProducteur';
 import ProducteurDetail from './components/ProducteurPage/détailProducteur';
-import AdminInterface from './components/adminPage/interfaceAdmin';
+
 import Dashboard from './components/adminPage/dasboard/dashboard';
 import Users from './components/adminPage/getion utilisateur/ListeUtilisateur';
 import UserDetail from './components/adminPage/getion utilisateur/détailUtilisateur';
@@ -65,19 +63,12 @@ import AccessDenied from './components/Route Proteger/AccessDenied';
 
 // Composant WithSidebar
 const WithSidebar = () => (
-  <ProtectedRoute roles={['producteur']}>
     <NewDashboard/>
-    </ProtectedRoute>
-
 );
 // Composant WithSidebar
 const WithSidebarAdmin = () => (
-  <ProtectedRoute roles={['admin']}>
-            <NewdashboardAdmin/>
-          </ProtectedRoute>
-    
-
- 
+   <NewdashboardAdmin/>
+      
 );
 // Composant WithNavbar
 const WithNavbar = () => (
@@ -97,9 +88,9 @@ function App() {
       
       <Routes>
         {/* Routes avec Navbar */}
-        
-        <Route element={<WithNavbar />}>
         <Route path="/access-denied" element={<AccessDenied />} />
+        <Route element={<WithNavbar />}>
+        
           <Route path="/page" element={<Accueil />} />
           <Route path="/evenement" element={<Evenement />} />
           <Route path="/produit" element={<Produit />} />
@@ -124,6 +115,7 @@ function App() {
 
         {/* Routes avec Sidebar pour le producteur */}
         <Route element={<WithSidebar />}>
+       
         <Route path="/statistics" element={<Statistics/>} />
         <Route path="/profile" element={<Profile />} />
           <Route path="/ajoutProduit" element={<AjouterProduit />} />
@@ -136,34 +128,37 @@ function App() {
            <Route path="/commandeProducteur" element={< MesCommandes />} />
            <Route path="/historique" element={<HistoriqueCommande />} />
            <Route path="/categoriesProduitcteur" element={<ListeCategories />} />
-           
+          
         </Route>
          {/* Routes avec Sidebar pour l'adminitrateur */}
-        <Route element={<WithSidebarAdmin/>}>
+      
+      <Route element={<WithSidebarAdmin />}>
+        {/* Groupez les routes protégées ici */}
+      
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profileAdmin" element={<Profile />} />
+          <Route path="/ListeUtilisateur" element={<Users />} />
+          <Route path="/Utilisateur/:id" element={<UserDetail />} />
+          <Route path="/evenements" element={<EventList />} />
+          <Route path="/ajouteEvent" element={<AjouterEvenement />} />
+          <Route path="/modifierEvent/:id" element={<ModifierEvenement />} />
+          <Route path="/articles" element={<ListeArticle />} />
+          <Route path="/AjouteArticle" element={<AjouterArticle />} />
+          <Route path="/modifierArticle/:id" element={<ModifierArticle />} />
+          <Route path="/listeressources" element={<ListeRessources />} />
+          <Route path="/ajouterRessource" element={<AjouterRessource />} />
+          <Route path="/ressources/modifier/:id" element={<ModifierRessource />} />
+          <Route path="/listeforums" element={<ListeForums />} />
+          <Route path="/forums/ajouter" element={<AjouterForum />} />
+          <Route path="/forumsdetail/:id" element={<Forumdetails />} />
+          <Route path="/categories" element={<ListeCategories />} />
+          <Route path="/categories/ajouter" element={<AjouterCategorie />} />
+          <Route path="/categories/modifier/:id" element={<ModifierCategorie />} />
+          <Route path="/forumAdmin" element={<Forum />} />
+          <Route path="/evolutionCommande" element={<MontantCommandesChart />} />
        
-        <Route path="/dashboard" element={<Dashboard/>} />
-        <Route path="/profileAdmin" element={<Profile />} />
-        <Route path="/ListeUtilisateur" element={<Users/>} />
-        <Route path="/Utilisateur/:id" element={< UserDetail/>} />
-       <Route path="/evenements" element={<EventList/>} />
-       <Route path="/ajouteEvent" element={<AjouterEvenement/>} />
-       <Route path="/modifierEvent/:id" element={<ModifierEvenement/>} />
-       <Route path="/articles" element={<ListeArticle/>} />
-       <Route path="/AjouteArticle" element={<AjouterArticle/>} />
-       <Route path="/modifierArticle/:id" element={<ModifierArticle/>} />
-       <Route path="/listeressources" element={<ListeRessources/>} />
-       <Route path="/ajouterRessource" element={<AjouterRessource />} />
-       <Route path="/ressources/modifier/:id" element={<ModifierRessource />} />
-       <Route path="/listeforums" element={<ListeForums/>} />
-        <Route path="/forums/ajouter" element={<AjouterForum />} />
-        <Route path="/forumsdetail/:id" element={<Forumdetails/>} />
-        <Route path="/categories" element={<ListeCategories />} />
-        <Route path="/categories/ajouter" element={<AjouterCategorie />} />
-        <Route path="/categories/modifier/:id" element={<ModifierCategorie/>} />
-        <Route path="/forumAdmin" element={<Forum />} />
-        <Route path="/evolutionCommande" element={<MontantCommandesChart/>} />
-        
-        </Route>
+      </Route>
+  
       </Routes>
       <Routes>
       <Route path="/dasbordtest" element={<NewDashboard/>} />

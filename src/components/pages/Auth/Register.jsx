@@ -360,7 +360,6 @@ export default function Register() {
           <select value={role} onChange={(e) => setRole(e.target.value)}>
             <option value="client">Client</option>
             <option value="producteur">Producteur</option>
-            <option value="admin">Producteur</option>
           </select>
         </div>
 

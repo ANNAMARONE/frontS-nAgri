@@ -131,6 +131,9 @@ body{
     margin-top:8px;
     margin-bottom:8px; 
      }
+     .sale{
+      margin-bottom: 100%;
+     }
     .seed_1i .col-md-2{
     margin-top:8px;
     margin-bottom:8px;
@@ -579,7 +582,7 @@ body{
 }
 
 .faq-question:hover {
-  background-color: #e8f5e9; /* Légère teinte pour un effet de survol */
+  background-color: #e8f5e9; 
 }
 
 .faq-answer {

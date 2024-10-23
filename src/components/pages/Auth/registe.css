@@ -133,7 +133,7 @@ h1 {
   border-radius: 4px;
   height: 40px;
   outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s; /* Ajout d'une transition pour l'ombre */
+  transition: border-color 0.3s, box-shadow 0.3s; 
 
   width: 451px;
   height: 57px;
@@ -144,7 +144,7 @@ h1 {
 
 .input-icon input:focus {
   border-color: #008000;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre pour le champ actif */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
 
 }
 
@@ -241,4 +241,46 @@ input:hover{
   gap: 10px;
 }
 
+/* Media Queries pour la réactivité */
+@media (max-width: 768px) {
+  .section_form {
+    padding: 15px; 
+    max-width: 90%; 
+  }
 
+  select, .section_form input {
+    width: 100%; 
+    max-width: none; 
+  }
+  .from_group1 input{
+    width: 100%; 
+    max-width: none; 
+  }
+  .from_group1{
+    display: block;
+  }
+  h1 {
+    font-size: 20px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .contenu .titre_des h1,
+  .contenu .titre_des span {
+    font-size: 20px; 
+  }
+  .from_group1 input{
+    width: 100%; 
+    max-width: none; 
+  }
+  .from_group1{
+    display: block;
+  }
+  .section_form button {
+    width: 100%; 
+  }
+
+  .from_group1 {
+    flex-direction: column; 
+  }
+}

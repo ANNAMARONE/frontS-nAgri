@@ -85,7 +85,7 @@ const NewdashboardAdmin = () => {
         <h2>Tableau de Bord</h2>
         <ul>
             <li>
-            <FontAwesomeIcon icon={faChartLine} /> <NavLink to="/statisticsAdmin" activeClassName="active">Dashboard</NavLink>
+            <FontAwesomeIcon icon={faChartLine} /> <NavLink to="/dashboard" activeClassName="active">Dashboard</NavLink>
             <ul>
             <li>Statistiques de Vente</li>
                     <li>Performance des Produits</li>

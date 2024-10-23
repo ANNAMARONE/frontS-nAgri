@@ -161,7 +161,7 @@ nav {
     
     .nav ul.show, 
     .actionButtonLogin_Logout.show {
-        display: block; 
+        display: flex; 
         position: absolute;
         left: 0;
         width: 100%;
