@@ -39,7 +39,7 @@ export default function Article() {
     return description;
 };
   return (
-    <div className="containerArticler" >
+   <div className="containerArticler" >
         <div className="banner-video">
         <video autoPlay muted loop className="background-video">
           <source src={banner} type="video/mp4" />
