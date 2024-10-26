@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams ,useNavigate} from "react-router-dom";
 import config from '/src/config';
 import './détailForum.css';
 import { BiSolidLike } from "react-icons/bi";
@@ -9,6 +9,7 @@ import { FaReply } from "react-icons/fa";
 
 const ForumDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); 
   const [forum, setForum] = useState(null);
   const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
@@ -18,7 +19,7 @@ const ForumDetails = () => {
   const [replyDescription, setReplyDescription] = useState("");
   const [replyToCommentId, setReplyToCommentId] = useState(null);
   const [visibleComments, setVisibleComments] = useState(3); 
-
+  const isAuthenticated = localStorage.getItem("token");
   useEffect(() => {
     axios.get(`${config.apiBaseUrl}/forums/${id}`, {
       headers: {
@@ -38,7 +39,13 @@ const ForumDetails = () => {
       });
   }, [id]);
 
+ 
   const handleCommentSubmit = (e) => {
+
+    if (!isAuthenticated) {
+      navigate('/login'); // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+      return;
+    }
     e.preventDefault();
     axios.post(`${config.apiBaseUrl}/forums/${id}/commentaires`, 
       { description }, 
@@ -64,6 +71,10 @@ const ForumDetails = () => {
 
   // Fonction pour aimer un commentaire
   const handleLikeComment = (commentId) => {
+    if (!isAuthenticated) {
+      navigate('/login'); // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+      return;
+    }
     axios.post(`${config.apiBaseUrl}/commentaires/${commentId}/like`, {}, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`

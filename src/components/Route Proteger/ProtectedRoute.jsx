@@ -2,29 +2,34 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useAuth } from '/src/components/pages/Auth/AuthContext';
 
-const ProtectedRoute = ({ allowedRoles }) => {
-  const { isLoggedIn, user } = useAuth();
-  
-  const role = user?.role;
-  const hasAccess = isLoggedIn && allowedRoles.includes(role);
+const PrivateRoute = ({ allowedRoles }) => {
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  // Si l'utilisateur n'est pas connecté, redirigez vers la page de connexion
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
-  }
+  console.log('Utilisateur récupéré :', user); 
 
-  // Si l'utilisateur n'a pas accès, redirigez vers la page d'accès refusé
-  if (!hasAccess) {
-    return <Navigate to="/access-denied" replace />;
-  }
+  const isAuthenticated = user?.isAuthenticated || false; 
+  const userRole = user?.role || null;
 
-  return <Outlet />; // Rendre les enfants si toutes les conditions sont remplies
+  console.log('Est authentifié :', isAuthenticated, 'Rôle de l\'utilisateur :', userRole);
+
+  return (
+    isAuthenticated && allowedRoles.includes(userRole) ? (
+      <Outlet />
+    ) : (
+      <>
+        {console.log('Accès refusé. Détails :', { isAuthenticated, userRole })}
+        <Navigate to="/access-denied" replace />
+      </>
+    )
+  );
 };
 
-ProtectedRoute.propTypes = {
+
+
+// Validation des props
+PrivateRoute.propTypes = {
   allowedRoles: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default ProtectedRoute;
+export default PrivateRoute;

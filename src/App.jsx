@@ -56,9 +56,10 @@ import HistoriqueCommande from './components/ProducteurPage/HistoriqueCommande';
 import Index from './components/pages/Home';
 import NewdashboardAdmin from './new/newdashboardAdmin';
 import MontantCommandesChart from './components/adminPage/StatistiqueAdmin';
-import ProtectedRoute from './components/Route Proteger/ProtectedRoute';
+
 import AccessDenied from './components/Route Proteger/AccessDenied';
 import GestionStock from './components/ProducteurPage/GestionStock';
+import PrivateRoute from './components/Route Proteger/ProtectedRoute';
 
 
 
@@ -115,6 +116,7 @@ function App() {
         </Route>
 
         {/* Routes avec Sidebar pour le producteur */}
+        <Route element={<PrivateRoute allowedRoles={['producteur']} />}>
         <Route element={<WithSidebar />}>
        
         <Route path="/statistics" element={<Statistics/>} />
@@ -132,8 +134,9 @@ function App() {
            <Route path="/gestionStock" element={<GestionStock/>} />
            
         </Route>
+        </Route>
          {/* Routes avec Sidebar pour l'adminitrateur */}
-      
+         <Route element={<PrivateRoute allowedRoles={['admin']} />}>
       <Route element={<WithSidebarAdmin />}>
         {/* Groupez les routes protégées ici */}
       
@@ -160,7 +163,7 @@ function App() {
           <Route path="/evolutionCommande" element={<MontantCommandesChart />} />
        
       </Route>
-  
+  </Route>
       </Routes>
       <Routes>
       <Route path="/dasbordtest" element={<NewDashboard/>} />

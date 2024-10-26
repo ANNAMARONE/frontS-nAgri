@@ -410,7 +410,7 @@ const [produits, setProduits] = useState([]);
                    
 				  </figure>
 			  </div>
-	   <h3 className="mt-3 mb-3">HDPE Grow Bags</h3>
+	   <h3 className="mt-3 mb-3">VENTE</h3>
 	   <h6 className="mb-0">
 		<NavLink to="/produit">
 		<a className="button  text-center">Vente de produits agricoles</a>
@@ -426,7 +426,7 @@ const [produits, setProduits] = useState([]);
 					<a href="#"><img src={collaboration} className="w-100" alt="abc"/></a>
 				  </figure>
 			  </div>
-	   <h3 className="mt-3 mb-3">GEO Fabric Grow Bags</h3>
+	   <h3 className="mt-3 mb-3">COLLABORATION</h3>
 	   <h6 className="mb-0">
 	   <NavLink to="/forum">
 		<a className="button  text-center">Collaboration entre agriculteurs</a>
@@ -441,7 +441,7 @@ const [produits, setProduits] = useState([]);
 					<a href="#"><img src={Ressoucer} className="w-100" alt="abc"/></a>
 				  </figure>
 			  </div>
-	   <h3 className="mt-3 mb-3">Rectangle Grow Bag</h3>
+	   <h3 className="mt-3 mb-3">RESSOURCES</h3>
 	   <h6 className="mb-0">
 		<NavLink to="/ressources">
 		<a className="button  text-center">Ressources agricoles</a>
@@ -633,7 +633,7 @@ const [produits, setProduits] = useState([]);
                et la gestion des exploitations agricoles. Grâce à nos services, nous permettons aux acteurs du secteur
                 d&apos;optimiser leurs performances, d&apos;accroître leur rentabilité et de contribuer au développement durable de 
                 l&apos;agriculture au Sénégal.</p>
-		<h6 className="mb-0 mt-4"><a className="button_2" href="#">Subscribe on YouTube</a></h6>
+		<h6 className="mb-0 mt-4"><a className="button_2" href="#">En savoire plus</a></h6>
 	  </div>
 	</div>
    </div>

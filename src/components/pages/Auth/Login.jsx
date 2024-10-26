@@ -75,6 +75,10 @@ export default function Login() {
     
       localStorage.setItem('user', JSON.stringify(result.user));
        
+      localStorage.setItem('user', JSON.stringify({
+        isAuthenticated: true,
+        role: result.user.role 
+      }));
 
       setMessage('Connexion réussie !');
       setError('');

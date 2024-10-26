@@ -167,6 +167,7 @@ nav {
         width: 100%;
         background-color: #FFF;
         z-index: 10;
+        text-align: center;
     }
 
     
@@ -186,7 +187,7 @@ nav {
     }
 
     .actionButtonLogin_Logout.show {
-        display: block;
+        display:block;
         text-align: center;
         margin-top: 20px;
         padding: 20px 0;

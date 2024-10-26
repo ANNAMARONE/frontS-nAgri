@@ -9,15 +9,13 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
 }
     ul{
     list-style:none;
     padding:0;
      }
-    p{
-    font-size:14px; 
-     }
+  
     .fw-bold a{
     color: #333;
     text-decoration:none;
