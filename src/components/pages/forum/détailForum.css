@@ -105,6 +105,12 @@ body {
     .détailForum textarea {
         width: 80%;
     }
+    .forumdétail-container {
+        display: block;
+        max-height: 700px; 
+    overflow-y: auto;  
+    scrollbar-width: thin;
+    }
 }
 
 @media screen and (max-width: 768px) {

@@ -23,7 +23,8 @@
     background-color: #fff;
 }
 
-.historiqueCommande table th, table td {
+.historiqueCommande table th,
+.historiqueCommande table td {
     padding: 12px 15px;
     text-align: center;
     border: 1px solid #ddd;
@@ -37,11 +38,8 @@
 }
 
 .historiqueCommande table td {
-    
     color: #2c3e50;
 }
-
-
 
 .historiqueCommande table tbody tr:hover {
     background-color: #f1f1f1;
@@ -53,7 +51,8 @@
     margin-top: 10px;
 }
 
-.produitsTable th, .produitsTable td {
+.produitsTable th,
+.produitsTable td {
     padding: 8px;
     border: 1px solid #ddd;
     text-align: left;
@@ -87,22 +86,74 @@
     color: #34495e;
 }
 
-@media (max-width: 768px) {
+/* Media Queries pour Responsivité */
+@media (max-width: 1024px) {
     .historiqueCommande {
-        padding: 15px;
-    }
-
-    table th, table td {
-        padding: 8px;
-        font-size: 0.9em;
-    }
-
-    .produitsTable th, .produitsTable td {
-        padding: 6px;
-        font-size: 0.8em;
+        padding: 20px; /* Réduire le rembourrage */
     }
 
     .historiqueCommande h2 {
-        font-size: 1.5em;
+        font-size: 1.75em; /* Ajuster la taille de la police */
+    }
+
+    .historiqueCommande table th,
+    .historiqueCommande table td {
+        padding: 10px; /* Réduire le rembourrage des cellules */
+        font-size: 0.9em; /* Ajuster la taille de la police */
+    }
+
+    .produitsTable th,
+    .produitsTable td {
+        padding: 6px; /* Réduire le rembourrage des cellules */
+        font-size: 0.85em; /* Ajuster la taille de la police */
+    }
+}
+
+@media (max-width: 768px) {
+    .historiqueCommande {
+        padding: 15px; /* Réduire le rembourrage pour les tablettes */
+    }
+
+    .historiqueCommande h2 {
+        font-size: 1.5em; /* Ajuster la taille de la police */
+    }
+
+    .historiqueCommande table th,
+    .historiqueCommande table td {
+        padding: 8px; /* Réduire le rembourrage des cellules */
+        font-size: 0.85em; /* Ajuster la taille de la police */
+    }
+
+    .produitsTable th,
+    .produitsTable td {
+        padding: 5px; /* Réduire le rembourrage des cellules */
+        font-size: 0.75em; /* Ajuster la taille de la police */
+    }
+}
+
+@media (max-width: 480px) {
+    .historiqueCommande {
+        padding: 10px; /* Réduire le rembourrage pour les très petits écrans */
+    }
+
+    .historiqueCommande h2 {
+        font-size: 1.25em; /* Ajuster la taille de la police */
+    }
+
+    .historiqueCommande table th,
+    .historiqueCommande table td {
+        padding: 6px; /* Réduire le rembourrage des cellules */
+        font-size: 0.75em; /* Ajuster la taille de la police */
+    }
+
+    .produitsTable th,
+    .produitsTable td {
+        padding: 4px; /* Réduire le rembourrage des cellules */
+        font-size: 0.65em; 
+    }
+
+    .produitsTable td img {
+        max-width: 40px; /* Réduire la taille des images */
+        max-height: 40px; /* Réduire la taille des images */
     }
 }

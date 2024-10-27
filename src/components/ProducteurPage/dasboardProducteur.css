@@ -221,3 +221,91 @@ color: #2F580F;
     color: #888; 
     margin-left: auto;
 }
+/* Responsivité pour les éléments principaux */
+@media (max-width: 768px) {
+  .cartdasbordProducteur {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+  }
+
+  .section1ProducteurDash, .section2ProducteurDash {
+      width: 100%;
+      height: auto; 
+      padding: 10px;
+  }
+
+  .cart1_dasbord, .cart2_dasbord {
+      width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+  }
+
+  .section1ProducteurDash .section1titreP {
+      width: 90%;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .section1titreP p {
+      font-size: 18px;
+      text-align: center;
+  }
+
+  .setion1CartProduitP {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      padding: 10px;
+  }
+
+  .setion1CartProduitP .Section1Card {
+      width: 100%;
+      height: auto;
+  }
+
+  /* Modification des boutons pour qu'ils soient mieux adaptés aux petits écrans */
+  .cart1_dasbord button, .cart2_dasbord button {
+      width: 100px;
+      height: 35px;
+      font-size: 14px;
+      padding: 8px;
+  }
+}
+
+/* Responsivité supplémentaire pour les écrans très petits (jusqu'à 480px) */
+@media (max-width: 480px) {
+  .setion1CartProduitP {
+      grid-template-columns: 1fr;
+      gap: 5px;
+  }
+
+  .cartdasbordProducteur {
+      flex-direction: column;
+      gap: 5px;
+      justify-content: center;
+  }
+
+  .section1titreP p, .descriptProduc p {
+      font-size: 16px;
+  }
+
+  .producteurParRole .ProducteurInfo {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+  }
+
+  .producteurDetails, .producteurName, .producteurRole, .producteurDate {
+      text-align: center;
+  }
+  
+  .producteurParRole img {
+      width: 50px;
+      height: 50px;
+  }
+
+  .ProducteurInfo {
+      padding: 5px;
+  }
+}

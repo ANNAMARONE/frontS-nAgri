@@ -174,7 +174,7 @@ body {
 
 /* Commandes List */
 .commandesList {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
@@ -212,69 +212,6 @@ body {
     color: #777;
 }
 
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-    .headerpanier,
-    .tr1,
-    .PanierCommande {
-        width: 90%;
-    }
-
-    .ProduitPanier {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .headerpanier {
-        display: block;
-    }
-
-    .elementPanier1 {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .elementPanier2 {
-        padding-top: 0; /* Removed negative margin */
-    }
-
-    .commandePanier {
-        width: 100%;
-    }
-
-    .resume-details {
-        width: 100%;
-    }
-
-    .detail-item {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .commandesList {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .ProduitPanier,
-    .elementPanier1,
-    .elementPanier2 {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .Buttoncommandes {
-        width: 100%;
-    }
-
-    .resume-details,
-    .detail-item {
-        width: 100%;
-    }
-}
 
 /* Global Styles */
 .cc {
@@ -352,4 +289,45 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .headerpanier, .ProduitPanier, .PanierCommande, .commandePanier, .Buttoncommandes {
+        flex-direction: column;
+        width: 90%; 
+        margin: 0 auto; 
+    }
+    .ProduitPanier{
+        width: 130%;
+    }
+/* Separator Line */
+.tr1 {
+  display: none;
+}
+    .ProduitPanier {
+        margin: 10px 0; /* Réduction de l'espace */
+    }
+
+    .elementPanier2 {
+        padding-left: 0; 
+        text-align: center; 
+    }
+
+    .elementPanier2 h3 {
+        font-size: 18px; 
+    }
+
+    .resume-details, .detail-item {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .detail-item {
+        gap: 10px;
+    }
+
+    .commandeItem {
+        flex: 1 1 calc(100% - 20px); 
+    }
 }

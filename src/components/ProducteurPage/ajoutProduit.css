@@ -78,3 +78,59 @@
   .AjoutProduitP .description_form1 label{
     margin-top: 20px;
   }
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .AjoutProduitP form {
+      flex-direction: column; /* Passer à une colonne sur les écrans plus petits */
+      width: 90%; /* Prendre 90% de la largeur de l'écran */
+  }
+
+  .AjoutProduitP .description_form1 input,
+  .AjoutProduitP .description_form1 select,
+  .AjoutProduitP .description_form1 textarea {
+      width: 100%; /* Remplir la largeur de leur conteneur */
+  }
+
+  .icon-container {
+      width: 100%; /* Ajuster la largeur pour remplir le conteneur */
+      height: auto; /* Ajuster la hauteur automatiquement */
+      margin-right: 0; /* Supprimer la marge droite */
+  }
+}
+
+@media (max-width: 768px) {
+  .AjoutProduitP form {
+      padding: 10px; /* Ajouter un peu de rembourrage pour les petits écrans */
+  }
+
+  .description_form1 button {
+      padding: 10px; /* Augmenter la taille du bouton pour le rendre plus accessible */
+  }
+
+  .AjoutProduitP .description_form1 input,
+  .AjoutProduitP .description_form1 select,
+  .AjoutProduitP .description_form1 textarea {
+      height: 40px; /* Ajuster la hauteur pour le confort */
+  }
+
+  .icon-container {
+      height: 300px; /* Ajuster la hauteur pour les petits écrans */
+  }
+}
+
+@media (max-width: 480px) {
+  .description_form1 button {
+      width: 100%; /* Le bouton prend la largeur complète */
+  }
+
+  .AjoutProduitP .description_form1 input,
+  .AjoutProduitP .description_form1 select,
+  .AjoutProduitP .description_form1 textarea {
+      height: 35px; /* Ajuster encore la hauteur pour les très petits écrans */
+  }
+
+  .icon-container {
+      height: 200px; /* Ajuster la hauteur de l'icône pour les très petits écrans */
+  }
+}

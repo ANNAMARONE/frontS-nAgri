@@ -124,20 +124,21 @@ color:#009444 ;
     .cardEvenement {
         width: 100%;
         padding: 10px;
+        background:none;
     }
     .cardBanner{
-      width:100%;
-      background-color: #FFFF;
+      width:80%;
+      background:none;
       display:block;
-      
+      height: auto;
       margin:20px auto;
   }
 
   .bannerEvenement{
-    background-image: url('/src/assets/images/motiftop.png');
+    background:none;
     background-size: cover; 
     background-position: center; 
-    height: 60vh;
+    height: auto;
     width: 50%; 
 }
 
@@ -148,8 +149,7 @@ color:#009444 ;
         font-size: 1rem;
     }
     .EvenementImage img{
-      width: 480px;
-      height:500px;
+    display: none;
     }
     .cardBanner p {
         font-size: 0.8rem;
@@ -172,10 +172,10 @@ color:#009444 ;
         padding: 8px 15px;
     }
     .bannerEvenement{
-      background-image: url('/src/assets/images/motiftop.png');
+      background:none;
       background-size: cover; 
       background-position: center; 
-      height: 60vh;
+      height: auto;
       width: 50%; 
   }
   .EvenementImage img{

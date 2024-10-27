@@ -81,10 +81,10 @@ const NewDashboard = () => {
             {/* Sidebar */}
             {isSidebarOpen && (
                 <div className="sidebar">
-                    <h2>Tableau de Bord</h2>
+                   
                     <ul>
                         <li>
-                        <FontAwesomeIcon icon={faChartLine} /> <NavLink to="/statistics" activeClassName="active">Dashboard</NavLink>
+                        <FontAwesomeIcon icon={faChartLine} /> <NavLink to="/statistics" activeClassName="active">Tableau de Bord</NavLink>
                         </li>
                         <li>
                             <FontAwesomeIcon icon={faBox} /> Produits
