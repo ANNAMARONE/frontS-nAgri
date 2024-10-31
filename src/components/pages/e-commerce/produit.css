@@ -5,8 +5,7 @@
     margin: 0;
 }
 body{
-    font-family: roboto;
-
+    font-family: 'roboto';
 }
 .sectioN1{
     width: 1319px;
@@ -393,6 +392,9 @@ visibility: inherit;
   height: 45px;
   background-color: #009444;
   border-radius: 43px;
+}
+.pagination{
+  margin-left: 170px;
 }
 /* Media Queries pour les tablettes */
 @media (max-width: 1024px) {

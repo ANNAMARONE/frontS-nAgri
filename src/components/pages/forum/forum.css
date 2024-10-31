@@ -176,3 +176,32 @@ body{
 }
  
 }
+/* Media Queries pour tablettes */
+@media (max-width: 1024px) {
+
+
+  .forum-container {
+      flex-direction: column;
+      align-items: center; 
+  }
+
+  .forum-item {
+      width: 200%; 
+      padding: 10px; 
+      float: left;
+  }
+
+  .forum-container .header {
+      width: 40%;
+      margin: 20px 0; 
+  }
+
+  .add-forum-link {
+      width: 100%; 
+      padding: 10px; 
+  }
+
+  .add-forum-link a {
+      font-size: 16px; 
+  }
+}

@@ -104,14 +104,14 @@ export default function Produit (){
       return;
     }
   
-    const token = localStorage.getItem("token"); // Assurez-vous que le jeton est stocké ici après la connexion
+    const token = localStorage.getItem("token"); 
   
     axios.post(
       `${config.apiBaseUrl}/produit/${produit.id}/like`, 
       {}, 
       {
         headers: {
-          'Authorization': `Bearer ${token}` // Ajoutez le jeton d'authentification ici
+          'Authorization': `Bearer ${token}`
         }
       }
     )
@@ -181,22 +181,25 @@ export default function Produit (){
         return acc;
       }, {});
       setQuantites(initialQuantites);
+      
     }
+
   }, []);
 
   // Sauvegarder le panier dans le localStorage à chaque mise à jour
   useEffect(() => {
     if (panier.length > 0) {
       localStorage.setItem('panier', JSON.stringify(panier));
+      
       console.log('Panier mis à jour dans localStorage:', panier);
     }
   }, [panier]);
 
   const ajouterAuPanier = (produit, quantite = 1) => {
     const produitExist = panier.find(item => item.id === produit.id);
-  
+   
     let nouveauPanier;
-    window.location.reload();
+  
     if (produitExist) {
       if (produitExist.quantite + quantite <= produit.quantite) { 
         nouveauPanier = panier.map(item => 
@@ -273,21 +276,9 @@ export default function Produit (){
       <div className='produit_plus_populaire'>
         <div className='produit_populaire'>
           <div className='produitPopu'>
-            <h1>Produits populaires</h1>
+            
             <button></button>
-             {/* Pagination */}
-          <div className="pagination">
-            <button onClick={prevPage} disabled={currentPage === 1}>
-              Précédent
-            </button>
-            <span>Page {currentPage} sur {totalPages}</span>
-            <button 
-              onClick={nextPage} 
-              disabled={currentPage === totalPages}
-            >
-              Voir plus <FaArrowRight size={20} color="#009444" />
-            </button>
-          </div>
+         
           </div>
 
           <div className='liste_carte'>
@@ -330,6 +321,20 @@ export default function Produit (){
                 </div>
               </div>
             ))}
+             
+          </div>
+             {/* Pagination */}
+             <div className="pagination">
+            <button onClick={prevPage} disabled={currentPage === 1}>
+              Précédent
+            </button>
+            <span>Page {currentPage} sur {totalPages}</span>
+            <button 
+              onClick={nextPage} 
+              disabled={currentPage === totalPages}
+            >
+              Voir plus <FaArrowRight size={20} color="#009444" />
+            </button>
           </div>
         </div>
       </div>

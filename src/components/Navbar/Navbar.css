@@ -34,7 +34,6 @@ nav {
 
 .nav ul li {
     margin: 0 1rem;
-    list-style: none;
 }
 
 .nav ul li a {
@@ -44,10 +43,10 @@ nav {
     font-weight: bold;
     padding: 0.5rem;
     transition: color 0.3s;
-    list-style: none;
 }
 
-.nav ul li a:hover, ul li a.active {
+.nav ul li a:hover, 
+.nav ul li a.active {
     color: #009444;
 }
 
@@ -138,11 +137,9 @@ nav {
     background-color: #ff0000;
     color: white;
     border: none;
-    padding: 10px;
-    cursor: pointer;
+    padding: 0.5rem 1rem;
     font-weight: bold;
     border-radius: 100px;
-    padding: 0.5rem 1rem;
     cursor: pointer;
 }
 
@@ -153,12 +150,10 @@ nav {
 }
 
 @media (max-width: 768px) {
-   
     .nav ul {
         display: none; 
     }
 
-    
     .nav ul.show, 
     .actionButtonLogin_Logout.show {
         display: flex; 
@@ -170,7 +165,6 @@ nav {
         text-align: center;
     }
 
-    
     .nav ul.show {
         flex-direction: column; 
         align-items: center;
@@ -181,38 +175,43 @@ nav {
         margin: 1rem 0;
     }
 
-   
     .actionButtonLogin_Logout {
         display: none; 
     }
+    .logo img {
+        width: 100px;
+        height: 80px;
+    }
 
     .actionButtonLogin_Logout.show {
-        display:block;
+        display: flex;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 100px;
         padding: 20px 0;
         background-color: #FFF; 
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
     /* Burger Menu */
     .burger {
         display: flex; 
         cursor: pointer;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         z-index: 20;
+        position: absolute;
+        right: 15px;
+        top: 25px;
     }
 
     .burger div {
         width: 25px;
         height: 3px;
-        background-color: #333;
+        background-color: #009444; 
         margin: 4px;
         transition: all 0.3s ease;
     }
 
-  
     .burger.toggle div:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 5px);
     }
@@ -226,5 +225,80 @@ nav {
     }
 }
 
+/* Responsive pour tablette */
+@media (max-width: 1024px) {
+    nav {
+        height: 100px; 
+        padding: 0 1rem;
+    }
 
+    .burger {
+        display: flex; 
+        position: absolute;
+        right: 15px;
+        top: 20px;
+        z-index: 20;
+    }
 
+    .nav ul {
+        display: none; 
+    }
+
+    .nav ul.show {
+        display: flex;
+        flex-direction: column; 
+        width: 100%;
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        background-color: #FFF;
+        padding: 10px 0;
+        z-index: 10;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-top: 1px solid #ddd;
+    }
+
+    .nav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .actionButtonLogin_Logout {
+        flex-direction: column;
+        align-items: center;
+        width: 100%; 
+        padding: 10px 0;
+        background-color: #FFF;
+        position: absolute;
+        top: 200px; 
+        left: 0;
+        z-index: 10;
+        display: none;
+    }
+
+    .actionButtonLogin_Logout.show {
+        display: flex;
+        margin-top: 125px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-top: 1px solid #ddd;
+        
+    }
+    .actionButtonLogin_Logout .cart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav .button {
+        width: 90%;
+        padding: 0.7rem 1.5rem;
+        font-size: 18px;
+        border-radius: 50px;
+        margin: 10px auto;
+    }
+
+    .cart {
+        width: 100%;
+        justify-content: center;
+    }
+}

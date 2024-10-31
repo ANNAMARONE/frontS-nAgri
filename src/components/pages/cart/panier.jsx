@@ -14,7 +14,28 @@ const Panier = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [paymentMethod, setPaymentMethod] = useState("en_ligne");
   const navigate = useNavigate();
-  
+  const [pageActuelle, setPageActuelle] = useState(1);
+  const produitsParPage = 3;
+
+ // Calculer l'index de début et de fin pour la pagination
+ const indexDebut = (pageActuelle - 1) * produitsParPage;
+ const indexFin = indexDebut + produitsParPage;
+ const produitsAffiches = panier.slice(indexDebut, indexFin);
+
+ const nombrePages = Math.ceil(panier.length / produitsParPage);
+
+ const allerALaPagePrecedente = () => {
+   if (pageActuelle > 1) {
+     setPageActuelle(pageActuelle - 1);
+   }
+ };
+
+ const allerALaPageSuivante = () => {
+   if (pageActuelle < nombrePages) {
+     setPageActuelle(pageActuelle + 1);
+   }
+ };
+
 
   const handlePaymentChange = (e) => {
     setPaymentMethod(e.target.value);
@@ -146,119 +167,114 @@ const Panier = () => {
     }
 };
 
-  
-  
-  
   return (
     <div>
-      <div className='headerpanier'>
-        <h2>Mon Panier</h2>
-        <button className='Buttoncommandes'><Link to="/commande">Mes commandes</Link> </button>
-      </div>
-      <div className='tr1'></div>
-      {errorMessage && <div className="error">{errorMessage}</div>}
-      {successMessage && <div className="success">{successMessage}</div>} 
-      <div className='PanierCommande'>
-        <div>
-          {panier.length === 0 ? (
-            <p>Votre panier est vide.</p>
-          ) : (
-            panier.map(produit => (
-              <div key={produit.id}>
-                <div className='ProduitPanier'>
-                  <div className='elementPanier1'>
-                    <div className="image-container">
-                      <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
-                    </div>
-                    <div className='elementPanier2'>
-                      <h3>{produit.libelle}</h3>
-                      <p>quantite: {produit.quantite}</p>
-                      <input
-                        type="number"
-                        value={produit.quantite}
-                        onChange={(e) => modifierQuantite(produit.id, parseInt(e.target.value))}
-                        min="1"
-                      />
-                      <button onClick={() => supprimerProduit(produit.id)}><MdDeleteForever size={24} /></button>
-                    </div>
+    <div className='headerpanier'>
+      <h2>Mon Panier</h2>
+      <button className='Buttoncommandes'>
+        <Link to="/commande">Mes commandes</Link>
+      </button>
+    </div>
+    <div className='tr1'></div>
+    
+    <div className='PanierCommande'>
+      <div>
+        {panier.length === 0 ? (
+          <p>Votre panier est vide.</p>
+        ) : (
+          produitsAffiches.map(produit => (
+            <div key={produit.id}>
+              <div className='ProduitPanier'>
+                <div className='elementPanier1'>
+                  <div className="image-container">
+                    <img src={`${config.imageBaseUrl}/${produit.image}`} alt={produit.nom} />
                   </div>
-                  <div className='elementPanierPrix'>
-                    <p>{produit.prix} FCFA</p>
+                  <div className='elementPanier2'>
+                    <h3>{produit.libelle}</h3>
+                    <p>quantite: {produit.quantite}</p>
+                    <input
+                      type="number"
+                      value={produit.quantite}
+                      onChange={(e) => modifierQuantite(produit.id, parseInt(e.target.value))}
+                      min="1"
+                    />
+                    <button onClick={() => supprimerProduit(produit.id)}><MdDeleteForever size={24} /></button>
                   </div>
                 </div>
+                <div className='elementPanierPrix'>
+                  <p>{produit.prix} FCFA</p>
+                </div>
               </div>
-            ))
-          )}
-               
-        </div>
-        <div className='commandePanier'>
-        <div>
-{/* methode de payement */}
-<form className="styled">
-      <fieldset>
-        <legend>choisire un moyenne de payement</legend>
+            </div>
+          ))
+        )}
 
-        <div className="options">
-          <label>
-            <input
-              className="cc"
-              name="payment"
-              value="en_ligne"
-              type="radio"
-              checked={paymentMethod === "en_ligne"}
-              onChange={handlePaymentChange}
-            />
-            <svg aria-hidden="true" viewBox="0 0 249 177">
-              <use href="#card" />
-            </svg>
-            <span id="cc-title">Paiement</span>
-            <span id="cc-hint">En ligne</span>
-          </label>
-
-          <label>
-            <input
-              className="cc2"
-              name="payment"
-              value="Paiement à la livraison"
-              type="radio"
-              checked={paymentMethod === "Paiement à la livraison"}
-              onChange={handlePaymentChange}
-            />
-            <svg aria-hidden="true" viewBox="0 0 249 177">
-              <use href="#card" />
-            </svg>
-            <span id="cc-title2">Paiement</span>
-            <span id="cc-hint2">Paiement à la livraison</span>
-          </label>
-        </div>
-      </fieldset>
-
-    </form>
-            </div>
-          <h1>Résumé de la commande</h1>
-          <div className='resume-details'>
-            <div className='detail-item'>
-              <p>Total des produits:</p>
-              <h3>{montantTotal} FCFA</h3>
-            </div>
-            <div className='detail-item'>
-              <p>Expédition:</p>
-              <h3>{montantExpedition} FCFA</h3>
-            </div>
-            <div className='detail-item'>
-              <p>Montant Total:</p>
-              <h3>{montantTotalAvecExpedition} FCFA</h3>
-            </div>
-          </div>
-          <button onClick={handleCommander} disabled={loading} className='payment-button'>
-            {loading ? 'Chargement...' : 'Continuer vers le paiement'}
+        {/* Affichage des boutons de pagination */}
+        <div className="pagination">
+          <button onClick={allerALaPagePrecedente} disabled={pageActuelle === 1}>
+            Précédent
+          </button>
+          <span>Page {pageActuelle} / {nombrePages}</span>
+          <button onClick={allerALaPageSuivante} disabled={pageActuelle === nombrePages}>
+            Suivant
           </button>
         </div>
       </div>
-   
+      
+      <div className='commandePanier'>
+        {/* Méthode de paiement */}
+        <form className="styled">
+          <fieldset>
+            <legend>Choisir un moyen de paiement</legend>
+            <div className="options">
+              <label>
+                <input
+                  className="cc"
+                  name="payment"
+                  value="en_ligne"
+                  type="radio"
+                  checked={paymentMethod === "en_ligne"}
+                  onChange={handlePaymentChange}
+                />
+                <span id="cc-title">Paiement en ligne</span>
+              </label>
 
-    
+              <label>
+                <input
+                  className="cc2"
+                  name="payment"
+                  value="Paiement à la livraison"
+                  type="radio"
+                  checked={paymentMethod === "Paiement à la livraison"}
+                  onChange={handlePaymentChange}
+                />
+                <span id="cc-title2">Paiement à la livraison</span>
+              </label>
+            </div>
+          </fieldset>
+        </form>
+
+        <h1>Résumé de la commande</h1>
+        <div className='resume-details'>
+          <div className='detail-item'>
+            <p>Total des produits:</p>
+            <h3>{montantTotal} FCFA</h3>
+          </div>
+          <div className='detail-item'>
+            <p>Expédition:</p>
+            <h3>{montantExpedition} FCFA</h3>
+          </div>
+          <div className='detail-item'>
+            <p>Montant Total:</p>
+            <h3>{montantTotalAvecExpedition} FCFA</h3>
+          </div>
+        </div>
+        <button onClick={handleCommander} disabled={loading} className='payment-button'>
+          {loading ? 'Chargement...' : 'Continuer vers le paiement'}
+        </button>
+      </div>
     </div>
+  </div>
   );
 };
 

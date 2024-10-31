@@ -60,6 +60,7 @@ import MontantCommandesChart from './components/adminPage/StatistiqueAdmin';
 import AccessDenied from './components/Route Proteger/AccessDenied';
 import GestionStock from './components/ProducteurPage/GestionStock';
 import PrivateRoute from './components/Route Proteger/ProtectedRoute';
+import Gestionrole from './components/adminPage/gestion role et permission/gestionrole';
 
 
 
@@ -161,7 +162,8 @@ function App() {
           <Route path="/categories/modifier/:id" element={<ModifierCategorie />} />
           <Route path="/forumAdmin" element={<Forum />} />
           <Route path="/evolutionCommande" element={<MontantCommandesChart />} />
-       
+          <Route path="/gestionRoles" element={<Gestionrole />} />
+         
       </Route>
   </Route>
       </Routes>

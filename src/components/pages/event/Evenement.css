@@ -6,7 +6,7 @@
     margin: 0;
 }
 body{
-    font-family: roboto;
+    font-family: 'roboto';
     
 }
 
@@ -129,7 +129,7 @@ color:#009444 ;
     .cardBanner{
       width:80%;
       background:none;
-      display:block;
+      display:column;
       height: auto;
       margin:20px auto;
   }
@@ -182,4 +182,47 @@ color:#009444 ;
     width: 100px;
     height: auto;
   }
+}
+/* Styles Responsive pour Tablette */
+@media (max-width: 1024px) {
+  .bannerEvenement {
+      height: 50vh; 
+      width: 100%;
+  }
+
+  .cardBanner {
+      width: 80%; 
+      height: auto; 
+      
+  }
+
+  .cardBanner h1 {
+      font-size: 18px; 
+      width: 90%; 
+  }
+
+  .cardBanner p {
+      width: 90%;
+  }
+
+  .cardEvenement {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      padding: 10px; 
+  }
+
+  .cartElement h3 {
+      font-size: 1.3em; 
+  }
+
+  .cartElement p {
+      font-size: 0.9em; 
+  }
+
+  .cartElement .btn-lien {
+      padding: 8px 16px;
+      font-size: 0.9em; 
+  }
+  .EvenementImage img{
+    display: none;
+    }
 }
