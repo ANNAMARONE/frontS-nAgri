@@ -78,8 +78,9 @@ const data = [
   Gestion des utilisateurs
   </NavLink>
   </div>
- <div className='button'>Gestion des rôles</div>
- <div className='button'>Gestion des permissions</div>
+ <div className='button'><NavLink to="/gestionRoles">Gestion des rôles</NavLink></div>
+ <div className='button'><NavLink to="/gestionPremission">Gestion des permissions</NavLink></div>
+ 
 </div>
 
  </div>

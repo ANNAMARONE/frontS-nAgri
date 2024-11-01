@@ -1,20 +1,23 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '/src/config';
-
+import './gestionRole.css'
 const Gestionrole = () => {
     const [roles, setRoles] = useState([]);
     const [newRoleName, setNewRoleName] = useState('');
-    const [editRole, setEditRole] = useState(null); // Correction ici pour définir le rôle modifié
-    const [permissionId, setPermissionId] = useState('');
+    const [editRole, setEditRole] = useState(null);
     const [message, setMessage] = useState('');
+    const [permissions, setPermissions] = useState([]);
+    const [selectedPermissions, setSelectedPermissions] = useState([]);
+    const [showPopover, setShowPopover] = useState(false);
+    const [currentRole, setCurrentRole] = useState(null);
 
-    // Charger la liste des rôles au montage du composant 
     useEffect(() => {
         fetchRoles();
+        fetchPermissions(); 
     }, []);
 
-    // Fonction pour récupérer tous les rôles
     const fetchRoles = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -25,11 +28,11 @@ const Gestionrole = () => {
             });
             setRoles(response.data);
         } catch (error) {
+            setMessage('Erreur lors du chargement des rôles.');
             console.error('Erreur lors du chargement des rôles:', error);
         }
     };
 
-    // Fonction pour ajouter un nouveau rôle
     const addRole = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -40,15 +43,14 @@ const Gestionrole = () => {
                 },
             });
             setMessage(response.data.message);
-            setNewRoleName(''); // Réinitialiser le champ d'entrée
-            fetchRoles(); // Récupérer la liste mise à jour des rôles
+            setNewRoleName('');
+            fetchRoles();
         } catch (error) {
+            setMessage('Erreur lors de l\'ajout du rôle.');
             console.error('Erreur lors de l\'ajout du rôle:', error);
-            setMessage('Erreur lors de l\'ajout du rôle.'); // Afficher un message d'erreur
         }
     };
 
-    // Fonction pour supprimer un rôle
     const deleteRole = async (id) => {
         try {
             const token = localStorage.getItem('token');
@@ -60,11 +62,11 @@ const Gestionrole = () => {
             setMessage(response.data.message);
             fetchRoles();
         } catch (error) {
+            setMessage('Erreur lors de la suppression du rôle.');
             console.error('Erreur lors de la suppression du rôle:', error);
         }
     };
 
-    // Fonction pour mettre à jour un rôle
     const updateRole = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -74,51 +76,108 @@ const Gestionrole = () => {
                 },
             });
             setMessage(response.data.message);
-            setEditRole(null); // Réinitialiser l'état d'édition
+            setEditRole(null);
             fetchRoles();
         } catch (error) {
+            setMessage('Erreur lors de la mise à jour du rôle.');
             console.error('Erreur lors de la mise à jour du rôle:', error);
         }
     };
 
-    // Fonction pour ajouter une permission à un rôle
-    const givePermission = async (roleId) => {
-        if (!roleId) {
-            setMessage('Veuillez sélectionner un rôle.');
-            return;
-        }
+    const openPopover = async (role) => {
+        setCurrentRole(role);
+        setShowPopover(true);
+        await fetchPermissions(); 
+    
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`${config.apiBaseUrl}/roles/${roleId}/permission`, { permissionId }, {
+            const response = await axios.get(`${config.apiBaseUrl}/roles/${role.id}/permissions`, { 
+                headers: { 'Authorization': `Bearer ${token}` },
+            });
+    
+            // Vérifier si les données de la réponse sont correctement formatées
+            const assignedPermissions = Array.isArray(response.data.data)
+                ? response.data.data.map((permission) => permission.id)
+                : [];
+    
+            // Mettre à jour les permissions sélectionnées
+            setSelectedPermissions(assignedPermissions);
+            console.log("Permissions du rôle :", assignedPermissions);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des permissions du rôle :', error);
+        }
+    };
+    
+
+    const fetchPermissions = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`${config.apiBaseUrl}/permissions`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
                 },
             });
-            setMessage(response.data.message);
-            setPermissionId(''); // Réinitialiser le champ d'entrée
+            setPermissions(response.data);  
         } catch (error) {
-            console.error('Erreur lors de l\'ajout de la permission:', error);
+            setMessage('Erreur lors du chargement des permissions.');
+            console.error('Erreur lors du chargement des permissions:', error);
+        }
+    };
+    
+    const closePopover = () => {
+        setShowPopover(false);
+        setCurrentRole(null);
+        setSelectedPermissions([]);  
+    };
+
+    const handlePermissionChange = (permissionId) => {
+        setSelectedPermissions((prevSelected) =>
+            prevSelected.includes(permissionId)
+                ? prevSelected.filter((id) => id !== permissionId) 
+                : [...prevSelected, permissionId]
+        );
+    };
+    
+    const updatePermissions = async () => {
+        if (!currentRole) return;
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post(
+                `${config.apiBaseUrl}/roles/${currentRole.id}/permission`,
+                { permissionIds: selectedPermissions }, 
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+            setMessage('Permissions mises à jour avec succès',response );
+            closePopover();
+        } catch (error) {
+            setMessage('Erreur lors de la mise à jour des permissions.');
+            console.error('Erreur lors de la mise à jour des permissions:', error);
         }
     };
 
     return (
-        <div>
+        <div className='gestionrole'>
             <h1>Gestion des Rôles</h1>
             {message && <p>{message}</p>}
 
-            {/* Liste des rôles */}
-            <ul>
+            <ul className='afficherole'>
                 {roles.map((role) => (
-                    <li key={role.id}>
+                    <li key={role.id} className='afficheRoleli'>
                         {role.name}{' '}
                         <button onClick={() => deleteRole(role.id)}>Supprimer</button>
                         <button onClick={() => setEditRole(role)}>Modifier</button>
+                        <button onClick={() => openPopover(role)}>Voir Détails</button>
                     </li>
                 ))}
             </ul>
 
-            {/* Formulaire d'ajout de rôle */}
             <div>
                 <h2>Ajouter un Rôle</h2>
                 <input
@@ -130,7 +189,6 @@ const Gestionrole = () => {
                 <button onClick={addRole}>Ajouter</button>
             </div>
 
-            {/* Formulaire de modification de rôle */}
             {editRole && (
                 <div>
                     <h2>Modifier le Rôle</h2>
@@ -145,17 +203,27 @@ const Gestionrole = () => {
                 </div>
             )}
 
-            {/* Formulaire d'ajout de permission */}
-            <div>
-                <h2>Ajouter une Permission à un Rôle</h2>
-                <input
-                    type="number"
-                    value={permissionId}
-                    onChange={(e) => setPermissionId(e.target.value)}
-                    placeholder="ID de la permission"
-                />
-                <button onClick={() => givePermission(editRole ? editRole.id : null)}>Ajouter la Permission</button>
+            {showPopover && (
+            <div className="popover">
+            <h2>Détails du Rôle : {currentRole.name}</h2>
+            <div className="permissions-container">
+                {permissions.map((permission) => (
+                    <div className="permission-card" key={permission.id}>
+                        <input
+                            type="checkbox"
+                            checked={selectedPermissions.includes(permission.id)} 
+                            onChange={() => handlePermissionChange(permission.id)}
+                        />
+                        <label>{permission.name}</label>
+                    </div>
+                ))}
             </div>
+        
+            <button onClick={updatePermissions} className='buttonActionRole'>Enregistrer les Modifications</button>
+            <button onClick={closePopover} className='buttonActionRoleClose'>Fermer</button>
+        </div>
+        
+            )}
         </div>
     );
 };

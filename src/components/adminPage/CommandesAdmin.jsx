@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './dashboard.css'; 
 import config from '/src/config';
 const TotalMontantCommandes = () => {
     const [montantTotal, setMontantTotal] = useState(0);
-
+const [commande,setCommande]=useState('')
     useEffect(() => {
         const fetchCommandes = async () => {
             const token = localStorage.getItem('token');
@@ -23,8 +22,31 @@ const TotalMontantCommandes = () => {
             }
         };
         fetchCommandes();
-    }, []);
 
+   
+    }, []);
+    const fetchListeCommandes = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await axios.get(`${config.apiBaseUrl}/toutlescommande`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            
+            setCommande(response.data); 
+           
+            console.log("Données des commandes :", response.data);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des commandes :", error); // Affiche plus de détails sur l'erreur
+        }
+    };
+    
+    // Appel de la fonction dans un useEffect pour exécution au montage
+    useEffect(() => {
+        fetchListeCommandes();
+    }, []);
+    
     return (
         <div className="montant-total-commandes">
             <h2>Montant Total des Commandes</h2>
