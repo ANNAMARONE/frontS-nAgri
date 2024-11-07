@@ -88,7 +88,7 @@ const ModifierEvenement = () => {
             name="libelle"
             value={evenement.libelle}
             onChange={handleInputChange}
-            required
+            
           />
           {errors.libelle && <span>{errors.libelle[0]}</span>}
         </div>
@@ -98,7 +98,7 @@ const ModifierEvenement = () => {
             name="description"
             value={evenement.description}
             onChange={handleInputChange}
-            required
+            
           />
           {errors.description && <span>{errors.description[0]}</span>}
         </div>
@@ -109,7 +109,7 @@ const ModifierEvenement = () => {
             name="lien"
             value={evenement.lien}
             onChange={handleInputChange}
-            required
+            
           />
           {errors.lien && <span>{errors.lien[0]}</span>}
         </div>
@@ -120,7 +120,7 @@ const ModifierEvenement = () => {
             name="date"
             value={evenement.date}
             onChange={handleInputChange}
-            required
+            
           />
           {errors.date && <span>{errors.date[0]}</span>}
         </div>

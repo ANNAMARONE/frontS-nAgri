@@ -85,44 +85,45 @@ const Commandes = () => {
   
   
 
-  const handleStatusChange = async (commandeId, status) => {
-    if (!commandeId) {
-      console.error('Commande ID is null or undefined');
-      setErrorMessage('Erreur: ID de la commande non trouvé.');
-      return;
+// Fonction de changement de statut avec vérification de l'ID
+const handleStatusChange = async (commandeId, status) => {
+  if (!commandeId) {
+    console.error("Commande ID is null or undefined");
+    console.log("Commande sélectionnée ID:", commandeId); 
+    setErrorMessage("Erreur : ID de la commande non trouvé.");
+    return;
+  }
+
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await fetch(`${config.apiBaseUrl}/commandes/${commandeId}/status`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ status_de_commande: status }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Erreur lors de la mise à jour du statut : ${response.status} ${errorData.message}`);
     }
+
+    const data = await response.json();
+    setCommandes(commandes.map(commande =>
+      commande.id === commandeId ? { ...commande, status_de_commande: status } : commande
+    ));
+    setSelectedCommandeId(null);
+    setStatus("");
+  } catch (error) {
+    console.error("Erreur :", error);
+    setErrorMessage("Erreur lors de la mise à jour du statut.");
+  }
+};
   
-    const token = localStorage.getItem('token');
   
-    try {
-      const response = await fetch(`${config.apiBaseUrl}/commandes/${commandeId}/status`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({ status_de_commande: status }),
-      });
-  
-      if (!response.ok) {
-        // Affiche le statut et le message d'erreur de la réponse
-        const errorData = await response.json();
-        throw new Error(`Erreur lors de la mise à jour du statut: ${response.status} ${errorData.message}`);
-      }
-  
-      const data = await response.json();
-  
-      // Met à jour la liste des commandes avec le nouveau statut
-      setCommandes(commandes.map(commande =>
-        commande.id === commandeId ? { ...commande, status_de_commande: status } : commande
-      ));
-      setSelectedCommandeId(null);
-      setStatus('');
-    } catch (error) {
-      console.error('Erreur:', error);
-      setErrorMessage('Erreur lors de la mise à jour du statut.');
-    }
-  };
   
   
   const popover = (
@@ -203,14 +204,20 @@ const Commandes = () => {
   placement="right"
   overlay={popover}
   onClick={() => {
-    setSelectedCommandeId(commande.id);
-    setStatus(commande.status_de_commande); 
+    if (commande.id) {
+      setSelectedCommandeId(commande.id);
+      setStatus(commande.status_de_commande);
+      console.log("Commande sélectionnée ID:", commande.id); 
+    } else {
+      console.error("ID de la commande non trouvé");
+    }
   }}
 >
-  <button>
+  <button disabled={!commande.id}>
     <MdRateReview size={30} /> Modifier le Statut
   </button>
 </OverlayTrigger>
+
 
             
             {/* Supprimer la commande */}

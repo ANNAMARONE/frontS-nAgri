@@ -72,14 +72,14 @@ const data = [
  <div className='gestionAction'>
  <div className="gestionAcee">
    <h1>Gestion des accès et des identités</h1>
-   <p>Lorem Ipsum &apos;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry &apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, </p>
+   <p> La gestion des accès et des identités (IAM, pour Identity and Access Management) est un cadre de sécurité qui permet de garantir que les bonnes personnes ont le bon accès aux bonnes ressources, au bon moment. Cela inclut des processus et des technologies utilisés pour gérer les identités numériques des utilisateurs, contrôler l&apos;accès aux ressources d&apos;une organisation, et surveiller les activités des utilisateurs.</p>
 <div className="actionUser">
- <div className='button'><NavLink to="/ListeUtilisateur">
+ <div className='button1'><NavLink to="/ListeUtilisateur">
   Gestion des utilisateurs
   </NavLink>
   </div>
- <div className='button'><NavLink to="/gestionRoles">Gestion des rôles</NavLink></div>
- <div className='button'><NavLink to="/gestionPremission">Gestion des permissions</NavLink></div>
+ <div className='button1'><NavLink to="/gestionRoles">Gestion des rôles</NavLink></div>
+ <div className='button1'><NavLink to="/gestionPremission">Gestion des permissions</NavLink></div>
  
 </div>
 

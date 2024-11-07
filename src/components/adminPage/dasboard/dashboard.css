@@ -88,21 +88,24 @@
     gap: 20px; 
 }
 
-.actionUser .button {
+.actionUser .button1 {
     padding: 10px 20px; 
     font-size: 16px; 
     color: #fff; 
-    background-color: #3498db; 
+    background-color: #009444; 
     border: none; 
     border-radius: 8px;
     cursor: pointer; 
     transition: background-color 0.3s, transform 0.3s; 
 }
 
-.actionUser .button:hover {
-    background-color: #2980b9; 
+.actionUser .button1:hover {
+    background-color: #009444; 
     transform: scale(1.05); 
     color: #fff;
+}
+.actionUser .button1 a{
+    color: white;
 }
 
 .actionUser button:active {

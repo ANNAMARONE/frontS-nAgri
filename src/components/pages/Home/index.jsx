@@ -238,7 +238,9 @@ const [produits, setProduits] = useState([]);
         <p>
           SénAgri est une plateforme qui connecte les acteurs du secteur agricole sénégalais à travers des solutions technologiques innovantes. Elle vise à moderniser l&apos;agriculture et à promouvoir une croissance durable au service des producteurs locaux.
         </p>
+		<NavLink to="/contact">
         <a href="#" className="cta-button">Rejoignez-nous</a> 
+		</NavLink>
       </div>
       <div className="image-content">
         <img src={panierImage} alt="" />

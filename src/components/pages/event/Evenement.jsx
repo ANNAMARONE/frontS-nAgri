@@ -32,7 +32,12 @@ const Evenement = () => {
     fetchEvenements();
   }, []);
 
-  
+  const truncateDescription = (description, maxLength) => {
+    if (description.length > maxLength) {
+        return description.substring(0, maxLength) + '...';
+    }
+    return description;
+};
 
   if (error) {
     return <div>{error}</div>;
@@ -66,8 +71,8 @@ const Evenement = () => {
       <li key={evenement.id} className="cartElement">
         <div></div>
         <img src={`${config.imageBaseUrl}/${evenement.image}`} alt={evenement.libelle} />
-        <h3>{evenement.libelle}</h3>
-        <p>{evenement.description}</p>
+        <h3>{truncateDescription(evenement.libelle,50)}</h3>
+        <p>{truncateDescription(evenement.description,100)}</p>
         <p>Date : {new Date(evenement.created_at).toLocaleDateString()}</p>
       
         <button

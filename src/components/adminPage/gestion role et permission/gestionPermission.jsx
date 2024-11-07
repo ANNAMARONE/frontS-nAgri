@@ -91,7 +91,7 @@ const GestionPermission = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
-                <button onClick={addPermission}>Ajouter</button>
+                <button className='buttonModifier1' onClick={addPermission}>Ajouter</button>
             </div>
 
             {/* Lister les permissions */}
@@ -105,16 +105,16 @@ const GestionPermission = () => {
                                     value={editName}
                                     onChange={(e) => setEditName(e.target.value)}
                                 />
-                                <button onClick={() => modifierPermission(permission.id)}>Enregistrer</button>
-                                <button onClick={() => setEditId(null)}>Annuler</button>
+                                <button className='buttonModifier1'  onClick={() => modifierPermission(permission.id)}>Enregistrer</button>
+                                <button className='buttonModifier1' onClick={() => setEditId(null)}>Annuler</button>
                             </>
                         ) : (
                             <>
                                 {permission.name}
-                                <button onClick={() => { setEditId(permission.id); setEditName(permission.name); }}>
+                                <button className='buttonModifierM' onClick={() => { setEditId(permission.id); setEditName(permission.name); }}>
                                     Modifier
                                 </button>
-                                <button onClick={() => supprimerPermission(permission.id)}>Supprimer</button>
+                                <button className='buttonsuppressionM' onClick={() => supprimerPermission(permission.id)}>Supprimer</button>
                             </>
                         )}
                     </li>

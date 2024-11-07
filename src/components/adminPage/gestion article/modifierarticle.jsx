@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import config from '/src/config';
 const ModifierArticle = () => {
   const { id } = useParams(); 
   const [article, setArticle] = useState({
@@ -19,7 +20,7 @@ const ModifierArticle = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/article/${id}`, {
+        const response = await axios.get(`${config.apiBaseUrl}/article/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           },
@@ -59,7 +60,7 @@ const ModifierArticle = () => {
     }
 
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/api/modifier_Article/${id}`, formData, {
+      const response = await axios.post(`${config.apiBaseUrl}/modifier_Article/${id}`, formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',

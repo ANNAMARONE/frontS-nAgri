@@ -186,3 +186,9 @@ body {
 .AjouterEvenement select{
     background-color: #fff;
 }
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
+  }
+  

@@ -32,8 +32,8 @@ export const Navbar = () => {
       </div>
       <ul className={isOpen ? 'show' : ''}>
         <li><NavLink to="/">Accueil</NavLink></li>
-        <li><NavLink to="/evenement">Événement</NavLink></li>
-        <li><NavLink to="/produit">Produit</NavLink></li>
+        <li><NavLink to="/evenement">Événements</NavLink></li>
+        <li><NavLink to="/produit">Produits</NavLink></li>
         <li><NavLink to="/article">Articles</NavLink></li>
         <li><NavLink to="/forum">Forum</NavLink></li>
         <li><NavLink to="/ressources">Ressources</NavLink></li>

@@ -1,63 +1,101 @@
 .gestion-des-permissions {
-    font-family: Arial, sans-serif;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    max-width: 800px; /* Augmentation de la largeur maximale */
+    margin: 20px auto;
+    padding: 30px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.gestion-des-permissions:hover {
+    transform: translateY(-5px);
 }
 
 .gestion-des-permissions h2 {
     text-align: center;
-    color: #333;
-    font-size: 24px;
+    color: #007bff;
+    font-size: 28px;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .gestion-des-permissions div {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 20px;
 }
 
 .gestion-des-permissions input[type="text"] {
     flex: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 6px;
     font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-.gestion-des-permissions button {
-    padding: 8px 16px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.gestion-des-permissions input[type="text"]:focus {
+    outline: none;
+    border-color: #0056b3;
 }
+
 
 .gestion-des-permissions button:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 .gestion-des-permissions ul {
     list-style: none;
     padding: 0;
 }
-
+.buttonModifier1{
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;   
+}
+.buttonsuppressionM{
+    background-color: #b02a37;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+   
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.buttonModifierM{
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 .gestion-des-permissions li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px;
+    padding: 10px;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.gestion-des-permissions li:hover {
+    background-color: #f1f1f1;
 }
 
 .gestion-des-permissions li:last-child {

@@ -38,10 +38,10 @@ const [commande,setCommande]=useState('')
            
             console.log("Données des commandes :", response.data);
         } catch (error) {
-            console.error("Erreur lors de la récupération des commandes :", error); // Affiche plus de détails sur l'erreur
+            console.error("Erreur lors de la récupération des commandes :", error); 
         }
     };
-    
+     
     // Appel de la fonction dans un useEffect pour exécution au montage
     useEffect(() => {
         fetchListeCommandes();

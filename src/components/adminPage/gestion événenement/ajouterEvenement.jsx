@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import config from '/src/config';
 import './listeEvenement.css';
+
 const AjouterEvenement = () => {
   const [evenement, setEvenement] = useState({
     libelle: '',
@@ -17,7 +17,6 @@ const AjouterEvenement = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEvenement({ ...evenement, [name]: value });
@@ -27,9 +26,60 @@ const AjouterEvenement = () => {
     setImage(e.target.files[0]);
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!evenement.libelle) {
+      newErrors.libelle = 'Le libellé est requis';
+    } else if (evenement.libelle.length > 255) {
+      newErrors.libelle = 'Le libellé doit comporter au maximum 255 caractères';
+    }
+
+     if (!evenement.description) {
+      newErrors.description = 'La description est requise';
+    } else if (evenement.description.length < 300) {
+      newErrors.description = 'La description doit comporter au moins 300 caractères';
+    }
+
+    if (!evenement.lien) {
+      newErrors.lien = 'Le lien est requis';
+    } else if (evenement.lien.length > 255) {
+      newErrors.lien = 'Le lien doit comporter au maximum 255 caractères';
+    }
+
+    if (!evenement.date) {
+      newErrors.date = 'La date est requise';
+    } else {
+      const selectedDate = new Date(evenement.date);
+      const today = new Date();
+      if (selectedDate < today) {
+        newErrors.date = 'La date doit être aujourd\'hui ou dans le futur';
+      }
+    }
+
+    if (!image) {
+      newErrors.image = 'L\'image est requise';
+    } else {
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+      if (!allowedTypes.includes(image.type)) {
+        newErrors.image = 'L\'image doit être au format jpeg, jpg, ou png';
+      } else if (image.size > 2048 * 1024) {
+        newErrors.image = 'La taille de l\'image ne doit pas dépasser 2MB';
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Valider le formulaire avant l'envoi
+    if (!validateForm()) {
+      setMessage('Veuillez corriger les erreurs dans le formulaire');
+      return;
+    }
 
     const formData = new FormData();
     formData.append('libelle', evenement.libelle);
@@ -54,8 +104,12 @@ const AjouterEvenement = () => {
       navigate('/evenements');
     } catch (error) {
       if (error.response && error.response.status === 422) {
-       
-        setErrors(error.response.data.errors);
+        const apiErrors = error.response.data.errors || {};
+        const formattedErrors = {};
+        Object.keys(apiErrors).forEach((key) => {
+          formattedErrors[key] = apiErrors[key][0];
+        });
+        setErrors(formattedErrors);
       } else {
         setMessage('Une erreur est survenue lors de l\'ajout de l\'événement.');
       }
@@ -73,9 +127,8 @@ const AjouterEvenement = () => {
             name="libelle"
             value={evenement.libelle}
             onChange={handleInputChange}
-            required
           />
-          {errors.libelle && <span>{errors.libelle[0]}</span>}
+          {errors.libelle && <span className="error">{errors.libelle}</span>}
         </div>
         <div>
           <label>Description :</label>
@@ -83,9 +136,8 @@ const AjouterEvenement = () => {
             name="description"
             value={evenement.description}
             onChange={handleInputChange}
-            required
           />
-          {errors.description && <span>{errors.description[0]}</span>}
+          {errors.description && <span className="error">{errors.description}</span>}
         </div>
         <div>
           <label>Lien :</label>
@@ -94,9 +146,8 @@ const AjouterEvenement = () => {
             name="lien"
             value={evenement.lien}
             onChange={handleInputChange}
-            required
           />
-          {errors.lien && <span>{errors.lien[0]}</span>}
+          {errors.lien && <span className="error">{errors.lien}</span>}
         </div>
         <div>
           <label>Date :</label>
@@ -105,14 +156,13 @@ const AjouterEvenement = () => {
             name="date"
             value={evenement.date}
             onChange={handleInputChange}
-            required
           />
-          {errors.date && <span>{errors.date[0]}</span>}
+          {errors.date && <span className="error">{errors.date}</span>}
         </div>
         <div>
           <label>Image :</label>
           <input type="file" name="image" onChange={handleImageChange} />
-          {errors.image && <span>{errors.image[0]}</span>}
+          {errors.image && <span className="error">{errors.image}</span>}
         </div>
         <button type="submit">Ajouter Événement</button>
       </form>

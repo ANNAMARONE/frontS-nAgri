@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+/* Contact.css */
+
+.ftco-section {
+    padding: 4em 0;
+   
+}
+
+.heading-section {
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.wrapper {
+   
+    padding: 20px;
+    border-radius: 10px;
+}
+.imageForm{
+    height: 20vh;
+}
+.contact-wrap {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contactForm .form-group {
+    margin-bottom: 1.5em;
+}
+
+.contactForm .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+.contactForm .form-control1 {
+    border-radius: 5px;
+    
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+
+.contactForm .btn-primary {
+    background: #009444;
+    border-color: #009444;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contactForm .btn-primary:hover {
+    background: #009444;
+}
+
+.dbox {
+    margin-top: 20px;
+    padding: 20px;
+   
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dbox .icon {
+    font-size: 24px;
+    color: #009444;
+}
+
+.dbox .text p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.imageForm {
+    width: 100%;
+    height: 670px;
+    border-radius: 10px;
+}

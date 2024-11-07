@@ -34,6 +34,12 @@ const Forum = () => {
       });
   }, [currentPage]); 
 
+  const truncateDescription = (description, maxLength) => {
+    if (description.length > maxLength) {
+        return description.substring(0, maxLength) + '...';
+    }
+    return description;
+};
   // Fonction pour calculer le temps écoulé
   const timeSince = (date) => {
     const now = new Date();
@@ -87,7 +93,7 @@ const Forum = () => {
                   <p className="forum-title">
                     {forum.libelle}
                   </p>
-                  <p className="forum-description">{forum.description}</p>
+                  <p className="forum-description">{truncateDescription(forum.description,100)}</p>
                   <Link to={`/forums/${forum.id}`}>
                     <button className="forum-button">Commentaire</button>
                   </Link>

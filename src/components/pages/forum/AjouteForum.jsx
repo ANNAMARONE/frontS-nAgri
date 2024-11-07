@@ -13,19 +13,38 @@ const CreateForum = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();  
-  
+
+  const validateForm = () => {
+    if (!libelle || libelle.length > 255) {
+      setErrorMessage("Le libellé est requis et doit comporter moins de 255 caractères.");
+      return false;
+    }
+
+    if (!description) {
+      setErrorMessage("La description est requise.");
+      return false;
+    }
+
+    setErrorMessage(""); 
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return; 
+
     setLoading(true);
     setSuccessMessage("");
-    setErrorMessage("");
     const userFromLocalStorage = localStorage.getItem('user');
     const token = localStorage.getItem('token');
+    
     if (!userFromLocalStorage || !token) {
       setErrorMessage('Veuillez vous connecter pour accéder à votre panier.');
       navigate('/login'); 
       return;
     }
+
     axios
       .post(
         `${config.apiBaseUrl}/ajout_forums`,
@@ -38,20 +57,14 @@ const CreateForum = () => {
             Authorization: `Bearer ${token}`, 
           },
         }
-        
       )
-      
       .then((response) => {
         setSuccessMessage(response.data.success);
-        
         setLibelle(""); 
         setDescription("");
         setLoading(false);
-       
-        
       })
       .catch((error) => {
-        
         if (error.response) {
           setErrorMessage(
             error.response.data.error
@@ -78,7 +91,6 @@ const CreateForum = () => {
             type="text"
             value={libelle}
             onChange={(e) => setLibelle(e.target.value)}
-            required
             maxLength={255}
           />
         </div>
@@ -88,7 +100,7 @@ const CreateForum = () => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
+            
           />
         </div>
 

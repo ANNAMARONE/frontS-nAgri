@@ -62,6 +62,7 @@ import GestionStock from './components/ProducteurPage/GestionStock';
 import PrivateRoute from './components/Route Proteger/ProtectedRoute';
 import Gestionrole from './components/adminPage/gestion role et permission/gestionrole';
 import GestionPermission from './components/adminPage/gestion role et permission/gestionPermission';
+import Contact from './components/pages/contact/Contact';
 
 
 
@@ -115,6 +116,8 @@ function App() {
           <Route path="/modifier-profile" element={<ModifierProfile/>} />
           <Route path='/verificationOpt' element={<VerificationOpt/>}/>
           <Route path='/' element={<Index/>}/>
+          <Route path='/contact' element={<Contact/>}/>
+          
         </Route>
 
         {/* Routes avec Sidebar pour le producteur */}
