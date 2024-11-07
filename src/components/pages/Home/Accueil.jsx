@@ -17,7 +17,7 @@ const Accueil = () => {
       <p>SénAgri est une plateforme qui connecte les acteurs du secteur agricole sénégalais à
          travers des solutions technologiques innovantes. Elle vise à moderniser l&apos;agriculture et à promouvoir
           une croissance durable au service des producteurs locaux.</p>
-          <button className='ensavoire'>En savoire plus</button>
+         
           </div>
         </div>
         {/* section numero 1 */}
@@ -123,7 +123,9 @@ const Accueil = () => {
 {/* section numéro 4 */}
 <section className='container'>
   <div className='sectionCe_que_Nous_ferons'>
+    
 <div className='description_service'>
+
 <div className='titre1'>
   <h1>Ce que nous offrons</h1>
   <div className='hrtr'></div>

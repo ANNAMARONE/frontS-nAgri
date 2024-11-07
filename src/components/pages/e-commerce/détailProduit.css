@@ -164,3 +164,111 @@ hr{
     }
   }
 }
+/* Media queries pour les petits téléphones */
+@media (max-width: 480px) {
+  .containerDétail1 {
+      padding: 10px; 
+  }
+  .CarteImage img{
+    width: 390px;
+    height: 200px;
+
+}
+  .containerDétail1 {
+    background-color: #ffff;
+    width: 390px;
+    padding: 5%; 
+    height: 840px;
+}
+
+  .ProduitElementDétaile .headerCartE h1 {
+      font-size: 20px; 
+  }
+  .containerDétailP {
+    background:none;
+    height: auto;
+  
+}
+  .ProduitElementDétaile .buttonAction .ajoutcarte {
+      width: 100%;
+      font-size: 14px; 
+      height: 45px;
+  }
+
+  .ProduitElementDétaile .buttonAction {
+      flex-direction: column; 
+      gap: 15px;
+  }
+
+  .ProduitElementDétaile .likeicon {
+      width: 45px;
+      height: 45px;
+  }
+
+  .CarteImage img {
+      width: 100%;
+      height: auto; 
+  }
+}
+
+/* Media queries pour les téléphones de taille moyenne (jusqu'à 768px) */
+@media (max-width: 768px) {
+  .carteDétail {
+      flex-direction: column;
+  }
+
+  .ProduitElementDétaile .headerCartE h1 {
+      font-size: 22px;
+  }
+
+  .ProduitElementDétaile .buttonAction .ajoutcarte {
+      width: 100%;
+      font-size: 15px;
+  }
+
+  .ProduitElementDétaile .buttonAction {
+      gap: 15px;
+  }
+
+  .CarteImage img {
+      max-width: 80%;
+     margin-right: 20%;
+  }
+  .containerDétailP {
+    background:none;
+    margin-bottom: 60%;
+    max-width: 80%;
+}
+.ProduitElementDétaile .buttonAction{
+  display: block;
+  gap: 30px;
+  margin-top: 5%;
+}
+.ProduitElementDétaile .buttonAction .ajoutcarte{
+  width: 150px;
+  height:51px ;
+  background-color: #00B207;
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 100px;
+  border: none;
+ gap: 20px;
+}
+.containerDétail1 {
+  background-color: #ffff;
+  width: 390px;
+  padding: 5%; 
+  height: 640px;
+}
+.ProduitElementDétaile{
+  width: 390px;
+  height: 435px;
+  max-width: 80%;
+
+}
+hr{
+ display:none;
+}
+}

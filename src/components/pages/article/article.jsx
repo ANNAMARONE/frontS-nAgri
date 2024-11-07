@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '/src/config'; 
@@ -38,7 +39,7 @@ export default function Article() {
     return description;
 };
   return (
-    <div className="containerArticler" >
+   <div className="containerArticler" >
         <div className="banner-video">
         <video autoPlay muted loop className="background-video">
           <source src={banner} type="video/mp4" />
@@ -56,13 +57,13 @@ export default function Article() {
           <div className="card" key={article.id}>
             <img src={`${config.imageBaseUrl}/${article.image}`} alt={article.libelle} />
             <div className="card-content">
-              <Link to={`/articles/${article.id}`} className="card-title">
-                {truncateDescription(article.libelle,100)}
+              <Link to={`/articles/${article.id}`} className="card-title" >
+                {truncateDescription(article.libelle,50)}
               </Link>
               <p className="card-description">{truncateDescription(article.description,100)}</p>
               <div className="card-footer">
-                <span>{new Date(article.created_at).toLocaleDateString()}</span>
-                <span>Statut: {article.statut}</span>
+                <span>{new Date(article.created_at).toLocaleDateString()} - Agriculture</span>
+               
               </div>
              
             </div>

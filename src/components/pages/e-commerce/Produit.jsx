@@ -104,7 +104,17 @@ export default function Produit (){
       return;
     }
   
-    axios.post(`${config.apiBaseUrl}/product/${produit.id}/like`)
+    const token = localStorage.getItem("token"); 
+  
+    axios.post(
+      `${config.apiBaseUrl}/produit/${produit.id}/like`, 
+      {}, 
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
     .then(res => {
       const updatedLikes = res.data.likes; 
       setFilteredProduits(prevProduits =>
@@ -129,8 +139,9 @@ export default function Produit (){
         showConfirmButton: false,
         timer: 1500
       });
-      });
+    });
   };
+  
   
  
   
@@ -170,20 +181,23 @@ export default function Produit (){
         return acc;
       }, {});
       setQuantites(initialQuantites);
+      
     }
+
   }, []);
 
   // Sauvegarder le panier dans le localStorage à chaque mise à jour
   useEffect(() => {
     if (panier.length > 0) {
       localStorage.setItem('panier', JSON.stringify(panier));
+      
       console.log('Panier mis à jour dans localStorage:', panier);
     }
   }, [panier]);
 
   const ajouterAuPanier = (produit, quantite = 1) => {
     const produitExist = panier.find(item => item.id === produit.id);
-  
+   
     let nouveauPanier;
   
     if (produitExist) {
@@ -218,16 +232,7 @@ export default function Produit (){
     console.log("Produit ajouté au panier :", produit);
     console.log("Panier actuel :", nouveauPanier);
   };
-  
-  
-      // Fonction pour gérer les changements de quantité
-      const handleQuantityChange = (produitId, value) => {
-        setQuantites((prevQuantites) => ({
-          ...prevQuantites,
-          [produitId]: value,
-        }));
-      
-  };
+
   const navigate = useNavigate(); 
   const handleViewDetails = (produitId) => {
     navigate(`/produits/${produitId}`); 
@@ -271,21 +276,9 @@ export default function Produit (){
       <div className='produit_plus_populaire'>
         <div className='produit_populaire'>
           <div className='produitPopu'>
-            <h1>Produits populaires</h1>
+            
             <button></button>
-             {/* Pagination */}
-          <div className="pagination">
-            <button onClick={prevPage} disabled={currentPage === 1}>
-              Précédent
-            </button>
-            <span>Page {currentPage} sur {totalPages}</span>
-            <button 
-              onClick={nextPage} 
-              disabled={currentPage === totalPages}
-            >
-              Voir plus <FaArrowRight size={20} color="#009444" />
-            </button>
-          </div>
+         
           </div>
 
           <div className='liste_carte'>
@@ -328,17 +321,31 @@ export default function Produit (){
                 </div>
               </div>
             ))}
+             
+          </div>
+             {/* Pagination */}
+             <div className="pagination">
+            <button onClick={prevPage} disabled={currentPage === 1}>
+              Précédent
+            </button>
+            <span>Page {currentPage} sur {totalPages}</span>
+            <button 
+              onClick={nextPage} 
+              disabled={currentPage === totalPages}
+            >
+              Voir plus <FaArrowRight size={20} color="#009444" />
+            </button>
           </div>
         </div>
       </div>
 {/* offre exeptionnelle */}
-<div>
+{/* <div>
 <div className='offre_exeptionnelle'>
         <div className='produit_exeptionnel'>
           <div className='produitPopu'>
             <h1>Offres exceptionnelles</h1>
             <button></button>
-             {/* Pagination */}
+           
           <div className="pagination">
             <button onClick={prevPage} disabled={currentPage === 1}>
               Précédent
@@ -387,7 +394,11 @@ export default function Produit (){
           </div>
         </div>
       </div>
-</div>
+</div> */}
+
+
+
+
 {/* disponible chez nous */}
 <div className='secton4'>
   <div>

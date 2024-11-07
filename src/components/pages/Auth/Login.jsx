@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import './login.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useNavigate } from 'react-router-dom';
-
+import config from '/src/config';
+import Swal from 'sweetalert2';
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ export default function Login() {
   const validateForm = () => {
     let isValid = true;
 
-    // Réinitialiser les messages d'erreur
+  
     setEmailError('');
     setPasswordError('');
 
@@ -49,7 +50,7 @@ export default function Login() {
       return;
     }
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/auth/login', {
+      const response = await fetch(`${config.apiBaseUrl}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,23 +59,44 @@ export default function Login() {
       });
   
       if (!response.ok) {
-        const errorData = await response.json();
-        setError(errorData.error || 'Erreur lors de la connexion');
-        setMessage('');
+        
+        Swal.fire({
+          title: 'Erreur!',
+          text: 'email ou mot de passe incorrect',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
         return;
       }
   
       const result = await response.json();
-      
-      // Stocker le token et les informations de l'utilisateur
+
       localStorage.setItem('token', result.token);
-      console.log('Avant stockage:', result.user);  
+    
       localStorage.setItem('user', JSON.stringify(result.user));
-      console.log('Après stockage:', localStorage.getItem('user'));  
+       
+      localStorage.setItem('user', JSON.stringify({
+        isAuthenticated: true,
+        role: result.user.role 
+      }));
 
       setMessage('Connexion réussie !');
       setError('');
-      navigate('/'); 
+      const userRole=result.user.role;
+      if(userRole ==='admin'){
+        navigate('/dashboard');
+      }else if(userRole==='producteur'){
+        navigate('/statistics');
+      }else{
+        navigate('/'); 
+       
+      }
+      const redirectPath = localStorage.getItem('redirectPath');
+      if (redirectPath) {
+          navigate(redirectPath); 
+          localStorage.removeItem('redirectPath');
+      }
+      window.location.reload();
     } catch (err) {
       console.log('Erreur:', err);
       setError('Erreur lors de la connexion');
@@ -92,7 +114,7 @@ export default function Login() {
   return (
     <div className='bannier_connexion'>
       <div className="section_form">
-        <div className="col-sm-6">
+
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {message && <p style={{ color: 'green' }}>{message}</p>}
         <form onSubmit={handleSubmit}>
@@ -116,18 +138,19 @@ export default function Login() {
                
                   <input type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)} />
                   {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-                <i 
+                  <i 
                   className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`}
                   onClick={togglePasswordVisibility}
                   style={{ cursor: 'pointer'}}
                 ></i>
+        
               </div>
             </div>
-            <p>Pas de compte ?<NavLink to="/register" className='span'>S&apos;inscrire</NavLink></p>
+            <p className='already_account'>Pas de compte ?<NavLink to="/register" className="btn_compte">S&apos;inscrire</NavLink></p>
             <button type="submit">Se connecter</button>
           </div>
       </form>
-        </div>
+
       </div>
     </div>
   );

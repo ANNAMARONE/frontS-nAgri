@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import config from '/src/config';
 const AjouterArticle = () => {
  
   const [libelle, setLibelle] = useState('');
@@ -40,7 +41,7 @@ const AjouterArticle = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/articles', formData, {
+      const response = await axios.post(`${config.apiBaseUrl}/articles`,formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`, 
           'Content-Type': 'multipart/form-data', 
@@ -61,8 +62,7 @@ const AjouterArticle = () => {
   };
 
   return (
-    <div>
-      <h2>Ajouter un article</h2>
+    <div className='AjouterEvenement'>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
@@ -113,7 +113,7 @@ const AjouterArticle = () => {
           <input type="file" name="image" onChange={handleImageChange} required />
           {errors.image && <span>{errors.image[0]}</span>}
         </div>
-        <button type="submit">Ajouter l'article</button>
+        <button type="submit">Ajouter l&apos;article</button>
       </form>
     </div>
   );

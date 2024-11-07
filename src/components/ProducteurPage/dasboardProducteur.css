@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
+
+
+.cartdasbordProducteur {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+   
+  }
+ .section1ProducteurDash{
+    width: 800px;
+    height: 668px;
+ }
+ .section2ProducteurDash{
+    width: 429px;
+    height: 819px;
+ }
+  .cart1_dasbord, .cart2_dasbord {
+    width: 586px;
+    height: 223px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: relative;
+    padding: 20px;
+    color: #FFF; 
+  }
+  
+  .cart1_dasbord {
+    background-image: url('/src/assets/images/panier1.png');
+  }
+  
+  .cart1_dasbord::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.592); 
+    border-radius: 12px;
+    z-index: 1;
+  }
+  
+  .cart1_dasbord h3, .cart1_dasbord p, .cart1_dasbord button{
+    position: relative;
+    z-index: 2;
+  }
+  
+ .cart1_dasbord  button {
+    background-color: #fff;
+    color:  #28a745;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 100px;
+    border: 2px solid  #28a745;
+    cursor: pointer;
+  }
+  
+  .cart1_dasbord button:hover {
+    background-color: #218838;
+    color: #FFF;
+  }
+  
+.dashboard-containerProducteur .cart2_dasbord{
+    width: 362px;
+    height: 223px;
+    background-image: url('/src/assets/images/command1.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;  
+    color: #2F580F; 
+    font-size: 20px;
+    margin: auto;
+}
+.cartdasbordProducteur{
+    display: flex;
+    gap: 50px;
+}
+.cartdasbordProducteur .cart2_dasbord p{
+    margin:10px auto;
+    text-align: center;
+}
+.cart2_dasbord button{
+    background-color: #FFF;
+    border-radius: 100px;
+    border: 2px solid #009444;
+    width: 119px;
+    height: 40px;
+    font-size: 16px;
+    left: 30px;
+}
+.section1ProducteurDash .section1titreP{
+ margin-top: 40px;
+display: flex;
+width: 600px;
+justify-content: space-between; 
+}
+.section1titreP p{
+font-size: 20px;
+font-weight: bold;
+color: #2F580F;
+} 
+.section1titreP button{
+    background: none;
+    color: #009444;
+    border: none;
+}
+.setion1CartProduitP{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
+    padding: 20px;
+    float: left;
+}
+.setion1CartProduitP .Section1Card {
+    width: 173px;
+    height: 200px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+  }
+  
+  .setion1CartProduitP .Section1Card img {
+    width: 116px;
+    height: 165px;
+    object-fit: cover; 
+    
+  }
+  .listProducteurProdu {
+    margin: auto;
+  }
+  .listProducteurProdu .descriptProduc{
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between; 
+  }
+  .producteurParRole .ProducteurInfo{
+    display: flex;
+    gap: 30px;
+    margin: 20px auto;
+  }
+  .producteurParRole img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+  }
+  .descriptProduc p{
+    font-size: 20px;
+    font-weight: bold;
+    color: #2F580F; 
+  }
+  .descriptProduc button{
+    background: none;
+    color: #009444;
+    border: none;
+  }
+  .producteurParRole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.ProducteurInfo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    width: 100%; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+    transition: transform 0.2s; 
+}
+
+.ProducteurInfo:hover {
+    transform: scale(1.02); 
+}
+
+.producteurDetails {
+    flex-grow: 1; 
+}
+
+.producteurParRole img {
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    border: 2px solid #009444; 
+}
+
+.producteurName {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #2F580F;
+}
+
+.producteurRole {
+    font-size: 16px; 
+    color: #555; 
+}
+
+.producteurDate {
+    font-size: 14px; 
+    color: #888; 
+    margin-left: auto;
+}
+/* Responsivité pour les éléments principaux */
+@media (max-width: 768px) {
+  .cartdasbordProducteur {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+  }
+
+  .section1ProducteurDash, .section2ProducteurDash {
+      width: 100%;
+      height: auto; 
+      padding: 10px;
+  }
+
+  .cart1_dasbord, .cart2_dasbord {
+      width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+  }
+
+  .section1ProducteurDash .section1titreP {
+      width: 90%;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .section1titreP p {
+      font-size: 18px;
+      text-align: center;
+  }
+
+  .setion1CartProduitP {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      padding: 10px;
+  }
+
+  .setion1CartProduitP .Section1Card {
+      width: 100%;
+      height: auto;
+  }
+
+  /* Modification des boutons pour qu'ils soient mieux adaptés aux petits écrans */
+  .cart1_dasbord button, .cart2_dasbord button {
+      width: 100px;
+      height: 35px;
+      font-size: 14px;
+      padding: 8px;
+  }
+}
+
+/* Responsivité supplémentaire pour les écrans très petits (jusqu'à 480px) */
+@media (max-width: 480px) {
+  .setion1CartProduitP {
+      grid-template-columns: 1fr;
+      gap: 5px;
+  }
+
+  .cartdasbordProducteur {
+      flex-direction: column;
+      gap: 5px;
+      justify-content: center;
+  }
+
+  .section1titreP p, .descriptProduc p {
+      font-size: 16px;
+  }
+
+  .producteurParRole .ProducteurInfo {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+  }
+
+  .producteurDetails, .producteurName, .producteurRole, .producteurDate {
+      text-align: center;
+  }
+  
+  .producteurParRole img {
+      width: 50px;
+      height: 50px;
+  }
+
+  .ProducteurInfo {
+      padding: 5px;
+  }
+}

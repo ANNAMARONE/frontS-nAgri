@@ -1,0 +1,162 @@
+.produits-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.produits-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.produits-container p {
+    color: #e74c3c;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.produits-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.produits-container thead {
+    background-color: #f39c12;
+    color: white;
+}
+
+.produits-container th,
+.produits-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+.produits-container tr:hover {
+    background-color: #ecf0f1;
+}
+
+.produits-container img {
+    width: 70px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.produits-container .buttonAjoutStock {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.produits-container .buttonModifierStock {
+    background-color: #d71313;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.produits-container .buttonAjoutStock:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.produits-container .buttonModifierStock:hover {
+    background-color: #d71313;
+    transform: scale(1.05);
+}
+
+.produits-container button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .produits-container {
+        padding: 15px; /* Réduire le rembourrage */
+    }
+
+    .produits-container h2 {
+        font-size: 24px; /* Ajuster la taille de la police */
+    }
+
+    .produits-container p {
+        font-size: 18px; /* Ajuster la taille de la police */
+    }
+
+    .produits-container th,
+    .produits-container td {
+        padding: 10px; /* Réduire le rembourrage des cellules */
+    }
+}
+
+@media (max-width: 768px) {
+    .produits-container {
+        padding: 10px; /* Réduire le rembourrage pour les petits écrans */
+    }
+
+    .produits-container h2 {
+        font-size: 22px; /* Taille de police encore réduite */
+    }
+
+    .produits-container p {
+        font-size: 16px; /* Ajuster la taille de la police */
+    }
+
+    .produits-container th,
+    .produits-container td {
+        padding: 8px; /* Réduire le rembourrage des cellules */
+    }
+
+    .produits-container img {
+        width: 50px; /* Réduire la taille des images */
+    }
+}
+
+@media (max-width: 480px) {
+    .produits-container {
+        padding: 5px; /* Réduire le rembourrage pour les très petits écrans */
+    }
+
+    .produits-container h2 {
+        font-size: 20px; /* Ajuster la taille de la police */
+    }
+
+    .produits-container p {
+        font-size: 14px; /* Ajuster la taille de la police */
+    }
+
+    .produits-container th,
+    .produits-container td {
+        padding: 5px; /* Réduire le rembourrage des cellules */
+    }
+
+    .produits-container img {
+        width: 40px; /* Réduire encore la taille des images */
+    }
+
+    .produits-container .buttonAjoutStock,
+    .produits-container .buttonModifierStock {
+        padding: 6px 10px; /* Ajuster le rembourrage des boutons */
+        font-size: 14px; /* Ajuster la taille de la police des boutons */
+    }
+}

@@ -1,3 +1,4 @@
+/* Navbar.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 * {
@@ -26,16 +27,16 @@ nav {
     height: 100px;
 }
 
-ul {
+.nav ul {
     display: flex;
     list-style-type: none;
 }
 
-ul li {
+.nav ul li {
     margin: 0 1rem;
 }
 
-ul li a {
+.nav ul li a {
     text-decoration: none;
     color: black;
     font-size: 20px;
@@ -44,11 +45,12 @@ ul li a {
     transition: color 0.3s;
 }
 
-ul li a:hover, ul li a.active {
+.nav ul li a:hover, 
+.nav ul li a.active {
     color: #009444;
 }
 
-.button {
+.nav .button {
     background-color: #009444;
     border: none;
     border-radius: 100px;
@@ -57,12 +59,12 @@ ul li a:hover, ul li a.active {
     transition: background-color 0.3s, border 0.3s;
 }
 
-.button:hover {
+.nav .button:hover {
     background-color: #FFF;
     border: 2px solid #009444;
 }
 
-.connexion {
+.nav .connexion {
     color: white;
     text-decoration: none;
     font-size: 20px;
@@ -97,19 +99,20 @@ ul li a:hover, ul li a.active {
 .burger.toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
 .cart {
     position: relative;
     margin-right: 15px;
-  }
-  
-  .panier-icon {
+}
+
+.panier-icon {
     color: #000;
     text-decoration: none;
     position: relative;
-  }
-  
-  .panier-count {
-    background-color:#ff0000;
+}
+
+.panier-count {
+    background-color: #ff0000;
     color: white;
     border-radius: 50%;
     padding: 2px 6px;
@@ -117,54 +120,185 @@ ul li a:hover, ul li a.active {
     position: absolute;
     top: -10px;
     right: -10px;
-  }
-  
-  .logged-in-options {
+}
+
+.logged-in-options {
     display: flex;
     align-items: center;
-  }
-  
-  .profil-link {
+}
+
+.profil-link {
     margin-right: 15px;
     text-decoration: none;
     color: #000;
-  }
-  
-  .logout {
+}
+
+.logout {
     background-color: #ff0000;
     color: white;
     border: none;
-    padding: 10px;
-    cursor: pointer;
+    padding: 0.5rem 1rem;
     font-weight: bold;
-  }
-  .actionButtonLogin_Logout{
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.actionButtonLogin_Logout {
     display: flex;
     align-items: center;
-  gap: 30px;
-  }
+    gap: 30px;
+}
+
 @media (max-width: 768px) {
-    ul {
+    .nav ul {
+        display: none; 
+    }
+
+    .nav ul.show, 
+    .actionButtonLogin_Logout.show {
+        display: flex; 
         position: absolute;
-        top: 100px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 100px);
-        background-color: #FFF;
-        flex-direction: column;
-        align-items: center;
-        transition: left 0.3s ease;
-    }
-
-    ul.show {
         left: 0;
+        width: 100%;
+        background-color: #FFF;
+        z-index: 10;
+        text-align: center;
     }
 
-    ul li {
+    .nav ul.show {
+        flex-direction: column; 
+        align-items: center;
+        top: 100px; 
+    }
+
+    .nav ul li {
         margin: 1rem 0;
     }
 
-    .burger {
+    .actionButtonLogin_Logout {
+        display: none; 
+    }
+    .logo img {
+        width: 100px;
+        height: 80px;
+    }
+
+    .actionButtonLogin_Logout.show {
         display: flex;
+        text-align: center;
+        margin-top: 100px;
+        padding: 20px 0;
+        background-color: #FFF; 
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Burger Menu */
+    .burger {
+        display: flex; 
+        cursor: pointer;
+        z-index: 20;
+        position: absolute;
+        right: 15px;
+        top: 25px;
+    }
+
+    .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: #009444; 
+        margin: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .burger.toggle div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 5px);
+    }
+
+    .burger.toggle div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.toggle div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -5px);
+    }
+}
+
+/* Responsive pour tablette */
+@media (max-width: 1024px) {
+    nav {
+        height: 100px; 
+        padding: 0 1rem;
+    }
+
+    .burger {
+        display: flex; 
+        position: absolute;
+        right: 15px;
+        top: 20px;
+        z-index: 20;
+    }
+
+    .nav ul {
+        display: none; 
+    }
+
+    .nav ul.show {
+        display: flex;
+        flex-direction: column; 
+        width: 100%;
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        background-color: #FFF;
+        padding: 10px 0;
+        z-index: 10;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-top: 1px solid #ddd;
+    }
+
+    .nav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .actionButtonLogin_Logout {
+        flex-direction: column;
+        align-items: center;
+        width: 100%; 
+        padding: 10px 0;
+        background-color: #FFF;
+        position: absolute;
+        top: 200px; 
+        left: 0;
+        z-index: 10;
+        display: none;
+    }
+
+    .actionButtonLogin_Logout.show {
+        display: flex;
+        margin-top: 125px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        border-top: 1px solid #ddd;
+        
+    }
+    .actionButtonLogin_Logout .cart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav .button {
+        width: 90%;
+        padding: 0.7rem 1.5rem;
+        font-size: 18px;
+        border-radius: 50px;
+        margin: 10px auto;
+    }
+
+    .cart {
+        width: 100%;
+        justify-content: center;
     }
 }

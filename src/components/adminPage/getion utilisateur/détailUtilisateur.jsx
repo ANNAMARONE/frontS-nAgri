@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import config from '/src/config';
 const UserDetail = () => {
   const { id } = useParams();
   const [producteur, setProducteur] = useState(null);
@@ -11,7 +11,7 @@ const UserDetail = () => {
   useEffect(() => {
     const fetchProducteur = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/utilisateurs/${id}`, {
+        const response = await axios.get(`${config.apiBaseUrl}/utilisateurs/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -25,7 +25,7 @@ const UserDetail = () => {
     fetchProducteur();
   }, [id]);
 
-  if (!producteur) return <p>Chargement...</p>;
+  if (!producteur) return 
 
   return (
     <div>

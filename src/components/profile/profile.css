@@ -12,11 +12,11 @@ body{
 .profileHeader{
     width: 1141px;
     height: 219px;
-    background-image: url('/src/assets/images/BG.png');
+    background-image: url('/src/assets/images/backForum.png');
     background-size: cover; 
     background-position: center; 
    background-color: #009444;
-   margin:auto;
+   margin:30PX auto;
    top: 20px;
    border-radius: 5px;
    display: flex;
@@ -44,7 +44,7 @@ body{
     width: 100%;
 }
 
-.table{
+.containerProfile .table{
     border: 2px solid #9F9F9F;
     width:1124px;
     border-radius: 15px;
@@ -53,19 +53,24 @@ body{
   
   
 }
-.table tr{
+.containerProfile .table tr{
    border: 1px solid black;
   height: 60px;
    
 }
-.table tr,td{
+.containerProfile .table tr{
     display: flex;
     justify-content: space-between;
     font-size: 16px;
   
 
 }
-.table td{
+.containerProfile .table td{
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;  
+}
+.containerProfile .table td{
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -85,41 +90,122 @@ body{
     width: 872px;
 
 }
-.containerProfile form .inputeName {
+.containerProfile  .inputeName {
     display: flex;
     gap: 10px;
     
 }
 
-.containerProfile form .inputeName input{
+.containerProfile .inputeName input{
   width:430px ;
   background-color: #FFFF;
   height:44px ;
   margin-top: 10px;
 
 }
-.containerProfile  form  .setion2input {
+.containerProfile  .setion2input {
     display: flex;
     gap: 10px;
  
 }
-.containerProfile  form  .setion2input input{
+.containerProfile  .setion2input input{
     width:430px ;
   background-color: #FFFF;
   height:44px ; 
   margin-top: 20px;
 }
-.containerProfile  form .setion3input{
+.containerProfile .setion3input .selectInput{
     margin-top: 20px;
 }
-.containerProfile  form .setion3input input,select{
+.containerProfile .setion3input .selectInput select{
     background-color: #FFFF;
     width:872px ;
   background-color: #FFFF;
   height:44px ;
   
 }
-.containerProfile form button{
+.containerProfile .setion3input .selectInput input{
+    width:872px ;
+    height:44px ;
+    background-color: #FFFF;
+}
+.containerProfile button{
     margin-top: 20px;
     float: left;
+}
+
+
+/* Pour les tablettes */
+@media screen and (max-width: 768px) {
+    .profileHeader {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profileHeader img {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .profileHeader p {
+        margin-top: 20px;
+        font-size: 28px;
+    }
+
+    .containerProfile .table {
+        width: 95%;
+    }
+
+    .containerProfile button {
+        margin-left: 10%; 
+    }
+
+    .containerProfile .inputeName input,
+    .containerProfile .setion2input input {
+        width: 100%; 
+    }
+
+}
+
+/* Pour les téléphones mobiles */
+@media screen and (max-width: 480px) {
+    .profileHeader {
+        width: 100%;
+    }
+
+    .profileHeader p {
+        font-size: 24px; 
+    }
+
+    .containerProfile .table {
+        width: 100%;
+    }
+
+    .containerProfile form {
+        width: 95%;
+    }
+
+    .containerProfile .inputeName input,
+    .containerProfile .setion2input input {
+        width: 100%; 
+    }
+
+    .containerProfile button {
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+    }
+    .containerProfile .setion3input .selectInput select{
+        background-color: #FFFF;
+        width:370px ;
+      background-color: #FFFF;
+      height:44px ;
+      
+    }
+    .containerProfile .setion3input .selectInput input{
+        width:370px ;
+        height:44px ;
+        background-color: #FFFF;
+    }
 }

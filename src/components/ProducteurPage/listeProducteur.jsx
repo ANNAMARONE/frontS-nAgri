@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from '/src/config';
 import { NavLink } from 'react-router-dom';
+import './listeproducteur.css'
 const ListeUtilisateurs = () => {
   const [utilisateurs, setUtilisateurs] = useState([]);
   const [message, setMessage] = useState('');
@@ -10,7 +11,7 @@ const ListeUtilisateurs = () => {
   useEffect(() => {
     const fetchUtilisateurs = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/utilisateurs', {
+        const response = await axios.get(`${config.apiBaseUrl}/utilisateurs`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -29,32 +30,25 @@ const ListeUtilisateurs = () => {
     <div>
       <h2>Liste des Utilisateurs Producteurs</h2>
       {message && <p>{message}</p>}
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>profile</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Rôle</th>
-          </tr>
-        </thead>
-        <tbody>
-          {utilisateurs.map((utilisateur) => (
-            <tr key={utilisateur.id}>
-            <td>{utilisateur.id}
-            <NavLink to={`/producteur/${utilisateur.id}`}>
-            {utilisateur.name}
-            </NavLink>
-            </td>
-            <img src={`${config.imageProfil}/${utilisateur.profile}`} alt={utilisateur.nam} />
-              <td>{utilisateur.name}</td>
-              <td>{utilisateur.email}</td>
-              <td>{utilisateur.role}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="container_listeProducteur">
+  <ul className="cards">
+    {utilisateurs.map((utilisateur) => (
+      <li key={utilisateur.id}>
+        <NavLink to={`/producteur/${utilisateur.id}`}>
+        <img src={`${config.imageProfil}/${utilisateur.profile}`} alt={utilisateur.name} />
+        </NavLink>
+        <div className="details">
+          <span className="name">{utilisateur.name}</span>
+          <span className="title">{utilisateur.role}</span>
+          
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
+
     </div>
   );
 };

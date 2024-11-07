@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    font-family: roboto;
+    
+}
+
+.produit-liste {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    padding: 20px;
+    width: 1100px;
+  justify-content: center;
+  justify-items: center;
+  margin: auto;
+    
+  }
+  
+  .produit-liste .cartProduitProducteur {
+    width: 360px;
+    height: 196px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px, rgba(0, 0, 0, 0.1) 0px 0px 1px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding:5px;
+  }
+  
+
+  
+  .produitTopcart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .produitTopcart img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; 
+    border-radius: 10%;
+    box-shadow: 0 0 5px rgba(204, 219, 232, 0.5);
+  }
+  
+  .AfficheProduitProducteur {
+    background-color: #F0F0F0;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .AfficheProduitProducteur h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .AfficheProduitProducteur p {
+    font-size: 0.9em;
+    color: #777;
+  }
+  
+  .produit-liste .prix {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #4caf50;
+  }
+  
+  .produit-liste .statut {
+    color: #f44336;
+    font-size: 0.85em;
+    font-weight: 500;
+  }
+  
+  .produit-liste .statut.disponible {
+    color: #4caf50;
+  }
+  
+  /* Boutons */
+  button.edit-btn,
+  button.delete-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.delete-btn {
+    background-color: #f44336;
+  }
+  
+  button.edit-btn:hover,
+  button.delete-btn:hover {
+    background-color: darken(#4caf50, 10%);
+  }
+  
+  button.delete-btn:hover {
+    background-color: darken(#f44336, 10%);
+  }
+  .togollePopover{
+    background-color: rgba(0, 0, 0, 0.09);
+    border: none;
+    color: black;
+  }
+  .togollePopover:hover{
+    background-color:#009444 ;
+  }
+  .headerListProduit{
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  .headerListProduit button{
+    background-color: #009444;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+
+  }
+  .headerListProduit button a{
+    color: #fff;
+  }
+  @media (max-width: 1024px) {
+    .produit-liste {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+    }
+    .produit-liste .cartProduitProducteur {
+        width: 300px;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .produit-liste {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 10px;
+        gap: 10px;
+    }
+    .produit-liste .cartProduitProducteur {
+        width: 90%;
+        margin: auto;
+    }
+    .AfficheProduitProducteur h3 {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerListProduit {
+        flex-direction: column;
+        align-items: center;
+    }
+    .headerListProduit button {
+        width: 90%;
+        margin: 5px 0;
+    }
+}

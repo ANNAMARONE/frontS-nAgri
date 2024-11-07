@@ -1,0 +1,187 @@
+/* Section des statistiques */
+.statistics {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+}
+
+.statistics h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.statistics div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+.statistics p{
+    color: #f1c40f;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.statistics-card {
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.statistics-card:hover {
+    transform: translateY(-5px);
+    background-color: #2980b9;
+}
+
+/* Icône */
+.icon-animation {
+    font-size: 30px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Animation sur hover */
+.statistics-card:hover .icon-animation {
+    transform: scale(1.2);
+    color: #f1c40f; 
+}
+
+/* Responsive pour les petits écrans */
+@media (max-width: 768px) {
+    .statistics div {
+        flex-direction: column;
+    }
+}
+
+.statistics {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.charts {
+    display: flex;              
+    justify-content: space-between; 
+    flex-wrap: wrap;  
+    justify-items: auto;          
+    padding: 20px;               
+    gap: 3px;   
+    width: 64%;               
+    background-color: #f9f9f9; 
+    border-radius: 10px;        
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.charts > div {
+    flex: 1;                     
+    min-width: 300px;             
+    max-width: 500px;            
+    height: 350px;                
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .charts {
+        flex-direction: column;  
+        align-items: stretch;     
+    }
+}
+
+/* Responsive pour les petits écrans */
+@media (max-width: 768px) {
+    .statistics div {
+        flex-direction: column;
+        gap: 10px; /* Espacement réduit pour les petits écrans */
+    }
+
+    .statistics-card {
+        width: 100%; /* Prendre toute la largeur disponible sur mobile */
+        margin-bottom: 15px;
+    }
+    
+    .statistics p {
+        font-size: 20px; /* Taille de texte ajustée */
+    }
+    
+    .statistics h2 {
+        font-size: 20px; /* Taille du titre ajustée */
+    }
+}
+
+/* Section des graphiques */
+.charts {
+    display: flex;              
+    justify-content: space-between; 
+    flex-wrap: wrap;  
+    padding: 20px;               
+    gap: 15px;   
+    width: 64%;               
+    background-color: #f9f9f9; 
+    border-radius: 10px;        
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.charts > div {
+    flex: 1;                     
+    min-width: 300px;             
+    max-width: 500px;            
+    height: 350px;                
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .charts {
+        flex-direction: column;  
+        align-items: stretch;     
+        width: 100%; /* Prendre toute la largeur sur mobile */
+        padding: 10px; /* Réduction de l'espacement */
+    }
+
+    .charts > div {
+        width: 100%; /* Chaque graphique prend toute la largeur */
+        min-width: unset; /* Retirer la contrainte de largeur minimale */
+        max-width: unset; /* Retirer la contrainte de largeur maximale */
+        height: 300px; /* Hauteur ajustée pour les petits écrans */
+    }
+}
+
+/* Très petit écran (smartphones <480px) */
+@media (max-width: 480px) {
+    .statistics {
+        padding: 10px; /* Réduction du padding */
+        margin: 10px; /* Réduction du margin */
+    }
+
+    .statistics h2 {
+        font-size: 18px;
+    }
+
+    .statistics p {
+        font-size: 18px;
+    }
+
+    .statistics-card {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .charts {
+        padding: 5px;
+        gap: 10px;
+    }
+
+    .charts > div {
+        height: 250px; /* Hauteur encore plus réduite */
+    }
+}

@@ -6,7 +6,7 @@
     margin: 0;
 }
 body{
-    font-family: roboto;
+    font-family: 'roboto';
     
 }
 
@@ -49,8 +49,6 @@ margin: 30px auto;
 color:#009444 ;
 }
 
-
-
 .cardEvenement {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -60,12 +58,11 @@ color:#009444 ;
   
  
   .cartElement {
-    background-color: #f9f9f9;
+    background-color: #ffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
   }
   
   .cartElement:hover {
@@ -115,4 +112,117 @@ color:#009444 ;
   .cartElement div {
     padding: 15px;
   }
-  
+  @media (max-width: 768px) {
+    .cardBanner h1 {
+        font-size: 1.2rem;
+    }
+
+    .cardBanner p {
+        font-size: 0.9rem;
+    }
+
+    .cardEvenement {
+        width: 100%;
+        padding: 10px;
+        background:none;
+    }
+    .cardBanner{
+      width:80%;
+      background:none;
+      display:column;
+      height: auto;
+      margin:20px auto;
+  }
+
+  .bannerEvenement{
+    background:none;
+    background-size: cover; 
+    background-position: center; 
+    height: auto;
+    width: 50%; 
+}
+
+}
+
+@media (max-width: 480px) {
+    .cardBanner h1 {
+        font-size: 1rem;
+    }
+    .EvenementImage img{
+    display: none;
+    }
+    .cardBanner p {
+        font-size: 0.8rem;
+    }
+
+    .ElementEvenement h2 {
+        font-size: 1.2rem;
+    }
+
+    .cartElement h3 {
+        font-size: 1.2rem;
+    }
+
+    .cartElement p {
+        font-size: 0.9rem;
+    }
+
+    .btn-lien {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+    .bannerEvenement{
+      background:none;
+      background-size: cover; 
+      background-position: center; 
+      height: auto;
+      width: 50%; 
+  }
+  .EvenementImage img{
+    width: 100px;
+    height: auto;
+  }
+}
+/* Styles Responsive pour Tablette */
+@media (max-width: 1024px) {
+  .bannerEvenement {
+      height: 50vh; 
+      width: 100%;
+  }
+
+  .cardBanner {
+      width: 80%; 
+      height: auto; 
+      
+  }
+
+  .cardBanner h1 {
+      font-size: 18px; 
+      width: 90%; 
+  }
+
+  .cardBanner p {
+      width: 90%;
+  }
+
+  .cardEvenement {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      padding: 10px; 
+  }
+
+  .cartElement h3 {
+      font-size: 1.3em; 
+  }
+
+  .cartElement p {
+      font-size: 0.9em; 
+  }
+
+  .cartElement .btn-lien {
+      padding: 8px 16px;
+      font-size: 0.9em; 
+  }
+  .EvenementImage img{
+    display: none;
+    }
+}

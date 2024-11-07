@@ -82,7 +82,8 @@ const ModifierArticle = () => {
     <div>
       <h2>Modifier l&apos;article</h2>
       {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div  className='AjouterEvenement'>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
           <label>Libellé :</label>
           <input
@@ -131,8 +132,9 @@ const ModifierArticle = () => {
           <input type="file" name="image" onChange={handleImageChange} />
           {errors.image && <span>{errors.image[0]}</span>}
         </div>
-        <button type="submit">Mettre à jour l'article</button>
+        <button type="submit">Mettre à jour l&apos;article</button>
       </form>
+    </div>
     </div>
   );
 };

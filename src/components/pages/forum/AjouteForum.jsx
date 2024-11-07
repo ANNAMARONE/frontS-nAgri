@@ -19,9 +19,13 @@ const CreateForum = () => {
     setLoading(true);
     setSuccessMessage("");
     setErrorMessage("");
-
-    const token = localStorage.getItem("token");
-
+    const userFromLocalStorage = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    if (!userFromLocalStorage || !token) {
+      setErrorMessage('Veuillez vous connecter pour accéder à votre panier.');
+      navigate('/login'); 
+      return;
+    }
     axios
       .post(
         `${config.apiBaseUrl}/ajout_forums`,
@@ -39,11 +43,12 @@ const CreateForum = () => {
       
       .then((response) => {
         setSuccessMessage(response.data.success);
+        
         setLibelle(""); 
         setDescription("");
         setLoading(false);
        
-        navigate("/forum");  
+        
       })
       .catch((error) => {
         
@@ -89,7 +94,7 @@ const CreateForum = () => {
 
         <div>
           <button type="submit" disabled={loading}>
-            <FiSend /> {loading ? "En cours..." : "Créer le forum"}
+            <FiSend /> {loading ? "En cours" : "Créer le forum"}
           </button>
         </div>
       </form>

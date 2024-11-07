@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import config from '/src/config';
+import './listeproducteur.css'
 const ProducteurDetail = () => {
   const { id } = useParams();
   const [producteur, setProducteur] = useState(null);
@@ -11,7 +12,7 @@ const ProducteurDetail = () => {
   useEffect(() => {
     const fetchProducteur = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/utilisateurs/${id}`, {
+        const response = await axios.get(`${config.apiBaseUrl}/utilisateurs/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -28,9 +29,10 @@ const ProducteurDetail = () => {
   if (!producteur) return <p>Chargement...</p>;
 
   return (
-    <div>
+    <div className='détailProducteur'>
       <h2>Détails du Producteur</h2>
       {message && <p>{message}</p>}
+      <img src={`${config.imageProfil}/${producteur.profile}`} alt={producteur.name} />
       <p><strong>Nom:</strong> {producteur.name}</p>
       <p><strong>Adresse:</strong> {producteur.adresse}</p>
       <p><strong>region:</strong> {producteur.regione}</p>

@@ -1,0 +1,82 @@
+.gestion-des-permissions {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.gestion-des-permissions h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.gestion-des-permissions div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.gestion-des-permissions input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.gestion-des-permissions button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.gestion-des-permissions button:hover {
+    background-color: #0056b3;
+}
+
+.gestion-des-permissions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.gestion-des-permissions li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.gestion-des-permissions li:last-child {
+    border-bottom: none;
+}
+
+.gestion-des-permissions li button {
+    margin-left: 10px;
+}
+
+.gestion-des-permissions li input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.gestion-des-permissions li .cancel-button {
+    background-color: #dc3545;
+}
+
+.gestion-des-permissions li .cancel-button:hover {
+    background-color: #b02a37;
+}

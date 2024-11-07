@@ -43,7 +43,7 @@ const AjouterRessource = () => {
     formData.append('piéce_join', pieceJoin);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/ajout_ressources', formData, {
+      const response = await axios.post(`${config.apiBaseUrl}/ajout_ressources`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -59,8 +59,7 @@ const AjouterRessource = () => {
   };
 
   return (
-    <div>
-      <h2>Ajouter une ressource</h2>
+    <div className='AjouterEvenement'>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <div>

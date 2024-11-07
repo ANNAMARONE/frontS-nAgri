@@ -5,7 +5,9 @@ import { NavLink} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import config from '/src/config';
-
+import { FaEdit } from "react-icons/fa";
+import { GrView } from "react-icons/gr";
+import { MdDelete } from "react-icons/md";
 const ListeRessources = () => {
   const [ressources, setRessources] = useState([]);
   const [message, setMessage] = useState('');
@@ -14,7 +16,7 @@ const ListeRessources = () => {
   
   const fetchRessources = async (page) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/ressources?page=${page}`, {
+      const response = await axios.get(`${config.apiBaseUrl}/ressources?page=${page}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -33,7 +35,7 @@ const ListeRessources = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/supprimer_ressource/${id}`, {
+      await axios.delete(`${config.apiBaseUrl}/supprimer_ressource/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -58,17 +60,23 @@ const ListeRessources = () => {
   };
 
   return (
-    <div>
+    <div >
+      <div className='EvenementListeHeader'>
       <h2>Liste des ressources</h2>
       {message && <p>{message}</p>}
+      
+      <NavLink to="/ajouterRessource" activeClassName="active"> 
       <button>
-      <NavLink to="/ajouterRessource" activeClassName="active"> <FontAwesomeIcon icon={faPlus} /> Ajouter un ressource</NavLink>
-      </button>
-      <table>
+      <FontAwesomeIcon icon={faPlus} /> Ajouter un ressource</button>
+      </NavLink>
+      
+      </div>
+     <div className='Evenement_listeAdmin' >
+     <table>
         <thead>
           <tr>
+          <th>image</th>
             <th>Libellé</th>
-            <th>Description</th>
             <th>Date</th>
             <th>Actions</th>
           </tr>
@@ -76,27 +84,31 @@ const ListeRessources = () => {
         <tbody>
           {ressources.map(ressource => (
             <tr key={ressource.id}>
+              <td>
+              <img src={`${config.imageBaseUrl}/${ressource.image}`} alt={`Image de l'événement: ${event.libelle}`} style={{ width: '50px', height: '50px' }} />         
+              </td>
               <td>{ressource.libelle}</td>
 
               <td>{new Date(ressource.created_at).toLocaleDateString()}</td>
-              <td>
+              <td  className='ActionÉvenet'>
                
                 <NavLink to={`/ressources/${ressource.id}`}>
-                  <button>Voir</button>
+                  <button><GrView size={24} color='blue'/></button>
                 </NavLink>
 
                
                 <NavLink to={`/ressources/modifier/${ressource.id}`}>
-                  <button>Modifier</button>
+                  <button> <FaEdit size={24} color='green'/></button>
                 </NavLink>
 
                
-                <button onClick={() => handleDelete(ressource.id)}>Supprimer</button>
+                <button onClick={() => handleDelete(ressource.id)}><MdDelete size={24} color='red' /></button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+     </div>
 
       
       <div className="pagination">

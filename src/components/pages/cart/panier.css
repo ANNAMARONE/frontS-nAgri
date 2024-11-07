@@ -1,37 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
 }
-body{
-    font-family: roboto;
-  
+
+body {
+    font-family: 'Roboto', sans-serif;
 }
-.headerpanier{
+
+/* Header Panier */
+.headerpanier {
     display: flex;
     justify-content: space-between;
     width: 1248px;
-    margin:20px auto;
-   
+    margin: 20px auto;
 }
-.tr1{
+
+/* Separator Line */
+.tr1 {
     width: 1248px;
-    background-color:#E6E6E6;
+    background-color: #E6E6E6;
     height: 2px;
     margin: auto;
 }
-.ProduitPanier{
+
+/* Product Panier */
+.ProduitPanier {
     width: 821px;
     height: 160px;
-    background-color:#FAFAF5;
+    background-color: #FAFAF5;
     margin: 20px;
     border: 2px solid #E6E6E6;
     border-radius: 24px;
     display: flex;
     justify-content: space-between;
-   
 }
+
+/* Image Container */
 .ProduitPanier .image-container {
     width: 160px;
     height: 160px;
@@ -39,169 +45,289 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 24px 0px 0px 24px;
+    border-radius: 24px 0 0 24px;
 }
 
 .ProduitPanier img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
 }
-.ProduitPanier input{
+
+/* Input Styles */
+.ProduitPanier input {
     width: 128px;
     height: 40px;
-    border-radius:100px;
-    border: 1px solid rgba(0, 0, 0, 0.269);
+    border-radius: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.27);
 }
-.elementPanier1{
-display: flex;
 
-
+/* Elements in Panier */
+.elementPanier1 {
+    display: flex;
 }
-.elementPanier2{
+
+.elementPanier2 {
     padding-left: 100px;
     margin: auto;
 }
 
-.elementPanier2 h3{
+.elementPanier2 input {
+    width: 60px;
+    height: 30px;
+    text-align: center;
+}
+
+.elementPanier2 h3 {
     font-size: 20px;
 }
-.elementPanierPrix{
-    margin: 10px 30px 0px 0px;
+
+.elementPanierPrix {
+    margin: 10px 30px 0 0;
     font-weight: bold;
 }
-.elementPanier2 button{
- border: none;
- background: none;   
 
+.elementPanier2 button {
+    border: none;
+    background: none;
 }
 
-    .PanierCommande {
-        display: flex;
-        flex-direction: row; 
-        justify-content: center; 
-        align-items: flex-start; 
-        margin: 20px auto;
-        max-width: 1248px; 
-      }
-
-.Buttoncommandes{
-width: 180px;
-height: 50px;
-background-color: #009444;
-color: #fff;
-border: none;
-
+/* Commande Section */
+.PanierCommande {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px auto;
+    max-width: 1248px;
 }
-.Buttoncommandes a{
+
+.Buttoncommandes {
+    width: 180px;
+    height: 50px;
+    background-color: #009444;
+    color: #fff;
+    border: none;
+}
+
+.Buttoncommandes a {
     text-decoration: none;
-    color: #ffff;
+    color: #fff;
     font-size: 18px;
 }
-.commandePanier{
-   width: 395px; 
-   height: 318px;
-   border: 2px solid #E6E6E6;
-   border-radius: 24px;
-   margin: auto;
-   background-color: #FAFAF5;
-   display: flex; 
-   flex-direction: column; 
-   justify-content: center; 
-   margin: 20px; 
-   padding: 20px; 
-}
-.commandePanier h1{
-font-size: 24px;
-margin: auto;
-}
+
+/* Commande Panier */
 .commandePanier {
+    width: 395px;
+    height: 508px;
+    border: 2px solid #E6E6E6;
+    border-radius: 24px;
+    margin: 20px;
+    background-color: #FAFAF5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centering items */
+    text-align: center;
+    padding: 20px;
+}
+
+.commandePanier h1 {
+    font-size: 24px;
+}
+
+/* Resume Details */
+.resume-details {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 20px;
-    width: 395px; 
-    height: 318px;
-    border: 2px solid #E6E6E6;
-    border-radius: 24px;
-    background-color: #FAFAF5;
-  }
-  
-  .resume-details {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    margin: 10px 0; 
-  }
-  
-  .detail-item {
+    margin: 10px 0;
+}
+
+.detail-item {
     display: flex;
     justify-content: space-between;
     width: 100%;
     max-width: 400px;
-    margin: 5px 0; 
+    margin: 5px 0;
     gap: 50px;
-  }
-  .detail-item h3{
+}
+
+.detail-item h3 {
     font-size: 16px;
-    font-weight: 700px;
-  }
-  .payment-button {
+    font-weight: bold; /* Changed to bold instead of 700px */
+}
+
+/* Payment Button */
+.payment-button {
     margin-top: 20px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50; 
+    background-color: #4CAF50;
     color: white;
     cursor: pointer;
-  }
-  
-  .payment-button:disabled {
-    background-color: #ccc; 
-  }
-  /* style de la page commande */
-  .commandesList {
-    display: grid;
+}
+
+.payment-button:disabled {
+    background-color: #ccc;
+}
+
+/* Commandes List */
+.commandesList {
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
-  }
-  
-  .commandeItem {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Commande Item */
+.commandeItem {
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
-  }
-  
-  .commandeItem:hover {
+}
+
+.commandeItem:hover {
     transform: translateY(-5px);
-  }
-  
-  .commandeItem p {
+}
+
+.commandeItem p {
     margin: 10px 0;
     font-size: 16px;
     color: #333;
-  }
-  
-  .commandeItem p:first-of-type {
+}
+
+.commandeItem p:first-of-type {
     font-weight: bold;
     font-size: 18px;
     color: #555;
-  }
-  
-  .commandeItem p:last-of-type {
+}
+
+.commandeItem p:last-of-type {
     font-size: 14px;
     color: #777;
-  }
-  
-  /* Optionally, you can add a background to the container */
-  .commandesList {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-  }
-  
+}
+
+
+/* Global Styles */
+.cc {
+    width: 30px;
+}
+
+.styledlegend {
+    color: #2b2b2b;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.styled .options {
+    display: grid;
+    display: flex;
+    gap: 10px;
+}
+
+.styled label {
+    position: relative;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    height: 100px;
+    width: 170px;
+    cursor: pointer;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: #fff 0 0, #3341551a 0 0 0 1px, #0000000d 0 20px 25px -5px, #0000000d 0 8px 10px -6px;
+    background: linear-gradient(var(--bg, #fff) 0, hsl(0 0% 0% / 5%) 100%) padding-box, var(--bg, #fff);
+    border: 1px solid transparent;
+    outline: var(--bs, 1px) solid var(--bd, transparent);
+}
+
+[id*="-hint"] {
+    font-size: 0.8em;
+    color: hsl(204deg 10% 44%);
+}
+
+.styled label:has(input[type="radio"]:checked) [id*="-hint"] {
+    color: hsl(204deg 30% 39%);
+}
+
+.styled label > :not(input) {
+    grid-column: 2;
+}
+
+.styled input[type="radio"] {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--bd, #999);
+    z-index: 2;
+    display: grid;
+    outline: none;
+    cursor: pointer;
+    accent-color: #009444;
+}
+
+.styled input[type="radio"]:checked {
+    --bd: #009444;
+}
+
+.styled label:has(input[type="radio"]:focus-visible) {
+    --bd: #009444;
+    --bs: 2px;
+}
+
+.styled label:has(input[type="radio"]:checked) {
+    --bg: #d8f0ff;
+    --bd: #009444;
+    --bs: 2px;
+}
+
+.styled fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .headerpanier, .ProduitPanier, .PanierCommande, .commandePanier, .Buttoncommandes {
+        flex-direction: column;
+        width: 90%; 
+        margin: 0 auto; 
+    }
+    .ProduitPanier{
+        width: 130%;
+    }
+/* Separator Line */
+.tr1 {
+  display: none;
+}
+    .ProduitPanier {
+        margin: 10px 0; /* Réduction de l'espace */
+    }
+
+    .elementPanier2 {
+        padding-left: 0; 
+        text-align: center; 
+    }
+
+    .elementPanier2 h3 {
+        font-size: 18px; 
+    }
+
+    .resume-details, .detail-item {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .detail-item {
+        gap: 10px;
+    }
+
+    .commandeItem {
+        flex: 1 1 calc(100% - 20px); 
+    }
+}
