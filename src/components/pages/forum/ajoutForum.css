@@ -38,12 +38,15 @@ body{
     height: 40px;
 
  }
-
+.descriptionForum h2{
+ text-align: center;
+ padding-top:20px ;
+}
 .bannerForum form input{
 width: 744px;
 padding: 8px;
 border: 2px solid rgba(0, 0, 0, 0.192);
-    border-radius: 5px;
+border-radius: 5px;
 }
 .bannerForum form textarea{
     width: 744px;

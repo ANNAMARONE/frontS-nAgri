@@ -5,7 +5,7 @@ import config from '/src/config';
 import { useNavigate } from "react-router-dom";
 import './ajoutForum.css';
 import { FiSend } from "react-icons/fi";
-
+import Swal from 'sweetalert2'
 const CreateForum = () => {
   const [libelle, setLibelle] = useState("");
   const [description, setDescription] = useState("");
@@ -40,7 +40,11 @@ const CreateForum = () => {
     const token = localStorage.getItem('token');
     
     if (!userFromLocalStorage || !token) {
-      setErrorMessage('Veuillez vous connecter pour accéder à votre panier.');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Attention',
+        text: 'Veuillez vous connecter pour Ajouter une discution.',
+    })
       navigate('/login'); 
       return;
     }
@@ -59,7 +63,13 @@ const CreateForum = () => {
         }
       )
       .then((response) => {
-        setSuccessMessage(response.data.success);
+        Swal.fire({
+          icon: 'success',
+          title: 'Succès',
+          text: (response.data.success),
+      }).then(() => {
+        navigate('/forum');
+    });
         setLibelle(""); 
         setDescription("");
         setLoading(false);
@@ -80,7 +90,9 @@ const CreateForum = () => {
 
   return (
     <div className="bannerForum">
+      <div className="descriptionForum">
       <h2>Créer un nouveau forum</h2>
+      </div>
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 

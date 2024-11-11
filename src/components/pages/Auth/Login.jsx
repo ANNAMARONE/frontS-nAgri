@@ -135,17 +135,21 @@ export default function Login() {
               <label>Entre votre mot de passe: </label><br />
               <div className="input-icon">
                 <i className="fas fa-lock"></i>
-               
-                  <input type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)} />
-                  {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-                  <i 
-                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`}
+                <input 
+                  type={showPassword ? "text" : "password"} // Changement dynamique du type d'input
+                  placeholder="********" 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                />
+                {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+                <i 
+                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`} 
                   onClick={togglePasswordVisibility}
-                  style={{ cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                 ></i>
-        
               </div>
             </div>
+
             <p className='already_account'>Pas de compte ?<NavLink to="/register" className="btn_compte">S&apos;inscrire</NavLink></p>
             <button type="submit">Se connecter</button>
           </div>

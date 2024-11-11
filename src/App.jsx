@@ -14,7 +14,6 @@ import ProduitDetails from './components/pages/e-commerce/détaileProduit';
 import Article from './components/pages/article/article';
 import DétaileArticle from './components/pages/article/détaileArticle';
 import CreateForum from './components/pages/forum/AjouteForum';
-import ForumDetails from './components/pages/forum/ForumDetails';
 import ArticleDetails from './components/pages/article/détaileArticle';
 import RessourcesList from './components/pages/ressource/ressource';
 import RessourceDetails from './components/pages/ressource/DétailRessource';
@@ -38,7 +37,7 @@ import ListeRessources from './components/adminPage/gestion ressource/AfficherRe
 import AjouterRessource from './components/adminPage/gestion ressource/ajouterRessource';
 import ModifierRessource from './components/adminPage/gestion ressource/modifierResource';
 import AjouterForum from './components/adminPage/gestion forums/ajouterForume';
-import Forumdetails from './components/adminPage/gestion forums/détailfoum';
+
 import ListeCategories from './components/adminPage/gestion catégorie/catégorie produit/afficherCatPr';
 import AjouterCategorie from './components/adminPage/gestion catégorie/catégorie produit/ajouterCatPr';
 import ModifierCategorie from './components/adminPage/gestion catégorie/catégorie produit/modifierCatPr';
@@ -63,6 +62,10 @@ import PrivateRoute from './components/Route Proteger/ProtectedRoute';
 import Gestionrole from './components/adminPage/gestion role et permission/gestionrole';
 import GestionPermission from './components/adminPage/gestion role et permission/gestionPermission';
 import Contact from './components/pages/contact/Contact';
+import DétailForum from './components/pages/forum/DétailForum';
+import ProtectedRouteLogin from './components/Route Proteger/ProtectedRouteLogin';
+
+
 
 
 
@@ -103,21 +106,25 @@ function App() {
           <Route path="/forum" element={<Forum />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/panier" element={<Panier />} />
+          
           <Route path="/ajouterForum" element={<CreateForum />} />
           <Route path="/produits/:id" element={<ProduitDetails />} />
           <Route path="/article/:id" element={<DétaileArticle />} />
-          <Route path="/forums/:id" element={<ForumDetails />} />
+          <Route path="/forums/:id" element={<DétailForum/>} />
           <Route path="/articles/:id" element={<ArticleDetails />} />
           <Route path="/ressources" element={<RessourcesList />} />
           <Route path="/ressources/:id" element={<RessourceDetails />} />
           <Route path="/commande" element={<Commandes/>} />
+          <Route element={<ProtectedRouteLogin />}>
           <Route path="/profileUse" element={<Profile />} />
+          <Route path="/panier" element={<Panier />} />
+          </Route>
           <Route path="/modifier-profile" element={<ModifierProfile/>} />
           <Route path='/verificationOpt' element={<VerificationOpt/>}/>
           <Route path='/' element={<Index/>}/>
           <Route path='/contact' element={<Contact/>}/>
-          
+
+         
         </Route>
 
         {/* Routes avec Sidebar pour le producteur */}
@@ -160,7 +167,7 @@ function App() {
           <Route path="/ressources/modifier/:id" element={<ModifierRessource />} />
           <Route path="/listeforums" element={<ListeForums />} />
           <Route path="/forums/ajouter" element={<AjouterForum />} />
-          <Route path="/forumsdetail/:id" element={<Forumdetails />} />
+          <Route path="/forumsdetail/:id" element={<DétailForum/>} />
           <Route path="/categories" element={<ListeCategories />} />
           <Route path="/categories/ajouter" element={<AjouterCategorie />} />
           <Route path="/categories/modifier/:id" element={<ModifierCategorie />} />

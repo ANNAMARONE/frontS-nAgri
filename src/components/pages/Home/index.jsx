@@ -606,7 +606,7 @@ const [produits, setProduits] = useState([]);
 	     <div className="learn_1l2i row">
 		   <div className="col-md-3 col-3">
 		     <div className="learn_1l2il">
-			   <img src="img/52.jpg" className="rounded-circle w-100" alt="abc"/>
+			   <img src="https://i.pinimg.com/564x/f6/15/b8/f615b87935414490457e9090449d5a15.jpg" className="rounded-circle w-100" alt="abc"/>
 			 </div>
 		   </div>
 		   <div className="col-md-9 col-9">

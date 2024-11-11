@@ -11,7 +11,7 @@ const Profile = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        axios.get('http://127.0.0.1:8000/api/auth/me', {
+        axios.get(`${config.apiBaseUrl}/auth/me`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -39,6 +39,7 @@ const Profile = () => {
 
     return (
         <div className='containerProfile'>
+           <div className='MonProfile'>
            <div className='profileHeader'>
                <p>{profile.name}</p>
                <img src={`${config.imageProfil}/${profile.profile}`} alt={profile.name} />
@@ -64,6 +65,7 @@ const Profile = () => {
             </table>
 
             <button onClick={handleEditClick}>Modifier</button>
+           </div>
         </div>
     );
 };

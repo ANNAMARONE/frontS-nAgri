@@ -45,7 +45,6 @@ const RessourceDetails = () => {
 
   return (
     <div className="détailRessource">
-    <h2>Détails de la Ressource</h2>
     <div className="détailRessource1">
     <h3>{ressource.libelle}</h3>
     <img src={`${config.imageBaseUrl}/${ressource.image}`} alt={ressource.libelle} />

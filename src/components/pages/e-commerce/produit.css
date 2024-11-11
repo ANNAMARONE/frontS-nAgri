@@ -95,7 +95,7 @@ body{
  
   .produit_plus_populaire{
 
-    height:850px ;
+    height:auto;
     margin: auto;
   }
   .produitPopu{
@@ -414,7 +414,8 @@ visibility: inherit;
   }
 
   .liste_catégorie {
-      flex-direction: column;
+     display: flex;
+     flex-wrap: wrap;
       align-items: center;
       
   }
@@ -432,10 +433,29 @@ visibility: inherit;
       padding: 10px;
       gap: 15px;
   }
+  .liste_catégorie {
+   display: flex;
+   
+    gap: 15px;
+}
 
+.liste_catégorie .catégorie1 {
+    width: 150px;
+    height: 150px;
+}
+
+.liste_catégorie .catégorie1 img {
+    width: 140px; 
+    height: 100px; 
+}
+
+.liste_catégorie .catégorie1 p {
+    padding-top: 10px; 
+    font-size: 14px; 
+}
   .sectioN1 .descriptionBoutique, .sectioN1 .produit_desc {
       width: 80%;
-      height: 250px;
+     height: auto;
   }
 
   .sectioN1 .descriptionBoutique h1 {
@@ -443,20 +463,13 @@ visibility: inherit;
       text-align: center;
 
   }
-
+.produit_plus_populaire{
+  height: auto;
+}
   .sectioN1 .descriptionBoutique button {
       width: 150px;
       height: 40px;
       margin: 10px auto;
-  }
-
-  .liste_catégorie {
-      flex-direction: column;
-      margin: auto;
-     margin-right: 40%;
-     display: none;
-  
-     
   }
 
   
@@ -498,9 +511,11 @@ visibility: inherit;
  margin-left: 10%;
  
 }
-.secton4{
-  margin-top: 180rem;
+.pagination{
+  margin:auto;
+  align-items: center;
 }
+
 .secton4 h1{
   text-align: center;
   font-size: 32px;

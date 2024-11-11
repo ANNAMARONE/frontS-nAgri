@@ -5,7 +5,7 @@ import config from '/src/config';
 import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
 import './commande.css';
 import {  MdRateReview } from 'react-icons/md';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from 'react-router-dom'; 
 const Commandes = () => {

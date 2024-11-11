@@ -52,11 +52,10 @@ const Evenement = () => {
       <div className="bannerEvenement">
 <div className="cardBanner">
   <div>
-    <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-      Sed ante erat, cursus nec velit at, pulvinar pulvinar velit. Proin </h1>
+    <h1>Bienvenue sur notre page Événements, votre portail dédié aux moments marquants et rassemblements communautaires.</h1>
     <p>
-    iaculis viverra quam, ut vulputate mi malesuada in. Vivamus rutrum, justo ac dictum consectetur,
-     mi nibh faucibus nulla, non dignissim velit elit in lacus. Maecenas placerat tristique euismod.
+    Découvrez les événements à venir, participez à des rencontres enrichissantes et restez connecté avec notre communauté. Qu &apos;il s &apos;agisse de conférences, d &apos;ateliers, de célébrations culturelles ou de rassemblements spéciaux, vous trouverez ici toutes les informations pour ne rien manquer.
+     Joignez-vous à nous et partageons ensemble des expériences mémorables ! 
     </p>
   </div>
   <div className="EvenementImage">

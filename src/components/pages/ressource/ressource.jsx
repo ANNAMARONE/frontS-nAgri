@@ -93,23 +93,19 @@ const RessourcesList = () => {
     
 
       {/* Afficher les catégories */}
-      <div>
-        <div className="section1Catégorie">
-        <h1>CATÉGORIES</h1>
-        <div className="hrRessource"></div>
-        </div>
-        <div>
-            <ul className="categories-container">
-                {categories.map((category) => (
-                    <li key={category.id}>
-                        <button onClick={() => handleCategoryClick(category.id)}>
-                            {category.libelle}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-      </div>
+      <ul className="categories-container">
+  {categories.map((category) => (
+    <li key={category.id}>
+      <button
+        className={selectedCategory === category.id ? 'category-button selected' : 'category-button'}
+        onClick={() => handleCategoryClick(category.id)}
+      >
+        {category.libelle}
+      </button>
+    </li>
+  ))}
+</ul>
+
 
       {/* Afficher les ressources */}
       <div className="ressources-container">

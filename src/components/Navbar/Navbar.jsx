@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '/src/components/pages/Auth/AuthContext'; // Assurez-vous que ce chemin est correct
+import { useAuth } from '/src/components/pages/Auth/AuthContext'; 
 import logo from '/src/assets/logo1.png';
 import { FaShoppingCart } from 'react-icons/fa';  
 import { CgProfile } from "react-icons/cg";
@@ -11,19 +11,30 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [panierCount, setPanierCount] = useState(0);
   
-  const { isLoggedIn, logout } = useAuth(); // Utilisation de isLoggedIn ici
+  const { isLoggedIn, logout } = useAuth(); 
 
   const handleToggle = () => {
     setIsOpen(!isOpen); 
   };
 
   useEffect(() => {
-    const panierFromLocalStorage = localStorage.getItem('panier');
-    if (panierFromLocalStorage) {
-      const panier = JSON.parse(panierFromLocalStorage);
-      setPanierCount(panier.reduce((count, produit) => count + produit.quantite, 0));
-    }
+    const updatePanierCount = () => {
+      const panierFromLocalStorage = localStorage.getItem('panier');
+      if (panierFromLocalStorage) {
+        const panier = JSON.parse(panierFromLocalStorage);
+        setPanierCount(panier.reduce((count, produit) => count + produit.quantite, 0));
+      }
+    };
+    // Initial load
+    updatePanierCount();  
+    // Listen for changes in localStorage
+    window.addEventListener('storage', updatePanierCount);
+  
+    return () => {
+      window.removeEventListener('storage', updatePanierCount);
+    };
   }, []);
+  
  
   return (
     <nav className='nav'>

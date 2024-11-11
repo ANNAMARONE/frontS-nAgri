@@ -63,6 +63,14 @@ body {
     justify-content: center; 
     margin: 40px 0;
 }
+.category-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .category-button.selected {
+    background-color: #f39c12; 
+    color: #fff;
+  }
 .categories-container li{
     list-style: none;
 }

@@ -16,11 +16,14 @@ body{
     background-size: cover; 
     background-position: center; 
    background-color: #009444;
-   margin:30PX auto;
-   top: 20px;
+   margin:auto;
    border-radius: 5px;
    display: flex;
    justify-content: space-between;
+  
+}
+.MonProfile{
+    padding-top: 50px;
 }
 .profileHeader img{
     width: 170px;

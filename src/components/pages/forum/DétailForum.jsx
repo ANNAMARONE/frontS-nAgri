@@ -7,7 +7,7 @@ import './détailForum.css';
 import { BiSolidLike } from "react-icons/bi";
 import { FaReply } from "react-icons/fa";
 
-const ForumDetails = () => {
+const  DétailForum = () => {
   const { id } = useParams();
   const navigate = useNavigate(); 
   const [forum, setForum] = useState(null);
@@ -43,7 +43,7 @@ const ForumDetails = () => {
   const handleCommentSubmit = (e) => {
 
     if (!isAuthenticated) {
-      navigate('/login'); // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+      navigate('/login'); 
       return;
     }
     e.preventDefault();
@@ -147,94 +147,104 @@ const ForumDetails = () => {
   };
 
   return (
-    <div className="bannerForumDétail">
-      <div className="forumdétail-container">
-        <div className="détaileForum1">
-          <div>
-            <div className="forum-items">
-              <div className="forum-header">
-                <div className="forum-profile">
-                  <img src={`${config.imageProfil}/${forum.user.profile}`} />
-                  <p>{forum.user.name}</p>
-                </div>
-                <div>
-                  <p className="forum-author">
-                    <strong>{forum.user.name}</strong>
-                  </p>
-                  <p className="forum-time">il y a {timeSince(forum.created_at)}</p>
-                </div>
-              </div>
-              <p className="forum-title">{forum.libelle}</p>
-              <p className="forum-description">{forum.description}</p>
+<div className="bannerForumDétail">
+  <div className="forumdétail-container">
+    <div className="détaileForum1">
+      <div>
+        <div className="forum-items">
+          <div className="forum-header">
+            <div className="forum-profile">
+              <img src={`${config.imageProfil}/${forum.user.profile}`} alt="Profil" />
+              <p>{forum.user.name}</p>
+            </div>
+            <div>
+              <p className="forum-author">
+                <strong>{forum.user.name}</strong>
+              </p>
+              <p className="forum-time">il y a {timeSince(forum.created_at)}</p>
             </div>
           </div>
-          <div className="détailForum">
-            {message && <p className="success-message">{message}</p>}
-            {formError && <p className="error-message">{formError.description}</p>}
-            
-            <form onSubmit={handleCommentSubmit}>
-              <div>
-                <textarea
-                  id="description"
-                  value={description}
-                  placeholder="Tapez ici votre sage suggestion"
-                  onChange={(e) => setDescription(e.target.value)}
-                  required
-                ></textarea>
-              </div>
-              <button type="submit">Commenter</button>
-            </form>
-          </div>
-        </div>
-        <div>
-          <h3>Commentaires :</h3>
-          {comments.length > 0 ? (
-            <div className="comment-scrollable">
-              <ul className="listeCommentaire">
-                {comments.slice(0, visibleComments).map((comment) => (
-                  <li key={comment.id} className="comment-item">
-                    <div>
-                      <p>@{forum.user.name}</p>
-                      <p>{comment.description}</p>
-                      <button onClick={() => handleLikeComment(comment.id)}>
-                        <BiSolidLike /> {comment.likes}
-                      </button>
-                      <button onClick={() => setReplyToCommentId(comment.id)}>
-                        <FaReply />
-                      </button>
-                      {replyToCommentId === comment.id && (
-                        <form onSubmit={(e) => handleReplySubmit(e, comment.id)}>
-                          <textarea
-                            value={replyDescription}
-                            onChange={(e) => setReplyDescription(e.target.value)}
-                            required
-                          ></textarea>
-                          <br />
-                          <button type="submit">Ajouter la réponse</button>
-                        </form>
-                      )}
-                      {comment.replies && comment.replies.length > 0 && (
-                        <ul>
-                          {comment.replies.map((reply) => (
-                            <li key={reply.id}>{reply.description}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              {visibleComments < comments.length && (
-                <button onClick={loadMoreComments}>Voir plus de commentaires</button>
-              )}
-            </div>
-          ) : (
-            <p>Aucun commentaire disponible.</p>
-          )}
+          <p className="forum-title">{forum.libelle}</p>
+          <p className="forum-description">{forum.description}</p>
         </div>
       </div>
+
+      <div className="détailForum">
+        {message && <p className="success-message">{message}</p>}
+        {formError && <p className="error-message">{formError.description}</p>}
+        
+        <form onSubmit={handleCommentSubmit}>
+          <div>
+            <textarea
+              id="description"
+              value={description}
+              placeholder="Tapez ici votre sage suggestion"
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <button type="submit">Commenter</button>
+        </form>
+      </div>
     </div>
+
+    <div>
+      <h3>Commentaires :</h3>
+      {comments.length > 0 ? (
+        <div className="comment-scrollable">
+          <ul className="listeCommentaire">
+            {comments.slice(0, visibleComments).map((comment) => (
+              <li key={comment.id} className="comment-item">
+                <div>
+                  <p>@{forum.user.name}</p>
+                  <p>{comment.description}</p>
+                  <button onClick={() => handleLikeComment(comment.id)}>
+                    <BiSolidLike /> {comment.likes}
+                  </button>
+                  <button onClick={() => setReplyToCommentId(comment.id)}>
+                    <FaReply />
+                  </button>
+
+                  {/* Affichage du formulaire de réponse uniquement si on veut répondre à ce commentaire */}
+                  {replyToCommentId === comment.id && (
+                    <form onSubmit={(e) => handleReplySubmit(e, comment.id)}>
+                      <textarea
+                        value={replyDescription}
+                        onChange={(e) => setReplyDescription(e.target.value)}
+                        required
+                      ></textarea>
+                      <br />
+                      <button type="submit">Ajouter la réponse</button>
+                    </form>
+                  )}
+
+                  {/* Affichage des réponses sous chaque commentaire */}
+                  {comment.replies && comment.replies.length > 0 && (
+                    <ul>
+                      {comment.replies.map((reply) => (
+                        <li key={reply.id}>
+                          <p><strong>@{reply.user?.name || "Utilisateur inconnu"}</strong>: {reply.description}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+          {visibleComments < comments.length && (
+            <button onClick={loadMoreComments}>Voir plus de commentaires</button>
+          )}
+        </div>
+      ) : (
+        <p>Aucun commentaire disponible.</p>
+      )}
+    </div>
+  </div>
+</div>
+
+
   );
 };
 
-export default ForumDetails;
+export default DétailForum;

@@ -47,7 +47,7 @@ const Footer = () => {
               <h4>Newsletter</h4>
               <form className="newsletter-form">
                 <input type="email" placeholder="Entrer votre email" />
-                <button type="submit"></button>
+                <button type="submit">envoyer</button>
               </form>
               <p>Abonnez-vous maintenant</p>
             </div>
