@@ -21,7 +21,7 @@ import logo3 from '/src/assets/images/img3.jpg';
 import logo4 from '/src/assets/images/img4.jpg';
 import logo5 from '/src/assets/images/img5.jpg';
 import logo6 from '/src/assets/images/img6.jpg';
-
+import { usePanier } from '/src/components/pages/cart/PanierContext'; 
 export default function Produit (){
   const [produits, setProduits] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); 
@@ -32,6 +32,8 @@ export default function Produit (){
   const [selectionCategorie,setselectionCategorie]=useState(null);
   const [panier, setPanier] = useState([]);
   const [quantites, setQuantites] = useState({});
+  const [quantite, setQuantite] = useState(1);
+  const { updatePanier } = usePanier();
   // Récupération des produits
   useEffect(() => {
     const getProduits = async () => {
@@ -197,9 +199,9 @@ export default function Produit (){
 
   const ajouterAuPanier = (produit, quantite = 1) => {
     const produitExist = panier.find(item => item.id === produit.id);
-   
+    
     let nouveauPanier;
-  
+    
     if (produitExist) {
       if (produitExist.quantite + quantite <= produit.quantite) { 
         nouveauPanier = panier.map(item => 
@@ -220,18 +222,25 @@ export default function Produit (){
       }
     }
   
-    setPanier(nouveauPanier);
+    // Mettre à jour le panier dans le contexte avec la méthode updatePanier
+    updatePanier(nouveauPanier);
+  
+    // Sauvegarder le panier dans localStorage
     localStorage.setItem("panier", JSON.stringify(nouveauPanier)); 
+  
+    // Afficher une notification de succès
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Produit ajouté au panier avec succcés",
+      title: "Produit ajouté au panier avec succès",
       showConfirmButton: false,
       timer: 1500
     });
+  
     console.log("Produit ajouté au panier :", produit);
     console.log("Panier actuel :", nouveauPanier);
   };
+  
 
   const navigate = useNavigate(); 
   const handleViewDetails = (produitId) => {

@@ -6,10 +6,11 @@ import logo from '/src/assets/logo1.png';
 import { FaShoppingCart } from 'react-icons/fa';  
 import { CgProfile } from "react-icons/cg";
 import './Navbar.css';
+import { usePanier } from '/src/components/pages/cart/PanierContext';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [panierCount, setPanierCount] = useState(0);
+  const { panierCount } = usePanier();
   
   const { isLoggedIn, logout } = useAuth(); 
 
@@ -17,23 +18,6 @@ export const Navbar = () => {
     setIsOpen(!isOpen); 
   };
 
-  useEffect(() => {
-    const updatePanierCount = () => {
-      const panierFromLocalStorage = localStorage.getItem('panier');
-      if (panierFromLocalStorage) {
-        const panier = JSON.parse(panierFromLocalStorage);
-        setPanierCount(panier.reduce((count, produit) => count + produit.quantite, 0));
-      }
-    };
-    // Initial load
-    updatePanierCount();  
-    // Listen for changes in localStorage
-    window.addEventListener('storage', updatePanierCount);
-  
-    return () => {
-      window.removeEventListener('storage', updatePanierCount);
-    };
-  }, []);
   
  
   return (

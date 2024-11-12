@@ -32,7 +32,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-height: 50vh; /* Limiter la hauteur de la liste des commandes */
+    max-height: 50vh; 
     overflow-y: auto;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .commandeItem h3 {
-    font-size: 1.25rem; /* Utilisation de rem pour une meilleure réactivité */
+    font-size: 1.25rem; 
     color: #009444;
     margin-bottom: 10px;
 }
@@ -73,7 +73,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    font-weight: 500; /* Ajout d'un peu de poids au texte */
+    font-weight: 500; 
 }
 
 .commandeItem button:hover {

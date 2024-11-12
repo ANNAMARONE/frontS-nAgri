@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 import config from '/src/config';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { usePanier } from '/src/components/pages/cart/PanierContext'; 
 const Index = () => {
 
 const [produits, setProduits] = useState([]);
@@ -31,6 +32,7 @@ const [produits, setProduits] = useState([]);
   const [panier, setPanier] = useState([]);
   const [quantites, setQuantites] = useState({});
   const [activeIndex, setActiveIndex] = useState(null);
+  const { updatePanier } = usePanier();
   // Récupération des produits
   useEffect(() => {
     const getProduits = async () => {
@@ -192,7 +194,11 @@ const [produits, setProduits] = useState([]);
 			return; 
 		  }
 		}
-	  
+	   // Mettre à jour le panier dans le contexte avec la méthode updatePanier
+	   updatePanier(nouveauPanier);
+  
+	   // Sauvegarder le panier dans localStorage
+	   localStorage.setItem("panier", JSON.stringify(nouveauPanier)); 
 		setPanier(nouveauPanier);
 		localStorage.setItem("panier", JSON.stringify(nouveauPanier)); 
 		Swal.fire({

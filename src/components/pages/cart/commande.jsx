@@ -217,9 +217,7 @@ const handleStatusChange = async (commandeId, status) => {
     <MdRateReview size={30} /> Modifier le Statut
   </button>
 </OverlayTrigger>
-
-
-            
+           
             {/* Supprimer la commande */}
             <button onClick={() => handleDelete(commande.id)}>
               <MdDeleteForever size={30} /> Supprimer

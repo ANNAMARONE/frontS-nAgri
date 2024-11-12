@@ -94,6 +94,10 @@ const  DétailForum = () => {
   
   // Fonction pour soumettre une réponse
   const handleReplySubmit = (e, commentId) => {
+    if (!isAuthenticated) {
+      navigate('/login'); // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+      return;
+    }
     e.preventDefault();
     axios.post(`${config.apiBaseUrl}/commentaires/${commentId}/repondre`,
       { description: replyDescription, forum_id: id }, 
