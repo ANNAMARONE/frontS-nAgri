@@ -814,8 +814,9 @@ body {
     display: none;
   }
   #grow{
-    margin-top: 75rem;
+    margin-top:85rem;
   }
+
   .section1 {
     height: auto;
     margin-top: 85rem;
@@ -824,7 +825,7 @@ body {
     display: none;
   }
   .faq-section{
-    margin-top: 40rem;
+    margin-top: 50rem;
   }
   .effectImage img{
 height: 200px;

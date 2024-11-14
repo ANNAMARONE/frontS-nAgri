@@ -130,42 +130,6 @@
   }
 }
 
-@media (max-width: 550px) {
-  .cards {
-    li {
-      display: block;
-      width: auto;
-      max-width: 200px;
-      margin: 30px auto;
-
-      img,
-      .details {
-        float: none;
-      }
-
-      img {
-        margin: 0 auto;
-      }
-
-      .details {
-        margin-top: 20px;
-        text-align: center;
-        min-width: 0;
-
-        span,
-        a {
-          padding: 0;
-          white-space: break-all;
-          word-wrap: break-word;
-
-          &:before {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-}
 .détailProducteur {
   background-color: #ffffff; 
   border: 1px solid #e0e0e0;
@@ -205,4 +169,104 @@
   color: #e74c3c; 
   font-weight: bold; 
   margin-bottom: 15px; 
+}
+
+
+@media (max-width: 550px) {
+  .cards {
+    li {
+      display: block;
+      width: auto;
+      max-width: 200px;
+      margin: 30px auto;
+
+      img,
+      .details {
+        float: none;
+      }
+
+      img {
+        margin: 0 auto;
+      }
+
+      .details {
+        margin-top: 20px;
+        text-align: center;
+        min-width: 0;
+
+        span,
+        a {
+          padding: 0;
+          white-space: break-all;
+          word-wrap: break-word;
+
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .cards li {
+    padding: 15px;
+    font-size: 0.8em;
+  }
+
+  .cards li img {
+    max-width: 80px;
+  }
+
+  .cards li .details > span,
+  .cards li .details > a {
+    font-size: 14px;
+  }
+
+  .détailProducteur {
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 100%;
+  }
+
+  .détailProducteur h2 {
+    font-size: 20px;
+  }
+
+  .détailProducteur p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .cards li {
+    padding: 10px;
+  }
+
+  .cards li img {
+    max-width: 60px;
+  }
+
+  .détailProducteur {
+    padding: 10px;
+  }
+
+  .détailProducteur h2 {
+    font-size: 18px;
+  }
+
+  .détailProducteur p {
+    font-size: 14px;
+  }
 }

@@ -23,7 +23,20 @@ const NewDashboard = () => {
         localStorage.removeItem('token');
         navigate('/login');
       };
+      const [unreadCount, setUnreadCount] = useState(0);
 
+      useEffect(() => {
+        // Remplacez cette URL par l'URL de votre backend Laravel
+        axios.get(`${config.apiBaseUrl}/notifications`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+          },
+        })
+        .then(response => {
+          setUnreadCount(response.data.unread_count);
+        })
+        .catch(error => console.error('Erreur lors de la récupération des notifications:', error));
+      }, []);
       useEffect(() => {
         const token = localStorage.getItem('token');
         axios.get(`${config.apiBaseUrl}/auth/me`, {
@@ -68,7 +81,10 @@ const NewDashboard = () => {
         <Link to='/forump'>
             <FontAwesomeIcon icon={faComments} className="navbar-icon" title="Forum de Discussion" />
             </Link>
-            <FontAwesomeIcon icon={faBell} className="navbar-icon" title="Notifications" />
+            <div className="notification-icon-container">
+      <FontAwesomeIcon icon={faBell} className="navbar-icon" title="Notifications" />
+      {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
+    </div>
            <div className='profileProducteur'>
            <Link to="/profile">
            <img src={`${config.imageProfil}/${profile.profile}`} alt={profile.name} />
@@ -82,7 +98,7 @@ const NewDashboard = () => {
             {isSidebarOpen && (
                 <div className="sidebar">
                    
-                    <ul>
+                    <ul className='sidebarnew'>
                         <li>
                         <FontAwesomeIcon icon={faChartLine} /> <NavLink to="/statistics" activeClassName="active">Tableau de Bord</NavLink>
                         </li>

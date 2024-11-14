@@ -127,25 +127,75 @@ body {
     padding-top: 10px;
 }
 
-
-
+/* Media Queries pour le Responsive */
 @media (max-width: 768px) {
-    .containerDétailArticler {
-        width: 95%; 
+    .ArticleDétaile1 .card {
+        width: 45%; 
     }
 
-    .container_image img {
-        max-width: 90%; 
+    .containerDétailArticler {
+        min-width: 100%;
     }
 }
 
 @media (max-width: 480px) {
+    .ArticleDétaile1 {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .ArticleDétaile1 .card {
+        width: 100%;
+    }
+
     .containerDétailArticler {
-        width: 100%; 
-        padding: 0 10px;
+        padding: 15px;
+    }
+
+    .containerDétailArticler h2 {
+        font-size: 20px; 
+    }
+
+    .containerDétailArticler p {
+        font-size: 14px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+   
+    .donnéArticle1 {
+        gap: 30px;
+    }
+
+    .ArticleDétaile1 .card {
+        width: 45%; 
+    }
+
+    .containerDétailArticler {
+        max-width: 80%; 
+        padding: 20px; 
+    }
+
+    .containerDétailArticler h2 {
+        font-size: 22px; 
+    }
+
+    .containerDétailArticler p {
+        font-size: 15px; 
+    }
+
+    .ArticleDétaile1 {
+        gap: 20px; 
+    }
+
+    .container_image {
+        padding: 15px; 
     }
 
     .container_image img {
-        max-width: 100%;
+        max-height: 400px;
     }
 }
+
+
+
+

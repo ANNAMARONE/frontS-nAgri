@@ -99,6 +99,7 @@ body {
     align-items: flex-start;
     margin: 20px auto;
     max-width: 1248px;
+    height: auto;
 }
 
 .Buttoncommandes {
@@ -126,7 +127,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Centering items */
+    align-items: center; 
     text-align: center;
     padding: 20px;
 }
@@ -154,7 +155,7 @@ body {
 
 .detail-item h3 {
     font-size: 16px;
-    font-weight: bold; /* Changed to bold instead of 700px */
+    font-weight: bold; 
 }
 
 /* Payment Button */
@@ -290,7 +291,9 @@ body {
     padding: 0;
     border: 0;
 }
-
+.panierPage{
+    height: auto;
+}
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .headerpanier, .ProduitPanier, .PanierCommande, .commandePanier, .Buttoncommandes {
@@ -302,11 +305,11 @@ body {
         width: 130%;
     }
 /* Separator Line */
-.tr1 {
-  display: none;
-}
+    .tr1 {
+    display: none;
+    }
     .ProduitPanier {
-        margin: 10px 0; /* Réduction de l'espace */
+        margin: 10px 0; 
     }
 
     .elementPanier2 {
@@ -329,5 +332,89 @@ body {
 
     .commandeItem {
         flex: 1 1 calc(100% - 20px); 
+    }
+    .styledlegend {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .styled .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .styled label {
+        width: 140px; 
+        height: auto; 
+        padding: 10px;
+    }
+
+    .styled input[type="radio"] {
+        width: 20px; 
+        height: 20px;
+    }
+
+    [id*="-hint"] {
+        font-size: 0.7em; 
+    }
+}
+
+/* Media Queries pour Tablettes (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .détailRessource {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .détailRessource h2 {
+        font-size: 26px;
+    }
+
+    .détailRessource p {
+        font-size: 16px;
+    }
+
+    .détailRessource .descriptionRessouce {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 15px;
+    }
+}
+
+/* Media Queries pour Mobiles (max-width: 768px) */
+@media (max-width: 768px) {
+    .détailRessource {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .détailRessource h2 {
+        font-size: 22px;
+    }
+.commandePanier{
+    margin-top:8rem;
+}
+.panierPage{
+    height: auto;
+}
+    .détailRessource p {
+        font-size: 14px;
+    }
+
+    .détailRessource .descriptionRessouce {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .détailRessource button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .détailRessource1 img {
+        max-height: 300px;
     }
 }

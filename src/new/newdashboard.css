@@ -64,7 +64,10 @@ body{
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    margin-top: 50px; 
+   
+}
+.sidebarnew{
+    margin-top: 20%;
 }
 
 /* Sidebar Closed */
@@ -195,13 +198,56 @@ body{
     border-radius: 10px;
     border: 1px solid black;
 }
+/* Container pour l'icône de notification */
+.notification-icon-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  /* Icône de la cloche */
+  .navbar-icon {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Badge qui affiche le nombre de notifications */
+  .notification-badge {
+    position: absolute;
+    top: -5px;  
+    right: -5px; 
+    background-color: red; 
+    color: white;
+    font-size: 12px; 
+    width: 20px; 
+    height: 20px;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold; 
+  }
+  
+ 
+  .notification-icon-container:hover .navbar-icon {
+    color: #007bff;
+  }
+  
+ 
+  .notification-badge {
+    font-size: 10px; 
+  }
+  
 @media (max-width: 768px) {
-    /* Adaptation de la barre de navigation */
+   
     .navbar {
         padding: 10px;
         flex-direction: column;
         align-items: flex-start;
     }
+.navbartexte1{
+    display: none;
+}
 
     .navbar img {
         height: 60px;
@@ -209,9 +255,14 @@ body{
 
     .navbar-right {
         display: flex;
-        justify-content: space-around;
+        margin-right: 20px;
         width: 100%;
+        justify-content: space-between;
         margin-top: 10px;
+        gap: 30px;
+    }
+    .navbar-right .navbar-icon{
+        display: none;
     }
 
     /* Adaptation du contenu principal */
@@ -287,3 +338,4 @@ body{
         gap: 10px;
     }
 }
+

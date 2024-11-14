@@ -90,73 +90,79 @@
 }
 
 /* Responsiveness */
+
+/* Responsiveness */
 @media (max-width: 1024px) {
+    /* Tablette */
     .produits-container {
-        padding: 15px; /* Réduire le rembourrage */
+        max-width: 95%;
+        padding: 15px;
+        margin: 15px auto;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .produits-container h2 {
-        font-size: 24px; /* Ajuster la taille de la police */
+        font-size: 20px;
+        margin-bottom: 15px;
     }
 
     .produits-container p {
-        font-size: 18px; /* Ajuster la taille de la police */
+        font-size: 14px;
     }
 
     .produits-container th,
     .produits-container td {
-        padding: 10px; /* Réduire le rembourrage des cellules */
-    }
-}
-
-@media (max-width: 768px) {
-    .produits-container {
-        padding: 10px; /* Réduire le rembourrage pour les petits écrans */
-    }
-
-    .produits-container h2 {
-        font-size: 22px; /* Taille de police encore réduite */
-    }
-
-    .produits-container p {
-        font-size: 16px; /* Ajuster la taille de la police */
-    }
-
-    .produits-container th,
-    .produits-container td {
-        padding: 8px; /* Réduire le rembourrage des cellules */
+        padding: 10px;
     }
 
     .produits-container img {
-        width: 50px; /* Réduire la taille des images */
-    }
-}
-
-@media (max-width: 480px) {
-    .produits-container {
-        padding: 5px; /* Réduire le rembourrage pour les très petits écrans */
-    }
-
-    .produits-container h2 {
-        font-size: 20px; /* Ajuster la taille de la police */
-    }
-
-    .produits-container p {
-        font-size: 14px; /* Ajuster la taille de la police */
-    }
-
-    .produits-container th,
-    .produits-container td {
-        padding: 5px; /* Réduire le rembourrage des cellules */
-    }
-
-    .produits-container img {
-        width: 40px; /* Réduire encore la taille des images */
+        width: 60px;
     }
 
     .produits-container .buttonAjoutStock,
     .produits-container .buttonModifierStock {
-        padding: 6px 10px; /* Ajuster le rembourrage des boutons */
-        font-size: 14px; /* Ajuster la taille de la police des boutons */
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile */
+    .produits-container {
+        max-width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+        border: none;
+        box-shadow: none;
+    }
+
+    .produits-container h2 {
+        font-size: 18px;
+    }
+
+    .produits-container p {
+        font-size: 12px;
+    }
+
+    .produits-container table {
+        display: block;
+        overflow-x: auto; /* Permet un défilement horizontal */
+        white-space: nowrap; /* Évite le retour à la ligne */
+    }
+
+    .produits-container th,
+    .produits-container td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .produits-container img {
+        width: 50px;
+    }
+
+    .produits-container .buttonAjoutStock,
+    .produits-container .buttonModifierStock {
+        padding: 5px 8px;
+        font-size: 12px;
     }
 }

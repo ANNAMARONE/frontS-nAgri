@@ -98,6 +98,9 @@ export default function Register() {
     } else if (name.length > 255) {
       setValidationErrors((prev) => ({ ...prev, name: 'Le nom ne peut pas dépasser 255 caractères.' }));
       hasError = true;
+    } else if (name.length <4) {
+      setValidationErrors((prev) => ({ ...prev, name: 'Le nom le nom doit avoir au moins 4 caractére.' }));
+      hasError = true;
     }
 
     if (!profile) {

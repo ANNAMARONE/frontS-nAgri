@@ -283,25 +283,98 @@ font-weight: bold;
 
 /* For Responsive Design */
 @media (max-width: 768px) {
-    .table th, .table td {
-        padding: 8px;
+    /* Section statistiques */
+    .statistiques {
+        flex-direction: column; /* Aligne les cartes en colonne */
+        gap: 15px;
+        padding: 0 10px;
     }
 
-    .btn-group-sm .btn {
-        font-size: 0.8rem;
-        padding: 4px 8px;
+    .statistiques .card {
+        width: 100%; /* Les cartes prennent toute la largeur */
+        padding: 15px;
+        font-size: 16px;
+    }
+.gestionAction{
+    display: block;
+}
+    .statistiques .card h3 {
+        font-size: 18px; /* Réduit la taille du titre */
     }
 
-    .widget-content-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
+    .statistiques .card p {
+        font-size: 14px; /* Réduit la taille des textes */
     }
 
-    .widget-content-left {
-        margin-bottom: 5px;
+    .statistiques .card i {
+        font-size: 24px; /* Réduit la taille des icônes */
+        margin-right: 10px;
     }
 
-    .card-footer {
-        flex-direction: column;
+    /* Section gestionAcee */
+    .gestionAcee {
+        max-width: 100%; /* Largeur pleine pour les mobiles */
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    .gestionAcee h1 {
+        font-size: 22px; /* Ajuste la taille du titre */
+        margin-bottom: 15px;
+    }
+
+    .gestionAcee p {
+        font-size: 14px; /* Réduit la taille des textes */
+        margin-bottom: 20px;
+    }
+
+    /* Actions utilisateur */
+    .actionUser {
+        flex-direction: column; /* Aligne les boutons verticalement */
+        gap: 15px; /* Espacement entre les boutons */
+    }
+
+    .actionUser .button1 {
+        width: 100%; /* Boutons plein largeur */
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    /* Tableaux */
+    .table-responsive {
+        max-height: 300px; /* Limite la hauteur */
+        overflow-x: auto; /* Ajoute un défilement horizontal */
+    }
+
+    .table {
+        font-size: 12px; /* Réduit la taille globale */
+    }
+
+    .table th, 
+    .table td {
+        padding: 10px; /* Réduit le padding */
+        text-align: left; /* Aligne les contenus à gauche */
+    }
+
+    /* Badges */
+    .badge {
+        font-size: 12px; /* Réduit la taille des badges */
+        padding: 3px 8px;
+    }
+
+    /* Boutons */
+    .btn-sm {
+        font-size: 12px; /* Réduit la taille des petits boutons */
+        padding: 8px 10px;
+    }
+
+    .btn-icon {
+        width: 30px; /* Réduit la taille des boutons avec icônes */
+        height: 30px;
+    }
+
+    .btn-icon-wrapper {
+        font-size: 1rem; /* Ajuste la taille des icônes */
     }
 }
+

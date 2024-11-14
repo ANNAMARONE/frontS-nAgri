@@ -98,4 +98,79 @@
     background-color: #f8d7da;
     color: #721c24;
   }
-    
+  @media (max-width: 768px) {
+    /* Conteneur de la table */
+    .table-container {
+        margin: 10px; /* Réduit les marges */
+        padding: 15px; /* Réduit le padding */
+        border-radius: 8px; /* Ajuste les coins arrondis */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Réduit l'ombre */
+    }
+
+    /* Table stylée */
+    .styled-table {
+        font-size: 14px; /* Diminue la taille de la police */
+    }
+
+    .styled-table th, 
+    .styled-table td {
+        padding: 8px 10px; /* Réduit le padding des cellules */
+    }
+
+    /* Status utilisateur */
+    .active-status, 
+    .inactive-status {
+        font-size: 14px; /* Réduit la taille des textes */
+    }
+
+    /* Liens utilisateur */
+    .user-link {
+        font-size: 14px; /* Diminue la taille des liens */
+    }
+
+    /* Boutons d'action */
+    .action-button {
+        font-size: 12px; /* Réduit la taille de la police des boutons */
+        padding: 5px 8px; /* Diminue le padding */
+        margin: 0 3px; /* Réduit l'espacement entre les boutons */
+    }
+
+    .action-button.activate, 
+    .action-button.deactivate, 
+    .action-button.delete {
+        border-radius: 4px; /* Ajuste les coins arrondis */
+    }
+
+    /* Messages */
+    .message {
+        margin: 10px 0; /* Réduit les marges */
+        padding: 8px; /* Diminue le padding */
+        font-size: 14px; /* Ajuste la taille des textes */
+    }
+
+    .success, 
+    .error {
+        font-size: 14px; /* Réduit la taille des messages */
+    }
+
+    /* Table responsive */
+    .styled-table {
+        display: block; /* Permet le défilement horizontal */
+        overflow-x: auto; /* Active le défilement horizontal */
+        white-space: nowrap; /* Empêche les cellules de s'empiler */
+    }
+
+    .styled-table thead {
+        display: table; /* Fixe l'entête visible */
+        width: 100%; /* Étend la largeur de l'entête */
+    }
+
+    .styled-table tbody {
+        display: block; /* Gère le défilement du contenu */
+    }
+
+    /* Gestion des lignes dans la table */
+    .styled-table tbody tr {
+        display: table-row; /* Maintient l'alignement des colonnes */
+    }
+}

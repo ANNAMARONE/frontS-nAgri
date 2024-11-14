@@ -82,15 +82,9 @@ const NewdashboardAdmin = () => {
 {/* Sidebar */}
 {isSidebarOpen && (
     <div className="sidebar">
-        <h2>Tableau de Bord</h2>
         <ul>
             <li>
             <FontAwesomeIcon icon={faChartLine} /> <NavLink to="/dashboard" activeClassName="active">Dashboard</NavLink>
-            <ul>
-            <li>Statistiques de Vente</li>
-                    <li>Performance des Produits</li>
-                    <li>Performance des Collaborations</li>
-            </ul>
             </li>
             <li>
                 <FontAwesomeIcon icon={faBox} /> gestion produits
@@ -115,16 +109,7 @@ const NewdashboardAdmin = () => {
                 <FontAwesomeIcon icon={faUsers} /> gestion utilisateurs
                 <ul>
                     <li><NavLink to="ListeUtilisateur">Liste des Utilisateurs</NavLink></li>
-                    <li>Ajouter un Client</li>
-                    <li>Avis et Retours</li>
-                </ul>
-            </li>
-           
-            <li>
-                <FontAwesomeIcon icon={faTags} /> Marketing
-                <ul>
-                    <li>Promotions</li>
-                    <li>Campagnes Marketing</li>
+                  
                 </ul>
             </li>
             <li>

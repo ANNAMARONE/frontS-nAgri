@@ -212,3 +212,78 @@ body{
         background-color: #FFFF;
     }
 }
+@media (max-width: 1024px) {
+    /* Réduit la largeur du profil */
+    .profileHeader {
+        width: 100%;
+        height: 180px;  /* Ajuste la hauteur du header */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .profileHeader img {
+        width: 120px;  /* Réduit la taille de l'image */
+        height: 120px; 
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .profileHeader p {
+        font-size: 24px;  /* Réduit la taille du texte */
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    /* Ajuste la taille du conteneur de profil */
+    .containerProfile {
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Table Profile */
+    .containerProfile .table {
+        width: 100%;  /* Fait en sorte que la table prenne toute la largeur */
+        border-radius: 12px;
+        margin: 30px auto;
+        padding: 10px;
+    }
+ /* Formulaire */
+ .containerProfile form {
+    width: 100%; /* Utilise toute la largeur pour le formulaire */
+    margin: 20px 0;
+}
+
+.containerProfile .inputeName,
+.containerProfile .setion2input {
+    display: block;
+    width: 100%; /* Colonne pleine largeur pour les inputs */
+}
+
+.containerProfile .inputeName input,
+.containerProfile .setion2input input {
+    width: 100%; /* S'assure que les inputs prennent toute la largeur */
+}
+
+/* Section de sélection */
+.containerProfile .setion3input .selectInput {
+    margin-top: 20px;
+}
+
+.containerProfile .setion3input .selectInput select,
+.containerProfile .setion3input .selectInput input {
+    width: 100%; /* Élargir les champs de sélection pour occuper toute la largeur */
+    height: 44px;
+}
+
+/* Modifie l'espacement des sections */
+.containerProfile .inputeName input,
+.containerProfile .setion2input input,
+.containerProfile .setion3input .selectInput input {
+    margin-top: 15px;
+}
+
+}

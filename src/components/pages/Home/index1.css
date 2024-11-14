@@ -76,7 +76,7 @@ body{
         position: relative; 
         border-radius: 15px; 
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-        background-color: #f8f9fa; /* Couleur de fond douce */
+        background-color: #f8f9fa;
       }
       
       .organ_2i1 iframe {
@@ -85,17 +85,17 @@ body{
         left: 0;
         width: 100%;
         height: 100%;
-        border: none; /* Supprime la bordure */
+        border: none; 
         border-radius: 0px 0px 50px 50px;
       }
       
       .serv_nm {
         display: flex;
-        justify-content: center; /* Centre l'iframe horizontalement */
-        align-items: center; /* Centre l'iframe verticalement */
-        width: 100%; /* Prend toute la largeur du conteneur parent */
+        justify-content: center; 
+        align-items: center;
+        width: 100%;
       margin: -20% auto;
-        background-color: transparent; /* Pas de fond */
+        background-color: transparent; 
         overflow: hidden
       }
       
@@ -104,13 +104,13 @@ body{
         height: 100vh; 
         border: none; 
         border-radius: 15px; 
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Ajoute une ombre douce pour un effet de profondeur */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation pour l'interaction */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+        transition: transform 0.3s ease, box-shadow 0.3s ease; 
       }
       
       .serv_nm iframe:hover {
-        transform: scale(1.02); /* Agrandit légèrement au survol */
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Augmente l'ombre pour un effet de survol plus profond */
+        transform: scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
       }
       
         
@@ -589,16 +589,12 @@ body{
 }
 
 .faq-item.active .faq-answer {
-  display: block; /* Affiche les réponses lorsqu'elles sont actives */
+  display: block;
 }
 
 .faq-item.active .arrow {
-  transform: rotate(90deg); /* Rotation de l'icône pour indiquer l'expansion */
+  transform: rotate(90deg); 
 }
 .section1{
   margin-top: 10%;
 }
-
-
-
-

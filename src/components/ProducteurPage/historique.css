@@ -86,74 +86,85 @@
     color: #34495e;
 }
 
-/* Media Queries pour Responsivité */
+/* Responsiveness */
 @media (max-width: 1024px) {
+    /* Tablette */
     .historiqueCommande {
-        padding: 20px; /* Réduire le rembourrage */
+        max-width: 95%;
+        padding: 20px;
+        margin: 20px auto;
     }
 
     .historiqueCommande h2 {
-        font-size: 1.75em; /* Ajuster la taille de la police */
+        font-size: 1.8em;
+        margin-bottom: 20px;
     }
 
     .historiqueCommande table th,
     .historiqueCommande table td {
-        padding: 10px; /* Réduire le rembourrage des cellules */
-        font-size: 0.9em; /* Ajuster la taille de la police */
+        padding: 10px 12px;
+        font-size: 0.9em;
     }
 
-    .produitsTable th,
-    .produitsTable td {
-        padding: 6px; /* Réduire le rembourrage des cellules */
-        font-size: 0.85em; /* Ajuster la taille de la police */
+    .historiqueCommande table td {
+        font-size: 0.9em;
+    }
+
+    .historiqueCommande .produitsTable th,
+    .historiqueCommande .produitsTable td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .historiqueCommande .produitsTable td img {
+        max-width: 40px;
+        max-height: 40px;
     }
 }
 
 @media (max-width: 768px) {
+    /* Mobile */
     .historiqueCommande {
-        padding: 15px; /* Réduire le rembourrage pour les tablettes */
+        max-width: 100%;
+        padding: 15px;
+        margin: 10px auto;
+        box-shadow: none;
     }
 
     .historiqueCommande h2 {
-        font-size: 1.5em; /* Ajuster la taille de la police */
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
+    .historiqueCommande table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap; /* Permet un défilement horizontal */
     }
 
     .historiqueCommande table th,
     .historiqueCommande table td {
-        padding: 8px; /* Réduire le rembourrage des cellules */
-        font-size: 0.85em; /* Ajuster la taille de la police */
+        padding: 8px 10px;
+        font-size: 0.85em;
     }
 
-    .produitsTable th,
-    .produitsTable td {
-        padding: 5px; /* Réduire le rembourrage des cellules */
-        font-size: 0.75em; /* Ajuster la taille de la police */
-    }
-}
-
-@media (max-width: 480px) {
-    .historiqueCommande {
-        padding: 10px; /* Réduire le rembourrage pour les très petits écrans */
-    }
-
-    .historiqueCommande h2 {
-        font-size: 1.25em; /* Ajuster la taille de la police */
-    }
-
-    .historiqueCommande table th,
     .historiqueCommande table td {
-        padding: 6px; /* Réduire le rembourrage des cellules */
-        font-size: 0.75em; /* Ajuster la taille de la police */
+        font-size: 0.85em;
     }
 
-    .produitsTable th,
-    .produitsTable td {
-        padding: 4px; /* Réduire le rembourrage des cellules */
-        font-size: 0.65em; 
+    .historiqueCommande .produitsTable th,
+    .historiqueCommande .produitsTable td {
+        padding: 6px;
+        font-size: 0.85em;
     }
 
-    .produitsTable td img {
-        max-width: 40px; /* Réduire la taille des images */
-        max-height: 40px; /* Réduire la taille des images */
+    .historiqueCommande .produitsTable td img {
+        max-width: 35px;
+        max-height: 35px;
+    }
+
+    .historiqueCommande p {
+        font-size: 12px;
+        padding: 10px 0;
     }
 }

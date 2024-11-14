@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
-const ProtectedRouteLogin = () => {
+const ProtectedRouteLogin= () => {
 
 const user = JSON.parse(localStorage.getItem('user'));
 

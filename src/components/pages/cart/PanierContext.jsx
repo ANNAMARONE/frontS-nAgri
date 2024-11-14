@@ -16,7 +16,7 @@ export const PanierProvider = ({ children }) => {
       setPanier(parsedPanier);
       setPanierCount(parsedPanier.reduce((count, produit) => count + produit.quantite, 0));
     }
-  }, []); // Un tableau vide pour exécuter uniquement au montage du composant
+  }, []); 
 
   const updatePanier = (nouveauPanier) => {
     setPanier(nouveauPanier);

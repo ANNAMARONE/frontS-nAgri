@@ -168,7 +168,7 @@ const Panier = () => {
 };
 
   return (
-    <div>
+    <div className='panierPage'>
     <div className='headerpanier'>
       <h2>Mon Panier</h2>
       <button className='Buttoncommandes'>

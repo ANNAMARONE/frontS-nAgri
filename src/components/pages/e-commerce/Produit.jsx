@@ -143,11 +143,6 @@ export default function Produit (){
       });
     });
   };
-  
-  
- 
-  
- 
     const settings = {
       slidesToShow: 6,
       slidesToScroll: 1,

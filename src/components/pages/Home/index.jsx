@@ -85,8 +85,6 @@ const [produits, setProduits] = useState([]);
     }
   };
 
-  
-
 
   const nextPage = () => {
     if (currentPage < totalPages) {

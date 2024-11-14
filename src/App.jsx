@@ -9,7 +9,6 @@ import Forum from './components/pages/forum/Forum';
 import Login from './components/pages/Auth/Login';
 import Register from './components/pages/Auth/Register';
 import Accueil from './components/pages/Home/Accueil';
-import Panier from './components/pages/cart/panier';
 import ProduitDetails from './components/pages/e-commerce/détaileProduit';
 import Article from './components/pages/article/article';
 import DétaileArticle from './components/pages/article/détaileArticle';
@@ -64,6 +63,11 @@ import GestionPermission from './components/adminPage/gestion role et permission
 import Contact from './components/pages/contact/Contact';
 import DétailForum from './components/pages/forum/DétailForum';
 import ProtectedRouteLogin from './components/Route Proteger/ProtectedRouteLogin';
+import Panier from './components/pages/cart/Panier';
+
+
+
+
 
 
 
@@ -115,9 +119,9 @@ function App() {
           <Route path="/ressources" element={<RessourcesList />} />
           <Route path="/ressources/:id" element={<RessourceDetails />} />
           <Route path="/commande" element={<Commandes/>} />
-          <Route element={<ProtectedRouteLogin />}>
+          <Route element={<ProtectedRouteLogin/>}>
           <Route path="/profileUse" element={<Profile />} />
-          <Route path="/panier" element={<Panier />} />
+          <Route path="/panier" element={<Panier/>} />
           </Route>
           <Route path="/modifier-profile" element={<ModifierProfile/>} />
           <Route path='/verificationOpt' element={<VerificationOpt/>}/>
