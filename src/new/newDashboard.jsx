@@ -16,6 +16,8 @@ const NewDashboard = () => {
     const navigate = useNavigate(); 
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false);
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
@@ -51,6 +53,47 @@ const NewDashboard = () => {
             setError(error.response ? error.response.data : "Erreur de connexion");
         });
     }, []);
+
+
+  useEffect(() => {
+    // Récupérer le nombre de notifications non lues
+    axios.get(`${config.apiBaseUrl}/notifications/nonlut`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then(response => {
+      setUnreadCount(response.data.unread_count);
+    })
+    .catch(error => console.error('Erreur lors de la récupération des notifications:', error));
+    
+    // Récupérer la liste des notifications
+    axios.get(`${config.apiBaseUrl}/notifications`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then(response => {
+      setNotifications(response.data.notifications);
+    })
+    .catch(error => console.error('Erreur lors de la récupération des notifications:', error));
+  }, []);
+
+  // Marquer une notification comme lue
+  const markAsRead = (notificationId) => {
+    axios.put(`${config.apiBaseUrl}/notifications/${notificationId}/marquerLut`, {}, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then(response => {
+      setNotifications(notifications.map(notification => 
+        notification.id === notificationId ? { ...notification, is_read: true } : notification
+      ));
+      setUnreadCount(unreadCount - 1);
+    })
+    .catch(error => console.error('Erreur lors de la mise à jour de la notification:', error));
+  };
     if (error) {
       return <div>Erreur: {error}</div>;
     }
@@ -81,9 +124,34 @@ const NewDashboard = () => {
         <Link to='/forump'>
             <FontAwesomeIcon icon={faComments} className="navbar-icon" title="Forum de Discussion" />
             </Link>
-            <div className="notification-icon-container">
-      <FontAwesomeIcon icon={faBell} className="navbar-icon" title="Notifications" />
+
+    <div className="notification-icon-container">
+      <FontAwesomeIcon
+        icon={faBell}
+        className="navbar-icon"
+        title="Notifications"
+        onClick={() => setMenuOpen(!menuOpen)}  
+      />
       {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
+
+      {menuOpen && (
+        <div className="notification-menu">
+          {notifications.length === 0 ? (
+            <p>Aucune notification</p>
+          ) : (
+            notifications.map((notification) => (
+              <div className="notification-item" key={notification.id}>
+                <p>{notification.message}</p>
+                {!notification.is_read && (
+                  <button onClick={() => markAsRead(notification.id)}>
+                    Marquer comme lue
+                  </button>
+                )}
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
            <div className='profileProducteur'>
            <Link to="/profile">

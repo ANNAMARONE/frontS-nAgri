@@ -237,6 +237,78 @@ body{
   .notification-badge {
     font-size: 10px; 
   }
+  /* Container pour l'icône de notification */
+.notification-icon-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  /* Icône de la cloche */
+  .navbar-icon {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Badge qui affiche le nombre de notifications */
+  .notification-badge {
+    position: absolute;
+    top: -5px;  /* Ajuste la position verticale */
+    right: -5px; /* Ajuste la position horizontale */
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  /* Menu déroulant avec les notifications */
+  .notification-menu {
+    position: absolute;
+    top: 35px;  /* Positionner le menu sous l'icône */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Élément de notification */
+  .notification-item {
+    padding: 8px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  /* Style du bouton pour marquer comme lue */
+  .notification-item button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .notification-item button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Fermeture du menu quand l'utilisateur clique ailleurs */
+  .notification-icon-container .notification-menu {
+    display: block;
+  }
   
 @media (max-width: 768px) {
    
