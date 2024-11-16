@@ -251,26 +251,11 @@ body{
   }
   
   /* Badge qui affiche le nombre de notifications */
-  .notification-badge {
-    position: absolute;
-    top: -5px;  /* Ajuste la position verticale */
-    right: -5px; /* Ajuste la position horizontale */
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-  }
-  
-  /* Menu déroulant avec les notifications */
+ 
+
   .notification-menu {
     position: absolute;
-    top: 35px;  /* Positionner le menu sous l'icône */
+    top: 35px;  
     right: 0;
     background-color: white;
     border: 1px solid #ddd;
@@ -304,7 +289,6 @@ body{
   .notification-item button:hover {
     background-color: #0056b3;
   }
-  
   /* Fermeture du menu quand l'utilisateur clique ailleurs */
   .notification-icon-container .notification-menu {
     display: block;
