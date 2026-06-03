@@ -25,7 +25,7 @@ export default function Register() {
   const [profileImage, setProfileImage] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
-  
+
   const [validationErrors, setValidationErrors] = useState({
     name: '',
     adresse: '',
@@ -60,7 +60,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-  
+
     // Reset des erreurs
     setValidationErrors({
       name: '',
@@ -73,7 +73,7 @@ export default function Register() {
       region: '',
       role: '',
     });
-  
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('profile', profile);
@@ -82,12 +82,12 @@ export default function Register() {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('role', role);
-  
+
     if (role === 'producteur') {
       formData.append('acteur', acteur);
       formData.append('region', region);
     }
-  
+
     // Validation basique
     let hasError = false;
 
@@ -98,7 +98,7 @@ export default function Register() {
     } else if (name.length > 255) {
       setValidationErrors((prev) => ({ ...prev, name: 'Le nom ne peut pas dépasser 255 caractères.' }));
       hasError = true;
-    } else if (name.length <4) {
+    } else if (name.length < 4) {
       setValidationErrors((prev) => ({ ...prev, name: 'Le nom le nom doit avoir au moins 4 caractére.' }));
       hasError = true;
     }
@@ -176,15 +176,15 @@ export default function Register() {
         },
         body: JSON.stringify({ email, telephone }),
       });
-      
+
       const uniqueCheckResult = await uniqueCheckResponse.json();
       console.log("Réponse check-unique:", uniqueCheckResult);
-      
+
       if (!uniqueCheckResponse.ok) {
-        const errorMessages = uniqueCheckResult.errors 
-          ? Object.values(uniqueCheckResult.errors).flat().join(', ') 
+        const errorMessages = uniqueCheckResult.errors
+          ? Object.values(uniqueCheckResult.errors).flat().join(', ')
           : uniqueCheckResult.message;
-          
+
         setError(errorMessages || 'Une erreur est survenue lors de l\'inscription.');
         Swal.fire({
           title: 'Erreur!',
@@ -195,7 +195,7 @@ export default function Register() {
         setIsSubmitting(false);
         return;
       }
-    
+
       console.log("Tout est bon pour l'inscription, procéder...");
       const response = await fetch(`${config.apiBaseUrl}/auth/register`, {
         method: 'POST',
@@ -206,16 +206,16 @@ export default function Register() {
         email,
         password,
       });
-    
+
       const result = await response.json();
       console.log("Réponse inscription:", result);
       localStorage.setItem('email', email);
       // Si l'inscription échoue
       if (!response.ok) {
-        const errorMessages = result.errors 
-          ? Object.values(result.errors).flat().join(', ') 
+        const errorMessages = result.errors
+          ? Object.values(result.errors).flat().join(', ')
           : result.message;
-          
+
         setError(errorMessages || "Une erreur est survenue lors de l'inscription.");
         Swal.fire({
           title: 'Erreur!',
@@ -232,9 +232,9 @@ export default function Register() {
           confirmButtonText: 'Ok'
         }).then(() => {
           // Rediriger vers la page de vérification OTP après confirmation
-          navigate('/verificationOpt');
+          navigate('/Login');
         });
-    
+
         // Réinitialiser les champs
         resetForm();
       }
@@ -244,7 +244,7 @@ export default function Register() {
     } finally {
       setIsSubmitting(false);
     }
-  }    
+  }
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -275,142 +275,142 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           <div className="contenu">
             <h1>S&apos;inscrire</h1>
-       {/* Image */}
-       <div className='profil'>
-          <div className="input-icon">
-            <img 
-              src={profileImage || profil} 
-              alt="Profil" 
-              style={{ width: '100px', height: '100px', borderRadius: '50%', cursor: 'pointer' }} 
-              onClick={handleImageClick}
-            />
-            <input 
-              type="file" 
-              ref={fileInputRef} 
-              style={{ display: 'none' }} 
-              accept="image/*" 
-              onChange={handleImageChange}
-            />
-          </div>
-          {validationErrors.profile && <p className="validation-error">{validationErrors.profile}</p>}
-        </div>
-
-        {/* Champs du formulaire */}
-        <div className='from_group1'>
-          <div className="form-group">
-            <label>Prenom et nom:</label><br />
-            <input 
-              type="text" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
-            />
-            {validationErrors.name && <p className="validation-error">{validationErrors.name}</p>}
-          </div>
-          <div className="form-group">
-            <label>Adresse:</label><br />
-            <input 
-              type="text" 
-              value={adresse} 
-              onChange={(e) => setAdresse(e.target.value)}   
-            />
-            {validationErrors.adresse && <p className="validation-error">{validationErrors.adresse}</p>}
-          </div>
-        </div>
-
-        <div className="form-group">
-          <label>Numéro de téléphone:</label><br />
-          <input 
-            type="text" 
-            value={telephone} 
-            onChange={(e) => setTelephone(e.target.value)}  
-          />
-          {validationErrors.telephone && <p className="validation-error">{validationErrors.telephone}</p>}
-        </div>
-        <div className="form-group">
-          <label>Entrez votre adresse email:</label><br />
-          <div className="input-icon">
-            <i className="fas fa-envelope"></i>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-            />
-            {validationErrors.email && <p className="validation-error">{validationErrors.email}</p>}
-          </div>
-        </div>
-
-        <div className="form-group">
-          <label>Entrez votre mot de passe:</label><br />
-          <div className="input-icon">
-            <i className="fas fa-lock"></i>
-            <input 
-              placeholder="********" 
-              type={showPassword ? 'text' : 'password'} 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-            />
-            <i 
-              className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} 
-              style={{ cursor: 'pointer' }} 
-              onClick={togglePasswordVisibility}
-            ></i>
-            {validationErrors.password && <p className="validation-error">{validationErrors.password}</p>}
-          </div>
-        </div>
-
-        <div className="form-group">
-          <label>Vous êtes:</label><br />
-          <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="client">Client</option>
-            <option value="producteur">Producteur</option>
-          </select>
-        </div>
-
-        {role === 'producteur' && (
-          <>
-            <div className="form-group">
-              <label>Acteur:</label><br />
-              <select value={acteur} onChange={(e) => setActeur(e.target.value)}>
-                <option value="">Sélectionnez un acteur</option>
-                <option value="Agriculteurs">Agriculteur</option>
-                <option value="Jardiniers">Jardinier</option>
-              </select>
-              {validationErrors.acteur && <p className="validation-error">{validationErrors.acteur}</p>}
+            {/* Image */}
+            <div className='profil'>
+              <div className="input-icon">
+                <img
+                  src={profileImage || profil}
+                  alt="Profil"
+                  style={{ width: '100px', height: '100px', borderRadius: '50%', cursor: 'pointer' }}
+                  onClick={handleImageClick}
+                />
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </div>
+              {validationErrors.profile && <p className="validation-error">{validationErrors.profile}</p>}
             </div>
-           
-            <div className="form-group">
-              <label>Région:</label><br />
-              <select value={region} onChange={(e) => setRegion(e.target.value)}>
-                <option value="">Sélectionnez une région</option>
-                <option value="Dakar">Dakar</option>
-                <option value="Thiès">Thiès</option>
-                <option value="Saint-Louis">Saint-Louis</option>
-                <option value="Diourbel">Diourbel</option>
-                <option value="Kaffrine">Kaffrine</option>
-                <option value="Kaolack">Kaolack</option>
-                <option value="Kédougou">Kédougou</option>
-                <option value="Louga">Louga</option>
-                <option value="Matam">Matam</option>
-                <option value="Tambacounda">Tambacounda</option>
-                <option value="Ziguinchor">Ziguinchor</option>
-              </select>
-              {validationErrors.region && <p className="validation-error">{validationErrors.region}</p>}
-            </div>
-          </>
-        )}
 
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Inscription en cours...' : 'S\'inscrire'}
-        </button>
-          <p className="already_account">
-            Vous avez déjà un compte?{" "}
-            <NavLink to="/login" className="btn_compte">
-              Connectez-vous
-            </NavLink>
-          </p>
+            {/* Champs du formulaire */}
+            <div className='from_group1'>
+              <div className="form-group">
+                <label>Prenom et nom:</label><br />
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                {validationErrors.name && <p className="validation-error">{validationErrors.name}</p>}
+              </div>
+              <div className="form-group">
+                <label>Adresse:</label><br />
+                <input
+                  type="text"
+                  value={adresse}
+                  onChange={(e) => setAdresse(e.target.value)}
+                />
+                {validationErrors.adresse && <p className="validation-error">{validationErrors.adresse}</p>}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Numéro de téléphone:</label><br />
+              <input
+                type="text"
+                value={telephone}
+                onChange={(e) => setTelephone(e.target.value)}
+              />
+              {validationErrors.telephone && <p className="validation-error">{validationErrors.telephone}</p>}
+            </div>
+            <div className="form-group">
+              <label>Entrez votre adresse email:</label><br />
+              <div className="input-icon">
+                <i className="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {validationErrors.email && <p className="validation-error">{validationErrors.email}</p>}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Entrez votre mot de passe:</label><br />
+              <div className="input-icon">
+                <i className="fas fa-lock"></i>
+                <input
+                  placeholder="********"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <i
+                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                  style={{ cursor: 'pointer' }}
+                  onClick={togglePasswordVisibility}
+                ></i>
+                {validationErrors.password && <p className="validation-error">{validationErrors.password}</p>}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Vous êtes:</label><br />
+              <select value={role} onChange={(e) => setRole(e.target.value)}>
+                <option value="client">Client</option>
+                <option value="producteur">Producteur</option>
+              </select>
+            </div>
+
+            {role === 'producteur' && (
+              <>
+                <div className="form-group">
+                  <label>Acteur:</label><br />
+                  <select value={acteur} onChange={(e) => setActeur(e.target.value)}>
+                    <option value="">Sélectionnez un acteur</option>
+                    <option value="Agriculteurs">Agriculteur</option>
+                    <option value="Jardiniers">Jardinier</option>
+                  </select>
+                  {validationErrors.acteur && <p className="validation-error">{validationErrors.acteur}</p>}
+                </div>
+
+                <div className="form-group">
+                  <label>Région:</label><br />
+                  <select value={region} onChange={(e) => setRegion(e.target.value)}>
+                    <option value="">Sélectionnez une région</option>
+                    <option value="Dakar">Dakar</option>
+                    <option value="Thiès">Thiès</option>
+                    <option value="Saint-Louis">Saint-Louis</option>
+                    <option value="Diourbel">Diourbel</option>
+                    <option value="Kaffrine">Kaffrine</option>
+                    <option value="Kaolack">Kaolack</option>
+                    <option value="Kédougou">Kédougou</option>
+                    <option value="Louga">Louga</option>
+                    <option value="Matam">Matam</option>
+                    <option value="Tambacounda">Tambacounda</option>
+                    <option value="Ziguinchor">Ziguinchor</option>
+                  </select>
+                  {validationErrors.region && <p className="validation-error">{validationErrors.region}</p>}
+                </div>
+              </>
+            )}
+
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Inscription en cours...' : 'S\'inscrire'}
+            </button>
+            <p className="already_account">
+              Vous avez déjà un compte?{" "}
+              <NavLink to="/login" className="btn_compte">
+                Connectez-vous
+              </NavLink>
+            </p>
           </div>
         </form>
-       
+
       </div>
     </div>
   );
